@@ -334,7 +334,7 @@ const PropertyAdminCard: React.FC<PropertyAdminCardProps> = ({ property, onEdit,
         <div className="flex-1 flex flex-col gap-0">
 
           <div
-            className={`overflow-hidden transition-all duration-300 ${showOptional ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}
+            className={`overflow-hidden transition-all  ${showOptional ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}
           >
             <div className="flex flex-col gap-0 pt-2">
               {optionalFields.map(({ key, label }) => (

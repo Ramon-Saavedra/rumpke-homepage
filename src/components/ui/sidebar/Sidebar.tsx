@@ -39,7 +39,7 @@ const Sidebar = () => {
 
       <nav className={
         clsx(
-          "fixed p-3 right-0 top-0 w-[80%] h-screen bg-bg-l dark:bg-bg-d z-20 shadow-2xl transform transition-all duration-300",
+          "fixed p-3 right-0 top-0 w-[80%] h-screen bg-bg-l dark:bg-bg-d z-20 shadow-2xl",
           {
             "translate-x-full": !isSidemenuOpen,
           }
@@ -65,7 +65,7 @@ const Sidebar = () => {
           /> */}
         </div>
         <SidebarItem href="/" icon={<IoAlbumsOutline size={20} />} >Start</SidebarItem>
-      <SidebarItem href="/auf-karte-erkunden" icon={<IoMapOutline size={20} />} >Auf Karte erkunden</SidebarItem>
+        <SidebarItem href="/auf-karte-erkunden" icon={<IoMapOutline size={20} />} >Auf Karte erkunden</SidebarItem>
         <SidebarItem href="/kategorie/haus" icon={<IoHomeOutline size={20} className="mr-2" />}>Haus</SidebarItem>
         <SidebarItem href="/kategorie/wohnung" icon={<IoBusinessOutline size={20} className="mr-2" />}>Wohnung</SidebarItem>
         <SidebarItem href="/kategorie/gewerbe" icon={<IoBriefcaseOutline size={20} className="mr-2" />}>Gewerbe</SidebarItem>
@@ -100,7 +100,7 @@ const Sidebar = () => {
           <ThemeSwitch />
         </div>
         <div className="mt-6">
-          <ContactTooltip/>
+          <ContactTooltip />
         </div>
       </nav>
     </div>

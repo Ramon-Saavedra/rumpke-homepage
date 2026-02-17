@@ -65,7 +65,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property, onClick, classNam
   const isDisabled = property.status === 'RESERVED' || property.status === 'SOLD' || property.status === 'RENTED';
   return (
     <div
-      className={`relative ${isDisabled ? 'opacity-60 pointer-events-none' : 'cursor-pointer  transition-all duration-200'} bg-secondary dark:bg-secondary-dark overflow-hidden group p-4 mb-1 ${cardOpacity} w-full  hover:rounded-br-2xl ${className || ''}`}
+      className={`relative ${isDisabled ? 'opacity-60 pointer-events-none' : 'cursor-pointer'} shadow-md dark:shadow-secondary-dark shadow-secondary overflow-hidden group p-4 mb-1 ${cardOpacity} w-full  hover:rounded-br-2xl ${className || ''}`}
       onClick={handleClick}
       style={style}
     >
@@ -116,7 +116,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property, onClick, classNam
             <span className="truncate">Grundstück: <b>ca. {Number(property.plot_area_m2).toLocaleString('de-DE')} m²</b></span>
           )}
         </div>
-        {property.price && <div className="text-primary font-semibold mb-1 truncate">{property.price}</div>}
+        {property.price && <div className="font-semibold mb-1 truncate">{property.price}</div>}
         {property.operationType === OperationType.RENT && (
           <div className="flex flex-col gap-1 mt-2 text-xs">
             {property.available_from && (

@@ -10,7 +10,7 @@ export default function ImmobilienbewertungPage() {
 
       <div className="grid md:grid-cols-2 gap-8 mb-10">
         {/* Warum eine professionelle Immobilienbewertung? */}
-        <div className="duration-100 text-white bg-primary dark:bg-primary-dark rounded shadow p-6 flex flex-col">
+        <div className=" text-white bg-primary dark:bg-primary-dark rounded shadow p-6 flex flex-col">
           <h2 className="text-xl font-semibold  mb-3">Warum eine professionelle Immobilienbewertung?</h2>
           <ul className="list-disc list-inside space-y-2 ">
             <li><b>Marktorientierte Preisfindung:</b> Der Wert Ihrer Immobilie wird durch eine Vielzahl von Faktoren beeinflusst – Lage, Zustand, Größe, Ausstattung und vieles mehr. Wir analysieren all diese Aspekte und vergleichen sie mit aktuellen Marktdaten, um den optimalen Preis zu ermitteln.</li>
@@ -19,7 +19,7 @@ export default function ImmobilienbewertungPage() {
           </ul>
         </div>
         {/* Bewertungsprozess */}
-        <div className="duration-100 bg-secondary dark:bg-secondary-dark rounded shadow p-6 flex flex-col">
+        <div className=" bg-secondary dark:bg-secondary-dark rounded shadow p-6 flex flex-col">
           <h2 className="text-xl font-semibold  mb-3">Unser Bewertungsprozess</h2>
           <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-200">
             <li><b>Erstgespräch und Objektbesichtigung:</b> Wir beginnen mit einem persönlichen Gespräch, in dem wir Ihre Wünsche und Ziele besprechen. Anschließend nehmen wir eine detaillierte Besichtigung Ihrer Immobilie vor, um alle relevanten Merkmale zu erfassen.</li>

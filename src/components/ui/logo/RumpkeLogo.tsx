@@ -1,9 +1,11 @@
 
+
+
 import Image from "next/image";
 
 export default function RumpkeLogo(props: { style?: React.CSSProperties; className?: string }) {
   return (
-    <div style={{ position: 'relative', width: '280px', height: '170px' }}>
+    <div style={{ position: 'relative', width: '260px', height: '150px' }}>
       <Image
         src="/imgs/logo-truncated.png"
         alt="Rumpke Immobilien Logo"
@@ -15,4 +17,4 @@ export default function RumpkeLogo(props: { style?: React.CSSProperties; classNa
       />
     </div>
   );
-};
+}

@@ -21,17 +21,17 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section className="w-full mb-12">
+    <section className="w-full mb-12 bg-secondary dark:bg-secondary-dark sm:p-8">
       <div className="mx-auto">
         <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center">Unsere Leistungen</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-1">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 lg:gap-3">
           {services.map((service) => (
-            <div key={service.title} className="flex flex-col items-center bg-secondary dark:bg-secondary-dark rounded p-6 shadow-sm duration-100">
-              <div className="font-semibold text-lg mb-2 ">{service.title}</div>
-              <div className="text-sm text-center mb-4 text-card-text-l dark:text-card-text-d">{service.text}</div>
+            <div key={service.title} className="flex flex-col items-center bg-bg-l dark:bg-bg-d  lg:rounded p-6 shadow-sm ">
+              <div className="font-semibold text-lg mb-2">{service.title}</div>
+              <div className="text-sm text-center mb-4">{service.text}</div>
               <Link
                 href={service.link}
-                className="flex items-center justify-center w-9 h-9 rounded-full  text-white transition-colors mt-auto"
+                className="flex items-center justify-center w-9 h-9 rounded-full mt-auto"
                 aria-label={service.title}
               >
                 <IoArrowForward size={18} className="text-primary cursor-pointer p-0 bg-transparent hover:scale-125 transition" />

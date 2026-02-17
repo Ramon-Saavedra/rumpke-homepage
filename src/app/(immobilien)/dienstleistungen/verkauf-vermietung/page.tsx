@@ -10,7 +10,7 @@ export default function () {
 
       <div className="grid md:grid-cols-2 gap-8 mb-10">
         {/* Verkauf */}
-        <div className="duration-100 text-white bg-primary dark:bg-primary-dark rounded shadow p-6 flex flex-col">
+        <div className=" text-white bg-primary dark:bg-primary-dark rounded shadow p-6 flex flex-col">
           <h2 className="text-xl font-semibold  mb-3">Verkauf – Erreichen Sie den besten Preis</h2>
           <ul className="list-disc list-inside space-y-2 ">
             <li><b>Professionelle Immobilienbewertung:</b> Wir ermitteln den aktuellen Marktwert Ihrer Immobilie unter Berücksichtigung aller relevanten Faktoren. Dies bildet die Grundlage für eine erfolgreiche Verkaufsstrategie.</li>
@@ -20,7 +20,7 @@ export default function () {
           </ul>
         </div>
         {/* Vermietung */}
-        <div className="duration-100  bg-secondary dark:bg-secondary-dark rounded shadow p-6 flex flex-col">
+        <div className="  bg-secondary dark:bg-secondary-dark rounded shadow p-6 flex flex-col">
           <h2 className="text-xl font-semibold  mb-3">Vermietung – Finden Sie den perfekten Mieter</h2>
           <ul className="list-disc list-inside space-y-2 ">
             <li><b>Marktgerechte Mietpreisfindung:</b> Wir analysieren den Markt und ermitteln den optimalen Mietpreis für Ihre Immobilie. So stellen wir sicher, dass Sie einen fairen Ertrag erzielen.</li>

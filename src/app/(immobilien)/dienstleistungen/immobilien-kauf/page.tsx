@@ -6,7 +6,7 @@ export default function () {
       <h1 className="text-2xl md:text-3xl font-bold  mb-6 text-center">Unsere Leistungen im Bereich Immobilieneinkauf</h1>
       <div className="grid md:grid-cols-2 gap-8 mb-10">
 
-        <div className="duration-100 text-white rounded shadow p-6 flex flex-col bg-primary dark:bg-primary-dark">
+        <div className=" text-white rounded shadow p-6 flex flex-col bg-primary dark:bg-primary-dark">
           <h2 className="text-xl font-semibold  mb-3">Persönliche Beratung</h2>
           <ul className="list-disc list-inside space-y-2 ">
             <li><b>Bedarfsanalyse:</b> Wir nehmen uns Zeit, um Ihre individuellen Wünsche und Anforderungen zu verstehen. Ob Wohnimmobilie oder Gewerbeobjekt, wir stellen sicher, dass die Immobilie perfekt zu Ihnen passt.</li>
@@ -14,7 +14,7 @@ export default function () {
           </ul>
         </div>
 
-        <div className="duration-100 bg-secondary dark:bg-secondary-dark rounded shadow p-6 flex flex-col">
+        <div className=" bg-secondary dark:bg-secondary-dark rounded shadow p-6 flex flex-col">
           <h2 className="text-xl font-semibold  mb-3">Objektsuche und Auswahl</h2>
           <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-200">
             <li><b>Gezielte Immobiliensuche:</b> Auf Basis Ihrer Vorstellungen suchen wir gezielt nach passenden Immobilien. Dabei greifen wir auf unser Netzwerk und unsere Datenbanken zurück.</li>
@@ -25,7 +25,7 @@ export default function () {
       </div>
       <div className="grid md:grid-cols-2 gap-8 mb-10">
 
-        <div className="duration-100 bg-secondary dark:bg-secondary-dark rounded shadow p-6 flex flex-col">
+        <div className=" bg-secondary dark:bg-secondary-dark rounded shadow p-6 flex flex-col">
           <h2 className="text-xl font-semibold  mb-3">Preisverhandlung und Kaufabwicklung</h2>
           <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-200">
             <li><b>Verhandlungsführung:</b> Wir vertreten Ihre Interessen und führen die Preisverhandlungen mit dem Verkäufer. Unser Ziel ist es, den besten Kaufpreis für Sie zu erzielen.</li>
@@ -34,7 +34,7 @@ export default function () {
           </ul>
         </div>
         {/* After-Sales-Service */}
-        <div className="duration-100 text-white bg-primary dark:bg-primary-dark rounded shadow p-6 flex flex-col">
+        <div className=" text-white bg-primary dark:bg-primary-dark rounded shadow p-6 flex flex-col">
           <h2 className="text-xl font-semibold  mb-3">After-Sales-Service</h2>
           <ul className="list-disc list-inside space-y-2 ">
             <li><b>Übergabe und Nachbetreuung:</b> Auch nach dem Kauf lassen wir Sie nicht allein. Wir begleiten Sie bei der Schlüsselübergabe und stehen Ihnen für alle weiteren Fragen zur Verfügung.</li>

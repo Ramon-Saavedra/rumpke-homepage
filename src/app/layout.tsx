@@ -30,7 +30,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <Script src="https://widget.cloudinary.com/v2.0/global/all.js" strategy="beforeInteractive" />
         <ThemeProvider>
           <ReactQueryProvider>
-            <div className="bg-bg-l text-zinc-800 dark:bg-bg-d dark:text-zinc-100 transition-colors duration-100 ease-out">
+            <div className="bg-bg-l text-zinc-800 dark:bg-bg-d dark:text-zinc-100">
               {/* <div className='hidden md:block fixed top-0 right-6 xl:right-36 z-500'>
                 <ContactButtom />
               </div> */}

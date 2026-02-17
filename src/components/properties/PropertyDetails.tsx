@@ -26,7 +26,7 @@ const PropertyDetails: React.FC<PropertyDetailsProps> = ({
   plot_area_m2 = 300,
 }) => {
   return (
-    <div className="w-full max-w-3xl mx-auto rounded-lg shadow p-4">
+    <div className="w-full  mx-auto rounded shadow p-4">
       <div className="mt-4">
         <h2 className="text-2xl font-bold mb-2 text-primary">{title}</h2>
         <div className="text-lg font-semibold text-error mb-2">{price}</div>

@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function UeberUnsPage() {
   return (
-    <section className="duration-100 border-admin-text-d/40 dark:border-admin-text-d/10 border mx-auto  py-6 bg-secondary dark:bg-secondary-dark rounded animate-fade-in lg:pl-2">
+    <section className=" border-admin-text-d/40 dark:border-admin-text-d/10 border mx-auto  py-6 bg-secondary dark:bg-secondary-dark rounded animate-fade-in lg:pl-2">
       <div className="grid lg:grid-cols-2 md:gap-10">
         <div className="flex flex-col">
           <div className="relative w-full md:max-w-md md:mx-auto rounded overflow-hidden flex items-center justify-center shadow-md border border-amber-400/80">

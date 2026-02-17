@@ -1,15 +1,15 @@
 "use client";
+
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-
-
 import ObjectSlideshow from '@/components/properties/ObjectSlideshow';
 import PropertyDetails from '@/components/properties/PropertyDetails';
 import { IoLocationSharp } from 'react-icons/io5';
-
-import { notFound } from 'next/navigation';
 import PropertyTypeCorner from '@/components/properties/PropertyTypeCorner';
 import { OperationType } from '@/store/ui/ui-store';
+import TrustBannerFoto from '@/components/ui/trust-baner-foto/TrustBannerFoto';
+import LogoMobile from '@/components/ui/logo-mobile/LogoMobile';
+
 
 export default function PropertyDetailPage() {
   const params = useParams();
@@ -41,8 +41,11 @@ export default function PropertyDetailPage() {
   if (error || !property) return <div className="p-8 text-center text-error text-lg">Eigenschaft nicht gefunden.</div>;
 
   return (
-    <div className=" min-h-screen w-full bg-bg-l text-zinc-800 dark:bg-bg-d dark:text-zinc-100 transition-colors duration-100 ease-out">
-      <header className="w-full flex flex-col items-start gap-1 pb-2 mt-4 mb-2 max-w-5xl mx-auto px-2">
+    <div className="min-h-screen w-full bg-bg-l text-zinc-800 dark:bg-bg-d dark:text-zinc-100 ">
+      <div className='w-full py-2 bg-secondary dark:bg-secondary-dark flex items-center justify-center mb-4'>
+        <LogoMobile />
+      </div>
+      <header className="w-full flex flex-col items-start gap-1 pb-2  mb-2 max-w-5xl mx-auto px-2">
         <div className="w-full flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             {(() => {
@@ -95,6 +98,10 @@ export default function PropertyDetailPage() {
         />
         {/* Aquí puedes agregar más secciones: plano, contacto, formularios, etc. */}
       </main>
+      <TrustBannerFoto
+        title='Persönliche Beratung und Betreuung – Wir sind für Sie da!'
+      />
+
     </div>
   );
 }

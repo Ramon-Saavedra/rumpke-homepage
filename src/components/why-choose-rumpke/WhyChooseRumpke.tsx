@@ -20,18 +20,18 @@ const features = [
 
 const WhyChooseRumpke = () => {
   return (
-    <section className="w-full py-12">
+    <section className="w-full py-4 rounded overflow-hidden bg-secondary dark:bg-secondary-dark mb-12">
       <div className="max-w-3xl mx-auto">
         <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center">Warum Rumpke Immobilien?</h2>
         <div className="flex flex-col gap-6">
           {features.map((feature) => (
-            <div key={feature.title} className="flex items-start gap-4 bg-primary dark:bg-primary-dark rounded p-4 duration-100">
-              <div className="shrink-0 text-white">
+            <div key={feature.title} className="flex items-start gap-4 dark:bg-bg-d bg-bg-l lg:rounded p-4">
+              <div className="shrink-0 ">
                 {feature.icon}
               </div>
               <div>
-                <div className="font-semibold text-lg mb-1 text-white">{feature.title}</div>
-                <div className="text-sm text-white">{feature.text}</div>
+                <div className="font-semibold text-lg mb-1 ">{feature.title}</div>
+                <div className="text-sm ">{feature.text}</div>
               </div>
             </div>
           ))}

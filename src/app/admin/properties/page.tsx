@@ -47,7 +47,7 @@ export default function PropertiesPage() {
           <button
             type="button"
             onClick={() => handleCreate(OperationType.SELL)}
-            className="mb-4 text-xs font-semibold transition-colors flex items-center gap-2 border-l-4 text-black dark:text-black p-1 rounded cursor-pointer hover:text-white duration-300"
+            className="mb-4 text-xs font-semibold transition-colors flex items-center gap-2 border-l-4 text-black dark:text-black p-1 rounded cursor-pointer hover:text-white "
             style={{ minWidth: 80, borderLeftColor: getOperationTypeColor(OperationType.SELL), backgroundColor: 'var(--color-buy)' }}
           >
             <IoAddOutline className="text-base" />
@@ -56,7 +56,7 @@ export default function PropertiesPage() {
           <button
             type="button"
             onClick={() => handleCreate(OperationType.RENT)}
-            className="mb-4 text-xs font-semibold transition-colors flex items-center gap-2 border-l-4 text-black dark:text-black  p-1 rounded cursor-pointer hover:text-white duration-300"
+            className="mb-4 text-xs font-semibold transition-colors flex items-center gap-2 border-l-4 text-black dark:text-black  p-1 rounded cursor-pointer hover:text-white "
             style={{ minWidth: 80, borderLeftColor: getOperationTypeColor(OperationType.RENT), backgroundColor: 'var(--color-rent)' }}
           >
             <IoAddOutline className="text-base" />

@@ -79,7 +79,7 @@ const InlineEditField: React.FC<InlineEditFieldProps> = ({ label, value, display
   };
 
   return (
-    <div className="flex justify-between items-center text-xs py-1 border-b dark:border-admin-border-d border-admin-border-l hover:bg-primary-dark/30 px-2 transition-colors duration-200">
+    <div className="flex justify-between items-center text-xs py-1 border-b dark:border-admin-border-d border-admin-border-l hover:bg-primary-dark/30 px-2 transition-colors ">
       <span className="font-semibold">{label}</span>
       <div className="flex items-center gap-2" ref={editRef}>
         {editing ? (

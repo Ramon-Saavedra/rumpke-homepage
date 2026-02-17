@@ -550,7 +550,7 @@ const PropertyForm: React.FC<PropertyFormProps> = ({
 
         {!form.formState.isDirty && (
           <div
-            className="mt-2 flex items-center gap-2 text-orange-600 bg-orange-50 dark:bg-orange-900/40 rounded px-4 py-2 animate-pulse border border-orange-300 dark:border-orange-700 transition-all duration-300"
+            className="mt-2 flex items-center gap-2 text-orange-600 bg-orange-50 dark:bg-orange-900/40 rounded px-4 py-2 animate-pulse border border-orange-300 dark:border-orange-700 transition-all "
             style={{ minHeight: 40 }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">

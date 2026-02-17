@@ -26,13 +26,12 @@ interface PropertiesGridProps {
 
 const PropertiesGrid: React.FC<PropertiesGridProps> = ({ properties, onSelectProperty, children }) => {
   const title = 'Immobilienangebote';
-  const subtitle = 'Entdecken Sie unsere ausgewählten Immobilien – Ihr neues Zuhause oder Ihre nächste Investition wartet auf Sie.';
+
   return (
     <>
-
       <div className="">
-        <h2 className="text-xl sm:text-xl mb-6 px-2 sm:px-0 xl:text-center">{title}</h2>
-        <p className="px-2 sm:px-0 mb-6 dark:text-admin-text-d text-admin-text-l xl:text-center xl:px-2">{subtitle}</p>
+        <h2 className="text-xl sm:text-xl mb-16 px-2 sm:px-0 xl:text-center">{title}</h2>
+
       </div>
       <div className="sm:p-1">
         {properties.map((property) => (

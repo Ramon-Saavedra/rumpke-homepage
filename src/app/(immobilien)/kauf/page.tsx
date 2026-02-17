@@ -4,7 +4,7 @@ import PropertiesGrid from '@/components/properties/PropertiesGrid';
 import { OperationType } from '@/store/ui/ui-store';
 import { Title } from '@/components/ui/title/Title';
 import { useProperties } from '@/hooks/useProperties';
-import { useBorderColor } from '@/hooks/useBorderColor';
+
 
 export default function KaufPage() {
   const { data, isLoading, isError } = useProperties();

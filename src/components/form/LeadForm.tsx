@@ -102,13 +102,13 @@ export default function LeadForm({
         <div className="">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col justify-between mx-auto bg-secondary dark:bg-secondary-dark p-8 rounded border border-card-secondary-bg-l dark:border-card-secondary-bg-d  duration-100 h-full"
+            className="flex flex-col justify-between mx-auto bg-secondary dark:bg-secondary-dark px-2 py-4 lg:p-8 lg:rounded border border-card-secondary-bg-l dark:border-card-secondary-bg-d h-full"
           >
             <div>
-              <label className="block mb-2 font-semibold text-card-text-l dark:text-card-text-d">Art der Anfrage *</label>
+              <label className="block mb-2 font-semibold text-card-text-d">Art der Anfrage *</label>
               <select
                 {...register("type")}
-                className="w-full px-4 py-2 rounded-lg border border-admin-border-l dark:border-admin-border-d  text-card-text-l dark:text-card-text-d focus:outline-none focus:ring-2 focus:ring-primary transition"
+                className="w-full px-4 py-2 border border-card-secondary-bg-d text-card-text-l focus:outline-none focus:ring-2 focus:ring-primary transition placeholder:text-card-text-d dark:placeholder:text-card-text-d"
               >
                 <option value="CONTACT">Kontakt</option>
                 <option value="VALUATION">Bewertung</option>
@@ -118,38 +118,37 @@ export default function LeadForm({
             </div>
             <input type="hidden" {...register("property_id")} />
             <input type="hidden" {...register("source")} />
-
             <div>
-              <label className="block mb-2 font-semibold text-card-text-l dark:text-card-text-d">Name *</label>
+              <label className="block mb-2 font-semibold text-card-text-d">Name *</label>
               <input
-                className="w-full px-4 py-2 rounded-lg border border-admin-border-l dark:border-admin-border-d  text-card-text-l dark:text-card-text-d focus:outline-none focus:ring-2 focus:ring-primary transition placeholder:text-card-text-l dark:placeholder:text-card-text-d"
+                className="w-full px-4 py-2 border border-card-secondary-bg-d text-card-text-l focus:outline-none focus:ring-2 focus:ring-primary transition placeholder:text-card-text-d dark:placeholder:text-card-text-d"
                 {...register("name")}
               />
               {errors.name && <p className="text-error text-xs mt-1">{errors.name.message}</p>}
             </div>
 
             <div>
-              <label className="block mb-2 font-semibold text-card-text-l dark:text-card-text-d">E-Mail *</label>
+              <label className="block mb-2 font-semibold text-card-text-d">E-Mail *</label>
               <input
-                className="w-full px-4 py-2 rounded-lg border border-admin-border-l dark:border-admin-border-d  text-card-text-l dark:text-card-text-d focus:outline-none focus:ring-2 focus:ring-primary transition placeholder:text-card-text-l dark:placeholder:text-card-text-d"
+                className="w-full px-4 py-2 border border-card-secondary-bg-d text-card-text-l focus:outline-none focus:ring-2 focus:ring-primary transition placeholder:text-card-text-d dark:placeholder:text-card-text-d"
                 {...register("email")}
               />
               {errors.email && <p className="text-error text-xs mt-1">{errors.email.message}</p>}
             </div>
 
             <div>
-              <label className="block mb-2 font-semibold text-card-text-l dark:text-card-text-d">Telefon *</label>
+              <label className="block mb-2 font-semibold text-card-text-d">Telefon *</label>
               <input
-                className="w-full px-4 py-2 rounded-lg border border-admin-border-l dark:border-admin-border-d  text-card-text-l dark:text-card-text-d focus:outline-none focus:ring-2 focus:ring-primary transition placeholder:text-card-text-l dark:placeholder:text-card-text-d"
+                className="w-full px-4 py-2 border border-card-secondary-bg-d text-card-text-l focus:outline-none focus:ring-2 focus:ring-primary transition placeholder:text-card-text-d dark:placeholder:text-card-text-d"
                 {...register("phone")}
               />
               {errors.phone && <p className="text-error text-xs mt-1">{errors.phone.message}</p>}
             </div>
 
             <div>
-              <label className="block mb-2 font-semibold text-card-text-l dark:text-card-text-d">Nachricht *</label>
+              <label className="block mb-2 font-semibold text-card-text-d">Nachricht *</label>
               <textarea
-                className="w-full px-4 py-2 rounded-lg border border-admin-border-l dark:border-admin-border-d  text-card-text-l dark:text-card-text-d focus:outline-none focus:ring-2 focus:ring-primary transition placeholder:text-card-text-l dark:placeholder:text-card-text-d"
+                className="w-full px-4 py-2 border border-card-secondary-bg-d text-card-text-l focus:outline-none focus:ring-2 focus:ring-primary transition placeholder:text-card-text-d dark:placeholder:text-card-text-d"
                 rows={4}
                 {...register("message")}
               />
@@ -157,7 +156,7 @@ export default function LeadForm({
             </div>
 
             <div className="flex items-center">
-              <input type="checkbox" id="consent" className="mr-2 accent-primary" {...register("consent")} />
+              <input type="checkbox" id="consent" className="mr-2 accent-primary border border-card-secondary-bg-d text-card-text-l" {...register("consent")} />
               <label htmlFor="consent" className="text-card-text-l dark:text-card-text-d">
                 Ich akzeptiere die Datenschutzerklärung *
               </label>
@@ -167,7 +166,7 @@ export default function LeadForm({
             <button
               type="submit"
               disabled={isSubmitting}
-              className="mt-4 w-full py-3 rounded-lg font-bold shadow-md transition disabled:opacity-60
+              className="mt-4 w-full py-3 font-bold shadow-md disabled:opacity-60
               bg-primary text-white hover:bg-primary-dark
               dark:bg-primary-dark dark:hover:bg-primary dark:text-white cursor-pointer"
             >

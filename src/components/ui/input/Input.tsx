@@ -11,7 +11,7 @@ const Input = () => {
       <input
         type="text"
         placeholder="Suche..."
-        className="w-full pl-8 pr-4 py-1 rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#171717] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-dark transition-all duration-100 mx-auto"
+        className="w-full pl-8 pr-4 py-1 rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#171717] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-dark transition-all  mx-auto"
       />
     </div>
   )

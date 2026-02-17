@@ -19,7 +19,7 @@ const SidebarDesktop = () => {
   const [openDienstleistungen, setOpenDienstleistungen] = useState(false);
 
   return (
-    <nav className="hidden md:block h-screen sticky top-0 w-full border-r dark:border-primary-dark/30 border-primary/30 bg-secondary dark:bg-secondary-dark">
+    <nav className="hidden md:block h-screen sticky top-0 w-full border-r dark:border-primary-dark/30 border-primary/30 ">
       <div className="h-full">
         <Link href={'/'}>
           <div className="p-4">

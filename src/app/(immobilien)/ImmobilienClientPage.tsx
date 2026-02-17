@@ -4,8 +4,6 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import PropertiesGrid from '@/components/properties/PropertiesGrid';
 
-
-
 export default function ImmobilienClientPage() {
   const searchParams = useSearchParams();
   const type = searchParams.get('type');
@@ -66,8 +64,8 @@ export default function ImmobilienClientPage() {
   if (error) return <div className="p-4 font-semibold text-error">Eigenschaften konnten nicht geladen werden.</div>;
 
   return (
-    <div className="hidden md:block h-screen sticky top-0 lg:overflow-auto">
-      <h1 className="text-xl sm:text-xl font-semibold text-center py-2">Alle Immobilien</h1>
+    <div className="">
+      <h1 className="text-xl sm:text-xl font-semibold text-center py-6">Alle Immobilien</h1>
       <PropertiesGrid
         properties={properties}
       />
