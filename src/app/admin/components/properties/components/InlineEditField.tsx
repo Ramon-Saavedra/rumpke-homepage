@@ -33,7 +33,6 @@ const getYupSchema = (type: "text" | "number" | "select", required?: boolean, op
     if (required) schema = schema.required("Dieses Feld ist erforderlich.");
     return schema;
   }
-  // text
   let schema = yup.string();
   if (required) schema = schema.required("Dieses Feld ist erforderlich.");
   return schema;

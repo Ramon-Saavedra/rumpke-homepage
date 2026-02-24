@@ -87,12 +87,11 @@ export default function NewAgentPage() {
       setSuccess("Makler erfolgreich erstellt!");
       router.push("/admin/agents");
     } catch (err: any) {
-      // Error del backend con array de errores
       if (err?.response?.data?.errors && Array.isArray(err.response.data.errors)) {
         err.response.data.errors.forEach((error: any, index: number) => {
           if (error.field && error.message) {
             setFormError(error.field as any, { type: "manual", message: error.message });
-            // Scroll al primer campo con error
+
             if (index === 0) {
               setTimeout(() => {
                 const errorElement = document.getElementsByName(error.field)[0];
@@ -105,18 +104,15 @@ export default function NewAgentPage() {
           }
         });
       }
-      // Mensaje general del backend
       else if (err?.response?.data?.message) {
         const msg = Array.isArray(err.response.data.message)
           ? err.response.data.message.join(' ')
           : err.response.data.message;
         setError(msg);
       }
-      // Error genérico JS
       else if (err?.message) {
         setError(err.message);
       }
-      // Fallback
       else {
         setError("API-Anfrage fehlgeschlagen");
       }

@@ -3,7 +3,7 @@
 
 
 import PropertyCard from './PropertyCard';
-import { OperationType } from '@/store/ui/ui-store';
+import type { PropertyOperation } from '@/types';
 
 interface Property {
   id: string;
@@ -11,7 +11,7 @@ interface Property {
   title: string;
   image: string;
   price?: string;
-  operationType: OperationType;
+  operationType: PropertyOperation;
 }
 
 

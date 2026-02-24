@@ -69,7 +69,7 @@ export default function Page() {
         </div>
         {/* <ScrollToTopButton /> */}
       </main>
-      <Sidebar/>
+      <Sidebar />
       <div className="flex flex-col lg:flex-1 lg:basis-1/4 xl:basis-1/6 max-w-2xs">
         <SidebarDesktop />
       </div>

@@ -1,4 +1,3 @@
-// moved from src/components/form-fields/CheckboxBoolean.tsx
 import React, { InputHTMLAttributes } from "react";
 
 interface CheckboxBooleanProps extends InputHTMLAttributes<HTMLInputElement> {

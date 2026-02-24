@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
+import { getApiUrl, API_ENDPOINTS } from '@/lib/api-client';
+import type { PropertyDetails } from '@/types';
 
 export function useProperties() {
   return useQuery({
     queryKey: ['properties'],
-    queryFn: async () => {
-      const res = await fetch('http://localhost:3000/property', { cache: 'no-store' });
+    queryFn: async (): Promise<PropertyDetails[]> => {
+      const res = await fetch(getApiUrl(API_ENDPOINTS.PROPERTIES), { cache: 'no-store' });
       if (!res.ok) throw new Error('Error al cargar propiedades');
       return res.json();
     },

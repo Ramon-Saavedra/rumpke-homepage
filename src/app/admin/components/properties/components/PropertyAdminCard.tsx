@@ -52,7 +52,6 @@ const PropertyAdminCard: React.FC<PropertyAdminCardProps> = ({ property, onEdit,
   const [errorMsg, setErrorMsg] = useState("");
   const { agents, loading: agentsLoading, error: agentsError } = useAgents();
   const [showOptional, setShowOptional] = useState(false);
-  // Estado para mostrar confirmación de borrado
   const [showConfirm, setShowConfirm] = useState(false);
 
 
@@ -63,7 +62,6 @@ const PropertyAdminCard: React.FC<PropertyAdminCardProps> = ({ property, onEdit,
       setTimeout(() => setShowError(false), 2500);
       return;
     }
-    // Actualiza localmente para feedback inmediato
     setEditValues(prev => ({ ...prev, [field]: value }));
     try {
 

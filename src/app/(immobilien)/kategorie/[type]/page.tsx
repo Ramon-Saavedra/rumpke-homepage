@@ -1,6 +1,8 @@
 import PropertiesGrid from '@/components/properties/PropertiesGrid';
 import { OperationType } from '@/store/ui/ui-store';
 import { Title } from '@/components/ui/title/Title';
+import { getApiUrl, API_ENDPOINTS } from '@/lib/api-client';
+import type { PropertyDetails, PropertyCard } from '@/types';
 
 const typeMap: Record<string, string> = {
   haus: 'Häuser',
@@ -11,38 +13,36 @@ const typeMap: Record<string, string> = {
 };
 
 export default async function KategorieTypePage({ params }: { params: { type: string } }) {
-  const res = await fetch('http://localhost:3000/property', { cache: 'no-store' });
-  if (!res.ok) {
-    return <div className="p-4 font-semibold text-error" >Eigenschaften konnten nicht geladen werden.</div>;
-  }
-  let properties = await res.json();
+  let properties: PropertyCard[] = [];
   let error = false;
+
   try {
-    const res = await fetch('http://localhost:3000/property', { cache: 'no-store' });
+    const res = await fetch(getApiUrl(API_ENDPOINTS.PROPERTIES), { cache: 'no-store' });
     if (!res.ok) {
       error = true;
     } else {
-      properties = await res.json();
-      properties = properties.filter((p: any) =>
-        p.status === 'PUBLISHED' || p.status === 'RESERVED' || p.status === 'SOLD' || p.status === 'RENTED'
-      ).map((p: any) => ({
-        ...p,
-        operationType:
-          p.operation === 'SELL'
-            ? OperationType.SELL
-            : p.operation === 'RENT'
-              ? OperationType.RENT
-              : undefined,
-        image: p.main_image || '',
-        price: p.price_amount ? `${Number(p.price_amount).toLocaleString('de-DE')} €` : undefined,
-        title: p.title,
-        slug: p.slug,
-        id: p.id,
-        available_from: p.available_from,
-        deposit: p.deposit,
-        furnished: p.furnished,
-        type: p.type,
-      }));
+      const data: PropertyDetails[] = await res.json();
+      properties = data
+        .filter((p: PropertyDetails) =>
+          p.status === 'PUBLISHED' || p.status === 'RESERVED' || p.status === 'SOLD' || p.status === 'RENTED'
+        )
+        .map((p: PropertyDetails): PropertyCard => ({
+          id: p.id,
+          slug: p.slug,
+          title: p.title,
+          operationType: p.operation,
+          image: p.main_image || '',
+          images: p.images?.map(img => img.url) || [],
+          price: p.price_amount ? `${Number(p.price_amount).toLocaleString('de-DE')} €` : undefined,
+          type: p.type,
+          city: p.location?.city,
+          area_sqm: p.specs?.area_sqm,
+          rooms: p.specs?.rooms,
+          available_from: p.available_from,
+          deposit: p.financials?.deposit,
+          furnished: p.furnished,
+          status: p.status,
+        }));
     }
   } catch {
     error = true;
@@ -56,10 +56,9 @@ export default async function KategorieTypePage({ params }: { params: { type: st
     );
   }
 
-
   const type = params.type.toLowerCase();
   const title = `Alle ${typeMap[type] || type}`;
-  const filteredProperties = properties.filter((p: any) => (p.type || '').toLowerCase() === type);
+  const filteredProperties = properties.filter((p: PropertyCard) => (p.type || '').toLowerCase() === type);
 
   if (!filteredProperties.length) {
     return <Loader />;

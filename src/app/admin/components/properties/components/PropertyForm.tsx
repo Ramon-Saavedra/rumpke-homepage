@@ -69,7 +69,6 @@ const PropertyForm: React.FC<PropertyFormProps> = ({
   const isSell = operationType === OperationType.SELL;
   return (
     <form onSubmit={form.handleSubmit((data) => {
-      // ...existing code...
       onSubmit(data);
     })} className="property-form">
       {/* Main image field */}

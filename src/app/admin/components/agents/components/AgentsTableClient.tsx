@@ -25,7 +25,6 @@ export default function AgentsTableClient({ initialAgents }: { initialAgents: Ag
   const [deleteModal, setDeleteModal] = useState<Agent | null>(null);
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
-  // Línea 28: Efecto para mostrar toast cuando cambia el estado de edición
   useEffect(() => {
     if (editAgentStatus === 'success') {
       setToast({ message: 'Makler erfolgreich aktualisiert', type: 'success' });
@@ -34,7 +33,6 @@ export default function AgentsTableClient({ initialAgents }: { initialAgents: Ag
     }
   }, [editAgentStatus]);
 
-  // Línea 35: Efecto para mostrar toast cuando cambia el estado de eliminación
   useEffect(() => {
     if (deleteAgentStatus === 'success') {
       setToast({ message: 'Makler erfolgreich gelöscht', type: 'success' });
@@ -43,7 +41,6 @@ export default function AgentsTableClient({ initialAgents }: { initialAgents: Ag
     }
   }, [deleteAgentStatus]);
 
-  // Línea 43: Auto-ocultar toast después de 3 segundos
   useEffect(() => {
     if (toast) {
       const timer = setTimeout(() => setToast(null), 3000);

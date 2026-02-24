@@ -4,10 +4,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useState } from "react";
 import ContactAside from "./ContactAside";
+import { getApiUrl, API_ENDPOINTS } from "@/lib/api-client";
+import type { LeadCreatePayload, LeadType, LeadSource } from "@/types";
 
 export const schema = yup.object().shape({
-  type: yup.mixed<'CONTACT' | 'VALUATION' | 'VISIT_REQUEST'>()
-    .oneOf(['CONTACT', 'VALUATION', 'VISIT_REQUEST'])
+  type: yup.mixed<LeadType>()
+    .oneOf(['CONTACT', 'PROPERTY_INQUIRY', 'VALUATION', 'SELLING', 'BUYING', 'RENTING', 'OTHER'])
     .required(),
   property_id: yup.string().nullable().default(null),
   name: yup.string().required("Name ist erforderlich"),
@@ -19,7 +21,7 @@ export const schema = yup.object().shape({
 });
 
 type LeadFormValues = {
-  type: 'CONTACT' | 'VALUATION' | 'VISIT_REQUEST';
+  type: LeadType;
   property_id: string | null;
   name: string;
   email: string;
@@ -29,11 +31,10 @@ type LeadFormValues = {
   source: string | null;
 };
 
-
 interface LeadFormProps {
-  type: 'CONTACT' | 'VALUATION' | 'VISIT_REQUEST';
-  propertyId: string;
-  source: string;
+  type?: LeadType;
+  propertyId?: string;
+  source?: LeadSource;
 }
 
 export default function LeadForm({
@@ -67,12 +68,22 @@ export default function LeadForm({
     setSubmitSuccess(false);
     setSubmitError("");
     try {
+      const [firstName, ...lastNameParts] = data.name.trim().split(/\s+/);
+      const lastName = lastNameParts.join(" ") || firstName;
 
-      const payload = {
-        ...data,
-        property_id: data.property_id && data.property_id.length > 0 ? data.property_id : null,
+      const payload: LeadCreatePayload = {
+        type: data.type,
+        source: (data.source as LeadSource) || "web",
+        first_name: firstName,
+        last_name: lastName,
+        email: data.email,
+        phone: data.phone || undefined,
+        message: data.message,
+        property_id: data.property_id && data.property_id.length > 0 ? data.property_id : undefined,
+        gdpr_consent: data.consent,
       };
-      const res = await fetch("http://localhost:3000/lead", {
+
+      const res = await fetch(getApiUrl(API_ENDPOINTS.LEAD), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -111,8 +122,11 @@ export default function LeadForm({
                 className="w-full px-4 py-2 border border-card-secondary-bg-d text-card-text-l focus:outline-none focus:ring-2 focus:ring-primary transition placeholder:text-card-text-d dark:placeholder:text-card-text-d"
               >
                 <option value="CONTACT">Kontakt</option>
+                <option value="PROPERTY_INQUIRY">Immobilienanfrage</option>
                 <option value="VALUATION">Bewertung</option>
-                <option value="VISIT_REQUEST">Besichtigung</option>
+                <option value="SELLING">Verkauf</option>
+                <option value="BUYING">Kauf</option>
+                <option value="RENTING">Miete</option>
               </select>
               {errors.type && <p className="text-error text-xs mt-1">{errors.type.message}</p>}
             </div>

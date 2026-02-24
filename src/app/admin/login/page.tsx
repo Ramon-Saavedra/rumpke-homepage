@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
+import { getApiUrl, API_ENDPOINTS } from '@/lib/api-client';
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -21,8 +22,7 @@ export default function AdminLoginPage() {
     }
     setLoading(true);
     try {
-      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
-      const res = await fetch(`${API_URL}/auth/login`, {
+      const res = await fetch(getApiUrl(API_ENDPOINTS.AUTH_LOGIN), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
