@@ -5,8 +5,6 @@
 .env
 .github/
 .cursorrules/
-!.cursorrules/
-!.cursorrules/*
 
 /node_modules
 /.pnp
