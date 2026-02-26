@@ -1,12 +1,10 @@
 'use client';
 
-import ClientOnly from "@/components/form/ClientOnly";
-import LeadForm from "@/components/form/LeadForm";
-import BackHomeButton from "@/components/ui/back-home-buttom/BackHomeButton";
-import TrustBannerFoto from "@/components/ui/trust-baner-foto/TrustBannerFoto";
-import dynamic from "next/dynamic";
+
+import BackHomeButton from "@/components/features/back-home-buttom/BackHomeButton";
+import TrustBannerFoto from "@/components/features/trust-baner-foto/TrustBannerFoto";
 import Image from "next/image";
-const ContactMap = dynamic(() => import("@/components/ui/Map/ContactMap"), { ssr: false });
+
 
 
 
@@ -14,7 +12,7 @@ export default function KontaktPage() {
   return (
     <section className="mx-auto md:p-10 py-8">
       <div>
-        <BackHomeButton/>
+        <BackHomeButton />
       </div>
       <div className="w-full mb-12">
         <div className="w-full  overflow-hidden flex items-center justify-center p-0">
@@ -50,18 +48,7 @@ export default function KontaktPage() {
               <p className="text-sm tracking-wider">49844 Bawinkel</p>
             </div>
           </div>
-          {/* Mapa */}
-          {/* Formulario */}
-          <div className="w-full rounded-xl bg-white/90 dark:bg-bg-d/80 shadow-sm flex flex-col items-center justify-center p-0 overflow-hidden">
-            <ClientOnly>
-              <div id="leadform" className="w-full md:max-w-md mx-auto flex flex-col justify-center">
-                <LeadForm type="CONTACT" propertyId="" source="web" />
-              </div>
-            </ClientOnly>
-          </div>
-          <div className="w-full overflow-hidden bg-white/80 dark:bg-bg-d/70 shadow-sm flex items-stretch justify-center p-0">
-            <ContactMap />
-          </div>
+
         </div>
       </div>
       <div className="hidden lg:block">

@@ -66,6 +66,10 @@ No usar valores inline.
 
 No usar sintaxis var(--primary).
 
+Solo usa rounded no rounded-md, rounded-lg, etc.
+
+No uses transition ni, transform ni duration en ningun lado.
+
 No text-text-secondary sino text-secondary.
 
 Usar las variables exactamente como están definidas, por ejemplo:

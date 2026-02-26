@@ -32,7 +32,7 @@ const ObjectSlideshow: React.FC<ObjectSlideshowProps> = ({ images = defaultImage
   const thumbSliderClass = modalMode
     ? 'w-full max-w-4xl md:max-w-5xl'
     : 'w-full max-w-2xl';
-  const thumbImgClass = 'relative w-full aspect-[4/3] h-16 md:h-20 cursor-pointer border border-transparent hover:border-primary rounded overflow-hidden';
+  const thumbImgClass = 'relative w-full aspect-[4/3] h-16 md:h-20 cursor-pointer border border-border-l dark:border-border-d hover:border-primary dark:hover:border-primary-dark rounded overflow-hidden';
 
   return (
     <div className="w-full flex flex-col items-center min-w-[320px] min-h-[300px]">

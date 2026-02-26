@@ -1,8 +1,10 @@
+'use client';
+
 import { useUIStore } from "@/store/ui/ui-store";
 import Link from "next/link";
 import { ReactNode, cloneElement } from "react";
 
-interface SidebarItemProps {
+interface NavItemProps {
   href: string;
   icon?: ReactNode;
   children: ReactNode;
@@ -10,7 +12,7 @@ interface SidebarItemProps {
   mt?: string;
 }
 
-const SidebarItem = ({ href, icon, children, color, mt }: SidebarItemProps) => {
+const NavItem = ({ href, icon, children, color, mt }: NavItemProps) => {
 
   const closeSidemenu = useUIStore((state) => state.closeSidemenu);
   const iconWithMargin = icon && typeof icon === 'object' && 'type' in icon
@@ -20,7 +22,7 @@ const SidebarItem = ({ href, icon, children, color, mt }: SidebarItemProps) => {
     <Link
       onClick={closeSidemenu}
       href={href}
-      className={`flex items-center border-b hover:border-primary/50`}
+      className={`flex items-center hover:text-primary text-xs px-1 mb-4 md:mb-0`}
     >
       {iconWithMargin}
       {children}
@@ -28,4 +30,4 @@ const SidebarItem = ({ href, icon, children, color, mt }: SidebarItemProps) => {
   );
 }
 
-export default SidebarItem;
+export default NavItem;

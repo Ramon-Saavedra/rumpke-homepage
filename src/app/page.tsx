@@ -1,15 +1,16 @@
-import PersonalServiceCard from "@/components/personal-service-card/PersonalServiceCard"
-import ServicesSection from "@/components/services-section/ServicesSection"
-import TargetAudienceSection from "@/components/target-audience-section/TargetAudienceSection"
-import Sidebar from "@/components/ui/sidebar/Sidebar"
-import SidebarDesktop from "@/components/ui/sidebar/SidebarDesktop"
-import WhyChooseRumpke from "@/components/why-choose-rumpke/WhyChooseRumpke"
+import PersonalServiceCard from "@/components/sections/personal-service-card/PersonalServiceCard"
+import ServicesSection from "@/components/sections/services-section/ServicesSection"
+import TargetAudienceSection from "@/components/sections/target-audience-section/TargetAudienceSection"
+import CategoryNav from "@/components/layout/category-nav/CategoryNav"
+import Sidebar from "@/components/layout/sidebar/Sidebar"
+
+import WhyChooseRumpke from "@/components/sections/why-choose-rumpke/WhyChooseRumpke"
 
 const page = () => {
   return (
     <div>
-      <SidebarDesktop />
-      <Sidebar/>
+      <CategoryNav />
+      <Sidebar />
       <TargetAudienceSection />
       <WhyChooseRumpke />
       <ServicesSection />

@@ -4,12 +4,13 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
-import CompanyTitle from "@/components/ui/companyTitle/CompanyTitle";
+import CompanyTitle from "@/components/branding/companyTitle/CompanyTitle";
 import Script from "next/script";
 
-import ContactButtom from '@/components/ui/contact-buttom/ContactTooltip';
-import Topmenu from "@/components/ui/top-menu/TopMenu";
-import Footer from "@/components/ui/footer/Footer";
+import ContactButtom from '@/components/features/contact-buttom/ContactTooltip';
+import Topmenu from "@/components/layout/top-menu/TopMenu";
+import Footer from "@/components/layout/footer/Footer";
+import SecondaryNav from "@/components/layout/secondary-nav/SecondaryNav";
 
 
 
@@ -37,8 +38,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
             </div> */}
             <div className="">
               <Topmenu />
-              {children}
+              <div style={{ paddingTop: 'var(--topbar-height)' }}>
+                {children}
+              </div>
               <Footer />
+              <SecondaryNav />
             </div>
           </div>
           <CompanyTitle />
