@@ -1,21 +1,18 @@
 
 
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
 import CompanyTitle from "@/components/branding/companyTitle/CompanyTitle";
 import Script from "next/script";
-
-
 import Topmenu from "@/components/layout/top-menu/TopMenu";
 import Footer from "@/components/layout/footer/Footer";
 import SecondaryNav from "@/components/layout/secondary-nav/SecondaryNav";
+import CategoryNav from "@/components/layout/category-nav/CategoryNav";
 
 
-
-
-const inter = Inter({ subsets: ["latin"], display: "swap" });
+const roboto = Roboto({ subsets: ["latin"], weight: ["300", "400", "500", "700"], display: "swap" });
 
 export const metadata: Metadata = {
   title: "Rumpke Immobilien",
@@ -28,7 +25,7 @@ type RootLayoutProps = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" className={inter.className} suppressHydrationWarning>
+    <html lang="en" className={roboto.className} suppressHydrationWarning>
       <body className="antialiased">
         <Script src="https://widget.cloudinary.com/v2.0/global/all.js" strategy="beforeInteractive" />
         <ThemeProvider>
@@ -39,6 +36,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <div className="">
               <Topmenu />
               <div style={{ paddingTop: 'var(--topbar-height)' }}>
+                <CategoryNav />
                 {children}
               </div>
               <Footer />

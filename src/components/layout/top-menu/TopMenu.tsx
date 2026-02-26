@@ -14,12 +14,14 @@ const Topmenu = () => {
 
   return (
     <>
-      <div className='fixed top-0 right-0 z-100 flex justify-between  items-center w-full py-2'>
+      <div className='fixed top-0 left-0 right-0 z-100 flex justify-between items-center w-full py-2 backdrop-blur-xl bg-background/80 dark:bg-background-dark/80 border-b border-border-l dark:border-border-d shadow-md'>
         <div className='flex flex-col items-center justify-center'>
           <LogoMobile />
         </div>
-        <div className='flex gap-4'>
+        <div>
           <ThemeSwitch />
+        </div>
+        <div className='flex gap-4'>
           <CategoryButton
             name="Kauf"
             href="/kauf"

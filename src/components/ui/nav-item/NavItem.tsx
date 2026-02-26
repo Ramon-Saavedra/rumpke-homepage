@@ -23,7 +23,7 @@ const NavItem = ({ href, icon, children }: NavItemProps) => {
     <Link
       onClick={closeSidemenu}
       href={href}
-      className={`flex items-center hover:text-primary text-xs px-1 mb-4 md:mb-0`}
+      className={`flex items-center text-xs px-1 mb-4 md:mb-0 `}
     >
       {iconWithMargin}
       {children}

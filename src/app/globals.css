@@ -1,10 +1,6 @@
 @import "tailwindcss";
 
 
-input::placeholder, textarea::placeholder {
-  color: #9CA3AF;
-  opacity: 1;
-}
 .dark input::placeholder, .dark textarea::placeholder {
   color: #D1D5DB;
   opacity: 1;
@@ -71,11 +67,12 @@ input::placeholder, textarea::placeholder {
 --color-primary-dark: #1B4229;
 --color-secondary: #FCFCFC;
 --color-secondary-dark: #212126;
+--color-third: #1B152E;
 --color-border-l: #E5E5E5;
 --color-border-d: #2E2E2E;
 
 
---topbar-height: 4rem;
+--topbar-height: 3.5rem;
 
 
 

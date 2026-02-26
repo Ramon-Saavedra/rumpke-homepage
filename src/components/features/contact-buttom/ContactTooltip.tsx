@@ -1,77 +1,75 @@
 'use client';
 
 import styled from 'styled-components';
-import Link from 'next/link';
-import { IoLogoInstagram, IoLogoFacebook, IoLogoWhatsapp, IoMailOutline } from "react-icons/io5";
+import { IoLogoInstagram, IoLogoFacebook, IoLogoWhatsapp, IoMailOutline, IoLogoLinkedin } from "react-icons/io5";
 import { usePathname } from "next/navigation";
+import SocialIcon from "@/components/ui/social-icon/SocialIcon";
 
 const ContactTooltip = () => {
   const pathname = usePathname();
   if (pathname.startsWith('/admin')) return null;
+
   return (
     <StyledWrapper>
-      <ul className="flex justify-around example-1  pt-1 text-bg-l dark:text-card-text-d py-1 rounded-b px-2 dark:hover:shadow-primary hover:shadow-primary-dark shadow-md transform " >
-        <li className="icon-content">
-          <Link
-            href="https://www.facebook.com/profile.php?id=61572884870790"
-            aria-label="Facebook"
-            data-social="facebook"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link"
-          >
-            <IoLogoFacebook size={20} className='hover:bg-[#1877F3] rounded' />
-          </Link>
-          <div className="tooltip text-xs text-bg-l dark:text-admin-border-l bg-[#1877F3] py-1 px-2 rounded">Facebook</div>
-        </li>
-        <li className="icon-content">
-          <Link
-            href="https://wa.me/491723244468"
-            aria-label="Whatsapp"
-            data-social="whatsapp"
-            rel="noopener noreferrer"
-            target="_blank"
-            className="link"
-          >
-            <IoLogoWhatsapp size={20} className='hover:bg-[#25D366] rounded' />
-          </Link>
-          <div className="tooltip text-xs text-bg-l dark:text-admin-border-l bg-[#25D366] py-1 px-2 rounded">WhatsApp</div>
-        </li>
-        <li className="icon-content hidden md:block">
-          <Link
-            href="/#"
-            aria-label="Email"
-            data-social="email"
-            rel="noopener noreferrer"
-            className="link "
-            scroll={false}
-            onClick={e => {
-              if (window.location.pathname === '/' || window.location.pathname === '/index') {
-                e.preventDefault();
-                const el = document.getElementById('leadform');
-                if (el) {
-                  el.scrollIntoView({ behavior: 'smooth' });
-                }
+      <ul className="flex justify-around example-1 pt-1 py-1">
+        <SocialIcon
+          href="https://www.facebook.com/profile.php?id=61572884870790"
+          ariaLabel="Facebook"
+          dataSocial="facebook"
+          target="_blank"
+          icon={<IoLogoFacebook size={18} className='hover:bg-[#1877F3] rounded' />}
+          tooltipText="Facebook"
+          bgColor="#1877F3"
+        />
+
+        <SocialIcon
+          href="https://wa.me/491723244468"
+          ariaLabel="Whatsapp"
+          dataSocial="whatsapp"
+          target="_blank"
+          icon={<IoLogoWhatsapp size={18} className='hover:bg-[#25D366] rounded' />}
+          tooltipText="WhatsApp"
+          bgColor="#25D366"
+        />
+
+        <SocialIcon
+          href="/#"
+          ariaLabel="Email"
+          dataSocial="email"
+          icon={<IoMailOutline size={18} className='hover:bg-[#2563EB] rounded' />}
+          tooltipText="Kontakt"
+          bgColor="#2563EB"
+          className="hidden md:block"
+          onClick={e => {
+            if (window.location.pathname === '/' || window.location.pathname === '/index') {
+              e.preventDefault();
+              const el = document.getElementById('leadform');
+              if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
               }
-            }}
-          >
-            <IoMailOutline size={20} className='hover:bg-admin-border-d rounded' />
-          </Link>
-          <div className="tooltip text-xs text-bg-l dark:text-admin-border-l bg-admin-border-d py-1 px-2 rounded">Kontakt</div>
-        </li>
-        <li className="icon-content">
-          <Link
-            href="https://www.instagram.com/rumpkeimmobilien/"
-            aria-label="Instagram"
-            data-social="instagram"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link"
-          >
-            <IoLogoInstagram size={20} className='hover:bg-[#E4405F] rounded' />
-          </Link>
-          <div className="tooltip text-xs text-bg-l dark:text-admin-border-l bg-[#E4405F] py-1 px-2 rounded">Instagram</div>
-        </li>
+            }
+          }}
+        />
+
+        <SocialIcon
+          href="https://www.instagram.com/rumpkeimmobilien/"
+          ariaLabel="Instagram"
+          dataSocial="instagram"
+          target="_blank"
+          icon={<IoLogoInstagram size={18} className='hover:bg-[#E4405F] rounded' />}
+          tooltipText="Instagram"
+          bgColor="#E4405F"
+        />
+
+        <SocialIcon
+          href="https://www.linkedin.com/company/rumpke-immobilien"
+          ariaLabel="LinkedIn"
+          dataSocial="linkedin"
+          target="_blank"
+          icon={<IoLogoLinkedin size={18} className='hover:bg-[#0A66C2] rounded' />}
+          tooltipText="LinkedIn"
+          bgColor="#0A66C2"
+        />
       </ul>
     </StyledWrapper>
   );
@@ -107,7 +105,7 @@ const StyledWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 1s ease-in-out;
+
   }
 
 `;

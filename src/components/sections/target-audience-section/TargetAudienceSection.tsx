@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { IoHomeOutline, IoPersonAddOutline, IoKeyOutline, IoArrowForward } from 'react-icons/io5';
 import Link from 'next/link';
+import Title from '@/components/ui/title/Title';
 
 const cards = [
   {
@@ -38,7 +39,7 @@ const TargetAudienceSection = () => {
           </div>
         </div>
         <div className="order-2 lg:order-1 flex flex-col  justify-center w-full max-w-md mx-auto h-full rounded">
-          <h2 className="text-xl sm:text-2xl font-bold mb-2">Für wen wir da sind</h2>
+          <Title variant="h2" size="lg" className="mb-2">Für wen wir da sind</Title>
           <p className="mb-6 text-base sm:text-lg px-2 sm:px-0 text-card-text-l dark:text-card-text-d">
             Wir bieten individuelle Unterstützung für verschiedene Zielgruppen – damit jeder die passende Lösung findet.
           </p>

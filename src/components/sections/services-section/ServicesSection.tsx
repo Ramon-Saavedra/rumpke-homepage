@@ -1,5 +1,6 @@
 import { IoArrowForward } from 'react-icons/io5';
 import Link from 'next/link';
+import Title from '@/components/ui/title/Title';
 
 const services = [
   {
@@ -23,7 +24,7 @@ const ServicesSection = () => {
   return (
     <section className="w-full mb-12 bg-secondary dark:bg-secondary-dark sm:p-8">
       <div className="mx-auto">
-        <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center">Unsere Leistungen</h2>
+        <Title variant="h2" size="xl" align="center">Unsere Leistungen</Title>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 lg:gap-3">
           {services.map((service) => (
             <div key={service.title} className="flex flex-col items-center bg-bg-l dark:bg-bg-d  lg:rounded p-6 shadow-sm ">

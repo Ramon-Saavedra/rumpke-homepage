@@ -1,6 +1,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import Title from '@/components/ui/title/Title';
 
 const PersonalServiceCard = () => {
   return (
@@ -18,15 +19,15 @@ const PersonalServiceCard = () => {
       <div className="px-2 sm:p-0 flex flex-col justify-between w-full h-full">
         <div>
           <div className="space-y-4 ">
-            <h2 className="text-base md:text-lg font-bold  mb-2">Persönlicher Service</h2>
+            <Title variant="h2" size="md" className="mb-2">Persönlicher Service</Title>
             <p className="text-base mb-4 dark:text-card-text-d text-card-text-l">Ich nehme mir Zeit für Sie und Ihre individuellen Wünsche. Jeder Kunde wird von einem festen Ansprechpartner betreut, der ihn während des gesamten Prozesses begleitet.</p>
           </div>
           <div className="space-y-4">
-            <h2 className="text-base md:text-lg font-bold  mb-2">Lokale Expertise</h2>
+            <Title variant="h2" size="md" className="mb-2">Lokale Expertise</Title>
             <p className="text-base mb-4 dark:text-card-text-d text-card-text-l">Als erfahrene Immobilienmaklerin kenne ich den regionalen Markt und seine Besonderheiten. Nutzen Sie unser Netzwerk und unser Know-how zu Ihrem Vorteil.</p>
           </div>
           <div className="space-y-4">
-            <h2 className="text-base md:text-lg font-bold  mb-2">Transparenz und Vertrauen</h2>
+            <Title variant="h2" size="md" className="mb-2">Transparenz und Vertrauen</Title>
             <p className="text-base mb-4 dark:text-card-text-d text-card-text-l">Bei uns gibt es keine versteckten Kosten. Wir legen Wert auf eine offene Kommunikation und faire Konditionen.</p>
           </div>
         </div>

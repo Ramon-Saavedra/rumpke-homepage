@@ -21,20 +21,20 @@ const Sidebar = () => {
 
       {
         isSidemenuOpen && (
-          <div className="fixed top-0 left-0 w-screen h-screen z-10 bg-black opacity-30" />
+          <div className="fixed top-(--topbar-height) left-0 w-screen h-screen z-10 bg-black opacity-30" />
         )
       }
 
       {
         isSidemenuOpen && (
-          <div className="fade-in fixed top-0 left-0 w-screen h-screen z-10 backdrop-filter backdrop-blur-xs" />
+          <div className="fade-in fixed top-(--topbar-height) left-0 w-screen h-screen z-10 backdrop-filter backdrop-blur-xs" />
         )
       }
 
 
       <nav className={
         clsx(
-          "fixed p-3 right-0 top-0 w-[80%] h-screen bg-bg-l dark:bg-bg-d z-20 shadow-2xl pt-20",
+          "fixed p-3 right-0 top-(--topbar-height) w-[80%] h-[calc(100vh-var(--topbar-height))] bg-bg-l dark:bg-bg-d z-20 shadow-2xl pt-20",
           {
             "translate-x-full": !isSidemenuOpen,
           }
