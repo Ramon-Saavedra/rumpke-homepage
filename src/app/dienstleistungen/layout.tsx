@@ -20,7 +20,7 @@ export default function DienstleistungenLayout({ children }: DienstleistungenLay
         !isSubPage && (<BackHomeButton/> )
       }
       {isSubPage && (
-        <div className="mb-6">
+        <div className="py-4">
           <Link
             href="/dienstleistungen"
             className="inline-flex items-center gap-2 sm:px-4 sm:py-2 rounded border border-border-l dark:border-border-d bg-secondary dark:bg-secondary-dark text-sm font-medium shadow-sm hover:bg-Bghover-l dark:hover:bg-Bghover-d"

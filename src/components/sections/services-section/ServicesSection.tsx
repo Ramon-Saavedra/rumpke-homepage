@@ -22,7 +22,7 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section className="w-full mb-12 bg-secondary dark:bg-secondary-dark sm:p-8">
+    <section className="w-full md:py-2 mb-12 lg:rounded lg:p-4 p-6 bg-secondary dark:bg-secondary-dark shadow-secondary">
       <div className="mx-auto">
         <Title variant="h2" size="xl" align="center">Unsere Leistungen</Title>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 lg:gap-3">

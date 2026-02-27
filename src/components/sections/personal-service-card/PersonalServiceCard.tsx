@@ -4,8 +4,10 @@ import Link from "next/link";
 import Title from '@/components/ui/title/Title';
 
 const PersonalServiceCard = () => {
+
+  // w-full md:py-2 mb-12 lg:rounded lg:p-4 p-6 bg-secondary dark:bg-secondary-dark shadow-secondary
   return (
-    <section className="flex flex-col xl:flex-row items-center md:items-start gap-8 rounded py-4 bg-secondary dark:bg-secondary-dark md:px-4 mb-12">
+    <section className="flex flex-col xl:flex-row items-center md:items-start gap-8 rounded p-6  dark:bg-third md:px-4 mb-12">
       <div className="w-full md:w-auto flex items-center justify-center px-1 mx-auto">
         <Image
           src="/imgs/personal-service-pic.jpeg"

@@ -27,7 +27,7 @@ const SocialIcon = ({
   className = ''
 }: SocialIconProps) => {
   return (
-    <li className={`icon-content hover:text-white ${className}`}>
+    <li className={`icon-content hover:text-white text-primary ${className}`}>
       <Link
         href={href}
         aria-label={ariaLabel}

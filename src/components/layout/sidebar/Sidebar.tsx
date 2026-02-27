@@ -2,50 +2,22 @@
 
 import { IoCloseOutline, IoHomeOutline, IoBusinessOutline,  IoMapOutline, IoChatbubbleEllipsesOutline, IoBriefcaseOutline,  IoMailOutline } from "react-icons/io5"
 
-import { useUIStore } from "@/store/ui/ui-store";
 import clsx from "clsx";
 import { IoAlbumsOutline } from "react-icons/io5";
 import ContactTooltip from "@/components/features/contact-buttom/ContactTooltip";
 import NavItem from "@/components/ui/nav-item/NavItem";
 
 
-
 const Sidebar = () => {
-
-
-  const isSidemenuOpen = useUIStore((state) => state.isSidemenuOpen);
-  const closeSidemenu = useUIStore((state) => state.closeSidemenu);
-
   return (
     <div className="md:hidden">
 
-      {
-        isSidemenuOpen && (
-          <div className="fixed top-(--topbar-height) left-0 w-screen h-screen z-10 bg-black opacity-30" />
-        )
-      }
-
-      {
-        isSidemenuOpen && (
-          <div className="fade-in fixed top-(--topbar-height) left-0 w-screen h-screen z-10 backdrop-filter backdrop-blur-xs" />
-        )
-      }
-
-
-      <nav className={
-        clsx(
-          "fixed p-3 right-0 top-(--topbar-height) w-[80%] h-[calc(100vh-var(--topbar-height))] bg-bg-l dark:bg-bg-d z-20 shadow-2xl pt-20",
-          {
-            "translate-x-full": !isSidemenuOpen,
-          }
-        )
-      }>
+      <nav>
 
 
         <IoCloseOutline
           size={30}
           className="absolute top-5 right-5 cursor-pointer"
-          onClick={closeSidemenu}
         />
         <NavItem href="/" icon={<IoAlbumsOutline size={20} />} >Start</NavItem>
         <NavItem href="/auf-karte-erkunden" icon={<IoMapOutline size={20} />} >Auf Karte erkunden</NavItem>

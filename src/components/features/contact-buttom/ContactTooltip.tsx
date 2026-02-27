@@ -11,7 +11,7 @@ const ContactTooltip = () => {
 
   return (
     <StyledWrapper>
-      <ul className="flex justify-around example-1 pt-1 py-1">
+      <ul className="flex justify-around example-1 pt-1 py-1 mr-2">
         <SocialIcon
           href="https://www.facebook.com/profile.php?id=61572884870790"
           ariaLabel="Facebook"
@@ -93,6 +93,7 @@ const StyledWrapper = styled.div`
     visibility: hidden;
     transition: opacity 0.25s cubic-bezier(0.4,0,0.2,1), top 0.25s cubic-bezier(0.4,0,0.2,1);
     pointer-events: none;
+    z-index: 50;
   }
 
   .example-1 .icon-content:hover .tooltip {

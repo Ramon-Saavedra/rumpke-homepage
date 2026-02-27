@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`TopMenu Visual Integration uses only Tailwind/global.css classes and variables 1`] = `
+<body>
+  <div>
+    <div
+      class="fixed top-0 left-0 right-0 z-100 flex justify-between items-center w-full py-2 backdrop-blur-xl bg-background/80 dark:bg-background-dark/80 shadow-md"
+    >
+      <div
+        class="flex flex-col items-center justify-center"
+      >
+        <a
+          href="/"
+        >
+          <div
+            class="flex items-center w-20 h-10"
+          >
+            <img
+              alt="Rumpke Logo"
+              data-nimg="1"
+              decoding="async"
+              height="40"
+              src="/_next/image?url=%2Fimgs%2FRUMPKE-mobile-logo.png&w=256&q=75"
+              srcset="/_next/image?url=%2Fimgs%2FRUMPKE-mobile-logo.png&w=96&q=75 1x, /_next/image?url=%2Fimgs%2FRUMPKE-mobile-logo.png&w=256&q=75 2x"
+              style="color: transparent; object-fit: contain; height: auto; max-height: 100%;"
+              title="Rumpke Immobilien"
+              width="80"
+            />
+          </div>
+        </a>
+      </div>
+      <div>
+        <div
+          class="flex items-center select-none bg-bg-l dark:bg-bg-d p-1 rounded-md z-200"
+        >
+          <button
+            aria-label="Toggle theme"
+            class="flex justify-center items-center w-4 h-4  rounded-md cursor-pointer
+                hover:bg-Bghover-l dark:hover:bg-Bghover-d focus:outline-none focus:ring-2 focus:ring-white/20
+                transition-all  ease-out"
+            title="Dunkel-/Hellmodus wechseln"
+          >
+            <svg
+              class="w-4 h-4 text-white transition-transform  ease-out hover:rotate-12"
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 6C10 10.4183 13.5817 14 18 14C19.4386 14 20.7885 13.6203 21.9549 12.9556C21.4738 18.0302 17.2005 22 12 22C6.47715 22 2 17.5228 2 12C2 6.79948 5.9698 2.52616 11.0444 2.04507C10.3797 3.21152 10 4.56142 10 6ZM4 12C4 16.4183 7.58172 20 12 20C14.9654 20 17.5757 18.3788 18.9571 15.9546C18.6407 15.9848 18.3214 16 18 16C12.4772 16 8 11.5228 8 6C8 5.67863 8.01524 5.35933 8.04536 5.04293C5.62119 6.42426 4 9.03458 4 12ZM18.1642 2.29104L19 2.5V3.5L18.1642 3.70896C17.4476 3.8881 16.8881 4.4476 16.709 5.16417L16.5 6H15.5L15.291 5.16417C15.1119 4.4476 14.5524 3.8881 13.8358 3.70896L13 3.5V2.5L13.8358 2.29104C14.5524 2.1119 15.1119 1.5524 15.291 0.835829L15.5 0H16.5L16.709 0.835829C16.8881 1.5524 17.4476 2.1119 18.1642 2.29104ZM23.1642 7.29104L24 7.5V8.5L23.1642 8.70896C22.4476 8.8881 21.8881 9.4476 21.709 10.1642L21.5 11H20.5L20.291 10.1642C20.1119 9.4476 19.5524 8.8881 18.8358 8.70896L18 8.5V7.5L18.8358 7.29104C19.5524 7.1119 20.1119 6.5524 20.291 5.83583L20.5 5H21.5L21.709 5.83583C21.8881 6.5524 22.4476 7.1119 23.1642 7.29104Z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div
+        class="flex gap-4"
+      >
+        <a
+          class="flex items-center justify-center border-buy hover:bg-buy hover:text-white mr-1 text-sm bg-secondary dark:bg-secondary-dark rounded px-4 py-1 hover:opacity-90"
+          href="/kauf"
+        >
+          Kauf
+        </a>
+        <a
+          class="flex items-center justify-center border-rent hover:bg-rent hover:text-white mr-1 text-sm bg-secondary dark:bg-secondary-dark rounded px-4 py-1 hover:opacity-90"
+          href="/miete"
+        >
+          Miete
+        </a>
+        <div
+          class="flex items-center justify-center rounded-md md:h-8 "
+        >
+          <button
+            class="mx-2 md:hidden p-1 rounded cursor-pointer hover:bg-primary/10 dark:hover:bg-primary-dark/20"
+            data-testid="menu-btn"
+          >
+            <svg
+              fill="currentColor"
+              height="28"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              width="28"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M80 160h352M80 256h352M80 352h352"
+                fill="none"
+                stroke-linecap="round"
+                stroke-miterlimit="10"
+                stroke-width="32"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

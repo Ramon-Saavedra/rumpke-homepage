@@ -112,17 +112,23 @@ Automated CI/CD pipeline runs on every push and pull request:
    - Node.js 20.x on Ubuntu
    - Caches `node_modules` for faster subsequent runs
 
-2. **Lint Code**
+2. **Security Audit**
+   - Runs `npm audit` for vulnerability scan
+   - Checks all dependencies for security issues
+   - Fails on high/critical vulnerabilities
+   - Blocks unsafe code from production
+
+3. **Lint Code**
    - Runs ESLint checks
    - Enforces code quality standards
    - Fails pipeline on errors
 
-3. **TypeScript Type Check**
+4. **TypeScript Type Check**
    - Runs `tsc --noEmit`
    - Validates type safety
    - Ensures strict TypeScript compliance
 
-4. **Build Application**
+5. **Build Application**
    - Produces production build
    - **Matrix Strategy**: Tests on Node 18.x and 20.x
    - Ensures compatibility across versions
@@ -152,6 +158,33 @@ Automated CI/CD pipeline runs on every push and pull request:
    - Parallel execution per version
    - Early detection of incompatibilities
 
+#### Phase 4: Advanced Quality 🚧
+
+1. **NPM Audit Security Scan** ✅
+   - Scans dependencies for vulnerabilities
+   - Fails on high/critical severity issues
+   - Runs on every push and PR
+   - Prevents vulnerable code from merging
+
+2. **Dependabot** ✅
+   - Automated dependency updates
+   - Weekly security and version updates
+   - Pull requests for outdated packages
+   - Keeps dependencies current and secure
+
+3. **Lighthouse CI** ✅
+   - Performance monitoring on PRs
+   - Performance score > 90
+   - Accessibility > 95
+   - SEO > 90
+   - Automatic performance regression detection
+
+4. **Bundle Size Analysis** ✅
+   - Monitors JavaScript bundle size
+   - Tracks build artifacts
+   - Reports on every build
+   - Prevents bundle bloat
+
 ### Branch Protection Rules
 
 The `main` branch is protected with:
@@ -164,6 +197,7 @@ The `main` branch is protected with:
 
 **Without Optimizations:**
 - Install: ~2m 30s
+- Security: 15s
 - Lint: 18s
 - Type Check: 19s
 - Build: ~1m 45s
@@ -171,6 +205,7 @@ The `main` branch is protected with:
 
 **With Optimizations:**
 - Install: ~25s ⚡
+- Security: 10s ⚡
 - Lint: 18s
 - Type Check: 19s
 - Build: ~45s ⚡
@@ -178,6 +213,14 @@ The `main` branch is protected with:
 
 ## 🔒 Security
 
+- **Automated Security Scanning**: `npm audit` runs on every push
+  - Blocks high/critical vulnerabilities
+  - Prevents insecure dependencies from reaching production
+  - Regular dependency vulnerability checks
+- **Dependabot**: Automated dependency updates
+  - Weekly checks for outdated packages
+  - Automatic PR creation for security updates
+  - Keeps project dependencies current
 - HTTPS enforced in production
 - No sensitive data in frontend
 - Backend integration via secure API layer
@@ -212,12 +255,154 @@ This project is designed for professional deployment:
 4. CI pipeline runs automatically
 5. Merge only after CI passes and code review
 
-## 🧪 Testing (Planned - Phase 4)
+## 🧪 Testing & Quality
+
+### Implemented ✅
+
+- **Lighthouse CI**: Performance monitoring
+  - Runs on pull requests
+  - Performance score > 90
+  - Accessibility > 95
+  - SEO > 90
+- **Bundle Size Analysis**: Tracks JavaScript bundle size
+  - Prevents bundle bloat
+  - Reports on every build
+  - Alerts on size increases
+
+### Planned 📋
 
 - Unit testing framework (Vitest/Jest)
 - E2E testing (Playwright)
-- Lighthouse CI for performance
-- Bundle size analysis
+- Code coverage reports
+
+## 🐳 Docker Configuration
+
+### Production Dockerfile
+
+Multi-stage optimized Docker build:
+
+```bash
+# Build Docker image
+docker build -t rumpke-frontend .
+
+# Run container
+docker run -p 3000:3000 rumpke-frontend
+```
+
+### Docker Compose
+
+Complete stack orchestration (frontend + backend + database):
+
+```bash
+# Start all services
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop all services
+docker-compose down
+```
+
+### Environment Variables
+
+Copy `.env.example` to `.env` and configure:
+
+```bash
+cp .env.example .env
+```
+
+Required variables:
+- `NEXT_PUBLIC_API_URL`: Backend API URL
+- `NODE_ENV`: Environment (production/development)
+
+## ☁️ AWS Deployment
+
+### Prerequisites
+
+1. AWS Account with appropriate permissions
+2. AWS CLI configured
+3. Docker installed locally
+
+### Deployment Options
+
+#### Option 1: AWS ECS (Elastic Container Service)
+
+```bash
+# Build and tag image
+docker build -t rumpke-frontend .
+docker tag rumpke-frontend:latest <aws-account-id>.dkr.ecr.<region>.amazonaws.com/rumpke-frontend:latest
+
+# Push to ECR
+aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws-account-id>.dkr.ecr.<region>.amazonaws.com
+docker push <aws-account-id>.dkr.ecr.<region>.amazonaws.com/rumpke-frontend:latest
+
+# Deploy to ECS (via task definition)
+aws ecs update-service --cluster rumpke-cluster --service rumpke-frontend --force-new-deployment
+```
+
+#### Option 2: AWS App Runner
+
+- Direct GitHub integration
+- Automatic deployments
+- Managed scaling
+- Built-in load balancing
+
+#### Option 3: AWS EC2 with Docker
+
+```bash
+# SSH into EC2 instance
+ssh -i your-key.pem ec2-user@your-instance
+
+# Clone repository
+git clone <repo-url>
+cd rumpke-homepage-web
+
+# Run with docker-compose
+docker-compose up -d
+```
+
+### AWS Architecture (Recommended)
+
+```
+┌─────────────────────────────────────────────┐
+│  CloudFront CDN (Global Distribution)       │
+└──────────────────┬──────────────────────────┘
+                   │
+┌──────────────────▼──────────────────────────┐
+│  Application Load Balancer (ALB)            │
+└──────────────────┬──────────────────────────┘
+                   │
+        ┌──────────┴──────────┐
+        │                     │
+┌───────▼────────┐   ┌────────▼────────┐
+│  ECS Frontend  │   │  ECS Backend    │
+│  (Next.js)     │   │  (Node.js API)  │
+└────────────────┘   └────────┬────────┘
+                              │
+                     ┌────────▼────────┐
+                     │  RDS PostgreSQL │
+                     │  (Database)     │
+                     └─────────────────┘
+```
+
+### Cost Optimization
+
+- Use AWS Free Tier when possible
+- ECS Fargate Spot for cost savings
+- CloudFront caching to reduce origin hits
+- RDS instance sizing based on actual load
+
+## 🌐 Production Deployment Checklist
+
+- [ ] Environment variables configured in AWS
+- [ ] Database migrations completed
+- [ ] HTTPS/SSL certificates configured
+- [ ] Domain DNS pointing to AWS resources
+- [ ] CloudWatch logging enabled
+- [ ] Auto-scaling policies configured
+- [ ] Backup strategy implemented
+- [ ] Monitoring and alerts setup
 
 ## 📦 Backend Integration (Planned)
 

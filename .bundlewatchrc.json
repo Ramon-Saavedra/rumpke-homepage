@@ -1,0 +1,18 @@
+{
+  "files": [
+    {
+      "path": ".next/static/**/*.js",
+      "maxSize": "500 KB"
+    },
+    {
+      "path": ".next/static/**/*.css",
+      "maxSize": "50 KB"
+    }
+  ],
+  "ci": {
+    "trackBranches": [
+      "main",
+      "develop"
+    ]
+  }
+}

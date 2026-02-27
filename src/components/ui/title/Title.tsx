@@ -7,6 +7,7 @@ interface TitleProps {
   align?: 'left' | 'center' | 'right'
   className?: string
   subtitle?: string
+  subtitleClassName?: string
 }
 
 const Title = ({
@@ -16,6 +17,7 @@ const Title = ({
   align = 'left',
   className = '',
   subtitle,
+  subtitleClassName = '',
 }: TitleProps) => {
   const sizeClasses = {
     xl: 'text-2xl sm:text-3xl',
@@ -38,7 +40,7 @@ const Title = ({
   return (
     <div>
       <Tag className={classes}>{children}</Tag>
-      {subtitle && <p className={`text-sm sm:text-base ${alignClasses[align]}`}>{subtitle}</p>}
+      {subtitle && <p className={`text-sm sm:text-base ${alignClasses[align]} ${subtitleClassName}`}>{subtitle}</p>}
     </div>
   )
 }

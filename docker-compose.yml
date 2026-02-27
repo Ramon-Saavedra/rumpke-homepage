@@ -1,0 +1,76 @@
+version: '3.8'
+
+services:
+  # Frontend - Next.js Application
+  frontend:
+    container_name: rumpke-frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://backend:4000/api}
+    restart: unless-stopped
+    networks:
+      - rumpke-network
+    # Wait for backend to be ready (uncomment when backend exists)
+    # depends_on:
+    #   - backend
+    healthcheck:
+      test: [ "CMD", "node", "-e", "require('http').get('http://localhost:3000', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+  # Backend - API Service (uncomment when ready)
+  # backend:
+  #   container_name: rumpke-backend
+  #   build:
+  #     context: ../rumpke-backend
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "4000:4000"
+  #   environment:
+  #     - NODE_ENV=production
+  #     - DATABASE_URL=${DATABASE_URL}
+  #     - JWT_SECRET=${JWT_SECRET}
+  #   restart: unless-stopped
+  #   networks:
+  #     - rumpke-network
+  #   depends_on:
+  #     - database
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:4000/health"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
+
+  # Database - PostgreSQL (uncomment when needed)
+  # database:
+  #   container_name: rumpke-database
+  #   image: postgres:16-alpine
+  #   ports:
+  #     - "5432:5432"
+  #   environment:
+  #     - POSTGRES_USER=${DB_USER:-rumpke}
+  #     - POSTGRES_PASSWORD=${DB_PASSWORD}
+  #     - POSTGRES_DB=${DB_NAME:-rumpke_db}
+  #   volumes:
+  #     - postgres-data:/var/lib/postgresql/data
+  #   restart: unless-stopped
+  #   networks:
+  #     - rumpke-network
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U rumpke"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+
+networks:
+  rumpke-network:
+    driver: bridge
+
+# volumes:
+#   postgres-data:

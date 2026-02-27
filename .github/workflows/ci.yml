@@ -31,6 +31,29 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-modules-
 
+  security:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Restore node_modules cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Run npm audit
+        run: npm audit --audit-level=high
+
   lint:
     name: Lint Code
     runs-on: ubuntu-latest
@@ -80,7 +103,7 @@ jobs:
   build:
     name: Build Application (Node ${{ matrix.node-version }})
     runs-on: ubuntu-latest
-    needs: [lint, type-check]
+    needs: [security, lint, type-check]
     strategy:
       matrix:
         node-version: [18.x, 20.x]
@@ -114,6 +137,67 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: build-output
+          name: build-output-node-${{ matrix.node-version }}
           path: .next
           retention-days: 7
+
+  lighthouse:
+    name: Lighthouse Performance Audit
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
+
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            http://localhost:3000
+          configPath: './.lighthouserc.json'
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
+  bundle-analysis:
+    name: Bundle Size Analysis
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output-node-20.x
+          path: .next
+
+      - name: Analyze bundle size
+        run: |
+          if [ -d ".next/static" ]; then
+            echo "=== Bundle Size Report ==="
+            find .next/static -type f -name "*.js" -exec du -h {} \; | sort -h
+            echo "=== Total Size ==="
+            du -sh .next/static
+          else
+            echo "No build output found"
+          fi

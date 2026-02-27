@@ -37,7 +37,7 @@ export default async function PropertyTypePage({ params }: PageProps) {
         <h1 className="text-4xl font-bold mb-6">
           Immobilien - {label}
         </h1>
-        <p className="text-lg text-secondary">
+        <p className="text-lg">
           Página desde kategorie/[type] - Categoría: {type}
         </p>
       </div>
