@@ -46,6 +46,12 @@
 }
 
 
+  .bg-gradient-blue-purple {
+    background: var(--gradient-blue-purple);
+  }
+
+
+
 @theme {
 --color-bg-d: #18181C;
 --color-bg-l: #F5F5F5;
@@ -83,6 +89,7 @@
 --color-status-rented: #3B82F6;
 --color-status-draft: #9CA3AF;
 --color-status-hidden: #374151;
+
 
 }
 
