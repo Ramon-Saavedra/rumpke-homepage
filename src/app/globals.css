@@ -55,6 +55,8 @@
 @theme {
 --color-bg-d: #18181C;
 --color-bg-l: #F5F5F5;
+--color-bgSecondary-l : #FFFFFF;
+--color-bgSecondary-d : #1E1E1E;
 --color-card-text-l: #6E6E6E;
 --color-card-text-d: #BDBDBD;
 
@@ -166,4 +168,32 @@
 .triple-slider-next .swiper {
   height: 100%;
   border-radius: 0.5rem;
+}
+
+/* Properties Grid Swiper Navigation */
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--primary);
+  background: var(--background-l);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border-l);
+}
+
+:root[data-theme='dark'] .swiper-button-next,
+:root[data-theme='dark'] .swiper-button-prev {
+  background: var(--background-d);
+  border-color: var(--border-d);
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  opacity: 0.8;
 }

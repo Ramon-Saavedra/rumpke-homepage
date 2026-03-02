@@ -22,8 +22,8 @@ const features = [
 
 const WhyChooseRumpke = () => {
   return (
-    <section className="w-full md:py-12 mb-12 lg:rounded  p-6  shadow-secondary">
-      <div className="max-w-md mx-auto">
+    <section className="w-full md:py-12 mb-12 lg:rounded shadow-secondary">
+      <div className="mx-auto">
         <Title variant="h2" size="xl" align="center">Warum Rumpke Immobilien?</Title>
         <div className="flex flex-col gap-4">
           {features.map((feature) => (

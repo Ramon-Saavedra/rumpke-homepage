@@ -23,27 +23,30 @@ const cards = [
 
 const TargetAudienceSection = () => {
   return (
-    <section className="w-full md:py-12 mb-12 lg:rounded  p-6 ">
-      <div className="grid gap-2 lg:grid-cols-2 items-stretch ">
-        <div className="order-1 lg:order-2 flex flex-col items-center justify-center w-full mb-8 md:mb-0 ">
-          <div className="w-full max-w-md flex flex-col items-center justify-center h-full">
-            <Image
-              src="/imgs/whyTrustUsPic-2.jpg"
-              alt="Für wen wir da sind"
-              width={500}
-              height={500}
-              className="md:rounded object-cover max-w-full shadow-lg"
-              style={{ width: '100%', height: 'auto' }}
-              priority
-            />
-          </div>
-        </div>
-        <div className="order-2 lg:order-1 flex flex-col  justify-center w-full max-w-md mx-auto h-full rounded">
-          <Title variant="h2" size="lg" className="mb-2">Für wen wir da sind</Title>
-          <p className="mb-6 text-base sm:text-lg px-2 sm:px-0 text-card-text-l dark:text-card-text-d">
+    <section className="w-full  py-4 mb-12 bg-bgSecondary-l dark:bg-bgSecondary-d rounded">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <Title variant="h2" size="xl" className="py-4 rounded mb-8 bg-secondary dark:bg-secondary-dark text-white px-2">Für wen wir da sind</Title>
+          <p className="max-w-2xl mx-auto text-base sm:text-lg text-card-text-l dark:text-card-text-d">
             Wir bieten individuelle Unterstützung für verschiedene Zielgruppen – damit jeder die passende Lösung findet.
           </p>
-          <div className="flex flex-col gap-4 w-full">
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="flex justify-center">
+            <div className="relative w-full max-w-xs h-[380px]">
+              <Image
+                src="/imgs/whyTrustUsPic-2.jpg"
+                alt="Für wen wir da sind"
+                fill
+                className="rounded object-cover shadow-xl"
+                sizes="(max-width: 1024px) 320px, 384px"
+                priority
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col justify-center h-[380px] gap-6">
             {cards.map((card) => (
               <AudienceCard
                 key={card.title}

@@ -5,6 +5,8 @@ import Sidebar from "@/components/layout/sidebar/Sidebar"
 import HeroVideo from "@/components/hero/HeroVideo"
 import WhyChooseRumpke from "@/components/sections/why-choose-rumpke/WhyChooseRumpke"
 import Title from "@/components/ui/title/Title"
+import PropertiesGrid from "@/components/properties/PropertiesGrid"
+import { MOCK_FEATURED_PROPERTIES } from "@/data/mock-properties"
 
 const page = () => {
   return (
@@ -21,10 +23,21 @@ const page = () => {
           className="">Lorem ipsum dolor sit amet</Title>
       </div>
 
-      <main className="xl:px-20">
+      <main className="p-2 xl:px-20 2xl:px-32 2xl:w-[80%] mx-auto">
+        <section className="mb-12">
+          <div className="container mx-auto">
+            <Title variant="h2" align="left" className="mb-8 py-4 px-2 rounded" size="xl">
+              Ausgewählte Immobilien
+            </Title>
+            <div className="">
+              <PropertiesGrid properties={MOCK_FEATURED_PROPERTIES} />
+            </div>
+          </div>
+        </section>
+
         <Sidebar />
         <TargetAudienceSection />
-        <div className="grid lg:grid-cols-2">
+        <div className=" lg:flex gap-2 mb-12">
           <WhyChooseRumpke />
           <ServicesSection />
         </div>

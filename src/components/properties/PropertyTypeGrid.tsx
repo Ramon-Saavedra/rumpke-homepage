@@ -48,7 +48,7 @@ export default function PropertyTypeGrid({ types, basePath, title }: PropertyTyp
               <div className="text-primary group-hover:scale-110 transition-transform duration-300">
                 {getIcon(type.slug)}
               </div>
-              
+
               <div className="flex-1">
                 <h3 className="text-lg font-bold text-text-l dark:text-text-d mb-1 group-hover:text-primary transition-colors">
                   {type.label}

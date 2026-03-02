@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { Home, MapPin } from 'lucide-react';
 
 interface PropertyCardProps {
-  id: string;
   slug: string;
   title: string;
   type: string;
@@ -13,6 +12,7 @@ interface PropertyCardProps {
   area?: string;
   rooms?: number;
   operationType?: 'kauf' | 'miete';
+  priority?: boolean;
 }
 
 export default function PropertyCard({
@@ -24,52 +24,45 @@ export default function PropertyCard({
   imageUrl,
   area,
   rooms,
-  operationType
+  operationType,
+  priority = false
 }: PropertyCardProps) {
   return (
     <Link href={`/object/${slug}`}>
-      <article className="group relative bg-background-l dark:bg-background-d border border-border-l dark:border-border-d rounded overflow-hidden hover:shadow-lg transition-shadow duration-300">
+      <article className="group relative h-96 flex flex-col border dark:hover:shadow-primary-dark border-border-l dark:border-border-d overflow-hidden hover:shadow-md transition-shadow duration-300">
         {/* Image */}
-        <div className="relative h-64 overflow-hidden">
+        <div className="relative h-48 shrink-0 overflow-hidden">
           <Image
             src={imageUrl}
             alt={title}
             fill
-            className="object-cover transition-transform duration-300 group-hover:scale-110"
+            className="object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            priority={priority}
           />
-          
+
           {/* Type Badge */}
-          <div className="absolute top-3 left-3 bg-primary text-white px-3 py-1 rounded text-sm font-medium">
+          <div className="absolute top-3 left-3 bg-primary text-white px-3 py-1 rounded text-xs font-medium">
             {type}
           </div>
-
-          {/* Operation Type Badge */}
-          {operationType && (
-            <div className={`absolute top-3 right-3 px-3 py-1 rounded text-sm font-medium text-white ${
-              operationType === 'kauf' ? 'bg-buy' : 'bg-rent'
-            }`}>
-              {operationType === 'kauf' ? 'Kaufen' : 'Mieten'}
-            </div>
-          )}
         </div>
 
         {/* Content */}
-        <div className="p-4">
-          <h3 className="text-xl font-bold text-text-l dark:text-text-d mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+        <div className="p-3 flex flex-col flex-1 bg-bgSecondary-l dark:bg-bgSecondary-d">
+          <h3 className="text-base font-bold text-text-l dark:text-text-d mb-2 line-clamp-2 group-hover:text-primary transition-colors">
             {title}
           </h3>
 
-          <div className="flex items-center gap-2 text-card-text-l dark:text-card-text-d mb-3">
-            <MapPin className="w-4 h-4 flex-shrink-0" />
-            <span className="text-sm line-clamp-1">{location}</span>
+          <div className="flex items-center gap-2 text-card-text-l dark:text-card-text-d mb-2">
+            <MapPin className="w-3 h-3 shrink-0" />
+            <span className="text-xs line-clamp-1">{location}</span>
           </div>
 
           {/* Details */}
-          <div className="flex items-center gap-4 text-sm text-card-text-l dark:text-card-text-d mb-4">
+          <div className="flex items-center gap-3 text-xs text-card-text-l dark:text-card-text-d mb-auto">
             {area && (
               <div className="flex items-center gap-1">
-                <Home className="w-4 h-4" />
+                <Home className="w-3 h-3" />
                 <span>{area}</span>
               </div>
             )}
@@ -80,9 +73,17 @@ export default function PropertyCard({
             )}
           </div>
 
-          {/* Price */}
-          <div className="text-2xl font-bold text-primary">
-            {price}
+          {/* Price and Operation Type */}
+          <div className="flex items-center justify-between mt-3 pt-3 border-t border-border-l dark:border-border-d">
+            <div className="text-sm font-bold text-primary">
+              {price}
+            </div>
+            {operationType && (
+              <div className={`px-2 py-1 rounded text-xs font-medium text-white ${operationType === 'kauf' ? 'bg-buy' : 'bg-rent'
+                }`}>
+                {operationType === 'kauf' ? 'Kaufen' : 'Mieten'}
+              </div>
+            )}
           </div>
         </div>
       </article>

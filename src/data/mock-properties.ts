@@ -11,6 +11,7 @@ export const MOCK_FEATURED_PROPERTIES: FeaturedProperty[] = [
     slug: 'moderne-villa-am-see',
     area: '320 m²',
     rooms: 6,
+    operationType: 'kauf',
   },
   {
     id: '2',
@@ -22,6 +23,7 @@ export const MOCK_FEATURED_PROPERTIES: FeaturedProperty[] = [
     slug: 'penthouse-panoramablick',
     area: '180 m²',
     rooms: 4,
+    operationType: 'kauf',
   },
   {
     id: '3',
@@ -33,6 +35,7 @@ export const MOCK_FEATURED_PROPERTIES: FeaturedProperty[] = [
     slug: 'elegantes-stadthaus',
     area: '220 m²',
     rooms: 5,
+    operationType: 'miete',
   },
   {
     id: '4',
@@ -44,6 +47,7 @@ export const MOCK_FEATURED_PROPERTIES: FeaturedProperty[] = [
     slug: 'luxus-loft-zentrum',
     area: '150 m²',
     rooms: 3,
+    operationType: 'kauf',
   },
   {
     id: '5',
@@ -55,5 +59,6 @@ export const MOCK_FEATURED_PROPERTIES: FeaturedProperty[] = [
     slug: 'charmantes-landhaus',
     area: '280 m²',
     rooms: 7,
+    operationType: 'miete',
   },
 ];

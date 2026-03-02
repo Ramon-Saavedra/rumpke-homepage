@@ -71,68 +71,68 @@ export default function TripleSlider({
                 control: [prevSwiper, nextSwiper].filter((s): s is SwiperType => s !== null)
               }}
             >
-            {properties.map((property) => (
-              <SwiperSlide key={`main-${property.id}`}>
-                <Link href={`/object/${property.slug}`}>
-                  <div className="relative h-[400px] sm:h-[500px] rounded overflow-hidden cursor-pointer group">
-                    <Image
-                      src={property.imageUrl}
-                      alt={property.title}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 70vw"
-                      priority
-                    />
+              {properties.map((property) => (
+                <SwiperSlide key={`main-${property.id}`}>
+                  <Link href={`/object/${property.slug}`}>
+                    <div className="relative h-[400px] sm:h-[500px] rounded overflow-hidden cursor-pointer group">
+                      <Image
+                        src={property.imageUrl}
+                        alt={property.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 70vw"
+                        priority
+                      />
 
-                    <div
-                      className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent"
-                      data-swiper-parallax="-30%"
-                    >
-                      <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
-                        <div
-                          className="mb-2 text-primary"
-                          data-swiper-parallax="-100"
-                        >
-                          <span className="text-sm font-medium uppercase tracking-wide">
-                            {property.type}
-                          </span>
-                        </div>
-
-                        <h3
-                          className="text-2xl sm:text-3xl font-bold text-white mb-2"
-                          data-swiper-parallax="-200"
-                        >
-                          {property.title}
-                        </h3>
-
-                        <p
-                          className="text-white/90 mb-3"
-                          data-swiper-parallax="-250"
-                        >
-                          {property.location}
-                        </p>
-
-                        <div
-                          className="flex items-center justify-between"
-                          data-swiper-parallax="-300"
-                        >
-                          <span className="text-2xl font-bold text-white">
-                            {property.price}
-                          </span>
-
-                          {property.area && (
-                            <span className="text-white/80">
-                              {property.area}
+                      <div
+                        className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent"
+                        data-swiper-parallax="-30%"
+                      >
+                        <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                          <div
+                            className="mb-2 text-primary"
+                            data-swiper-parallax="-100"
+                          >
+                            <span className="text-sm font-medium uppercase tracking-wide">
+                              {property.type}
                             </span>
-                          )}
+                          </div>
+
+                          <h3
+                            className="text-2xl sm:text-3xl font-bold text-white mb-2"
+                            data-swiper-parallax="-200"
+                          >
+                            {property.title}
+                          </h3>
+
+                          <p
+                            className="text-white/90 mb-3"
+                            data-swiper-parallax="-250"
+                          >
+                            {property.location}
+                          </p>
+
+                          <div
+                            className="flex items-center justify-between"
+                            data-swiper-parallax="-300"
+                          >
+                            <span className="text-2xl font-bold text-white">
+                              {property.price}
+                            </span>
+
+                            {property.area && (
+                              <span className="text-white/80">
+                                {property.area}
+                              </span>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                  </Link>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
 
           {/* Next Swiper (Right) */}
@@ -144,19 +144,19 @@ export default function TripleSlider({
               allowTouchMove={false}
               onClick={() => mainSwiper?.slideNext()}
             >
-            {properties.map((property) => (
-              <SwiperSlide key={`next-${property.id}`}>
-                <div className="relative h-[400px] sm:h-[500px] rounded overflow-hidden">
-                  <Image
-                    src={property.imageUrl}
-                    alt={property.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
+              {properties.map((property) => (
+                <SwiperSlide key={`next-${property.id}`}>
+                  <div className="relative h-[400px] sm:h-[500px] rounded overflow-hidden">
+                    <Image
+                      src={property.imageUrl}
+                      alt={property.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
             </Swiper>
           </div>
         </div>

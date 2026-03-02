@@ -8,6 +8,7 @@ export interface FeaturedProperty {
   slug: string;
   area?: string;
   rooms?: number;
+  operationType?: 'kauf' | 'miete';
 }
 
 export interface TripleSliderProps {
