@@ -15,9 +15,7 @@ import type { TripleSliderProps } from './TripleSlider.types';
 
 export default function TripleSlider({
   properties,
-  speed = 600,
-  autoplay = false,
-  autoplayDelay = 5000
+  speed = 600
 }: TripleSliderProps) {
   const [mainSwiper, setMainSwiper] = useState<SwiperType | null>(null);
   const [prevSwiper, setPrevSwiper] = useState<SwiperType | null>(null);

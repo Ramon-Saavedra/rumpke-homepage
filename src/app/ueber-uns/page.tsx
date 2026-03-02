@@ -45,15 +45,15 @@ export default function UeberUnsPage() {
 
           <div className="mt-8 p-6 bg-secondary dark:bg-secondary-dark border border-border-l dark:border-border-d space-y-4">
             <p className="italic text-base leading-relaxed text-card-text-l dark:text-card-text-d">
-              „Mein Ansatz ist authentisch, kompetent und echt. Ich sehe mich nicht nur als Maklerin, sondern als Dienstleister, der Ihnen bei allen Fragen rund um die Immobilie zur Seite steht. Egal, ob Sie eine Immobilie kaufen, verkaufen oder bewerten möchten, ich bin für Sie da."
+              &bdquo;Mein Ansatz ist authentisch, kompetent und echt. Ich sehe mich nicht nur als Maklerin, sondern als Dienstleister, der Ihnen bei allen Fragen rund um die Immobilie zur Seite steht. Egal, ob Sie eine Immobilie kaufen, verkaufen oder bewerten möchten, ich bin für Sie da.&ldquo;
             </p>
 
             <p className="italic text-base leading-relaxed text-card-text-l dark:text-card-text-d">
-              „In allen Unternehmensbereichen arbeite ich mit einem Netzwerk von spezialisierten Experten zusammen, um sicherzustellen, dass Sie die bestmögliche Unterstützung erhalten."
+              &bdquo;In allen Unternehmensbereichen arbeite ich mit einem Netzwerk von spezialisierten Experten zusammen, um sicherzustellen, dass Sie die bestmögliche Unterstützung erhalten.&ldquo;
             </p>
 
             <p className="italic text-base leading-relaxed text-card-text-l dark:text-card-text-d">
-              „Für mich gibt es kein „geht nicht" – wir finden einen Weg und auch die Lösung für Ihre individuellen Bedürfnisse. Lassen Sie uns gemeinsam die richtige Immobilie für Sie finden oder den bestmöglichen Preis für Ihre Immobilie erzielen."
+              &bdquo;Für mich gibt es kein &bdquo;geht nicht&ldquo; – wir finden einen Weg und auch die Lösung für Ihre individuellen Bedürfnisse. Lassen Sie uns gemeinsam die richtige Immobilie für Sie finden oder den bestmöglichen Preis für Ihre Immobilie erzielen.&ldquo;
             </p>
           </div>
         </div>

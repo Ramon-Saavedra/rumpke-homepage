@@ -13,6 +13,4 @@ export interface FeaturedProperty {
 export interface TripleSliderProps {
   properties: FeaturedProperty[];
   speed?: number;
-  autoplay?: boolean;
-  autoplayDelay?: number;
 }

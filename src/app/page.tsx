@@ -6,8 +6,6 @@ import HeroVideo from "@/components/hero/HeroVideo"
 import WhyChooseRumpke from "@/components/sections/why-choose-rumpke/WhyChooseRumpke"
 import Title from "@/components/ui/title/Title"
 
-import { MOCK_FEATURED_PROPERTIES } from "@/data/mock-properties"
-
 const page = () => {
   return (
     <div className="">
