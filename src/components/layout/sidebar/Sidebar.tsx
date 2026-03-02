@@ -8,7 +8,7 @@ import NavItem from "@/components/ui/nav-item/NavItem";
 
 const Sidebar = () => {
   return (
-    <div className="md:hidden">
+    <div className="hidden">
 
       <nav>
 

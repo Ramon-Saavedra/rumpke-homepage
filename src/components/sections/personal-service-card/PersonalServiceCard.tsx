@@ -14,7 +14,8 @@ const PersonalServiceCard = () => {
           alt="Ann-Christin Rumpke Portrait"
           width={320}
           height={320}
-          className="object-cover w-full sm:w-full md:w-80 lg:h-90 rounded"
+          className="object-cover w-full sm:w-full md:w-80 rounded"
+          style={{ height: "auto" }}
           priority
         />
       </div>

@@ -29,7 +29,7 @@ const TrustBannerFoto: React.FC<TrustBannerFotoProps> = ({ title }) => {
           width={180}
           height={180}
           className="object-cover"
-          style={{ width: '90%', height: '90%', boxShadow: '0 1px 4px 0 rgba(0,0,0,0.04)' }}
+          style={{ width: '90%', height: 'auto', boxShadow: '0 1px 4px 0 rgba(0,0,0,0.04)' }}
           priority
         />
       </div>

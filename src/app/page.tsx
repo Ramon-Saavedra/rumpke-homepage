@@ -13,7 +13,6 @@ const page = () => {
       <HeroVideo
         videoSrc="/media/heroVideo.mp4"
         alt="Rumpke Immobilien Hero Video"
-        poster="/media/hero-poster.jpg"
       />
       <div className="text-center mt-12 md:mt-0 py-5 ">
         <Title variant="h1"
