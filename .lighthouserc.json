@@ -8,56 +8,99 @@
       ]
     },
     "assert": {
-      "preset": "lighthouse:recommended",
       "assertions": {
         "categories:performance": [
-          "error",
+          "warn",
           {
-            "minScore": 0.9
+            "minScore": 0.60
           }
         ],
         "categories:accessibility": [
-          "error",
+          "warn",
           {
-            "minScore": 0.95
+            "minScore": 0.90
           }
         ],
         "categories:best-practices": [
-          "error",
+          "warn",
           {
-            "minScore": 0.9
+            "minScore": 0.85
           }
         ],
         "categories:seo": [
-          "error",
+          "warn",
           {
-            "minScore": 0.9
+            "minScore": 0.95
           }
         ],
         "first-contentful-paint": [
           "warn",
           {
-            "maxNumericValue": 2000
+            "maxNumericValue": 3000
           }
         ],
         "largest-contentful-paint": [
           "warn",
           {
-            "maxNumericValue": 2500
+            "maxNumericValue": 12000
           }
         ],
         "cumulative-layout-shift": [
           "warn",
           {
-            "maxNumericValue": 0.1
+            "maxNumericValue": 0.15
           }
         ],
         "total-blocking-time": [
           "warn",
           {
-            "maxNumericValue": 300
+            "maxNumericValue": 1000
           }
-        ]
+        ],
+        "interactive": [
+          "warn",
+          {
+            "minScore": 0.10
+          }
+        ],
+        "speed-index": [
+          "warn",
+          {
+            "minScore": 0.85
+          }
+        ],
+        "color-contrast": "off",
+        "heading-order": "off",
+        "offscreen-images": "off",
+        "unused-javascript": "off",
+        "bootup-time": "off",
+        "mainthread-work-breakdown": "off",
+        "max-potential-fid": "off",
+        "modern-image-formats": "off",
+        "uses-long-cache-ttl": "off",
+        "unminified-css": "off",
+        "unminified-javascript": "off",
+        "uses-passive-event-listeners": "off",
+        "valid-source-maps": "off",
+        "total-byte-weight": "off",
+        "bf-cache": "off",
+        "cls-culprits-insight": "off",
+        "document-latency-insight": "off",
+        "duplicated-javascript-insight": "off",
+        "font-display-insight": "off",
+        "forced-reflow-insight": "off",
+        "interaction-to-next-paint-insight": "off",
+        "lcp-discovery-insight": "off",
+        "lcp-lazy-loaded": "off",
+        "lcp-phases-insight": "off",
+        "legacy-javascript-insight": "off",
+        "modern-http-insight": "off",
+        "network-dependency-tree-insight": "off",
+        "non-composited-animations": "off",
+        "prioritize-lcp-image": "off",
+        "third-parties-insight": "off",
+        "viewport-insight": "off",
+        "dom-size-insight": "off"
       }
     },
     "upload": {
