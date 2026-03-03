@@ -24,7 +24,8 @@ export default function KontaktPage() {
               height={600}
               className="object-cover  w-full max-w-lg lg:max-w-xl xl:max-w-2xl h-80 md:h-[400px] lg:h-[480px] mx-auto"
               sizes="(max-width: 1024px) 100vw, 480px"
-              priority
+              loading="eager"
+              preload={true}
             />
           </div>
         </div>

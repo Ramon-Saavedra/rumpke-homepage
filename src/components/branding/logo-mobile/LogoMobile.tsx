@@ -14,7 +14,8 @@ const LogoMobile = () => {
           width={80}
           height={40}
           style={{ objectFit: 'contain', height: 'auto', maxHeight: '100%' }}
-          priority
+          loading="eager"
+          preload={true}
           title='Rumpke Immobilien'
         />
       </div>

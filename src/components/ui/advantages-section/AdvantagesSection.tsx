@@ -15,7 +15,7 @@ export default function AdvantagesSection({ title, items }: AdvantagesSectionPro
       <div className="space-y-4">
         {items.map((item, index) => (
           <div key={index}>
-            <h3 className="font-semibold mb-2">{item.title}</h3>
+            <p className="font-semibold mb-2">{item.title}</p>
             <p className="text-sm text-card-text-l dark:text-card-text-d leading-relaxed">
               {item.description}
             </p>

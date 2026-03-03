@@ -8,11 +8,10 @@ export interface FeaturedProperty {
   slug: string;
   area?: string;
   rooms?: number;
+  operationType?: 'kauf' | 'miete';
 }
 
 export interface TripleSliderProps {
   properties: FeaturedProperty[];
   speed?: number;
-  autoplay?: boolean;
-  autoplayDelay?: number;
 }

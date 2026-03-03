@@ -15,7 +15,8 @@ export default function RumpkeLogo(props: { style?: React.CSSProperties; classNa
           sizes="(max-width: 768px) 160px, 320px"
           style={{ objectFit: 'cover', ...props.style }}
           className={props.className}
-          priority
+          loading="eager"
+          preload={true}
         />
       </div>
     </Link>

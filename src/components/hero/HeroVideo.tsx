@@ -35,7 +35,7 @@ const HeroVideo: FC<HeroVideoProps> = ({ videoSrc, poster, alt }) => (
         variant="h1"
         align="center"
         size="xl"
-        subtitle="Ihr Partner für Immobilien in NRW"
+        subtitle="Lore ipsum dolor sit amet, consectetur adipiscing elit."
         className="text-white text-5xl md:text-7xl font-extrabold mb-4"
         subtitleClassName="text-white text-lg md:text-2xl xl:text-3xl font-semibold mt-2"
       >

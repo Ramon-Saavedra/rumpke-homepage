@@ -22,7 +22,7 @@ const NavItem = ({ href, icon, children }: NavItemProps) => {
   return (
     <Link
       href={href}
-      className={`flex items-center text-xs px-1 mb-4 md:mb-0 font-bold hover:text-cyan-500 dark:hover:text-cyan-700`}
+      className={`flex items-center text-xs px-1 mb-4 md:mb-0  font-extrabold hover:text-primary`}
     >
       {iconWithMargin}
       {children}
