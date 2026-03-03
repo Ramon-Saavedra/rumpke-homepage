@@ -16,7 +16,7 @@ const PersonalServiceCard = () => {
               fill
               className="object-cover rounded border border-border-l dark:border-border-d"
               sizes="(max-width: 1024px) 320px, 384px"
-              priority
+              loading="lazy"
             />
           </div>
         </div>

@@ -20,7 +20,7 @@ export default function UeberUnsPage() {
               height={512}
               className="object-cover w-full h-full"
               style={{ height: "auto" }}
-              priority
+              loading="lazy"
             />
           </div>
           <div className="mt-6 text-center">

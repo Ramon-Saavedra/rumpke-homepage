@@ -36,7 +36,7 @@ export default function FooterCollapsibleSection({ title, children }: FooterColl
 
       {/* Desktop: Always visible */}
       <div className="hidden sm:block">
-        <h3 className="text-lg font-semibold mb-4 text-primary">{title}</h3>
+        <h2 className="text-lg font-semibold mb-4 text-primary">{title}</h2>
         {children}
       </div>
     </div>

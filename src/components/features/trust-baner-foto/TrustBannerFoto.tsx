@@ -30,14 +30,15 @@ const TrustBannerFoto: React.FC<TrustBannerFotoProps> = ({ title }) => {
           height={180}
           className="object-cover"
           style={{ width: '90%', height: 'auto', boxShadow: '0 1px 4px 0 rgba(0,0,0,0.04)' }}
-          priority
+          loading="eager"
+          preload={true}
         />
       </div>
-      <h3
+      <h2
         className="text-xs font-semibold text-center tracking-wide mb-2"
       >
         {title}
-      </h3>
+      </h2>
     </section>
 
   );

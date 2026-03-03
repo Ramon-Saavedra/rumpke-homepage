@@ -55,6 +55,7 @@ export default function TripleSlider({
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
+                      loading="lazy"
                     />
                   </div>
                 </SwiperSlide>
@@ -81,7 +82,8 @@ export default function TripleSlider({
                         fill
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, 70vw"
-                        priority
+                        loading="eager"
+                        preload={true}
                       />
 
                       <div
@@ -98,12 +100,12 @@ export default function TripleSlider({
                             </span>
                           </div>
 
-                          <h3
+                          <h2
                             className="text-2xl sm:text-3xl font-bold text-white mb-2"
                             data-swiper-parallax="-200"
                           >
                             {property.title}
-                          </h3>
+                          </h2>
 
                           <p
                             className="text-white/90 mb-3"
@@ -153,6 +155,7 @@ export default function TripleSlider({
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
+                      loading="lazy"
                     />
                   </div>
                 </SwiperSlide>

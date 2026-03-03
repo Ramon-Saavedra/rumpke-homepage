@@ -50,9 +50,9 @@ export default function PropertyTypeGrid({ types, basePath, title }: PropertyTyp
               </div>
 
               <div className="flex-1">
-                <h3 className="text-lg font-bold text-text-l dark:text-text-d mb-1 group-hover:text-primary transition-colors">
+                <p className="text-lg font-bold text-text-l dark:text-text-d mb-1 group-hover:text-primary transition-colors">
                   {type.label}
-                </h3>
+                </p>
                 <p className="text-sm text-card-text-l dark:text-card-text-d">
                   {type.description}
                 </p>

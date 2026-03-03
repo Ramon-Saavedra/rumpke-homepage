@@ -37,10 +37,8 @@ const page = () => {
 
         <Sidebar />
         <TargetAudienceSection />
-        <div className=" lg:flex gap-2 mb-12">
           <WhyChooseRumpke />
           <ServicesSection />
-        </div>
         <PersonalServiceCard />
       </main>
     </div>

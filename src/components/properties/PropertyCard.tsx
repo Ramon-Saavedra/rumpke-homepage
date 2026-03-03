@@ -12,7 +12,7 @@ interface PropertyCardProps {
   area?: string;
   rooms?: number;
   operationType?: 'kauf' | 'miete';
-  priority?: boolean;
+  preload?: boolean;
 }
 
 export default function PropertyCard({
@@ -25,11 +25,11 @@ export default function PropertyCard({
   area,
   rooms,
   operationType,
-  priority = false
+  preload = false
 }: PropertyCardProps) {
   return (
     <Link href={`/object/${slug}`}>
-      <article className="group relative h-96 flex flex-col border dark:hover:shadow-primary-dark border-border-l dark:border-border-d overflow-hidden hover:shadow-md transition-shadow duration-300">
+      <article className="group relative h-96 flex flex-col dark:border-border-d overflow-hidden transition-shadow duration-300">
         {/* Image */}
         <div className="relative h-48 shrink-0 overflow-hidden">
           <Image
@@ -38,7 +38,8 @@ export default function PropertyCard({
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            priority={priority}
+            loading={preload ? "eager" : "lazy"}
+            preload={preload}
           />
 
           {/* Type Badge */}
@@ -49,9 +50,9 @@ export default function PropertyCard({
 
         {/* Content */}
         <div className="p-3 flex flex-col flex-1 bg-bgSecondary-l dark:bg-bgSecondary-d">
-          <h3 className="text-base font-bold text-text-l dark:text-text-d mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+          <h2 className="text-base font-bold text-text-l dark:text-text-d mb-2 line-clamp-2 group-hover:text-primary transition-colors">
             {title}
-          </h3>
+          </h2>
 
           <div className="flex items-center gap-2 text-card-text-l dark:text-card-text-d mb-2">
             <MapPin className="w-3 h-3 shrink-0" />

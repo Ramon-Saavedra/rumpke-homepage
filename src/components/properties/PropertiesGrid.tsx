@@ -65,7 +65,9 @@ export default function PropertiesGrid({ properties }: PropertiesGridProps) {
               imageUrl={property.imageUrl}
               area={property.area}
               rooms={property.rooms}
-              operationType={property.operationType}              priority={index === 0}            />
+              operationType={property.operationType}
+              preload={index === 0}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

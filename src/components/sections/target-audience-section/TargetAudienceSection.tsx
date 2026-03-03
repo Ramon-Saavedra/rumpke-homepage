@@ -23,8 +23,8 @@ const cards = [
 
 const TargetAudienceSection = () => {
   return (
-    <section className="w-full  py-4 mb-12 bg-bgSecondary-l dark:bg-bgSecondary-d rounded">
-      <div className="container mx-auto px-4">
+    <section className="w-full py-4 mb-12 bg-bgSecondary-l dark:bg-bgSecondary-d rounded">
+      <div className="container mx-auto p-4">
         <div className="text-center mb-12">
           <Title variant="h2" size="xl" className="py-4 rounded mb-8 bg-secondary dark:bg-secondary-dark text-white px-2">Für wen wir da sind</Title>
           <p className="max-w-2xl mx-auto text-base sm:text-lg text-card-text-l dark:text-card-text-d">
@@ -36,12 +36,12 @@ const TargetAudienceSection = () => {
           <div className="flex justify-center">
             <div className="relative w-full max-w-xs h-[380px]">
               <Image
-                src="/imgs/whyTrustUsPic-2.jpg"
+                src="/imgs/personal-service-pic.jpeg"
                 alt="Für wen wir da sind"
                 fill
                 className="rounded object-cover shadow-xl"
                 sizes="(max-width: 1024px) 320px, 384px"
-                priority
+                loading="lazy"
               />
             </div>
           </div>

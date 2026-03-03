@@ -10,6 +10,7 @@ import Topmenu from "@/components/layout/top-menu/TopMenu";
 import Footer from "@/components/layout/footer/Footer";
 import SecondaryNav from "@/components/layout/secondary-nav/SecondaryNav";
 import CategoryNav from "@/components/layout/category-nav/CategoryNav";
+import GoogleMap from "@/components/features/map/GoogleMap";
 
 
 const roboto = Roboto({ subsets: ["latin"], weight: ["300", "400", "500", "700"], display: "swap" });
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 <CategoryNav />
                 {children}
               </div>
+              <GoogleMap />
               <Footer />
               <SecondaryNav />
             </div>

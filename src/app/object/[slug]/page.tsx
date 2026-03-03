@@ -38,7 +38,7 @@ export default async function PropertyObjectPage({ params }: PageProps) {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-6">
             <div className="bg-card-l dark:bg-card-d p-6 rounded border border-border-l dark:border-border-d">
-              <h2 className="text-2xl font-semibold mb-4 text-text-l dark:text-text-d">
+              <h2 className="text-xl font-semibold mb-4 text-text-l dark:text-text-d">
                 Beschreibung
               </h2>
               <p className="text-card-text-l dark:text-card-text-d leading-relaxed">
