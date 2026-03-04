@@ -20,6 +20,7 @@ exports[`TopMenu Visual Integration uses only Tailwind/global.css classes and va
               data-nimg="1"
               decoding="async"
               height="40"
+              loading="eager"
               src="/_next/image?url=%2Fimgs%2FRUMPKE-mobile-logo.png&w=256&q=75"
               srcset="/_next/image?url=%2Fimgs%2FRUMPKE-mobile-logo.png&w=96&q=75 1x, /_next/image?url=%2Fimgs%2FRUMPKE-mobile-logo.png&w=256&q=75 2x"
               style="color: transparent; object-fit: contain; height: auto; max-height: 100%;"
@@ -61,13 +62,13 @@ exports[`TopMenu Visual Integration uses only Tailwind/global.css classes and va
         class="flex gap-4"
       >
         <a
-          class="flex items-center justify-center border-buy hover:bg-buy hover:text-white mr-1 text-sm bg-secondary dark:bg-secondary-dark rounded px-4 py-1 hover:opacity-90"
+          class="flex items-center justify-center border-buy  text-sm bg-secondary dark:bg-secondary-dark rounded px-4 hover:opacity-80"
           href="/kauf"
         >
           Kauf
         </a>
         <a
-          class="flex items-center justify-center border-rent hover:bg-rent hover:text-white mr-1 text-sm bg-secondary dark:bg-secondary-dark rounded px-4 py-1 hover:opacity-90"
+          class="flex items-center justify-center border-rent  text-sm bg-secondary dark:bg-secondary-dark rounded px-4 hover:opacity-80"
           href="/miete"
         >
           Miete
@@ -76,6 +77,7 @@ exports[`TopMenu Visual Integration uses only Tailwind/global.css classes and va
           class="flex items-center justify-center rounded-md md:h-8 "
         >
           <button
+            aria-label="Open navigation menu"
             class="mx-2 md:hidden p-1 rounded cursor-pointer hover:bg-primary/10 dark:hover:bg-primary-dark/20"
             data-testid="menu-btn"
           >

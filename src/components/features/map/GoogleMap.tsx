@@ -20,10 +20,10 @@ const GoogleMap = () => {
   return (
     <section className="w-full bg-third text-white pt-4">
       <div className="w-full mx-auto">
-        <h2 className="text-3xl font-bold mb-8 text-center">
+        <h2 className="text-3xl mb-4 text-center">
           Unsere Lage
         </h2>
-        <div className="text-center mt-4">
+        <div className="text-center mb-2">
           <a
             href={googleMapsUrl}
             target="_blank"
