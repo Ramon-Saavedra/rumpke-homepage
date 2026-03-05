@@ -5,17 +5,17 @@ import AudienceCard from './AudienceCard';
 
 const cards = [
   {
-    icon: <IoHomeOutline size={24} className="" />,
+    icon: <IoHomeOutline size={18} className="" />,
     title: 'Eigentümer',
     text: 'Wir unterstützen Eigentümer beim Verkauf oder der Vermietung ihrer Immobilie.',
   },
   {
-    icon: <IoPersonAddOutline size={24} className="" />,
+    icon: <IoPersonAddOutline size={18} className="" />,
     title: 'Käufer',
     text: 'Finden Sie mit uns Ihr neues Zuhause oder Ihre nächste Investition.',
   },
   {
-    icon: <IoKeyOutline size={24} className="" />,
+    icon: <IoKeyOutline size={18} className="" />,
     title: 'Mieter',
     text: 'Wir helfen Mietern, die passende Immobilie zu finden.',
   },

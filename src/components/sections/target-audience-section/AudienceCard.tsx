@@ -17,7 +17,7 @@ export default function AudienceCard({
 }: AudienceCardProps) {
   return (
     <div className="group flex items-center w-full h-full px-6 py-5 bg-bg-l dark:bg-bg-d border min-h-24 border-border-l dark:border-border-d rounded">
-      <div className="flex items-center justify-center min-w-14 min-h-14 bg-primary/10 rounded-full text-primary">
+      <div className="flex items-center justify-center min-w-10 min-h-10 bg-primary/10 rounded-full text-primary">
         {icon}
       </div>
       <div className="flex flex-col flex-1 ml-5">

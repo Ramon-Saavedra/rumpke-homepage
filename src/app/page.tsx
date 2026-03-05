@@ -15,7 +15,7 @@ const page = () => {
         videoSrc="/media/heroVideo.mp4"
         alt="Rumpke Immobilien Hero Video"
       />
-      <div className="text-center mt-12 md:mt-0 py-5 ">
+      <div className="text-center mt-12 md:mt-0 py-5 bg-bgSecondary-l dark:bg-bgSecondary-d mb-12">
         <Title variant="h1"
           align="center"
           size="xl"

@@ -23,13 +23,13 @@ const Topmenu = () => {
             name="Kauf"
             href="/kauf"
             color="border-buy"
-            className=""
+            className="hover:bg-buy hover:text-white mr-1"
           />
           <CategoryButton
             name="Miete"
             href="/miete"
             color="border-rent"
-            className=""
+            className="hover:bg-rent hover:text-white mr-1"
           />
 
           <div className='flex items-center justify-center rounded-md md:h-8 '>
