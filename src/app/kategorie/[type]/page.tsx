@@ -42,10 +42,10 @@ export default async function PropertyTypePage({ params }: PageProps) {
       <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
         <Link
           href={`/kauf/${type}`}
-          className="group border border-border-l dark:border-border-d p-12 text-center hover:bg-Bghover-l dark:hover:bg-Bghover-d bg-secondary dark:bg-secondary-dark"
+          className="group border border-border-l dark:border-border-d p-12 text-center hover:bg-Bghover-l dark:hover:bg-Bghover-d bg-bgSecondary-l dark:bg-bgSecondary-d"
         >
           <div className="flex flex-col items-center gap-6">
-            <div className="w-20 h-20 bg-bg-l dark:bg-bg-d flex items-center justify-center text-primary">
+            <div className="w-20 h-20  flex items-center justify-center text-primary">
               <Key size={48} strokeWidth={2} />
             </div>
             <h2 className="text-3xl font-bold text-card-text-l dark:text-card-text-d">
@@ -59,10 +59,10 @@ export default async function PropertyTypePage({ params }: PageProps) {
 
         <Link
           href={`/miete/${type}`}
-          className="group border border-border-l dark:border-border-d p-12 text-center hover:bg-Bghover-l dark:hover:bg-Bghover-d bg-secondary dark:bg-secondary-dark"
+          className="group border border-border-l dark:border-border-d p-12 text-center hover:bg-Bghover-l dark:hover:bg-Bghover-d bg-bgSecondary-l dark:bg-bgSecondary-d"
         >
           <div className="flex flex-col items-center gap-6">
-            <div className="w-20 h-20 bg-bg-l dark:bg-bg-d flex items-center justify-center text-primary">
+            <div className="w-20 h-20 flex items-center justify-center text-primary">
               <FileText size={48} strokeWidth={2} />
             </div>
             <h2 className="text-3xl font-bold text-card-text-l dark:text-card-text-d">

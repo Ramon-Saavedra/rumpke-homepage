@@ -1,7 +1,6 @@
 import PersonalServiceCard from "@/components/sections/personal-service-card/PersonalServiceCard"
 import ServicesSection from "@/components/sections/services-section/ServicesSection"
 import TargetAudienceSection from "@/components/sections/target-audience-section/TargetAudienceSection"
-import Sidebar from "@/components/layout/sidebar/Sidebar"
 import HeroVideo from "@/components/hero/HeroVideo"
 import WhyChooseRumpke from "@/components/sections/why-choose-rumpke/WhyChooseRumpke"
 import Title from "@/components/ui/title/Title"
@@ -35,10 +34,9 @@ const page = () => {
           </div>
         </section>
 
-        <Sidebar />
         <TargetAudienceSection />
-          <WhyChooseRumpke />
-          <ServicesSection />
+        <WhyChooseRumpke />
+        <ServicesSection />
         <PersonalServiceCard />
       </main>
     </div>

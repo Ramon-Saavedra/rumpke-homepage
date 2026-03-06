@@ -40,7 +40,7 @@ export default function DienstleistungenPage() {
             <Link
               key={service.href}
               href={service.href}
-              className="group flex flex-col p-6 bg-secondary dark:bg-secondary-dark rounded hover:shadow-md border border-transparent hover:border-border-l dark:hover:border-border-d"
+              className="group flex flex-col p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded hover:shadow-md border border-transparent hover:border-border-l dark:hover:border-border-d"
             >
               <div className="mb-4">
                 <IconComponent className="w-6 h-6" />
@@ -60,7 +60,7 @@ export default function DienstleistungenPage() {
         })}
       </div>
 
-      <div className="mt-12 p-6 bg-secondary dark:bg-secondary-dark rounded text-center">
+      <div className="mt-12 p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded text-center">
         <h3 className="text-xl font-bold mb-2">
           Haben Sie Fragen zu unseren Dienstleistungen?
         </h3>

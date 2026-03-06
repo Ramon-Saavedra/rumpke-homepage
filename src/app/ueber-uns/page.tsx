@@ -3,7 +3,7 @@ import Title from "@/components/ui/title/Title";
 
 export default function UeberUnsPage() {
   return (
-    <div className="max-w-5xl mx-auto py-12 bg-secondary dark:bg-secondary-dark px-4 mb-12">
+    <div className="max-w-5xl mx-auto py-12 bg-bgSecondary-l dark:bg-bgSecondary-d px-4 mb-12">
       <div className="mb-12">
         <Title variant="h1" align="center" size="xl">
           Über mich
@@ -43,7 +43,7 @@ export default function UeberUnsPage() {
             </p>
           </div>
 
-          <div className="mt-8 p-6 bg-secondary dark:bg-secondary-dark border border-border-l dark:border-border-d space-y-4">
+          <div className="mt-8 p-6 bg-bgSecondary-l dark:bg-bgSecondary-d border border-border-l dark:border-border-d space-y-4">
             <p className="italic text-base leading-relaxed text-card-text-l dark:text-card-text-d">
               &bdquo;Mein Ansatz ist authentisch, kompetent und echt. Ich sehe mich nicht nur als Maklerin, sondern als Dienstleister, der Ihnen bei allen Fragen rund um die Immobilie zur Seite steht. Egal, ob Sie eine Immobilie kaufen, verkaufen oder bewerten möchten, ich bin für Sie da.&ldquo;
             </p>

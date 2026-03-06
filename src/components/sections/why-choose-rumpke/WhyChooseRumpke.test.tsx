@@ -139,13 +139,11 @@ describe('WhyChooseRumpke', () => {
       expect(imageContainers).toHaveLength(3);
     });
 
-    it('each image container has border', () => {
+    it('section has correct background and border classes', () => {
       render(<WhyChooseRumpke />);
-      const imageContainers = document.querySelectorAll('.border-3');
-      expect(imageContainers).toHaveLength(3);
-      imageContainers.forEach((container) => {
-        expect(container).toHaveClass('border-secondary', 'dark:border-secondary-dark');
-      });
+      const section = document.querySelector('section');
+      expect(section).toHaveClass('bg-bgSecondary-l', 'dark:bg-bgSecondary-d');
+      expect(section).toHaveClass('border', 'border-border-l', 'dark:border-border-d');
     });
   });
 

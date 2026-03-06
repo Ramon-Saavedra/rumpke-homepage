@@ -30,7 +30,7 @@ export default function KontaktPage() {
       </div>
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
-          <div className="w-full rounded bg-secondary dark:bg-secondary-dark flex flex-col justify-center items-start p-4 md:p-6 shadow-sm overflow-hidden">
+          <div className="w-full rounded bg-bgSecondary-l dark:bg-bgSecondary-d flex flex-col justify-center items-start p-4 md:p-6 shadow-sm overflow-hidden">
             <h1 className="text-xl font-bold text-primary mb-2 tracking-wide drop-shadow">Kontakt</h1>
             <p className="text-base font-medium tracking-wide text-primary-dark dark:text-primary/80 mb-4">Sie möchten Ihre Immobilie verkaufen, bewerten lassen oder vermieten?</p>
             <div className="space-y-1 mb-2">

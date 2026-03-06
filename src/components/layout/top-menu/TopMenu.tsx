@@ -4,10 +4,11 @@ import { IoMenuOutline } from 'react-icons/io5';
 import CategoryButton from '@/components/features/category-button/CategoryButton';
 import LogoMobile from '@/components/branding/logo-mobile/LogoMobile';
 import { ThemeSwitch } from '@/context/ThemeSwitsh';
+import { useUiStore } from '@/store/ui/ui-store';
 
 
 const Topmenu = () => {
-
+  const { openSidebar } = useUiStore();
 
   return (
     <>
@@ -23,19 +24,20 @@ const Topmenu = () => {
             name="Kauf"
             href="/kauf"
             color="border-buy"
-            className="hover:bg-buy hover:text-white mr-1"
+            className="hover:bg-buy hover:text-white mr-1 bg-buy"
           />
           <CategoryButton
             name="Miete"
             href="/miete"
             color="border-rent"
-            className="hover:bg-rent hover:text-white mr-1"
+            className="hover:bg-rent hover:text-white mr-1 bg-rent"
           />
 
           <div className='flex items-center justify-center rounded-md md:h-8 '>
             <button
               data-testid="menu-btn"
               aria-label="Open navigation menu"
+              onClick={openSidebar}
               className='mx-2 md:hidden p-1 rounded cursor-pointer hover:bg-primary/10 dark:hover:bg-primary-dark/20'>
               <IoMenuOutline size={28} />
             </button>

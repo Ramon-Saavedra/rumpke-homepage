@@ -27,7 +27,7 @@ const WhyChooseRumpke = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 md:p-4 ">
           {features.map((feature) => (
             <div key={feature.title} className="flex flex-col">
-              <div className="relative w-full h-64 mb-4 border-3 border-secondary dark:border-secondary-dark">
+              <div className="relative w-full h-64 mb-4">
                 <Image
                   src={feature.image}
                   alt={feature.title}

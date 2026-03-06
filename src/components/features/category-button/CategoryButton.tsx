@@ -11,7 +11,7 @@ interface CategoryButtonProps {
 
 const CategoryButton = ({ name, href, color, className }: CategoryButtonProps) => {
   return (
-    <Link href={href} className={`flex items-center justify-center ${color} ${className} text-sm bg-secondary dark:bg-secondary-dark rounded px-4 hover:opacity-80`}>
+    <Link href={href} className={`flex items-center justify-center ${color} ${className} text-sm  rounded px-4 hover:opacity-80`}>
       {name}
     </Link>
   )

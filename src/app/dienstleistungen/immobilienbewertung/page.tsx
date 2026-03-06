@@ -61,7 +61,7 @@ export default function ImmobilienbewertungPage() {
           </div>
 
           <div className="space-y-6">
-            <div className="p-6 bg-secondary dark:bg-secondary-dark rounded border border-border-l dark:border-border-d">
+            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
               <div className="flex gap-4">
                 <div className="shrink-0">
                   <div className="w-10 h-10 rounded-full bg-primary dark:bg-primary-dark flex items-center justify-center text-white font-bold">
@@ -77,7 +77,7 @@ export default function ImmobilienbewertungPage() {
               </div>
             </div>
 
-            <div className="p-6 bg-secondary dark:bg-secondary-dark rounded border border-border-l dark:border-border-d">
+            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
               <div className="flex gap-4">
                 <div className="shrink-0">
                   <div className="w-10 h-10 rounded-full bg-primary dark:bg-primary-dark flex items-center justify-center text-white font-bold">
@@ -93,7 +93,7 @@ export default function ImmobilienbewertungPage() {
               </div>
             </div>
 
-            <div className="p-6 bg-secondary dark:bg-secondary-dark rounded border border-border-l dark:border-border-d">
+            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
               <div className="flex gap-4">
                 <div className="shrink-0">
                   <div className="w-10 h-10 rounded-full bg-primary dark:bg-primary-dark flex items-center justify-center text-white font-bold">
@@ -109,7 +109,7 @@ export default function ImmobilienbewertungPage() {
               </div>
             </div>
 
-            <div className="p-6 bg-secondary dark:bg-secondary-dark rounded border border-border-l dark:border-border-d">
+            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
               <div className="flex gap-4">
                 <div className="shrink-0">
                   <div className="w-10 h-10 rounded-full bg-primary dark:bg-primary-dark flex items-center justify-center text-white font-bold">
@@ -136,7 +136,7 @@ export default function ImmobilienbewertungPage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="p-6 bg-secondary dark:bg-secondary-dark rounded border border-border-l dark:border-border-d">
+            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
               <h3 className="font-semibold text-lg mb-3">Objektmerkmale</h3>
               <ul className="text-sm text-card-text-l dark:text-card-text-d space-y-2">
                 <li>• Größe und Grundriss</li>
@@ -146,7 +146,7 @@ export default function ImmobilienbewertungPage() {
               </ul>
             </div>
 
-            <div className="p-6 bg-secondary dark:bg-secondary-dark rounded border border-border-l dark:border-border-d">
+            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
               <h3 className="font-semibold text-lg mb-3">Lage</h3>
               <ul className="text-sm text-card-text-l dark:text-card-text-d space-y-2">
                 <li>• Mikro- und Makrolage</li>
@@ -156,7 +156,7 @@ export default function ImmobilienbewertungPage() {
               </ul>
             </div>
 
-            <div className="p-6 bg-secondary dark:bg-secondary-dark rounded border border-border-l dark:border-border-d">
+            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
               <h3 className="font-semibold text-lg mb-3">Marktfaktoren</h3>
               <ul className="text-sm text-card-text-l dark:text-card-text-d space-y-2">
                 <li>• Vergleichspreise</li>
