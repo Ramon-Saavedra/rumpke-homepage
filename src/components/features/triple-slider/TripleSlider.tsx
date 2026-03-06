@@ -6,6 +6,7 @@ import { Controller, Parallax } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import Link from 'next/link';
 import Image from 'next/image';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import 'swiper/css';
 import 'swiper/css/controller';
@@ -36,7 +37,8 @@ export default function TripleSlider({
           Ausgewählte Immobilien
         </h2>
 
-        <div className="triple-slider relative w-full max-w-5xl mx-auto h-[400px] sm:h-[500px]">
+        <div className="triple-slider relative w-full max-w-5xl mx-auto h-[400px] sm:h-[500px]
+        ">
           {/* Previous Swiper (Left) */}
           <div className="triple-slider-prev">
             <Swiper
@@ -161,6 +163,24 @@ export default function TripleSlider({
                 </SwiperSlide>
               ))}
             </Swiper>
+          </div>
+
+          {/* Navigation Arrows */}
+          <div className="hidden lg:block">
+            <button
+              onClick={() => mainSwiper?.slidePrev()}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/90 dark:bg-gray-800/90 flex items-center justify-center hover:bg-white dark:hover:bg-gray-800 shadow-lg cursor-pointer"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="w-5 h-5 text-primary " />
+            </button>
+            <button
+              onClick={() => mainSwiper?.slideNext()}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/90 dark:bg-gray-800/90 flex items-center justify-center hover:bg-white dark:hover:bg-gray-800 shadow-lg cursor-pointer"
+              aria-label="Next slide"
+            >
+              <ChevronRight className="w-5 h-5 text-primary " />
+            </button>
           </div>
         </div>
       </div>

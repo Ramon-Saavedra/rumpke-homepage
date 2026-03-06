@@ -6,8 +6,6 @@ import TrustBannerFoto from "@/components/features/trust-baner-foto/TrustBannerF
 import Image from "next/image";
 
 
-
-
 export default function KontaktPage() {
   return (
     <section className="mx-auto md:p-10 py-8">

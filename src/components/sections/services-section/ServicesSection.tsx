@@ -22,10 +22,10 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section className="w-full md:py-12 mb-12 lg:rounded">
-      <div className="mx-auto  p-4">
-        <Title variant="h2" size="xl" align="center">Unsere Leistungen</Title>
-        <div className="flex flex-col lg:flex-row gap-6 items-stretch">
+    <section className="w-full mb-12 lg:rounded border border-border-l dark:border-border-d bg-bgSecondary-l dark:bg-bgSecondary-d shadow-secondary">
+      <div className="mx-auto">
+        <Title className='py-4 px-2 ' variant="h2" size="xl" align="left">Unsere Leistungen</Title>
+        <div className="flex flex-col lg:flex-row gap-6 items-stretch p-4">
           <div className="flex flex-col gap-4 lg:flex-1">
             {services.map((service) => (
               <ServiceCard

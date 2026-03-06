@@ -21,10 +21,10 @@ const features = [
 
 const WhyChooseRumpke = () => {
   return (
-    <section className="w-full md:py-12 mb-12  border-b border-t border-border-l dark:border-border-d">
-      <div className="mx-auto px-4">
-        <Title variant="h2" size="xl" align="center">Warum Rumpke Immobilien?</Title>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+    <section className="w-full mb-12  rounded border border-border-l dark:border-border-d bg-bgSecondary-l dark:bg-bgSecondary-d shadow-secondary">
+      <div className="mx-auto">
+        <Title className='py-4 px-2' variant="h2" size="xl" align="left">Warum Rumpke Immobilien?</Title>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 md:p-4 ">
           {features.map((feature) => (
             <div key={feature.title} className="flex flex-col">
               <div className="relative w-full h-64 mb-4 border-3 border-secondary dark:border-secondary-dark">

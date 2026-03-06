@@ -17,4 +17,11 @@ export default defineConfig([
       "@typescript-eslint/no-require-imports": "off",
     },
   },
+  {
+    files: ["**/*.test.ts", "**/*.test.tsx"],
+    rules: {
+      "@next/next/no-img-element": "off",
+      "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    },
+  },
 ]);
