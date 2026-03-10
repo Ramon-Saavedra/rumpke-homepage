@@ -20,7 +20,7 @@ export default function MietePage() {
         title="Nach Immobilientyp filtern"
       />
 
-      <div className="p-8 bg-secondary dark:bg-secondary-dark border border-border-l dark:border-border-d rounded">
+      <div className="p-8 bg-bgSecondary-l dark:bg-bgSecondary-d border border-border-l dark:border-border-d rounded">
         <p className="text-center text-card-text-l dark:text-card-text-d">
           Alle Immobilien zur Miete werden hier angezeigt, sobald das Backend integriert ist.
         </p>

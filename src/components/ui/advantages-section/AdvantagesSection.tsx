@@ -10,7 +10,7 @@ interface AdvantagesSectionProps {
 
 export default function AdvantagesSection({ title, items }: AdvantagesSectionProps) {
   return (
-    <section className="bg-secondary dark:bg-secondary-dark rounded-lg p-8 border border-border-l dark:border-border-d">
+    <section className="bg-bgSecondary-l dark:bg-bgSecondary-d rounded-lg p-8 border border-border-l dark:border-border-d">
       <h2 className="text-2xl font-bold mb-6 text-center">{title}</h2>
       <div className="space-y-4">
         {items.map((item, index) => (

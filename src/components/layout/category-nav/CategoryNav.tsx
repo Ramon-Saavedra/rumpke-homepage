@@ -8,7 +8,7 @@ const CategoryNav = () => {
 
 
   return (
-    <nav className="hidden md:flex items-center py-2 bg-secondary dark:bg-secondary-dark sticky top-(--topbar-height) z-30">
+    <nav className="hidden md:flex items-center py-2 text-white bg-secondary dark:bg-secondary-dark sticky top-(--topbar-height) z-30">
       <div className="flex w-full justify-between items-center max-w-xl mx-auto">
         <NavItem href="/auf-karte-erkunden">Auf Karte erkunden</NavItem>
         <NavItem href="/kategorie/haus">Haus</NavItem>

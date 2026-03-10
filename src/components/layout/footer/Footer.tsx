@@ -10,7 +10,7 @@ const Footer = () => {
 
           {/* Columna 1: Sobre Rumpke */}
           <FooterCollapsibleSection title="Rumpke Immobilien">
-            <p className="text-secondary mb-4 ">
+            <p className="text-white mb-4 ">
               Ihr vertrauensvoller Partner für Immobilien in der Region.
             </p>
             <ul className="space-y-2 ">
@@ -35,7 +35,7 @@ const Footer = () => {
           {/* Columna 2: Immobilien */}
           <FooterCollapsibleSection title="Immobilien">
             <div className="mb-4 ">
-              <p className="font-medium mb-2 text-secondary">Kaufen</p>
+              <p className="font-medium mb-2 text-white">Kaufen</p>
               <ul className="space-y-2 sm:ml-4">
                 <li>
                   <Link href="/kauf" className="text-card-text-d hover:text-primary">
@@ -55,7 +55,7 @@ const Footer = () => {
               </ul>
             </div>
             <div className="">
-              <p className="font-medium mb-2 text-secondary">Mieten</p>
+              <p className="font-medium mb-2 text-white">Mieten</p>
               <ul className="space-y-2 sm:ml-4">
                 <li>
                   <Link href="/miete" className="text-card-text-d hover:text-primary">
@@ -128,8 +128,8 @@ const Footer = () => {
             </FooterCollapsibleSection>
 
             {/* Redes Sociales - Siempre visible */}
-            <div className="mt-6 text-center ">
-              <h4 className="font-medium mb-3 text-secondary">Folgen Sie uns</h4>
+            <div className="mt-6">
+              <h4 className="font-medium mb-3 text-primary">Folgen Sie uns</h4>
               <div className="flex gap-4 justify-center sm:justify-start">
                 <a
                   href="https://www.facebook.com/profile.php?id=61572884870790"

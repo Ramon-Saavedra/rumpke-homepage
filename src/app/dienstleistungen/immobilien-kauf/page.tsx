@@ -66,7 +66,7 @@ export default function ImmobilienKaufPage() {
           </div>
 
           <div className="space-y-6">
-            <div className="p-6 bg-secondary dark:bg-secondary-dark rounded border border-border-l dark:border-border-d">
+            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
               <div className="flex gap-4">
                 <div className="shrink-0">
                   <div className="w-10 h-10 rounded-full bg-primary dark:bg-primary-dark flex items-center justify-center text-white font-bold">
@@ -82,7 +82,7 @@ export default function ImmobilienKaufPage() {
               </div>
             </div>
 
-            <div className="p-6 bg-secondary dark:bg-secondary-dark rounded border border-border-l dark:border-border-d">
+            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
               <div className="flex gap-4">
                 <div className="shrink-0">
                   <div className="w-10 h-10 rounded-full bg-primary dark:bg-primary-dark flex items-center justify-center text-white font-bold">
@@ -98,7 +98,7 @@ export default function ImmobilienKaufPage() {
               </div>
             </div>
 
-            <div className="p-6 bg-secondary dark:bg-secondary-dark rounded border border-border-l dark:border-border-d">
+            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
               <div className="flex gap-4">
                 <div className="shrink-0">
                   <div className="w-10 h-10 rounded-full bg-primary dark:bg-primary-dark flex items-center justify-center text-white font-bold">
@@ -114,7 +114,7 @@ export default function ImmobilienKaufPage() {
               </div>
             </div>
 
-            <div className="p-6 bg-secondary dark:bg-secondary-dark rounded border border-border-l dark:border-border-d">
+            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
               <div className="flex gap-4">
                 <div className="shrink-0">
                   <div className="w-10 h-10 rounded-full bg-primary dark:bg-primary-dark flex items-center justify-center text-white font-bold">
@@ -130,7 +130,7 @@ export default function ImmobilienKaufPage() {
               </div>
             </div>
 
-            <div className="p-6 bg-secondary dark:bg-secondary-dark rounded border border-border-l dark:border-border-d">
+            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
               <div className="flex gap-4">
                 <div className="shrink-0">
                   <div className="w-10 h-10 rounded-full bg-primary dark:bg-primary-dark flex items-center justify-center text-white font-bold">

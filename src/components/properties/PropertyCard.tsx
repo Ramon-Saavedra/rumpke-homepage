@@ -29,7 +29,7 @@ export default function PropertyCard({
 }: PropertyCardProps) {
   return (
     <Link href={`/object/${slug}`}>
-      <article className="group relative h-96 flex flex-col dark:border-border-d overflow-hidden transition-shadow duration-300">
+      <article className="group relative h-96 flex flex-col dark:border-border-d overflow-hidden shadow-lg">
         {/* Image */}
         <div className="relative h-48 shrink-0 overflow-hidden">
           <Image

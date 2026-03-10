@@ -32,7 +32,7 @@ const Title = ({
     right: 'text-right'
   }
 
-  const baseClasses = 'font-bold mb-8'
+  const baseClasses = 'font-bold mb-4'
   const classes = `${baseClasses} ${sizeClasses[size]} ${alignClasses[align]} ${className}`
 
   const Tag = variant

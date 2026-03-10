@@ -62,13 +62,13 @@ exports[`TopMenu Visual Integration uses only Tailwind/global.css classes and va
         class="flex gap-4"
       >
         <a
-          class="flex items-center justify-center border-buy hover:bg-buy hover:text-white mr-1 text-sm bg-secondary dark:bg-secondary-dark rounded px-4 hover:opacity-80"
+          class="flex items-center justify-center border-buy hover:bg-buy hover:text-white mr-1 bg-buy text-sm  rounded px-4 hover:opacity-80"
           href="/kauf"
         >
           Kauf
         </a>
         <a
-          class="flex items-center justify-center border-rent hover:bg-rent hover:text-white mr-1 text-sm bg-secondary dark:bg-secondary-dark rounded px-4 hover:opacity-80"
+          class="flex items-center justify-center border-rent hover:bg-rent hover:text-white mr-1 bg-rent text-sm  rounded px-4 hover:opacity-80"
           href="/miete"
         >
           Miete

@@ -10,9 +10,8 @@ interface TrustBannerFotoProps {
 const TrustBannerFoto: React.FC<TrustBannerFotoProps> = ({ title }) => {
   return (
     <section
-      className="fixed left-0 top flex flex-col items-end justify-center gap-2 aspect-square py-7 px-4 max-w-60 dark:bg-secondary-dark bg-secondary shadow-md shadow-primary dark:shadow-primary-dark"
+      className="fixed left-0 bg-bgSecondary-l dark:bg-bgSecondary-d  shadow shadow-primary"
       style={{
-        backdropFilter: 'blur(2px)',
         minWidth: 180,
         minHeight: 180,
         position: 'fixed',
@@ -22,25 +21,26 @@ const TrustBannerFoto: React.FC<TrustBannerFotoProps> = ({ title }) => {
         zIndex: 50,
       }}
     >
-      <div className="w-full h-full flex items-center justify-center mb-1">
-        <Image
-          src="/imgs/personal-service-pic.jpeg"
-          alt="Vertrauensbild"
-          width={180}
-          height={180}
-          className="object-cover"
-          style={{ width: '90%', height: 'auto', boxShadow: '0 1px 4px 0 rgba(0,0,0,0.04)' }}
-          loading="eager"
-          preload={true}
-        />
+      <div className="flex flex-col h-full p-4 gap-3 ">
+        <div className="relative w-full aspect-square overflow-hidden rounded border-2 border-primary dark:border-primary-dark">
+          <Image
+            src="/imgs/personal-service-pic.jpeg"
+            alt="Vertrauensbild"
+            fill
+            className="object-cover"
+            sizes="180px"
+            loading="eager"
+            priority
+          />
+        </div>
+        <div className="flex flex-col gap-1">
+          <h2 className="text-xs font-bold text-center text-text dark:text-text-dark leading-tight">
+            {title}
+          </h2>
+          <div className="w-12 h-0.5 bg-primary dark:bg-primary-dark mx-auto" />
+        </div>
       </div>
-      <h2
-        className="text-xs font-semibold text-center tracking-wide mb-2"
-      >
-        {title}
-      </h2>
     </section>
-
   );
 };
 

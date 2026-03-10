@@ -40,7 +40,7 @@ const HeroVideo: FC<HeroVideoProps> = ({ videoSrc, poster, alt }) => {
 
   return (
     <section
-      className="w-full flex items-center justify-center relative"
+      className="w-full flex items-center justify-center relative border-r border-l border-secondary"
       style={{ marginTop: "var(--top-menu-height)" }}
     >
       <video

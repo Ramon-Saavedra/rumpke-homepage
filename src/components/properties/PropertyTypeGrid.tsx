@@ -44,13 +44,13 @@ export default function PropertyTypeGrid({ types, basePath, title }: PropertyTyp
             href={`/${basePath}/${type.slug}`}
             className="group"
           >
-            <div className="flex items-start gap-4 p-6 bg-background-l dark:bg-background-d border border-border-l dark:border-border-d rounded hover:border-primary hover:shadow-lg transition-all duration-300">
-              <div className="text-primary group-hover:scale-110 transition-transform duration-300">
+            <div className="flex items-start gap-4 p-6 bg-background-l dark:bg-background-d border border-border-l dark:border-border-d rounded hover:border-primary hover:shadow-lg">
+              <div className="text-primary group-hover:scale-110">
                 {getIcon(type.slug)}
               </div>
 
               <div className="flex-1">
-                <p className="text-lg font-bold text-text-l dark:text-text-d mb-1 group-hover:text-primary transition-colors">
+                <p className="text-lg font-bold text-text-l dark:text-text-d mb-1 group-hover:text-primary">
                   {type.label}
                 </p>
                 <p className="text-sm text-card-text-l dark:text-card-text-d">
