@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="w-full bg-third">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 text-center">
 
           {/* Columna 1: Sobre Rumpke */}
           <FooterCollapsibleSection title="Rumpke Immobilien">
@@ -34,7 +34,7 @@ const Footer = () => {
 
           {/* Columna 2: Immobilien */}
           <FooterCollapsibleSection title="Immobilien">
-            <div className="mb-4 ">
+            <div className="mb-4">
               <p className="font-medium mb-2 text-white">Kaufen</p>
               <ul className="space-y-2 sm:ml-4">
                 <li>
@@ -103,22 +103,22 @@ const Footer = () => {
           </FooterCollapsibleSection>
 
           {/* Columna 4: Kontakt Info */}
-          <div>
+          <div className="text-center">
             <FooterCollapsibleSection title="Kontaktieren Sie uns">
               <ul className="space-y-3 ">
-                <li className="flex items-start gap-2 justify-center sm:justify-start">
+                <li className="flex items-start gap-2 justify-center ">
                   <IoLocationOutline size={20} className="text-primary mt-1" />
                   <span className="text-card-text-d">
                     Musterstraße 123<br />12345 Musterstadt
                   </span>
                 </li>
-                <li className="flex items-center gap-2 justify-center sm:justify-start">
+                <li className="flex items-center gap-2 justify-center">
                   <IoCallOutline size={20} className="text-primary" />
                   <a href="tel:+491234567890" className="text-card-text-d hover:text-primary">
                     +49 123 456 7890
                   </a>
                 </li>
-                <li className="flex items-center gap-2 justify-center sm:justify-start">
+                <li className="flex items-center gap-2 justify-center">
                   <IoMailOutline size={20} className="text-primary" />
                   <a href="mailto:info@rumpke-immobilien.de" className="text-card-text-d hover:text-primary">
                     info@rumpke-immobilien.de
@@ -129,8 +129,8 @@ const Footer = () => {
 
             {/* Redes Sociales - Siempre visible */}
             <div className="mt-6">
-              <h4 className="font-medium mb-3 text-primary">Folgen Sie uns</h4>
-              <div className="flex gap-4 justify-center sm:justify-start">
+              <h4 className="font-medium text-center  mb-3 text-primary">Folgen Sie uns</h4>
+              <div className="flex gap-4 justify-center">
                 <a
                   href="https://www.facebook.com/profile.php?id=61572884870790"
                   target="_blank"

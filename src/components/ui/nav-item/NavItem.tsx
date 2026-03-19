@@ -23,7 +23,7 @@ const NavItem = ({ href, icon, children, onClick }: NavItemProps) => {
     <Link
       href={href}
       onClick={onClick}
-      className={`flex items-center text-xs px-1 mb-4 md:mb-0  font-extrabold hover:text-primary`}
+      className={`flex items-center text-xs px-1 mb-4 md:mb-0 text-white font-extrabold hover:text-primary`}
     >
       {iconWithMargin}
       {children}
