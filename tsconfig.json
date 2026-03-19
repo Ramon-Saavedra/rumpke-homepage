@@ -28,8 +28,7 @@
     },
     "incremental": true,
     "types": [
-      "jest",
-      "testing-library__jest-dom"
+      "jest"
     ]
   },
   "include": [
