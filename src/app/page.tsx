@@ -29,7 +29,7 @@ const page = () => {
         <section className="mb-12">
           <div className="container mx-auto">
             <Title variant="h2" align="left" className="mb-8 px-2 rounded" size="xl">
-              Ausgewählte Immobilien
+              Unsere Top-Immobilien
             </Title>
             <div className="mb-1">
               <PropertiesGrid properties={MOCK_FEATURED_PROPERTIES} />
