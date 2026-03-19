@@ -26,7 +26,11 @@
         "./src/*"
       ]
     },
-    "incremental": true
+    "incremental": true,
+    "types": [
+      "jest",
+      "testing-library__jest-dom"
+    ]
   },
   "include": [
     "next-env.d.ts",
