@@ -10,7 +10,7 @@ jest.mock('next/image', () => ({
   }) {
     const { fill, ...imgProps } = props;
     void fill;
-    return <img {...imgProps} />;
+    return <img alt={props.alt || ""} {...imgProps} />;
   },
 }));
 
