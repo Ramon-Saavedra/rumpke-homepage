@@ -34,7 +34,7 @@ const TargetAudienceSection = () => {
 
         <div className="grid lg:grid-cols-2 gap-12 items-center p-4">
           <div className="flex justify-center">
-            <div className="relative w-full max-w-xs h-[380px]">
+            <div className="relative w-full max-w-xs h-95">
               <Image
                 src="/imgs/personal-service-pic.jpeg"
                 alt="Für wen wir da sind"
@@ -46,7 +46,7 @@ const TargetAudienceSection = () => {
             </div>
           </div>
 
-          <div className="flex flex-col justify-center h-[380px] gap-6">
+          <div className="flex flex-col justify-center h-95 gap-6">
             {cards.map((card) => (
               <AudienceCard
                 key={card.title}
