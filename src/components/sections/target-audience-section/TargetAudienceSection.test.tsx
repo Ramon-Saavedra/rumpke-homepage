@@ -189,13 +189,13 @@ describe('TargetAudienceSection', () => {
 
     it('image container has correct height', () => {
       render(<TargetAudienceSection />);
-      const imageContainer = document.querySelector('.h-\\[380px\\]');
+      const imageContainer = document.querySelector('.h-95');
       expect(imageContainer).toBeInTheDocument();
     });
 
     it('cards container has flex column layout', () => {
       render(<TargetAudienceSection />);
-      const cardsContainer = document.querySelector('.flex.flex-col.h-\\[380px\\]');
+      const cardsContainer = document.querySelector('.flex.flex-col.h-95');
       expect(cardsContainer).toBeInTheDocument();
     });
   });
