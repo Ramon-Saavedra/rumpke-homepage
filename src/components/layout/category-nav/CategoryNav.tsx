@@ -13,7 +13,7 @@ const CategoryNav = () => {
         <NavItem href="/auf-karte-erkunden">Auf Karte erkunden</NavItem>
         <NavItem href="/kategorie/haus">Haus</NavItem>
         <NavItem href="/kategorie/wohnung">Wohnung</NavItem>
-        <NavItem href="/kategorie/gewerbe">Gewerbe</NavItem>
+        <NavItem href="/kategorie/gewerbeimmobilien">Gewerbeimmobilien</NavItem>
         <NavItem href="/kategorie/grundstueck">Grundstück</NavItem>
         <NavItem href="/kategorie/sonstige">Sonstige</NavItem>
       </div>

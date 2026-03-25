@@ -6,7 +6,7 @@ import Title from "@/components/ui/title/Title";
 const PROPERTY_TYPES = [
   { slug: "haus", label: "Haus", description: "Einfamilienhäuser, Reihenhäuser, Villen" },
   { slug: "wohnung", label: "Wohnung", description: "Eigentumswohnungen, Apartments" },
-  { slug: "gewerbe", label: "Gewerbe", description: "Büros, Lagerhallen, Geschäfte" },
+  { slug: "gewerbeimmobilien", label: "Gewerbeimmobilien", description: "Büros, Lagerhallen, Geschäfte" },
   { slug: "grundstueck", label: "Grundstück", description: "Baugrundstücke, Ackerland" },
   { slug: "sonstige", label: "Sonstige", description: "Weitere Immobilientypen" },
 ] as const;

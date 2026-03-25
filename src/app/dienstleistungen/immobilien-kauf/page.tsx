@@ -32,7 +32,7 @@ export default function ImmobilienKaufPage() {
           <div className="grid md:grid-cols-2 gap-6">
             <ServiceCard
               title="Umfassende Beratung"
-              description="Wir nehmen uns Zeit, Ihre Wünsche und Anforderungen genau zu verstehen. Ob Wohnung, Haus oder Gewerbeobjekt – wir finden die passende Immobilie für Sie."
+              description="Wir nehmen uns Zeit, Ihre Wünsche und Anforderungen genau zu verstehen. Ob Wohnung, Haus oder Gewerbeimmobilien – wir finden die passende Immobilie für Sie."
             />
             <ServiceCard
               title="Große Auswahl"

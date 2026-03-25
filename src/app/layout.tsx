@@ -27,7 +27,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" className={roboto.className} suppressHydrationWarning>
       <body className="antialiased">
-        <Script src="https://widget.cloudinary.com/v2.0/global/all.js" strategy="beforeInteractive" />
+
         <ThemeProvider>
           <div className="bg-bg-l text-zinc-800 dark:bg-bg-d dark:text-zinc-100">
             {/* <div className='fixed top-0 left-50 hidden md:flex w-fit mx-auto items-center py-2 px-3  rounded-tr-md gap-5 bg-primary dark:bg-primary-dark text-white z-500'>

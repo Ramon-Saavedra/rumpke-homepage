@@ -43,7 +43,7 @@ describe('CategoryNav', () => {
       expect(screen.getByText('Auf Karte erkunden')).toBeInTheDocument();
       expect(screen.getByText('Haus')).toBeInTheDocument();
       expect(screen.getByText('Wohnung')).toBeInTheDocument();
-      expect(screen.getByText('Gewerbe')).toBeInTheDocument();
+      expect(screen.getByText('Gewerbeimmobilien')).toBeInTheDocument();
       expect(screen.getByText('Grundstück')).toBeInTheDocument();
       expect(screen.getByText('Sonstige')).toBeInTheDocument();
     });
@@ -73,10 +73,10 @@ describe('CategoryNav', () => {
       expect(link).toHaveAttribute('href', '/kategorie/wohnung');
     });
 
-    it('Gewerbe has correct href', () => {
+    it('Gewerbeimmobilien has correct href', () => {
       render(<CategoryNav />);
-      const link = screen.getByText('Gewerbe').closest('a');
-      expect(link).toHaveAttribute('href', '/kategorie/gewerbe');
+      const link = screen.getByText('Gewerbeimmobilien').closest('a');
+      expect(link).toHaveAttribute('href', '/kategorie/gewerbeimmobilien');
     });
 
     it('Grundstück has correct href', () => {

@@ -19,7 +19,7 @@ const getIcon = (slug: string) => {
       return <Home className="w-8 h-8" />;
     case 'wohnung':
       return <Building2 className="w-8 h-8" />;
-    case 'gewerbe':
+    case 'gewerbeimmobilien':
       return <Briefcase className="w-8 h-8" />;
     case 'grundstueck':
       return <Trees className="w-8 h-8" />;
