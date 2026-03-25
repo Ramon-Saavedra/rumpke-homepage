@@ -10,10 +10,6 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
-      {
-        protocol: 'https',
-
-      },
     ],
     qualities: [75, 90],
     formats: ['image/webp'],
