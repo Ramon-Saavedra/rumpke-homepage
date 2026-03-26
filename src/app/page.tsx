@@ -7,7 +7,7 @@ import Title from "@/components/ui/title/Title"
 import PropertiesGrid from "@/components/properties/PropertiesGrid"
 import { MOCK_FEATURED_PROPERTIES } from "@/data/mock-properties"
 import SecondaryNav from "@/components/layout/secondary-nav/SecondaryNav"
-import { Home } from "lucide-react"
+import { Home, Sidebar } from "lucide-react"
 
 const page = () => {
   return (
