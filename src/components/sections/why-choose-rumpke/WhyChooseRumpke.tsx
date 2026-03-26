@@ -21,7 +21,7 @@ const features = [
 
 const WhyChooseRumpke = () => {
   return (
-    <section className="w-full mb-12  rounded border border-border-l dark:border-border-d bg-bgSecondary-l dark:bg-bgSecondary-d shadow-secondary  p-4 md:p-0">
+    <section className="w-full mb-12  rounded border border-border-l dark:border-border-d bg-bgSecondary-l dark:bg-bgSecondary-d shadow-secondary p-4 md:p-0">
       <div className="mx-auto">
         <Title className='py-4 px-2' variant="h2" size="xl" align="left">Warum Rumpke Immobilien?</Title>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 md:p-4 ">
