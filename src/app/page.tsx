@@ -1,3 +1,5 @@
+
+
 import PersonalServiceCard from "@/components/sections/personal-service-card/PersonalServiceCard"
 import ServicesSection from "@/components/sections/services-section/ServicesSection"
 import TargetAudienceSection from "@/components/sections/target-audience-section/TargetAudienceSection"
@@ -7,7 +9,8 @@ import Title from "@/components/ui/title/Title"
 import PropertiesGrid from "@/components/properties/PropertiesGrid"
 import { MOCK_FEATURED_PROPERTIES } from "@/data/mock-properties"
 import SecondaryNav from "@/components/layout/secondary-nav/SecondaryNav"
-import { Home, Sidebar } from "lucide-react"
+import { Home } from "lucide-react"
+
 
 const page = () => {
   return (

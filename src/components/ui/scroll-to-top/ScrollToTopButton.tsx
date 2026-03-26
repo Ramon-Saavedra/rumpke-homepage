@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import { IoArrowUpOutline } from 'react-icons/io5';
 
