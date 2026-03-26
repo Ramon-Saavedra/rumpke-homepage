@@ -7,9 +7,12 @@ const PersonalServiceCard = () => {
 
   return (
     <section className="w-full md:py-12 mb-12 rounded border border-border-l dark:border-border-d bg-bgSecondary-l dark:bg-bgSecondary-d shadow-secondary">
+            <Title variant="h2" align="left" className="mb-8 py-4 px-2 rounded" size="xl">
+              Über mich
+            </Title>
       <div className="mx-auto grid lg:grid-cols-2 lg:max-w-full gap-8 items-center">
         <div className="flex justify-center">
-          <div className="relative w-full max-w-xs h-[400px]">
+          <div className="relative w-full max-w-xs h-100">
             <Image
               src="/imgs/personal-service-pic.jpeg"
               alt="Ann-Christin Rumpke Portrait"
@@ -20,8 +23,9 @@ const PersonalServiceCard = () => {
             />
           </div>
         </div>
-        <div className="flex flex-col justify-center h-[400px]">
+        <div className="flex flex-col justify-center h-100">
           <div className="">
+
             <div>
               <Title variant="h2" size="md" className="mb-2">Persönlicher Service</Title>
               <p className="text-sm dark:text-card-text-d text-card-text-l">Ich nehme mir Zeit für Sie und Ihre individuellen Wünsche. Jeder Kunde wird von einem festen Ansprechpartner betreut, der ihn während des gesamten Prozesses begleitet.</p>
