@@ -10,6 +10,7 @@ import Footer from "@/components/layout/footer/Footer";
 import CategoryNav from "@/components/layout/category-nav/CategoryNav";
 import GoogleMap from "@/components/features/map/GoogleMap";
 import Sidebar from "@/components/layout/sidebar/Sidebar";
+import ScrollToTopButton from "@/components/ui/scroll-to-top/ScrollToTopButton";
 
 
 const roboto = Roboto({ subsets: ["latin"], weight: ["300", "400", "500", "700"], display: "swap" });
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             </div>
           </div>
           <CompanyTitle />
+          <ScrollToTopButton/>
         </ThemeProvider>
       </body>
     </html>
