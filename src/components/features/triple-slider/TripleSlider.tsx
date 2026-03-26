@@ -37,7 +37,7 @@ export default function TripleSlider({
           Ausgewählte Immobilien
         </h2>
 
-        <div className="triple-slider relative w-full max-w-5xl mx-auto h-[400px] sm:h-[500px]
+        <div className="triple-slider relative w-full max-w-5xl mx-auto h-100 sm:h-125
         ">
           {/* Previous Swiper (Left) */}
           <div className="triple-slider-prev">
@@ -50,7 +50,7 @@ export default function TripleSlider({
             >
               {properties.map((property) => (
                 <SwiperSlide key={`prev-${property.id}`}>
-                  <div className="relative h-[400px] sm:h-[500px] rounded overflow-hidden">
+                  <div className="relative h-100 sm:h-125 rounded overflow-hidden">
                     <Image
                       src={property.imageUrl}
                       alt={property.title}
@@ -77,7 +77,7 @@ export default function TripleSlider({
               {properties.map((property) => (
                 <SwiperSlide key={`main-${property.id}`}>
                   <Link href={`/object/${property.slug}`}>
-                    <div className="relative h-[400px] sm:h-[500px] rounded overflow-hidden cursor-pointer group">
+                    <div className="relative h-100 sm:h-125 rounded overflow-hidden cursor-pointer group">
                       <Image
                         src={property.imageUrl}
                         alt={property.title}
@@ -150,7 +150,7 @@ export default function TripleSlider({
             >
               {properties.map((property) => (
                 <SwiperSlide key={`next-${property.id}`}>
-                  <div className="relative h-[400px] sm:h-[500px] rounded overflow-hidden">
+                  <div className="relative h-100 sm:h-125 rounded overflow-hidden">
                     <Image
                       src={property.imageUrl}
                       alt={property.title}
