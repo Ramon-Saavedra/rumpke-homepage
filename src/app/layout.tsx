@@ -4,7 +4,6 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
 import CompanyTitle from "@/components/branding/companyTitle/CompanyTitle";
-import Script from "next/script";
 import Topmenu from "@/components/layout/top-menu/TopMenu";
 import Footer from "@/components/layout/footer/Footer";
 import CategoryNav from "@/components/layout/category-nav/CategoryNav";
@@ -45,7 +44,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             </div>
           </div>
           <CompanyTitle />
-          <ScrollToTopButton/>
+          <ScrollToTopButton />
         </ThemeProvider>
       </body>
     </html>
