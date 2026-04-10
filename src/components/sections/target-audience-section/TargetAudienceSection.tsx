@@ -28,13 +28,13 @@ const cards = [
 
 const TargetAudienceSection = () => {
   return (
-    <section className="w-full mb-12 rounded px-1 shadow-secondary">
-      <div className="container w-full py-10 px-4">
-        <div className="text-center mb-10">
+    <section className="w-full mb-12 px-1 shadow-secondary border-b-6">
+      <div className="container w-full py-2">
+        <div className="text-center mb-10 border-b-6 p-2">
           <Title variant="h2" size="xl" align='center'>
             Für wen wir da sind
           </Title>
-          <p className="max-w-2xl mx-auto text-base  mt-3 text-card-text-l dark:text-card-text-d">
+          <p className="max-w-2xl mx-auto text-base  text-card-text-l dark:text-card-text-d">
             Wir bieten individuelle Unterstützung für verschiedene Zielgruppen – damit jeder die passende Lösung findet.
           </p>
         </div>
