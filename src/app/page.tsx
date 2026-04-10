@@ -9,7 +9,7 @@ import Title from "@/components/ui/title/Title"
 import PropertiesGrid from "@/components/properties/PropertiesGrid"
 import { MOCK_FEATURED_PROPERTIES } from "@/data/mock-properties"
 import SecondaryNav from "@/components/layout/secondary-nav/SecondaryNav"
-import { Home } from "lucide-react"
+import { Key, Home } from "lucide-react"
 
 
 const page = () => {
@@ -39,7 +39,7 @@ const page = () => {
             </div>
             <div className="flex gap-4 px-2 border rounded mb-2 py-1 border-border-l dark:border-border-d">
               <div className="flex flex-col items-center gap-2">
-                <Home className="text-buy" size={14} />
+                <Key className="text-buy" size={14} />
                 <span className="text-xs font-medium text-buy">Kauf</span>
               </div>
               <div className="flex flex-col items-center gap-2">
