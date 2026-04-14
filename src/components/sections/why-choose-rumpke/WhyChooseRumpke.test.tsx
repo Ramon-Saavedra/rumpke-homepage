@@ -104,20 +104,22 @@ describe('WhyChooseRumpke', () => {
       });
     });
 
-    it('all images have opacity-40 class', () => {
+    it('all images have object-cover class', () => {
       render(<WhyChooseRumpke />);
       const images = screen.getAllByRole('img');
       images.forEach((img) => {
-        expect(img).toHaveClass('opacity-40');
+        expect(img).toHaveClass('object-cover');
       });
     });
   });
 
   describe('Layout and styling', () => {
-    it('has section with border classes', () => {
+    it('each card has border classes', () => {
       render(<WhyChooseRumpke />);
-      const section = document.querySelector('section');
-      expect(section).toHaveClass('rounded', 'border', 'border-border-l', 'dark:border-border-d');
+      const cards = document.querySelectorAll('.flex.flex-col');
+      cards.forEach((card) => {
+        expect(card).toHaveClass('border', 'border-border-l', 'dark:border-border-d');
+      });
     });
 
     it('has section with padding classes p-4 and md:p-0', () => {
@@ -145,11 +147,10 @@ describe('WhyChooseRumpke', () => {
       expect(imageContainers).toHaveLength(3);
     });
 
-    it('section has correct background and border classes', () => {
+    it('inner div has top and bottom border', () => {
       render(<WhyChooseRumpke />);
-      const section = document.querySelector('section');
-      expect(section).toHaveClass('bg-bgSecondary-l', 'dark:bg-bgSecondary-d');
-      expect(section).toHaveClass('border', 'border-border-l', 'dark:border-border-d');
+      const innerDiv = document.querySelector('section > div');
+      expect(innerDiv).toHaveClass('border-b-4', 'border-t-4');
     });
   });
 
