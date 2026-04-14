@@ -143,7 +143,7 @@ describe('Layout and styling', () => {
     render(<TargetAudienceSection />);
     const container = document.querySelector('.container');
     expect(container).toBeInTheDocument();
-    expect(container).toHaveClass('container', 'w-full');
+    expect(container).toHaveClass('container', 'w-full', 'py-10');
   });
 
   // Removed grid and image container layout tests as the new design is single-column and minimal.

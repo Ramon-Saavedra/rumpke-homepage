@@ -29,9 +29,9 @@ const cards = [
 const TargetAudienceSection = () => {
   return (
     <section className="w-full mb-12 rounded px-1 shadow-secondary">
-      <div className="container w-full py-10 px-4">
+      <div className="container w-full py-10">
         <div className="text-center mb-10">
-          <Title variant="h2" size="xl" align='center'>
+          <Title variant="h2" size="xl">
             Für wen wir da sind
           </Title>
           <p className="max-w-2xl mx-auto text-base  mt-3 text-card-text-l dark:text-card-text-d">

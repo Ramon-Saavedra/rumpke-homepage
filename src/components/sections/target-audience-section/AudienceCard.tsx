@@ -20,18 +20,18 @@ export default function AudienceCard({
   linkHref = "/kontakt",
 }: AudienceCardProps) {
   return (
-    <Link href={linkHref} aria-label={`${title} - Mehr erfahren`} className="block group h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-xl">
-      <Card className="h-full flex flex-col bg-card-l dark:bg-card-d border-border-l dark:border-border-d hover:shadow-lg">
+    <Link href={linkHref} aria-label={`${title} - Mehr erfahren`} className="block group h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+      <Card className="h-full flex flex-col hover:shadow-lg border-l hover:border-l-primary transition-shadow">
         <CardHeader>
           <div className="flex items-start justify-between">
-            <div className="w-10 h-10 rounded-full  flex items-center justify-center border shrink-0" aria-hidden="true">
+            <div className="w-8 h-8 rounded-full  flex items-center justify-center shrink-0 border" aria-hidden="true">
               {icon}
             </div>
-            <Badge variant="outline" className="font-mono text-xs text-card-text-l dark:text-card-text-d border-border-l dark:border-border-d">
+            <Badge variant="outline" className="font-mono text-xs border">
               {number}
             </Badge>
           </div>
-          <CardTitle className="text-base font-semibold text-card-text-l dark:text-card-text-d mt-4">
+          <CardTitle className="text-base font-semibold border-r mt-4">
             {title}
           </CardTitle>
         </CardHeader>
@@ -41,7 +41,7 @@ export default function AudienceCard({
           </p>
         </CardContent>
         <CardFooter>
-          <span className="text-sm font-medium text-primary flex items-center gap-1 group-hover:underline">
+          <span className="text-sm font-medium  flex items-center gap-1 group-hover:underline">
             Mehr erfahren <ArrowRight size={14} />
           </span>
         </CardFooter>
