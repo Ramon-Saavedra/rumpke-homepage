@@ -21,18 +21,18 @@ const features = [
 
 const WhyChooseRumpke = () => {
   return (
-    <section className="w-full mb-12  rounded border border-border-l dark:border-border-d bg-bgSecondary-l dark:bg-bgSecondary-d shadow-secondary p-4 md:p-0">
-      <div className="mx-auto">
+    <section className="w-full mb-12 p-4 md:p-0">
+      <div className="mx-auto border-b-4 border-t-4">
         <Title className='py-4 px-2' variant="h2" size="xl" align="left">Warum Rumpke Immobilien?</Title>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 md:p-4 ">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {features.map((feature) => (
-            <div key={feature.title} className="flex flex-col">
+            <div key={feature.title} className="flex flex-col shadow-lg rounded overflow-hidden border border-border-l dark:border-border-d p-4">
               <div className="relative w-full h-64 mb-4">
                 <Image
                   src={feature.image}
                   alt={feature.title}
                   fill
-                  className="object-cover opacity-40"
+                  className="object-cover"
                   sizes="(max-width: 768px) 100vw, 33vw"
                   loading="lazy"
                 />
