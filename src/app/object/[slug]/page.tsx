@@ -1,29 +1,78 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import TripleSlider from "@/components/features/triple-slider/TripleSlider";
 import { MOCK_FEATURED_PROPERTIES } from "@/data/mock-properties";
 
+type RouteParams = {
+  slug: string;
+};
+
 interface PageProps {
-  params: Promise<{
-    slug: string;
-  }>;
+  params: Promise<RouteParams>;
 }
 
-export default async function PropertyObjectPage({ params }: PageProps) {
-  const { slug } = await params;
+type Property = (typeof MOCK_FEATURED_PROPERTIES)[number];
+
+function getPropertyBySlug(slug: string): Property | undefined {
+  return MOCK_FEATURED_PROPERTIES.find(property => property.slug === slug);
+}
+
+function buildPropertyMetadataDescription(property: Property): string {
+  const transactionLabel = property.operationType === "miete" ? "mieten" : "kaufen";
+  const propertyDetails = [
+    property.type,
+    property.location,
+    property.area,
+    property.rooms ? `${property.rooms} Zimmer` : undefined,
+  ].filter(Boolean).join(" · ");
+
+  return `${property.title}: ${propertyDetails}. Immobilie jetzt für ${property.price} bei Rumpke Immobilien ${transactionLabel}.`;
+}
+
+async function getRouteProperty(paramsPromise: Promise<RouteParams>): Promise<Property> {
+  const { slug } = await paramsPromise;
 
   if (!slug || slug.trim() === "") {
     notFound();
   }
 
-  const property = MOCK_FEATURED_PROPERTIES.find(p => p.slug === slug);
+  const property = getPropertyBySlug(slug);
 
   if (!property) {
     notFound();
   }
 
+  return property;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const property = await getRouteProperty(params);
+  const description = buildPropertyMetadataDescription(property);
+
+  return {
+    title: `${property.title} in ${property.location} | Rumpke Immobilien`,
+    description,
+    openGraph: {
+      title: property.title,
+      description,
+      locale: "de_DE",
+      siteName: "Rumpke Immobilien",
+      type: "website",
+    },
+    twitter: {
+      card: "summary",
+      title: property.title,
+      description,
+    },
+  };
+}
+
+export default async function PropertyObjectPage({ params }: PageProps) {
+  const property = await getRouteProperty(params);
+
   const reorderedProperties = [
     property,
-    ...MOCK_FEATURED_PROPERTIES.filter(p => p.slug !== slug)
+    ...MOCK_FEATURED_PROPERTIES.filter(candidateProperty => candidateProperty.slug !== property.slug)
   ];
 
   return (
