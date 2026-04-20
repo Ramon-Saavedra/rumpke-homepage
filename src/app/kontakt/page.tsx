@@ -20,7 +20,7 @@ export default function KontaktPage() {
               alt="Unser Büro"
               width={800}
               height={600}
-              className="object-cover  w-full max-w-lg lg:max-w-xl xl:max-w-2xl h-80 md:h-[400px] lg:h-[480px] mx-auto"
+              className="object-cover  w-full max-w-lg lg:max-w-xl xl:max-w-2xl h-80 md:h-100 lg:h-120 mx-auto"
               sizes="(max-width: 1024px) 100vw, 480px"
               loading="eager"
               preload={true}
