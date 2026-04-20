@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
 
 .dark input::placeholder, .dark textarea::placeholder {
   color: #D1D5DB;
