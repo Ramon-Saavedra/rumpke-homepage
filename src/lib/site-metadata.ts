@@ -22,6 +22,16 @@ function resolveMetadataBase(): URL {
   return new URL(defaultSiteUrl);
 }
 
+export const defaultOpenGraphMetadata = {
+  locale: siteLocale,
+  siteName,
+  type: "website",
+} satisfies NonNullable<Metadata["openGraph"]>;
+
+export const defaultTwitterMetadata = {
+  card: "summary",
+} satisfies NonNullable<Metadata["twitter"]>;
+
 export const siteMetadata: Metadata = {
   metadataBase: resolveMetadataBase(),
   applicationName: siteName,
@@ -31,14 +41,12 @@ export const siteMetadata: Metadata = {
   },
   description: siteDescription,
   openGraph: {
+    ...defaultOpenGraphMetadata,
     title: siteName,
     description: siteDescription,
-    locale: siteLocale,
-    siteName,
-    type: "website",
   },
   twitter: {
-    card: "summary",
+    ...defaultTwitterMetadata,
     title: siteName,
     description: siteDescription,
   },

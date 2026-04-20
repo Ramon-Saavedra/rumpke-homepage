@@ -1,7 +1,12 @@
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import TripleSlider from "@/components/features/triple-slider/TripleSlider";
 import { MOCK_FEATURED_PROPERTIES } from "@/data/mock-properties";
+import {
+  defaultOpenGraphMetadata,
+  defaultTwitterMetadata,
+  siteName,
+} from "@/lib/site-metadata";
 
 type RouteParams = {
   slug: string;
@@ -17,6 +22,14 @@ function getPropertyBySlug(slug: string): Property | undefined {
   return MOCK_FEATURED_PROPERTIES.find(property => property.slug === slug);
 }
 
+function buildPropertyMetadataTitle(property: Property): string {
+  return `${property.title} in ${property.location}`;
+}
+
+function buildPropertyCanonicalPath(property: Property): string {
+  return `/object/${property.slug}`;
+}
+
 function buildPropertyMetadataDescription(property: Property): string {
   const transactionLabel = property.operationType === "miete" ? "mieten" : "kaufen";
   const propertyDetails = [
@@ -24,9 +37,9 @@ function buildPropertyMetadataDescription(property: Property): string {
     property.location,
     property.area,
     property.rooms ? `${property.rooms} Zimmer` : undefined,
-  ].filter(Boolean).join(" · ");
+  ].filter((detail): detail is string => Boolean(detail)).join(" · ");
 
-  return `${property.title}: ${propertyDetails}. Immobilie jetzt für ${property.price} bei Rumpke Immobilien ${transactionLabel}.`;
+  return `${property.title}: ${propertyDetails}. Immobilie jetzt für ${property.price} bei ${siteName} ${transactionLabel}.`;
 }
 
 async function getRouteProperty(paramsPromise: Promise<RouteParams>): Promise<Property> {
@@ -45,24 +58,41 @@ async function getRouteProperty(paramsPromise: Promise<RouteParams>): Promise<Pr
   return property;
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: PageProps,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const property = await getRouteProperty(params);
+  const title = buildPropertyMetadataTitle(property);
   const description = buildPropertyMetadataDescription(property);
+  const canonicalPath = buildPropertyCanonicalPath(property);
+  const previousImages = (await parent).openGraph?.images ?? [];
 
   return {
-    title: `${property.title} in ${property.location} | Rumpke Immobilien`,
+    title,
     description,
+    alternates: {
+      canonical: canonicalPath,
+    },
     openGraph: {
-      title: property.title,
+      ...defaultOpenGraphMetadata,
+      title,
       description,
-      locale: "de_DE",
-      siteName: "Rumpke Immobilien",
-      type: "website",
+      url: canonicalPath,
+      images: [
+        {
+          url: property.imageUrl,
+          alt: title,
+        },
+        ...previousImages,
+      ],
     },
     twitter: {
-      card: "summary",
-      title: property.title,
+      ...defaultTwitterMetadata,
+      card: "summary_large_image",
+      title,
       description,
+      images: [property.imageUrl],
     },
   };
 }
