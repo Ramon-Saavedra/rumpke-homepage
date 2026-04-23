@@ -20,7 +20,7 @@ const page = () => {
         alt="Rumpke Immobilien Hero Video"
       />
       <SecondaryNav />
-      <div className="text-center mt-12 md:mt-0 border-b border-border-l dark:border-border-d mb-4">
+      <div className="text-center mt-12 md:mt-0 py-4">
         <Title variant="h1"
           align="center"
           size="xl"
