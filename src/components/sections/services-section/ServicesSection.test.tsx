@@ -1,19 +1,3 @@
-jest.mock('next/image', () => ({
-  __esModule: true,
-  default: function MockImage(props: {
-    src?: string;
-    alt?: string;
-    className?: string;
-    loading?: 'eager' | 'lazy';
-    sizes?: string;
-    fill?: boolean;
-  }) {
-    const { fill, ...imgProps } = props;
-    void fill;
-    return <img alt={props.alt || ""} {...imgProps} />;
-  },
-}));
-
 interface MockTitleProps {
   children: React.ReactNode;
   variant?: string;
@@ -32,11 +16,17 @@ jest.mock('lucide-react', () => ({
   Home: () => <svg data-testid="home-icon" />,
   Key: () => <svg data-testid="key-icon" />,
   Building2: () => <svg data-testid="building2-icon" />,
+  ArrowRight: () => <svg data-testid="arrow-icon" />,
 }));
 
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ServicesSection from './ServicesSection';
+
+const getServiceLink = (href: string) => {
+  const links = screen.getAllByRole('link');
+  return links.find((link) => link.getAttribute('href') === href);
+};
 
 describe('ServicesSection', () => {
   describe('Rendering', () => {
@@ -53,69 +43,85 @@ describe('ServicesSection', () => {
 
     it('renders exactly 3 service cards', () => {
       render(<ServicesSection />);
-      const verkaufenCard = screen.getByText('Verkaufen');
-      const kaufenCard = screen.getByText('Kaufen');
-      const vermietenCard = screen.getByText('Vermieten');
+      const links = screen.getAllByRole('link');
 
-      expect(verkaufenCard).toBeInTheDocument();
-      expect(kaufenCard).toBeInTheDocument();
-      expect(vermietenCard).toBeInTheDocument();
+      expect(links).toHaveLength(3);
     });
 
-    it('renders service image', () => {
+    it('does not render the old service image', () => {
       render(<ServicesSection />);
-      const image = screen.getByAltText('Rumpke Immobilien Dienstleistungen');
-      expect(image).toBeInTheDocument();
+      expect(screen.queryByAltText('Rumpke Immobilien Dienstleistungen')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('Overview Rail', () => {
+    it('renders exactly 3 numbered overview items', () => {
+      render(<ServicesSection />);
+
+      expect(screen.getByText('01')).toBeInTheDocument();
+      expect(screen.getByText('02')).toBeInTheDocument();
+      expect(screen.getByText('03')).toBeInTheDocument();
+      expect(screen.getAllByRole('listitem')).toHaveLength(3);
+    });
+
+    it('renders the overview titles in uppercase', () => {
+      render(<ServicesSection />);
+
+      const overviewItems = screen.getAllByRole('listitem');
+
+      expect(within(overviewItems[0]).getByText('Verkaufen')).toHaveClass('uppercase');
+      expect(within(overviewItems[1]).getByText('Kaufen')).toHaveClass('uppercase');
+      expect(within(overviewItems[2]).getByText('Vermieten')).toHaveClass('uppercase');
     });
   });
 
   describe('Service Cards Content', () => {
     it('renders "Verkaufen" card with correct content', () => {
       render(<ServicesSection />);
-      expect(screen.getByText('Verkaufen')).toBeInTheDocument();
-      expect(
-        screen.getByText('Wir begleiten Sie professionell und transparent beim Verkauf Ihrer Immobilie.')
-      ).toBeInTheDocument();
+
+      const verkaufenLink = getServiceLink('/dienstleistungen/verkauf-vermietung');
+      expect(verkaufenLink).toBeInTheDocument();
+      expect(within(verkaufenLink as HTMLElement).getByRole('heading', { level: 3, name: 'Verkaufen' })).toBeInTheDocument();
+      expect(within(verkaufenLink as HTMLElement).getByText('Wir begleiten Sie professionell und transparent beim Verkauf Ihrer Immobilie.')).toBeInTheDocument();
     });
 
     it('renders "Kaufen" card with correct content', () => {
       render(<ServicesSection />);
-      expect(screen.getByText('Kaufen')).toBeInTheDocument();
-      expect(
-        screen.getByText('Finden Sie mit uns Ihr neues Zuhause oder Ihre nächste Investition.')
-      ).toBeInTheDocument();
+
+      const kaufenLink = getServiceLink('/dienstleistungen/immobilien-kauf');
+      expect(kaufenLink).toBeInTheDocument();
+      expect(within(kaufenLink as HTMLElement).getByRole('heading', { level: 3, name: 'Kaufen' })).toBeInTheDocument();
+      expect(within(kaufenLink as HTMLElement).getByText('Finden Sie mit uns Ihr neues Zuhause oder Ihre nächste Investition.')).toBeInTheDocument();
     });
 
     it('renders "Vermieten" card with correct content', () => {
       render(<ServicesSection />);
-      expect(screen.getByText('Vermieten')).toBeInTheDocument();
-      expect(
-        screen.getByText('Wir unterstützen Sie bei der erfolgreichen Vermietung Ihrer Immobilie.')
-      ).toBeInTheDocument();
+
+      const vermietenLink = getServiceLink('/dienstleistungen/immobilienbewertung');
+      expect(vermietenLink).toBeInTheDocument();
+      expect(within(vermietenLink as HTMLElement).getByRole('heading', { level: 3, name: 'Vermieten' })).toBeInTheDocument();
+      expect(within(vermietenLink as HTMLElement).getByText('Wir unterstützen Sie bei der erfolgreichen Vermietung Ihrer Immobilie.')).toBeInTheDocument();
     });
   });
 
   describe('Navigation Links', () => {
     it('renders "Verkaufen" link with correct href', () => {
       render(<ServicesSection />);
-      const links = screen.getAllByRole('link');
-      const verkaufenLink = links.find(link => link.getAttribute('href') === '/dienstleistungen/verkauf-vermietung');
+      const verkaufenLink = getServiceLink('/dienstleistungen/verkauf-vermietung');
       expect(verkaufenLink).toBeInTheDocument();
       expect(verkaufenLink).toHaveAttribute('href', '/dienstleistungen/verkauf-vermietung');
     });
 
     it('renders "Kaufen" link with correct href', () => {
       render(<ServicesSection />);
-      const links = screen.getAllByRole('link');
-      const kaufenLink = links.find(link => link.getAttribute('href') === '/dienstleistungen/immobilien-kauf');
+      const kaufenLink = getServiceLink('/dienstleistungen/immobilien-kauf');
       expect(kaufenLink).toBeInTheDocument();
       expect(kaufenLink).toHaveAttribute('href', '/dienstleistungen/immobilien-kauf');
     });
 
     it('renders "Vermieten" link with correct href', () => {
       render(<ServicesSection />);
-      const links = screen.getAllByRole('link');
-      const vermietenLink = links.find(link => link.getAttribute('href') === '/dienstleistungen/immobilienbewertung');
+      const vermietenLink = getServiceLink('/dienstleistungen/immobilienbewertung');
       expect(vermietenLink).toBeInTheDocument();
       expect(vermietenLink).toHaveAttribute('href', '/dienstleistungen/immobilienbewertung');
     });
@@ -148,22 +154,9 @@ describe('ServicesSection', () => {
   });
 
   describe('Image', () => {
-    it('renders image with correct src', () => {
+    it('does not render any image in the redesigned section', () => {
       render(<ServicesSection />);
-      const image = screen.getByAltText('Rumpke Immobilien Dienstleistungen');
-      expect(image).toHaveAttribute('src', '/imgs/service-section-pic.jpg');
-    });
-
-    it('image has lazy loading', () => {
-      render(<ServicesSection />);
-      const image = screen.getByAltText('Rumpke Immobilien Dienstleistungen');
-      expect(image).toHaveAttribute('loading', 'lazy');
-    });
-
-    it('image has correct sizes attribute', () => {
-      render(<ServicesSection />);
-      const image = screen.getByAltText('Rumpke Immobilien Dienstleistungen');
-      expect(image).toHaveAttribute('sizes', '(max-width: 1024px) 100vw, 50vw');
+      expect(screen.queryByRole('img')).not.toBeInTheDocument();
     });
   });
 
@@ -174,40 +167,44 @@ describe('ServicesSection', () => {
       expect(section).toHaveClass('w-full', 'mb-12');
     });
 
-    it('renders all service titles in correct order', () => {
+    it('renders all service titles in correct order inside the links list', () => {
       render(<ServicesSection />);
-      const titles = screen.getAllByText(/Verkaufen|Kaufen|Vermieten/);
-      expect(titles[0]).toHaveTextContent('Verkaufen');
-      expect(titles[1]).toHaveTextContent('Kaufen');
-      expect(titles[2]).toHaveTextContent('Vermieten');
+      const titles = screen.getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent);
+
+      expect(titles).toEqual(['Verkaufen', 'Kaufen', 'Vermieten']);
     });
 
-    it('renders services in a flex container', () => {
+    it('renders services in a responsive grid container', () => {
       render(<ServicesSection />);
-      const serviceContainer = document.querySelector('.flex.flex-col.lg\\:flex-row');
+      const serviceContainer = screen.getByRole('list').closest('aside')?.parentElement;
+
       expect(serviceContainer).toBeInTheDocument();
+      expect(serviceContainer).toHaveClass(
+        'grid',
+        'lg:grid-cols-[240px_minmax(0,1fr)]',
+        'xl:grid-cols-[260px_minmax(0,1fr)]'
+      );
     });
   });
 
   describe('Content Structure', () => {
     it('each service has a title, description, and link', () => {
       render(<ServicesSection />);
-      const links = screen.getAllByRole('link');
 
-      expect(screen.getByText('Verkaufen')).toBeInTheDocument();
-      expect(screen.getByText(/professionell und transparent beim Verkauf/)).toBeInTheDocument();
-      const verkaufenLink = links.find(link => link.getAttribute('href') === '/dienstleistungen/verkauf-vermietung');
+      const verkaufenLink = getServiceLink('/dienstleistungen/verkauf-vermietung');
       expect(verkaufenLink).toBeInTheDocument();
+      expect(within(verkaufenLink as HTMLElement).getByRole('heading', { level: 3, name: 'Verkaufen' })).toBeInTheDocument();
+      expect(within(verkaufenLink as HTMLElement).getByText(/professionell und transparent beim Verkauf/)).toBeInTheDocument();
 
-      expect(screen.getByText('Kaufen')).toBeInTheDocument();
-      expect(screen.getByText(/neues Zuhause oder Ihre nächste Investition/)).toBeInTheDocument();
-      const kaufenLink = links.find(link => link.getAttribute('href') === '/dienstleistungen/immobilien-kauf');
+      const kaufenLink = getServiceLink('/dienstleistungen/immobilien-kauf');
       expect(kaufenLink).toBeInTheDocument();
+      expect(within(kaufenLink as HTMLElement).getByRole('heading', { level: 3, name: 'Kaufen' })).toBeInTheDocument();
+      expect(within(kaufenLink as HTMLElement).getByText(/neues Zuhause oder Ihre nächste Investition/)).toBeInTheDocument();
 
-      expect(screen.getByText('Vermieten')).toBeInTheDocument();
-      expect(screen.getByText(/erfolgreichen Vermietung Ihrer Immobilie/)).toBeInTheDocument();
-      const vermietenLink = links.find(link => link.getAttribute('href') === '/dienstleistungen/immobilienbewertung');
+      const vermietenLink = getServiceLink('/dienstleistungen/immobilienbewertung');
       expect(vermietenLink).toBeInTheDocument();
+      expect(within(vermietenLink as HTMLElement).getByRole('heading', { level: 3, name: 'Vermieten' })).toBeInTheDocument();
+      expect(within(vermietenLink as HTMLElement).getByText(/erfolgreichen Vermietung Ihrer Immobilie/)).toBeInTheDocument();
     });
 
     it('all service descriptions are present and non-empty', () => {
@@ -225,15 +222,15 @@ describe('ServicesSection', () => {
   });
 
   describe('Service Data Validation', () => {
-    it('all services have unique titles', () => {
+    it('all service links have unique titles', () => {
       render(<ServicesSection />);
-      const verkaufen = screen.getAllByText('Verkaufen');
-      const kaufen = screen.getAllByText('Kaufen');
-      const vermieten = screen.getAllByText('Vermieten');
+      const links = screen.getAllByRole('link');
+      const titles = links.map((link) => {
+        const heading = link.querySelector('h3');
+        return heading?.textContent;
+      });
 
-      expect(verkaufen).toHaveLength(1);
-      expect(kaufen).toHaveLength(1);
-      expect(vermieten).toHaveLength(1);
+      expect(titles).toEqual(['Verkaufen', 'Kaufen', 'Vermieten']);
     });
 
     it('all service links point to /dienstleistungen routes', () => {
@@ -249,8 +246,7 @@ describe('ServicesSection', () => {
 
     it('services are rendered in the defined order', () => {
       render(<ServicesSection />);
-      const serviceTexts = screen.getAllByText(/Verkaufen|Kaufen|Vermieten/);
-      const order = serviceTexts.map(el => el.textContent);
+      const order = screen.getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent);
 
       expect(order).toEqual(['Verkaufen', 'Kaufen', 'Vermieten']);
     });
