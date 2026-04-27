@@ -64,7 +64,7 @@ const PersonalServiceCard = () => {
           </span>
 
           {/* Headline */}
-          <h2 className="text-3xl sm:text-4xl font-bold leading-tight mb-10 dark:text-white text-gray-900">
+          <h2 className="text-3xl sm:text-4xl font-bold leading-tight mb-10 text-foreground">
             Ann-Christin Rumpke
           </h2>
 
@@ -86,7 +86,7 @@ const PersonalServiceCard = () => {
                 <p className="text-xs font-semibold tracking-widest text-primary mb-1 uppercase">
                   {f.number}
                 </p>
-                <h3 className="text-base font-bold mb-2 dark:text-white text-gray-900 group-hover:text-primary dark:group-hover:text-primary transition-colors duration-200">
+                <h3 className="text-base font-bold mb-2 text-foreground group-hover:text-primary transition-colors duration-200">
                   {f.title}
                 </h3>
                 <p className="text-sm leading-relaxed text-card-text-l dark:text-card-text-d">
