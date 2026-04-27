@@ -53,7 +53,7 @@ export function StepNode({ step, index, isActive, onSelect, inView }: StepNodePr
           {step.label}
         </p>
         <p className={`text-xs font-semibold transition-colors duration-300 ${
-          isActive ? "text-primary" : "text-gray-900 dark:text-white group-hover:text-primary"
+          isActive ? "text-primary" : "text-foreground group-hover:text-primary"
         }`}>
           {step.title}
         </p>

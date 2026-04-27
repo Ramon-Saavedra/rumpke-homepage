@@ -45,7 +45,7 @@ export default function ProcessFlowSection() {
           <span className="text-xs font-semibold tracking-widest text-primary uppercase block mb-3">
             Wie es funktioniert
           </span>
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">
             Unser Prozess
           </h2>
           <p className="text-sm text-card-text-l dark:text-card-text-d min-h-5">

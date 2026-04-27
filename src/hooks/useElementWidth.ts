@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect, type RefObject } from "react";
 
 export function useElementWidth<T extends HTMLElement>(): {
-  ref: RefObject<T>;
+  ref: RefObject<T | null>;
   width: number;
 } {
   const ref = useRef<T>(null);
