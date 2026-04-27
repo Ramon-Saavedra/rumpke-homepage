@@ -2,9 +2,9 @@
 
 import PersonalServiceCard from "@/components/sections/personal-service-card/PersonalServiceCard"
 import ServicesSection from "@/components/sections/services-section/ServicesSection"
-import TargetAudienceSection from "@/components/sections/target-audience-section/TargetAudienceSection"
 import HeroVideo from "@/components/hero/HeroVideo"
 import WhyChooseRumpke from "@/components/sections/why-choose-rumpke/WhyChooseRumpke"
+import WhatMattersNowSection from "@/components/sections/what-matters-now-section/WhatMattersNowSection"
 import Title from "@/components/ui/title/Title"
 import PropertiesGrid from "@/components/properties/PropertiesGrid"
 import { MOCK_FEATURED_PROPERTIES } from "@/data/mock-properties"
@@ -52,7 +52,7 @@ const page = () => {
           </div>
         </section>
 
-        <TargetAudienceSection />
+        <WhatMattersNowSection />
         <WhyChooseRumpke />
         <ServicesSection />
         <PersonalServiceCard />
