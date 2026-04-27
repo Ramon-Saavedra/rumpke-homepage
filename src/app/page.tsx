@@ -9,6 +9,7 @@ import Title from "@/components/ui/title/Title"
 import PropertiesGrid from "@/components/properties/PropertiesGrid"
 import { MOCK_FEATURED_PROPERTIES } from "@/data/mock-properties"
 import SecondaryNav from "@/components/layout/secondary-nav/SecondaryNav"
+import ProcessFlowSection from "@/components/sections/process-flow/ProcessFlowSection"
 import { Key, Home } from "lucide-react"
 
 
@@ -29,6 +30,7 @@ const page = () => {
       </div>
 
       <main className="p-2 xl:px-20 2xl:px-32 2xl:w-[80%] mx-auto">
+        <ProcessFlowSection />
         <section className="mb-12">
           <div className="container mx-auto">
             <Title variant="h2" align="left" className="mb-8 px-2 rounded" size="xl">
