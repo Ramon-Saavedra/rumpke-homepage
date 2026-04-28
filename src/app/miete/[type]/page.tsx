@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Title from "@/components/ui/title/Title";
-import { VALID_TYPES, TYPE_LABELS_PLURAL, isValidType } from "@/types/property-types";
+import { VALID_TYPES, TYPE_LABELS, isValidType } from "@/types/property-types";
 
 interface PageProps {
   params: Promise<{
@@ -15,7 +15,7 @@ export default async function MieteTypePage({ params }: PageProps) {
     notFound();
   }
 
-  const label = TYPE_LABELS_PLURAL[type];
+  const label = TYPE_LABELS[type];
 
   return (
     <>

@@ -4,11 +4,10 @@ import Title from "@/components/ui/title/Title";
 
 
 const PROPERTY_TYPES = [
-  { slug: "haus", label: "Haus", description: "Einfamilienhäuser, Reihenhäuser, Villen" },
-  { slug: "wohnung", label: "Wohnung", description: "Eigentumswohnungen, Apartments" },
+  { slug: "haeuser", label: "Häuser", description: "Einfamilienhäuser, Reihenhäuser, Villen" },
+  { slug: "wohnungen", label: "Wohnungen", description: "Eigentumswohnungen, Apartments" },
   { slug: "gewerbeimmobilien", label: "Gewerbeimmobilien", description: "Büros, Lagerhallen, Geschäfte" },
   { slug: "grundstueck", label: "Grundstück", description: "Baugrundstücke, Ackerland" },
-  { slug: "sonstige", label: "Sonstige", description: "Weitere Immobilientypen" },
 ] as const;
 
 export default function KaufPage() {

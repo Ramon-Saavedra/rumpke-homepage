@@ -9,9 +9,11 @@ interface NavItemProps {
   icon?: ReactNode;
   children: ReactNode;
   onClick?: () => void;
+  target?: string;
+  rel?: string;
 }
 
-const NavItem = ({ href, icon, children, onClick }: NavItemProps) => {
+const NavItem = ({ href, icon, children, onClick, target, rel }: NavItemProps) => {
 
 
   const iconWithMargin = icon && isValidElement(icon)
@@ -24,6 +26,8 @@ const NavItem = ({ href, icon, children, onClick }: NavItemProps) => {
       href={href}
       onClick={onClick}
       className={`flex items-center text-xs px-1 mb-4 md:mb-0  font-extrabold hover:text-primary`}
+      {...(target ? { target } : {})}
+      {...(rel ? { rel } : {})}
     >
       {iconWithMargin}
       {children}

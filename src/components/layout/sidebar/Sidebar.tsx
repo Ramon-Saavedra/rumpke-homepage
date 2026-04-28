@@ -61,23 +61,17 @@ const Sidebar = () => {
           <NavItem href="/" icon={<IoAlbumsOutline size={20} />} onClick={closeSidebar}>
             Start
           </NavItem>
-          <NavItem href="/auf-karte-erkunden" icon={<IoMapOutline size={20} />} onClick={closeSidebar}>
-            Auf Karte erkunden
+          <NavItem href="/kategorie/haeuser" icon={<IoHomeOutline size={20} />} onClick={closeSidebar}>
+            Häuser
           </NavItem>
-          <NavItem href="/kategorie/haus" icon={<IoHomeOutline size={20} />} onClick={closeSidebar}>
-            Haus
-          </NavItem>
-          <NavItem href="/kategorie/wohnung" icon={<IoBusinessOutline size={20} />} onClick={closeSidebar}>
-            Wohnung
+          <NavItem href="/kategorie/wohnungen" icon={<IoBusinessOutline size={20} />} onClick={closeSidebar}>
+            Wohnungen
           </NavItem>
           <NavItem href="/kategorie/gewerbeimmobilien" icon={<IoBriefcaseOutline size={20} />} onClick={closeSidebar}>
             Gewerbeimmobilien
           </NavItem>
           <NavItem href="/kategorie/grundstueck" icon={<IoMapOutline size={20} />} onClick={closeSidebar}>
             Grundstück
-          </NavItem>
-          <NavItem href="/kategorie/sonstige" icon={<IoAlbumsOutline size={20} />} onClick={closeSidebar}>
-            Sonstige
           </NavItem>
           <NavItem href="/dienstleistungen" icon={<IoBriefcaseOutline size={20} />} onClick={closeSidebar}>
             Dienstleistungen

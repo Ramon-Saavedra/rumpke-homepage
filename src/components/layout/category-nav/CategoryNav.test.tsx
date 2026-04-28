@@ -39,13 +39,12 @@ describe('CategoryNav', () => {
 
     it('renders navigation items with correct text', () => {
       render(<CategoryNav />);
-
-      expect(screen.getByText('Auf Karte erkunden')).toBeInTheDocument();
-      expect(screen.getByText('Haus')).toBeInTheDocument();
-      expect(screen.getByText('Wohnung')).toBeInTheDocument();
+      expect(screen.getByText('Häuser')).toBeInTheDocument();
+      expect(screen.getByText('Wohnungen')).toBeInTheDocument();
       expect(screen.getByText('Gewerbeimmobilien')).toBeInTheDocument();
       expect(screen.getByText('Grundstück')).toBeInTheDocument();
-      expect(screen.getByText('Sonstige')).toBeInTheDocument();
+      expect(screen.getByText('Kontakt')).toBeInTheDocument();
+      expect(screen.getByText('Werde Tippgeber')).toBeInTheDocument();
     });
 
     it('renders ContactTooltip component', () => {
@@ -55,22 +54,16 @@ describe('CategoryNav', () => {
   });
 
   describe('Navigation links', () => {
-    it('Auf Karte erkunden has correct href', () => {
+    it('Häuser has correct href', () => {
       render(<CategoryNav />);
-      const link = screen.getByText('Auf Karte erkunden').closest('a');
-      expect(link).toHaveAttribute('href', '/auf-karte-erkunden');
+      const link = screen.getByText('Häuser').closest('a');
+      expect(link).toHaveAttribute('href', '/kategorie/haeuser');
     });
 
-    it('Haus has correct href', () => {
+    it('Wohnungen has correct href', () => {
       render(<CategoryNav />);
-      const link = screen.getByText('Haus').closest('a');
-      expect(link).toHaveAttribute('href', '/kategorie/haus');
-    });
-
-    it('Wohnung has correct href', () => {
-      render(<CategoryNav />);
-      const link = screen.getByText('Wohnung').closest('a');
-      expect(link).toHaveAttribute('href', '/kategorie/wohnung');
+      const link = screen.getByText('Wohnungen').closest('a');
+      expect(link).toHaveAttribute('href', '/kategorie/wohnungen');
     });
 
     it('Gewerbeimmobilien has correct href', () => {
@@ -85,10 +78,16 @@ describe('CategoryNav', () => {
       expect(link).toHaveAttribute('href', '/kategorie/grundstueck');
     });
 
-    it('Sonstige has correct href', () => {
+    it('Kontakt has correct href', () => {
       render(<CategoryNav />);
-      const link = screen.getByText('Sonstige').closest('a');
-      expect(link).toHaveAttribute('href', '/kategorie/sonstige');
+      const link = screen.getByText('Kontakt').closest('a');
+      expect(link).toHaveAttribute('href', '/kontakt');
+    });
+
+    it('Werde Tippgeber has correct href', () => {
+      render(<CategoryNav />);
+      const link = screen.getByText('Werde Tippgeber').closest('a');
+      expect(link).toHaveAttribute('href', 'https://www.ichschenkedirwas.de/');
     });
   });
 
