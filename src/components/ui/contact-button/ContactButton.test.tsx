@@ -12,7 +12,7 @@ describe('ContactButton', () => {
 
     it('renders with default text', () => {
       render(<ContactButton />);
-      expect(screen.getByText('Jetzt Kontakt aufnehmen')).toBeInTheDocument();
+      expect(screen.getByText('Kontakt')).toBeInTheDocument();
     });
 
     it('renders as a Next.js Link component', () => {
@@ -29,9 +29,9 @@ describe('ContactButton', () => {
       expect(link).toHaveAttribute('href', '/kontakt');
     });
 
-    it('has default text "Jetzt Kontakt aufnehmen"', () => {
+    it('has default text "Kontakt"', () => {
       render(<ContactButton />);
-      expect(screen.getByText('Jetzt Kontakt aufnehmen')).toBeInTheDocument();
+      expect(screen.getByText('Kontakt')).toBeInTheDocument();
     });
   });
 
@@ -40,7 +40,7 @@ describe('ContactButton', () => {
       const customText = 'Kontaktieren Sie uns jetzt';
       render(<ContactButton text={customText} />);
       expect(screen.getByText(customText)).toBeInTheDocument();
-      expect(screen.queryByText('Jetzt Kontakt aufnehmen')).not.toBeInTheDocument();
+      expect(screen.queryByText('Kontakt')).not.toBeInTheDocument();
     });
 
     it('renders with custom href', () => {
@@ -76,42 +76,44 @@ describe('ContactButton', () => {
     it('has base styling classes', () => {
       render(<ContactButton />);
       const link = screen.getByRole('link');
-
-      expect(link).toHaveClass('inline-block');
-      expect(link).toHaveClass('px-2');
-      expect(link).toHaveClass('py-2');
-      expect(link).toHaveClass('rounded');
+      expect(link).toHaveClass('inline-flex');
+      expect(link).toHaveClass('items-center');
+      expect(link).toHaveClass('gap-1');
+      expect(link).toHaveClass('px-3');
+      expect(link).toHaveClass('py-1.5');
+      expect(link).toHaveClass('rounded-md');
     });
 
     it('has background color classes', () => {
       render(<ContactButton />);
       const link = screen.getByRole('link');
-
-      expect(link).toHaveClass('bg-primary');
+      expect(link).toHaveClass('bg-white');
       expect(link).toHaveClass('dark:bg-primary-dark');
     });
 
     it('has text color classes', () => {
       render(<ContactButton />);
       const link = screen.getByRole('link');
-      expect(link).toHaveClass('text-white');
+      // El color de texto se aplica por hover, no por defecto
+      expect(link).toHaveClass('hover:text-white');
+      expect(link).toHaveClass('dark:hover:text-white');
     });
 
     it('has shadow and hover classes', () => {
       render(<ContactButton />);
       const link = screen.getByRole('link');
-
       expect(link).toHaveClass('shadow-sm');
-      expect(link).toHaveClass('hover:opacity-90');
+      expect(link).toHaveClass('hover:bg-primary');
+      expect(link).toHaveClass('hover:text-white');
+      expect(link).toHaveClass('dark:hover:bg-primary-dark');
+      expect(link).toHaveClass('dark:hover:text-white');
     });
 
     it('preserves base classes when custom className is added', () => {
       render(<ContactButton className="extra-class" />);
       const link = screen.getByRole('link');
-
-      expect(link).toHaveClass('inline-block');
-      expect(link).toHaveClass('bg-primary');
-      expect(link).toHaveClass('text-white');
+      expect(link).toHaveClass('inline-flex');
+      expect(link).toHaveClass('bg-white');
       expect(link).toHaveClass('extra-class');
     });
   });
@@ -119,7 +121,7 @@ describe('ContactButton', () => {
   describe('Accessibility', () => {
     it('is accessible as a link', () => {
       render(<ContactButton />);
-      const link = screen.getByRole('link', { name: /jetzt kontakt aufnehmen/i });
+      const link = screen.getByRole('link', { name: /kontakt/i });
       expect(link).toBeInTheDocument();
     });
 
@@ -135,7 +137,6 @@ describe('ContactButton', () => {
     it('works with only text prop', () => {
       render(<ContactButton text="New Text" />);
       const link = screen.getByRole('link');
-
       expect(screen.getByText('New Text')).toBeInTheDocument();
       expect(link).toHaveAttribute('href', '/kontakt');
     });
@@ -143,18 +144,25 @@ describe('ContactButton', () => {
     it('works with only href prop', () => {
       render(<ContactButton href="/new-page" />);
       const link = screen.getByRole('link');
-
-      expect(screen.getByText('Jetzt Kontakt aufnehmen')).toBeInTheDocument();
+      expect(screen.getByText('Kontakt')).toBeInTheDocument();
       expect(link).toHaveAttribute('href', '/new-page');
     });
 
     it('works with only className prop', () => {
       render(<ContactButton className="test-class" />);
       const link = screen.getByRole('link');
-
-      expect(screen.getByText('Jetzt Kontakt aufnehmen')).toBeInTheDocument();
+      expect(screen.getByText('Kontakt')).toBeInTheDocument();
       expect(link).toHaveAttribute('href', '/kontakt');
       expect(link).toHaveClass('test-class');
     });
+
+  describe('Icon', () => {
+    it('renders the lucide Mail icon', () => {
+      render(<ContactButton />);
+      // El icono de lucide tiene class "lucide lucide-mail"
+      const icon = document.querySelector('svg.lucide-mail');
+      expect(icon).toBeInTheDocument();
+    });
+  });
   });
 });

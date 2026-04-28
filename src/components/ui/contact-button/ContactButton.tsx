@@ -1,3 +1,4 @@
+import { Mail } from "lucide-react";
 import Link from "next/link";
 
 interface ContactButtonProps {
@@ -7,16 +8,18 @@ interface ContactButtonProps {
 }
 
 export default function ContactButton({
-  text = "Jetzt Kontakt aufnehmen",
+  text = "Kontakt",
   href = "/kontakt",
   className = ""
 }: ContactButtonProps) {
   return (
     <Link
       href={href}
-      className={`inline-block px-2 py-2 bg-primary dark:bg-primary-dark text-white rounded  shadow-sm hover:opacity-90 ${className}`}
+      className={`inline-flex items-center gap-1 px-3 py-1.5 bg-white dark:bg-primary-dark  font-medium rounded-md shadow-sm hover:bg-primary hover:text-white dark:hover:bg-primary-dark dark:hover:text-white ${className}`}
+      style={{ letterSpacing: "0.01em" }}
     >
-      {text}
+      <Mail size={18} strokeWidth={2} />
+      <span>{text}</span>
     </Link>
   );
 }
