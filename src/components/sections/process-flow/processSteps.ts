@@ -1,65 +1,82 @@
 import {
   MessageCircle,
-  BarChart2,
-  Search,
   Handshake,
-  Key,
+  FileSignature,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+
+export interface ProcessStepItem {
+  subtitle: string;
+  description: string;
+}
 
 export interface ProcessStep {
   id: number;
   label: string;
   title: string;
-  description: string;
   icon: LucideIcon;
+  items: ProcessStepItem[];
 }
 
 export const TYPEWRITER_PHRASES = [
   "Von der Beratung bis zur Schlüsselübergabe",
   "Transparent. Persönlich. Erfolgreich.",
-  "5 Schritte zu Ihrer Traumimmobilie",
+  "In 3 Schritten zu Ihrer Traumimmobilie",
 ] as const;
 
 export const PROCESS_STEPS: ProcessStep[] = [
   {
     id: 1,
     label: "01",
-    title: "Erstgespräch",
-    description:
-      "In einem unverbindlichen Gespräch lernen wir Ihre Wünsche und Ziele kennen. Gemeinsam legen wir die Strategie für Ihren Immobilienprozess fest.",
+    title: "Erstgespräch & Bewertung",
     icon: MessageCircle,
+    items: [
+      {
+        subtitle: "Erstgespräch",
+        description:
+          "In einem unverbindlichen Gespräch lernen wir Ihre Wünsche und Ziele kennen. Gemeinsam legen wir die Strategie für Ihren Immobilienprozess fest.",
+      },
+      {
+        subtitle: "Bewertung",
+        description:
+          "Wir ermitteln den realistischen Marktwert Ihrer Immobilie auf Basis aktueller Marktdaten und unserer lokalen Expertise.",
+      },
+    ],
   },
   {
     id: 2,
     label: "02",
-    title: "Bewertung",
-    description:
-      "Wir ermitteln den realistischen Marktwert Ihrer Immobilie auf Basis aktueller Marktdaten und unserer lokalen Expertise.",
-    icon: BarChart2,
+    title: "Vermarktung & Verhandlung",
+    icon: Handshake,
+    items: [
+      {
+        subtitle: "Vermarktung",
+        description:
+          "Professionelles Exposé, gezielte Ansprache vorgemerkter Interessenten und Präsenz auf den relevanten Portalen — Ihre Immobilie in bestem Licht.",
+      },
+      {
+        subtitle: "Verhandlung",
+        description:
+          "Wir führen Besichtigungen durch, prüfen Interessenten sorgfältig und verhandeln in Ihrem Sinne das bestmögliche Ergebnis.",
+      },
+    ],
   },
   {
     id: 3,
     label: "03",
-    title: "Vermarktung",
-    description:
-      "Professionelles Exposé, gezielte Ansprache vorgemerkter Interessenten und Präsenz auf den relevanten Portalen — Ihre Immobilie in bestem Licht.",
-    icon: Search,
-  },
-  {
-    id: 4,
-    label: "04",
-    title: "Verhandlung",
-    description:
-      "Wir führen Besichtigungen durch, prüfen Interessenten sorgfältig und verhandeln in Ihrem Sinne das bestmögliche Ergebnis.",
-    icon: Handshake,
-  },
-  {
-    id: 5,
-    label: "05",
-    title: "Schlüsselübergabe",
-    description:
-      "Nach dem Notartermin und der Kaufpreiszahlung übergeben wir die Schlüssel — Ihr Ziel ist erreicht. Wir bleiben auch danach Ihr Ansprechpartner.",
-    icon: Key,
+    title: "Notar & After Sales Services",
+    icon: FileSignature,
+    items: [
+      {
+        subtitle: "Notar",
+        description:
+          "Beim Notartermin werden alle Verträge rechtssicher beurkundet — wir begleiten Sie persönlich durch jeden Schritt bis zur Schlüsselübergabe.",
+      },
+      {
+        subtitle: "After Sales Services",
+        description:
+          "Auch nach der Schlüsselübergabe bleiben wir Ihr Ansprechpartner — für Fragen rund um Ihre Immobilie und alles, was danach kommt.",
+      },
+    ],
   },
 ];

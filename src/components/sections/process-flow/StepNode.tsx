@@ -48,11 +48,11 @@ export function StepNode({ step, index, isActive, onSelect, inView }: StepNodePr
         </div>
       </div>
 
-      <div className="text-center w-20">
+      <div className="text-center w-32 text-balance">
         <p className="text-[10px] font-semibold tracking-widest text-primary uppercase mb-0.5">
           {step.label}
         </p>
-        <p className={`text-xs font-semibold transition-colors duration-300 ${
+        <p className={`text-xs font-semibold leading-snug transition-colors duration-300 ${
           isActive ? "text-primary" : "text-foreground group-hover:text-primary"
         }`}>
           {step.title}
