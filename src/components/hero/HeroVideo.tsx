@@ -62,7 +62,7 @@ const HeroVideo: FC<HeroVideoProps> = ({ videoSrc, poster, alt }) => {
           variant="h1"
           align="center"
           size="xl"
-          subtitle="Lore ipsum dolor sit amet, consectetur adipiscing elit."
+          subtitle="Mehr als nur 4 Wände"
           className="text-white text-5xl md:text-7xl font-extrabold mb-4"
           subtitleClassName="text-white text-lg md:text-2xl xl:text-3xl font-semibold mt-2"
         >
