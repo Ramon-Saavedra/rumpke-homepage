@@ -11,8 +11,9 @@ import { NeuronPath } from "./NeuronPath";
 const CONTAINER_H = 190;
 const ICON_HALF_H = 20;
 const NODE_POSITIONS = [
-  { x: 10, y: 28 }, { x: 30, y: 62 }, { x: 50, y: 28 },
-  { x: 70, y: 62 }, { x: 90, y: 28 },
+  { x: 15, y: 14 },
+  { x: 50, y: 62 },
+  { x: 85, y: 14 },
 ] as const;
 
 export default function ProcessFlowSection() {
@@ -34,7 +35,7 @@ export default function ProcessFlowSection() {
   );
 
   return (
-    <section aria-label="Unser Prozess" className="w-full px-4 sm:px-6 py-12 relative mb-12">
+    <section aria-label="Unser Prozess" className="w-full px-4 sm:px-6 py-12 relative mb-8">
       <div
         aria-hidden="true"
         className="absolute inset-0 bg-[linear-gradient(to_right,rgb(0_0_0/0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgb(0_0_0/0.05)_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,rgb(255_255_255/0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgb(255_255_255/0.04)_1px,transparent_1px)] bg-size-[40px_40px] mask-[linear-gradient(to_right,transparent,black_15%,black_85%,transparent),linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] mask-intersect"
@@ -98,11 +99,11 @@ export default function ProcessFlowSection() {
           ))}
         </div>
 
-        <div className="flex flex-wrap justify-center gap-6 sm:gap-8 lg:hidden">
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-8 lg:hidden">
           {PROCESS_STEPS.map((step, i) => (
             <div
               key={step.id}
-              className="flex justify-center w-[calc(50%-0.75rem)] sm:w-[calc(33.333%-1rem)] md:w-[calc(20%-1rem)]"
+              className="flex justify-center w-[calc(33.333%-1rem)]"
             >
               <StepNode
                 step={step}
@@ -115,7 +116,7 @@ export default function ProcessFlowSection() {
           ))}
         </div>
 
-        <div className="mt-8 min-h-20">
+        <div className="mt-10 min-h-40">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeStep.id}
@@ -123,14 +124,23 @@ export default function ProcessFlowSection() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="mx-auto max-w-xl text-center"
+              className="mx-auto max-w-3xl"
             >
-              <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-1">
+              <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-5 text-center">
                 {activeStep.label} — {activeStep.title}
               </p>
-              <p className="text-sm leading-relaxed text-card-text-l dark:text-card-text-d">
-                {activeStep.description}
-              </p>
+              <div className="grid sm:grid-cols-2 gap-x-8 gap-y-5 px-2 sm:px-4">
+                {activeStep.items.map((item) => (
+                  <div key={item.subtitle} className="text-center">
+                    <p className="text-sm font-semibold text-foreground mb-1.5">
+                      {item.subtitle}
+                    </p>
+                    <p className="text-sm leading-relaxed text-card-text-l dark:text-card-text-d">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>

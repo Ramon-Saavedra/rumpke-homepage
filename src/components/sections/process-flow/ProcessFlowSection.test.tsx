@@ -92,7 +92,7 @@ describe('ProcessFlowSection', () => {
       expect(screen.getByText('|')).toBeInTheDocument();
     });
 
-    it('renders all 5 step nodes', () => {
+    it('renders a node for every step', () => {
       render(<ProcessFlowSection />);
       PROCESS_STEPS.forEach((step) => {
         expect(screen.getAllByRole('button', { name: step.title }).length).toBeGreaterThanOrEqual(1);
@@ -101,9 +101,12 @@ describe('ProcessFlowSection', () => {
   });
 
   describe('Default state', () => {
-    it('shows step 1 description by default', () => {
+    it('shows all items of step 1 by default', () => {
       render(<ProcessFlowSection />);
-      expect(screen.getByText(PROCESS_STEPS[0]!.description)).toBeInTheDocument();
+      PROCESS_STEPS[0]!.items.forEach((item) => {
+        expect(screen.getByText(item.subtitle)).toBeInTheDocument();
+        expect(screen.getByText(item.description)).toBeInTheDocument();
+      });
     });
 
     it('step 1 has aria-pressed true by default', () => {
@@ -122,11 +125,14 @@ describe('ProcessFlowSection', () => {
   });
 
   describe('Interaction', () => {
-    it('shows correct description after clicking another step', () => {
+    it('shows all items of the clicked step', () => {
       render(<ProcessFlowSection />);
       const step = PROCESS_STEPS[2]!;
       fireEvent.click(screen.getAllByRole('button', { name: step.title })[0]!);
-      expect(screen.getByText(step.description)).toBeInTheDocument();
+      step.items.forEach((item) => {
+        expect(screen.getByText(item.subtitle)).toBeInTheDocument();
+        expect(screen.getByText(item.description)).toBeInTheDocument();
+      });
     });
 
     it('sets aria-pressed true on clicked step', () => {
@@ -145,11 +151,14 @@ describe('ProcessFlowSection', () => {
       expect(step1Buttons[0]).toHaveAttribute('aria-pressed', 'false');
     });
 
-    it('each step click shows its own description', () => {
+    it('each step click shows the items belonging to that step', () => {
       render(<ProcessFlowSection />);
       PROCESS_STEPS.forEach((step) => {
         fireEvent.click(screen.getAllByRole('button', { name: step.title })[0]!);
-        expect(screen.getByText(step.description)).toBeInTheDocument();
+        step.items.forEach((item) => {
+          expect(screen.getByText(item.subtitle)).toBeInTheDocument();
+          expect(screen.getByText(item.description)).toBeInTheDocument();
+        });
       });
     });
   });
