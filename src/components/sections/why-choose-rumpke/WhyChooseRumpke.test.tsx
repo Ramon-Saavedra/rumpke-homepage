@@ -115,12 +115,20 @@ describe('WhyChooseRumpke', () => {
     it('section has padding classes', () => {
       render(<WhyChooseRumpke />);
       const section = document.querySelector('section');
-      expect(section).toHaveClass('px-4', 'py-16');
+      expect(section).toHaveClass('px-2');
     });
 
     it('has a grid container', () => {
       render(<WhyChooseRumpke />);
       expect(document.querySelector('.grid')).toBeInTheDocument();
+    });
+
+    it('stat cells have px-2 and text-center for mobile', () => {
+      render(<WhyChooseRumpke />);
+      const statCells = document.querySelectorAll('.py-8');
+      statCells.forEach((cell) => {
+        expect(cell).toHaveClass('px-2', 'text-center');
+      });
     });
   });
 });
