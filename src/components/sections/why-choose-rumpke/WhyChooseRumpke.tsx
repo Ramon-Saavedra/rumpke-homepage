@@ -53,12 +53,12 @@ const WhyChooseRumpke = () => {
     <section
       ref={ref}
       aria-label="Warum Rumpke Immobilien"
-      className="w-full px-4 sm:px-6 py-16 md:py-24"
+      className="w-full mb-18 px-2"
     >
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto">
 
         {/* Header */}
-        <div className={`mb-16 duration-1000 ${fadeUp(visible)}`}>
+        <div className={`mb-6 duration-1000${fadeUp(visible)}`}>
           <span className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-4 block">
             Unsere Stärken
           </span>
@@ -71,15 +71,14 @@ const WhyChooseRumpke = () => {
         </div>
 
         {/* Features */}
-        <div className="grid grid-cols-1 md:grid-cols-3 border-t border-border-l dark:border-border-d">
+        <div className="grid grid-cols-1 md:grid-cols-3 ">
           {features.map((feature, i) => (
             <div
               key={feature.number}
-              className={`py-10 duration-700 ${
-                i === 0
+              className={`py-10 duration-700 ${i === 0
                   ? "md:pr-10"
                   : "md:px-10 border-t md:border-t-0 md:border-l border-border-l dark:border-border-d"
-              } ${fadeUp(visible)}`}
+                } ${fadeUp(visible)}`}
               style={{ transitionDelay: visible ? `${200 + i * 150}ms` : "0ms" }}
             >
               <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
@@ -103,15 +102,14 @@ const WhyChooseRumpke = () => {
 
         {/* Stats */}
         <div
-          className={`grid grid-cols-3 border-t border-border-l dark:border-border-d duration-1000 ${fadeUp(visible)}`}
+          className={`grid grid-cols-3 border-t border-border-l dark:border-border-d ${fadeUp(visible)}`}
           style={{ transitionDelay: visible ? "750ms" : "0ms" }}
         >
           {stats.map((stat, i) => (
             <div
               key={stat.label}
-              className={`py-8 ${
-                i === 0 ? "md:pr-10" : "md:px-10 border-l border-border-l dark:border-border-d"
-              }`}
+              className={`py-8 px-2 text-center md:text-left ${i === 0 ? "md:px-0 md:pr-10" : "md:px-10 border-l border-border-l dark:border-border-d"
+                }`}
             >
               <span className="block text-3xl sm:text-4xl font-bold text-primary mb-1">
                 {stat.value}
