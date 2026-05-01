@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Building2, Home, Key } from "lucide-react";
+import { ArrowRight, Home, Building2, BarChart3, type LucideIcon } from "lucide-react";
 
 interface ServiceCardProps {
   title: string;
@@ -7,47 +7,55 @@ interface ServiceCardProps {
   link: string;
 }
 
-const renderIcon = (title: string) => {
-  const titleLower = title.trim().toLowerCase();
-  const iconProps = {
-    className: "h-5 w-5 text-card-text-l dark:text-card-text-d",
-    strokeWidth: 2,
-  };
+type IconMap = Record<string, LucideIcon>;
 
-  if (titleLower.includes('verkauf')) return <Home {...iconProps} />;
-  if (titleLower.includes('kauf')) return <Key {...iconProps} />;
-  if (titleLower.includes('vermiet')) return <Building2 {...iconProps} />;
-  return <Home {...iconProps} />;
+const ICONS: IconMap = {
+  verkauf: Home,
+  vermiet: Building2,
+  bewert: BarChart3,
 };
 
-export default function ServiceCard({ title, text, link }: ServiceCardProps) {
-  return (
-    <Link href={link} className="group block h-full">
-      <article className="h-full border border-border-l bg-bg-l px-4 py-4 hover:bg-Bghover-l dark:border-border-d dark:bg-bg-d dark:hover:bg-Bghover-d sm:px-5 sm:py-4.5">
-        <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-5">
-          <div className="space-y-3">
-            <span className="block h-px w-12 bg-secondary dark:bg-secondary-dark" />
-            <div className="flex items-start gap-3">
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border-l dark:border-border-d">
-                {renderIcon(title)}
-              </span>
-              <div className="min-w-0">
-                <h3 className="text-lg font-semibold tracking-tight text-third dark:text-bg-l sm:text-xl">
-                  {title}
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-card-text-l dark:text-card-text-d">
-                  {text}
-                </p>
-              </div>
-            </div>
-          </div>
+function getIcon(title: string): LucideIcon {
+  const t = title.trim().toLowerCase();
+  for (const [key, Icon] of Object.entries(ICONS)) {
+    if (t.includes(key)) return Icon;
+  }
+  return Home;
+}
 
-          <span className="flex items-center gap-2 pl-12 text-sm font-medium text-primary lg:pl-0 lg:justify-self-end">
-            <span>Mehr erfahren</span>
-            <ArrowRight className="h-4 w-4" strokeWidth={2} />
-          </span>
-        </div>
-      </article>
+export default function ServiceCard({ title, text, link }: ServiceCardProps) {
+  const Icon = getIcon(title);
+  return (
+    <Link
+      href={link}
+      className="group relative flex items-start gap-5 py-7 px-1 border-b border-border-l dark:border-border-d last:border-b-0 hover:bg-bgSecondary-l dark:hover:bg-bgSecondary-d transition-colors"
+    >
+      {/* Left accent bar */}
+      <span
+        aria-hidden="true"
+        className="absolute left-0 top-0 h-full w-0.5 bg-primary origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-300"
+      />
+
+      {/* Icon */}
+      <div className="mt-0.5 flex-shrink-0 flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 ring-1 ring-primary/20 group-hover:bg-primary/20 transition-colors">
+        <Icon className="h-5 w-5 text-primary" strokeWidth={1.8} />
+      </div>
+
+      {/* Content */}
+      <div className="flex-1 min-w-0">
+        <h3 className="text-lg font-semibold text-foreground mb-1.5 tracking-tight group-hover:text-primary transition-colors">
+          {title}
+        </h3>
+        <p className="text-sm leading-relaxed text-card-text-l dark:text-card-text-d">
+          {text}
+        </p>
+      </div>
+
+      {/* Arrow */}
+      <ArrowRight
+        className="mt-1 flex-shrink-0 self-center h-5 w-5 text-card-text-l dark:text-card-text-d group-hover:text-primary group-hover:translate-x-1 transition-all"
+        strokeWidth={2}
+      />
     </Link>
   );
 }
