@@ -36,8 +36,8 @@ export const TYPE_DESCRIPTIONS_MIETE: Record<PropertyType, string> = {
 };
 
 export const TRANSACTION_LABELS = {
-  kauf: "Kaufen",
-  miete: "Mieten",
+  kauf: "Verkaufen",
+  miete: "Vermieten",
 } as const;
 
 export function isValidType(type: string): type is PropertyType {
