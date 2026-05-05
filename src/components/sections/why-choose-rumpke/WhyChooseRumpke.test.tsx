@@ -80,13 +80,6 @@ describe('WhyChooseRumpke', () => {
       expect(screen.getByText(/Vertrauen ist die Basis/)).toBeInTheDocument();
     });
 
-    it('renders feature numbers 01, 02, 03', () => {
-      render(<WhyChooseRumpke />);
-      expect(screen.getByText('01')).toBeInTheDocument();
-      expect(screen.getByText('02')).toBeInTheDocument();
-      expect(screen.getByText('03')).toBeInTheDocument();
-    });
-
     it('renders all three icons', () => {
       render(<WhyChooseRumpke />);
       expect(screen.getByTestId('icon-user-check')).toBeInTheDocument();

@@ -5,7 +5,6 @@ import { useScrollVisible } from "@/hooks/useScrollVisible";
 import { fadeUp } from "@/lib/animation";
 
 type Feature = {
-  readonly number: string;
   readonly Icon: LucideIcon;
   readonly title: string;
   readonly description: string;
@@ -18,21 +17,18 @@ type Stat = {
 
 const features: readonly Feature[] = [
   {
-    number: "01",
     Icon: UserCheck,
     title: "Persönlicher Service",
     description:
       "Bei Rumpke Immobilien stehen Sie im Mittelpunkt. Individuelle Beratung und persönliche Begleitung in jedem Schritt Ihres Immobilienprojekts.",
   },
   {
-    number: "02",
     Icon: MapPin,
     title: "Lokale Expertise",
     description:
       "Tiefes Verständnis für den regionalen Immobilienmarkt. Wir kennen die Besonderheiten der Region, die Entwicklungen und die Menschen.",
   },
   {
-    number: "03",
     Icon: Shield,
     title: "Transparenz & Fairness",
     description:
@@ -74,20 +70,16 @@ const WhyChooseRumpke = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 ">
           {features.map((feature, i) => (
             <div
-              key={feature.number}
+              key={feature.title}
               className={`py-10 duration-700 ${i === 0
-                  ? "md:pr-10"
-                  : "md:px-10 border-t md:border-t-0 md:border-l border-border-l dark:border-border-d"
+                ? "md:pr-10"
+                : "md:px-10 border-t md:border-t-0 md:border-l border-border-l dark:border-border-d"
                 } ${fadeUp(visible)}`}
               style={{ transitionDelay: visible ? `${200 + i * 150}ms` : "0ms" }}
             >
-              <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
-                <feature.Icon className="w-5 h-5 text-primary" aria-hidden="true" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-primary/40 bg-bgSecondary-l text-primary dark:bg-bgSecondary-d mb-6">
+                <feature.Icon size={18} strokeWidth={1.6} aria-hidden="true" />
               </div>
-
-              <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3">
-                {feature.number}
-              </p>
 
               <h3 className="text-lg font-bold text-foreground mb-3 leading-snug">
                 {feature.title}
