@@ -5,19 +5,19 @@ import PropertyLegend from './PropertyLegend';
 describe('PropertyLegend', () => {
   it('renders without errors', () => {
     render(<PropertyLegend />);
-    expect(screen.getByText('Verkaufen')).toBeInTheDocument();
-    expect(screen.getByText('Vermieten')).toBeInTheDocument();
+    expect(screen.getByText('Kaufen')).toBeInTheDocument();
+    expect(screen.getByText('Mieten')).toBeInTheDocument();
   });
 
-  it('renders the Verkaufen label with correct styling', () => {
+  it('renders the Kaufen label with correct styling', () => {
     render(<PropertyLegend />);
-    const verkaufen = screen.getByText('Verkaufen');
-    expect(verkaufen).toHaveClass('text-buy');
+    const kaufen = screen.getByText('Kaufen');
+    expect(kaufen).toHaveClass('text-buy');
   });
 
-  it('renders the Vermieten label with correct styling', () => {
+  it('renders the Mieten label with correct styling', () => {
     render(<PropertyLegend />);
-    const vermieten = screen.getByText('Vermieten');
-    expect(vermieten).toHaveClass('text-rent');
+    const mieten = screen.getByText('Mieten');
+    expect(mieten).toHaveClass('text-rent');
   });
 });
