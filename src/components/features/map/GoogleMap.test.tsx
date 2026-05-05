@@ -81,8 +81,8 @@ describe('GoogleMap', () => {
 
     it('renders a telephone link with correct href', () => {
       render(<GoogleMap />);
-      const tel = screen.getByRole('link', { name: /\+49/ });
-      expect(tel).toHaveAttribute('href', expect.stringContaining('tel:'));
+      const tel = screen.getByRole('link', { name: /05963/ });
+      expect(tel).toHaveAttribute('href', 'tel:+4959634599970');
     });
 
     it('renders an email link with correct href', () => {

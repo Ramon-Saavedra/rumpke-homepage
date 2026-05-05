@@ -76,7 +76,7 @@ const Footer = () => {
                 Römerstraße 9<br />40811 Lingen
               </FooterContactItem>
               <FooterContactItem icon={<IoCallOutline size={15} />}>
-                <a href="tel:+491234567890" className="hover:text-primary">+49 123 456 7890</a>
+                <a href="tel:+4959634599970" className="hover:text-primary">05963 – 45 999 70</a>
               </FooterContactItem>
               <FooterContactItem icon={<IoMailOutline size={15} />}>
                 <a href="mailto:info@rumpke-immobilien.de" className="hover:text-primary">info@rumpke-immobilien.de</a>
