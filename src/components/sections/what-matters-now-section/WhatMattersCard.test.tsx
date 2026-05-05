@@ -23,10 +23,9 @@ jest.mock("lucide-react", () => ({
 }));
 
 describe("WhatMattersCard", () => {
-  it("renders title, description, number and CTA", () => {
+  it("renders title, description and CTA", () => {
     render(
       <WhatMattersCard
-        number="01"
         title="Klarheit vor dem nächsten Schritt"
         description="Eine fundierte Einordnung Ihrer Möglichkeiten."
         href="/kontakt"
@@ -41,15 +40,17 @@ describe("WhatMattersCard", () => {
     expect(
       screen.getByText("Eine fundierte Einordnung Ihrer Möglichkeiten.")
     ).toBeInTheDocument();
-    expect(screen.getByText("01")).toBeInTheDocument();
     expect(screen.getByText("Gespräch anfragen")).toBeInTheDocument();
-    expect(screen.getByRole("link")).toHaveAttribute("href", "/kontakt");
+    expect(
+      screen.getByRole("link", {
+        name: "Klarheit vor dem nächsten Schritt - Gespräch anfragen",
+      })
+    ).toHaveAttribute("href", "/kontakt");
   });
 
   it("applies an accessible label to the link", () => {
     render(
       <WhatMattersCard
-        number="02"
         title="Persönliche Begleitung"
         description="Persönlich und klar."
         href="/ueber-uns"
@@ -67,7 +68,6 @@ describe("WhatMattersCard", () => {
   it("renders the icon and the CTA arrow", () => {
     render(
       <WhatMattersCard
-        number="03"
         title="Regional stark"
         description="Mit Nähe zur Region."
         href="/auf-karte-erkunden"

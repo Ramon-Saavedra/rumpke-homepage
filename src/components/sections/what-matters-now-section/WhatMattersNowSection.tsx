@@ -96,7 +96,7 @@ export default function WhatMattersNowSection() {
                 className={`border border-border-l bg-bg-l px-4 py-4 duration-700 dark:border-border-d dark:bg-bg-d ${fadeUp(visible)}`}
                 style={{ transitionDelay: visible ? `${150 + index * 120}ms` : "0ms" }}
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] ">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
                   {pillar.title}
                 </p>
                 <p className="mt-2 text-sm leading-6 text-card-text-l dark:text-card-text-d">
