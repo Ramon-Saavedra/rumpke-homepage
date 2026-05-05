@@ -180,7 +180,7 @@ export default function DatenschutzPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
               Direkter Kontakt
             </p>
-            <div className="mt-4 space-y-3 break-words">
+            <div className="mt-4 space-y-3 wrap-break-word">
               <p>
                 <a
                   href="mailto:info@rumpke-immobilien.de"
