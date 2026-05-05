@@ -94,7 +94,7 @@ export default function ImpressumPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
               Kontakt
             </p>
-            <div className="mt-4 space-y-3 break-words">
+            <div className="mt-4 space-y-3 wrap-break-word">
               <p>
                 Telefon:{" "}
                 <a
