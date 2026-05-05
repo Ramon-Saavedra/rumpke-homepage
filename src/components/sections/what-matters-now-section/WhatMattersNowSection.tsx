@@ -2,7 +2,6 @@
 
 import {
   Compass,
-  MapPin,
   MessageCircleHeart,
   type LucideIcon,
 } from "lucide-react";
@@ -11,7 +10,6 @@ import { fadeUp } from "@/lib/animation";
 import WhatMattersCard from "./WhatMattersCard";
 
 type WhatMattersItem = {
-  readonly number: string;
   readonly title: string;
   readonly description: string;
   readonly href: string;
@@ -26,7 +24,6 @@ type WhatMattersPillar = {
 
 const items: readonly WhatMattersItem[] = [
   {
-    number: "01",
     title: "Klarheit vor dem nächsten Schritt",
     description:
       "Ob Verkauf, Kauf oder Bewertung - wir helfen Ihnen, Möglichkeiten realistisch einzuordnen und den nächsten Schritt mit einem sicheren Gefühl zu gehen.",
@@ -35,22 +32,12 @@ const items: readonly WhatMattersItem[] = [
     Icon: Compass,
   },
   {
-    number: "02",
     title: "Persönliche Begleitung statt Standardprozess",
     description:
       "Bei uns haben Sie feste Ansprechpartner, ehrliche Kommunikation und einen Ablauf, der sich an Ihrer Situation orientiert - nicht an einem starren Schema.",
     href: "/ueber-uns",
     ctaLabel: "Über Rumpke Immobilien",
     Icon: MessageCircleHeart,
-  },
-  {
-    number: "03",
-    title: "Regional stark, menschlich nah",
-    description:
-      "Mit Marktkenntnis aus der Region und einem Blick für Ihre individuellen Wünsche begleiten wir Sie transparent, fair und mit echter Nähe.",
-    href: "/auf-karte-erkunden",
-    ctaLabel: "Region entdecken",
-    Icon: MapPin,
   },
 ] as const;
 
@@ -64,11 +51,6 @@ const pillars: readonly WhatMattersPillar[] = [
     title: "Begleitung",
     description:
       "Mit echter Erreichbarkeit und einem klaren, persönlichen Ablauf.",
-  },
-  {
-    title: "Nähe",
-    description:
-      "Verwurzelt in der Region und aufmerksam für Ihre Situation.",
   },
 ] as const;
 
@@ -107,14 +89,14 @@ export default function WhatMattersNowSection() {
             </p>
           </div>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
             {pillars.map((pillar, index) => (
               <div
                 key={pillar.title}
                 className={`border border-border-l bg-bg-l px-4 py-4 duration-700 dark:border-border-d dark:bg-bg-d ${fadeUp(visible)}`}
                 style={{ transitionDelay: visible ? `${150 + index * 120}ms` : "0ms" }}
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] ">
                   {pillar.title}
                 </p>
                 <p className="mt-2 text-sm leading-6 text-card-text-l dark:text-card-text-d">
@@ -125,11 +107,10 @@ export default function WhatMattersNowSection() {
           </div>
         </div>
 
-        <div className="grid gap-4 xl:grid-cols-3">
+        <div className="grid gap-4 xl:grid-cols-2">
           {items.map((item, index) => (
             <WhatMattersCard
-              key={item.number}
-              number={item.number}
+              key={item.title}
               title={item.title}
               description={item.description}
               href={item.href}

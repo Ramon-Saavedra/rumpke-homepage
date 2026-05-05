@@ -24,7 +24,6 @@ jest.mock("./WhatMattersCard", () => {
 
 jest.mock("lucide-react", () => ({
   Compass: () => <svg data-testid="icon-compass" />,
-  MapPin: () => <svg data-testid="icon-map-pin" />,
   MessageCircleHeart: () => <svg data-testid="icon-message-heart" />,
 }));
 
@@ -40,19 +39,18 @@ describe("WhatMattersNowSection", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders exactly three cards", () => {
+  it("renders exactly two cards", () => {
     render(<WhatMattersNowSection />);
 
-    expect(screen.getAllByTestId("what-matters-card")).toHaveLength(3);
+    expect(screen.getAllByTestId("what-matters-card")).toHaveLength(2);
   });
 
-  it("renders the three support pillars", () => {
+  it("renders the two support pillars", () => {
     render(<WhatMattersNowSection />);
 
     const pillars = [
       "Orientierung",
       "Begleitung",
-      "Nähe",
     ] satisfies readonly string[];
 
     pillars.forEach((pillar) => {
@@ -69,6 +67,5 @@ describe("WhatMattersNowSection", () => {
     expect(
       screen.getByText("Persönliche Begleitung statt Standardprozess")
     ).toBeInTheDocument();
-    expect(screen.getByText("Regional stark, menschlich nah")).toBeInTheDocument();
   });
 });

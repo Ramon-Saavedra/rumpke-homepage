@@ -4,7 +4,6 @@ import { ArrowUpRight, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type WhatMattersCardProps = {
-  readonly number: string;
   readonly title: string;
   readonly description: string;
   readonly href: string;
@@ -15,7 +14,6 @@ type WhatMattersCardProps = {
 };
 
 export default function WhatMattersCard({
-  number,
   title,
   description,
   href,
@@ -35,13 +33,10 @@ export default function WhatMattersCard({
       style={style}
     >
       <article className="flex h-full flex-col border border-border-l bg-bgSecondary-l hover:border-primary dark:border-border-d dark:bg-bgSecondary-d">
-        <div className="flex items-start justify-between gap-4 border-b border-border-l px-5 py-5 dark:border-border-d sm:px-6">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/25 bg-primary/8 text-primary dark:border-primary/35 dark:bg-primary/12">
-            <Icon className="h-5 w-5" aria-hidden="true" />
+        <div className="border-b border-border-l px-5 py-5 dark:border-border-d sm:px-6">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-primary/40 bg-bgSecondary-l text-primary dark:bg-bgSecondary-d">
+            <Icon size={18} strokeWidth={1.6} aria-hidden="true" />
           </div>
-          <span className="text-xs font-semibold tracking-[0.24em] text-primary">
-            {number}
-          </span>
         </div>
 
         <div className="flex flex-1 flex-col px-5 py-5 sm:px-6">
