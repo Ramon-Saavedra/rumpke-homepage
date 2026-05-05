@@ -5,12 +5,12 @@ jest.mock('next/link', () => {
 });
 
 jest.mock('react-icons/io5', () => ({
-  IoLogoFacebook:    () => <svg data-testid="facebook-icon" />,
-  IoLogoInstagram:   () => <svg data-testid="instagram-icon" />,
-  IoLogoLinkedin:    () => <svg data-testid="linkedin-icon" />,
-  IoLogoWhatsapp:    () => <svg data-testid="whatsapp-icon" />,
-  IoMailOutline:     () => <svg data-testid="mail-icon" />,
-  IoCallOutline:     () => <svg data-testid="call-icon" />,
+  IoLogoFacebook: () => <svg data-testid="facebook-icon" />,
+  IoLogoInstagram: () => <svg data-testid="instagram-icon" />,
+  IoLogoLinkedin: () => <svg data-testid="linkedin-icon" />,
+  IoLogoWhatsapp: () => <svg data-testid="whatsapp-icon" />,
+  IoMailOutline: () => <svg data-testid="mail-icon" />,
+  IoCallOutline: () => <svg data-testid="call-icon" />,
   IoLocationOutline: () => <svg data-testid="location-icon" />,
 }));
 
@@ -65,8 +65,8 @@ describe('Footer', () => {
 
     it('renders phone link', () => {
       render(<Footer />);
-      const tel = screen.getByRole('link', { name: /49 123 456 7890/ });
-      expect(tel).toHaveAttribute('href', 'tel:+491234567890');
+      const tel = screen.getByRole('link', { name: /05963/ });
+      expect(tel).toHaveAttribute('href', 'tel:+4959634599970');
     });
 
     it('renders email link', () => {
