@@ -1,5 +1,30 @@
+import type { Metadata } from "next";
 import PropertyTypeGrid from "@/components/properties/PropertyTypeGrid";
 import Title from "@/components/ui/title/Title";
+import {
+  defaultOpenGraphMetadata,
+  defaultTwitterMetadata,
+} from "@/lib/site-metadata";
+
+export const metadata: Metadata = {
+  title: "Immobilien kaufen",
+  description:
+    "Kaufimmobilien im Emsland und der Grafschaft Bentheim – Häuser, Wohnungen, Grundstücke und Gewerbeimmobilien bei Rumpke Immobilien.",
+  alternates: { canonical: "/kauf" },
+  openGraph: {
+    ...defaultOpenGraphMetadata,
+    title: "Immobilien kaufen",
+    description:
+      "Kaufimmobilien im Emsland und der Grafschaft Bentheim – Häuser, Wohnungen, Grundstücke und Gewerbeimmobilien bei Rumpke Immobilien.",
+    url: "/kauf",
+  },
+  twitter: {
+    ...defaultTwitterMetadata,
+    title: "Immobilien kaufen",
+    description:
+      "Kaufimmobilien im Emsland und der Grafschaft Bentheim – Häuser, Wohnungen, Grundstücke und Gewerbeimmobilien bei Rumpke Immobilien.",
+  },
+};
 
 
 

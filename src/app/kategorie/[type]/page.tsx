@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Title from "@/components/ui/title/Title";
@@ -7,13 +8,40 @@ import {
   TYPE_LABELS,
   TYPE_DESCRIPTIONS,
   TRANSACTION_LABELS,
-  isValidType
+  isValidType,
 } from "@/types/property-types";
+import {
+  defaultOpenGraphMetadata,
+  defaultTwitterMetadata,
+} from "@/lib/site-metadata";
 
 interface PageProps {
   params: Promise<{
     type: string;
   }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { type } = await params;
+  if (!isValidType(type)) return {};
+  const label = TYPE_LABELS[type];
+  const description = `${TYPE_DESCRIPTIONS[type]} – ${label} kaufen oder mieten in Bawinkel und dem Emsland.`;
+  return {
+    title: label,
+    description,
+    alternates: { canonical: `/kategorie/${type}` },
+    openGraph: {
+      ...defaultOpenGraphMetadata,
+      title: label,
+      description,
+      url: `/kategorie/${type}`,
+    },
+    twitter: {
+      ...defaultTwitterMetadata,
+      title: label,
+      description,
+    },
+  };
 }
 
 export default async function PropertyTypePage({ params }: PageProps) {

@@ -1,6 +1,31 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { TrendingUp, Home, ClipboardCheck, Key } from "lucide-react";
 import ContactButton from "@/components/ui/contact-button/ContactButton";
+import {
+  defaultOpenGraphMetadata,
+  defaultTwitterMetadata,
+} from "@/lib/site-metadata";
+
+export const metadata: Metadata = {
+  title: "Dienstleistungen",
+  description:
+    "Immobiliendienstleistungen von Rumpke Immobilien – Verkauf, Vermietung, Wertermittlung und Kaufbegleitung im Emsland und der Grafschaft Bentheim.",
+  alternates: { canonical: "/dienstleistungen" },
+  openGraph: {
+    ...defaultOpenGraphMetadata,
+    title: "Dienstleistungen",
+    description:
+      "Immobiliendienstleistungen von Rumpke Immobilien – Verkauf, Vermietung, Wertermittlung und Kaufbegleitung im Emsland und der Grafschaft Bentheim.",
+    url: "/dienstleistungen",
+  },
+  twitter: {
+    ...defaultTwitterMetadata,
+    title: "Dienstleistungen",
+    description:
+      "Immobiliendienstleistungen von Rumpke Immobilien – Verkauf, Vermietung, Wertermittlung und Kaufbegleitung im Emsland und der Grafschaft Bentheim.",
+  },
+};
 
 export default function DienstleistungenPage() {
   const services = [
