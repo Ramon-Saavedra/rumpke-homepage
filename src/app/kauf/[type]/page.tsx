@@ -1,11 +1,44 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Title from "@/components/ui/title/Title";
-import { VALID_TYPES, TYPE_LABELS, isValidType } from "@/types/property-types";
+import {
+  VALID_TYPES,
+  TYPE_LABELS,
+  TYPE_DESCRIPTIONS_KAUF,
+  isValidType,
+} from "@/types/property-types";
+import {
+  defaultOpenGraphMetadata,
+  defaultTwitterMetadata,
+} from "@/lib/site-metadata";
 
 interface PageProps {
   params: Promise<{
     type: string;
   }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { type } = await params;
+  if (!isValidType(type)) return {};
+  const label = TYPE_LABELS[type];
+  const description = `${TYPE_DESCRIPTIONS_KAUF[type]} – ${label} zum Kauf in Bawinkel und dem Emsland.`;
+  return {
+    title: `${label} kaufen`,
+    description,
+    alternates: { canonical: `/kauf/${type}` },
+    openGraph: {
+      ...defaultOpenGraphMetadata,
+      title: `${label} kaufen`,
+      description,
+      url: `/kauf/${type}`,
+    },
+    twitter: {
+      ...defaultTwitterMetadata,
+      title: `${label} kaufen`,
+      description,
+    },
+  };
 }
 
 export default async function KaufTypePage({ params }: PageProps) {

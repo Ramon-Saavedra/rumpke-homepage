@@ -1,11 +1,44 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Title from "@/components/ui/title/Title";
-import { VALID_TYPES, TYPE_LABELS, isValidType } from "@/types/property-types";
+import {
+  VALID_TYPES,
+  TYPE_LABELS,
+  TYPE_DESCRIPTIONS_MIETE,
+  isValidType,
+} from "@/types/property-types";
+import {
+  defaultOpenGraphMetadata,
+  defaultTwitterMetadata,
+} from "@/lib/site-metadata";
 
 interface PageProps {
   params: Promise<{
     type: string;
   }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { type } = await params;
+  if (!isValidType(type)) return {};
+  const label = TYPE_LABELS[type];
+  const description = `${TYPE_DESCRIPTIONS_MIETE[type]} – ${label} zur Miete in Bawinkel und dem Emsland.`;
+  return {
+    title: `${label} mieten`,
+    description,
+    alternates: { canonical: `/miete/${type}` },
+    openGraph: {
+      ...defaultOpenGraphMetadata,
+      title: `${label} mieten`,
+      description,
+      url: `/miete/${type}`,
+    },
+    twitter: {
+      ...defaultTwitterMetadata,
+      title: `${label} mieten`,
+      description,
+    },
+  };
 }
 
 export default async function MieteTypePage({ params }: PageProps) {

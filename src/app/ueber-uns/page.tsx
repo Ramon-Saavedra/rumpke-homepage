@@ -1,5 +1,30 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Title from "@/components/ui/title/Title";
+import {
+  defaultOpenGraphMetadata,
+  defaultTwitterMetadata,
+} from "@/lib/site-metadata";
+
+export const metadata: Metadata = {
+  title: "Über uns",
+  description:
+    "Ann-Christin Rumpke – Immobilienmaklerin und Wertermittlerin im Emsland und der Grafschaft Bentheim. Persönlich, kompetent und authentisch.",
+  alternates: { canonical: "/ueber-uns" },
+  openGraph: {
+    ...defaultOpenGraphMetadata,
+    title: "Über uns",
+    description:
+      "Ann-Christin Rumpke – Immobilienmaklerin und Wertermittlerin im Emsland und der Grafschaft Bentheim. Persönlich, kompetent und authentisch.",
+    url: "/ueber-uns",
+  },
+  twitter: {
+    ...defaultTwitterMetadata,
+    title: "Über uns",
+    description:
+      "Ann-Christin Rumpke – Immobilienmaklerin und Wertermittlerin im Emsland und der Grafschaft Bentheim. Persönlich, kompetent und authentisch.",
+  },
+};
 
 export default function UeberUnsPage() {
   return (
