@@ -1,5 +1,4 @@
-
-
+import type { Metadata } from "next";
 import PersonalServiceCard from "@/components/sections/personal-service-card/PersonalServiceCard"
 import ServicesSection from "@/components/sections/services-section/ServicesSection"
 import HeroVideo from "@/components/hero/HeroVideo"
@@ -11,9 +10,32 @@ import { MOCK_FEATURED_PROPERTIES } from "@/data/mock-properties"
 import SecondaryNav from "@/components/layout/secondary-nav/SecondaryNav"
 import ProcessFlowSection from "@/components/sections/process-flow/ProcessFlowSection"
 import PropertyLegend from "@/components/properties/PropertyLegend"
+import { defaultOpenGraphMetadata, defaultTwitterMetadata, siteName } from "@/lib/site-metadata"
+
+export const metadata: Metadata = {
+  title: siteName,
+  description:
+    "Persönliche Immobilienberatung für Kauf, Verkauf und Vermietung in Bawinkel und dem Emsland. Ehrliche Beratung, transparente Abläufe – Rumpke Immobilien.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    ...defaultOpenGraphMetadata,
+    title: siteName,
+    description:
+      "Persönliche Immobilienberatung für Kauf, Verkauf und Vermietung in Bawinkel und dem Emsland. Ehrliche Beratung, transparente Abläufe – Rumpke Immobilien.",
+    url: "/",
+  },
+  twitter: {
+    ...defaultTwitterMetadata,
+    title: siteName,
+    description:
+      "Persönliche Immobilienberatung für Kauf, Verkauf und Vermietung in Bawinkel und dem Emsland.",
+  },
+};
 
 
-const page = () => {
+const HomePage = () => {
   return (
     <div className="">
       <HeroVideo
@@ -52,4 +74,4 @@ const page = () => {
   )
 }
 
-export default page
+export default HomePage
