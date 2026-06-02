@@ -1,15 +1,9 @@
-'use client'
-
-import { IoMenuOutline } from 'react-icons/io5';
 import CategoryButton from '@/components/features/category-button/CategoryButton';
 import LogoMobile from '@/components/branding/logo-mobile/LogoMobile';
 import { ThemeSwitch } from '@/context/ThemeSwitsh';
-import { useUiStore } from '@/store/ui/ui-store';
-
+import MenuButton from './MenuButton';
 
 const Topmenu = () => {
-  const { openSidebar } = useUiStore();
-
   return (
     <>
       <div className='fixed top-0 left-0 right-0 z-100 flex justify-between items-center w-full py-2 backdrop-blur-xl bg-background/80 dark:bg-background-dark/80'>
@@ -34,13 +28,7 @@ const Topmenu = () => {
           />
 
           <div className='flex items-center justify-center rounded-md md:h-8 '>
-            <button
-              data-testid="menu-btn"
-              aria-label="Open navigation menu"
-              onClick={openSidebar}
-              className='mx-2 md:hidden p-1 rounded cursor-pointer hover:bg-primary/10 dark:hover:bg-primary-dark/20'>
-              <IoMenuOutline size={28} />
-            </button>
+            <MenuButton />
           </div>
         </div>
       </div>
