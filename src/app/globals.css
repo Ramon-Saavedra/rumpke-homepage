@@ -43,43 +43,50 @@
   animation: slide-in 0.3s ease-out;
 }
 
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
   .bg-gradient-blue-purple {
     background: var(--gradient-blue-purple);
   }
 
 @theme {
---color-bg-d: #18181C;
---color-bg-l: #FCFCFC;
---color-bgSecondary-l : #FFFFFF;
---color-bgSecondary-d : #1E1E1E;
---color-card-text-l: #6E6E6E;
---color-card-text-d: #BDBDBD;
+--color-bg-d: #151819;
+--color-bg-l: #F7F8F6;
+--color-bgSecondary-l: #FFFFFF;
+--color-bgSecondary-d: #1E2122;
+--color-card-text-l: #677070;
+--color-card-text-d: #A8B5B2;
 
---color-error: #EF4444;
---color-success: #22C55E;
---color-warning: #F59E42;
---color-Bghover-l: #EDEDED;
---color-Bghover-d: #1E1E1E;
+--color-error: #D93025;
+--color-success: #16A34A;
+--color-warning: #D97706;
+--color-Bghover-l: #ECEEED;
+--color-Bghover-d: #1B1F1E;
 
---color-rent: #E67E22;
---color-buy: #27AE60;
+--color-rent: #C05621;
+--color-buy: #2A604A;
 
---color-primary: #018063;
---color-primary-dark: #1B4229;
---color-primary-surface: #F0F5F3;
---color-secondary: #445544;
---color-secondary-dark: #2B362B;
---color-third: #1A141A;
---color-border-l: #E5E5E5;
---color-border-d: #2E2E2E;
+--color-primary: #2A604A;
+--color-primary-dark: #1A3D2F;
+--color-primary-surface: #EBF4EF;
+--color-secondary: #3C5548;
+--color-secondary-dark: #1F2E25;
+--color-third: #1A1D1B;
+--color-border-l: #DCE5DF;
+--color-border-d: #252D2A;
 
 --topbar-height: 3.5rem;
 
-/* Status colors */
---color-status-published: #22C55E;
---color-status-reserved: #F59E42;
---color-status-sold: #EF4444;
---color-status-rented: #3B82F6;
+--color-status-published: #16A34A;
+--color-status-reserved: #D97706;
+--color-status-sold: #D93025;
+--color-status-rented: #2563EB;
 --color-status-draft: #9CA3AF;
 --color-status-hidden: #374151;
 

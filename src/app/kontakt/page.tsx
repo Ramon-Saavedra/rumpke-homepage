@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import BackHomeButton from "@/components/features/back-home-buttom/BackHomeButton";
 import { IoCallOutline, IoMailOutline, IoLocationOutline } from "react-icons/io5";
+import ContactForm from "@/components/features/contact-form/ContactForm";
 
 export const metadata: Metadata = {
   title: "Kontakt",
@@ -99,6 +100,13 @@ export default function KontaktPage() {
             Kontakt
           </span>
         </div>
+      </section>
+
+      <section
+        aria-labelledby="form-heading"
+        className="mt-4 mb-8 border border-border-l dark:border-border-d overflow-hidden rounded-sm"
+      >
+        <ContactForm formHeadingId="form-heading" />
       </section>
     </main>
   );
