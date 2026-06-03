@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import { Roboto, Geist } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/context/ThemeContext";
 import CompanyTitle from "@/components/branding/companyTitle/CompanyTitle";
 import Topmenu from "@/components/layout/top-menu/TopMenu";
 import Footer from "@/components/layout/footer/Footer";
@@ -28,27 +27,27 @@ type RootLayoutProps = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
+    // suppressHydrationWarning is intentional: ThemeSwitch adds the 'dark' class
+    // to <html> on the client via localStorage, causing a harmless hydration
+    // mismatch. This is the recommended pattern for client-side theme toggles.
     <html lang="de" className={cn(roboto.className, "font-sans", geist.variable)} suppressHydrationWarning>
       <body className="antialiased">
-
-        <ThemeProvider>
-          <div className="bg-bg-l text-zinc-800 dark:bg-bg-d dark:text-zinc-100">
-            <div className="">
-              <Topmenu />
-              <div className="md:hidden">
-                <Sidebar />
-              </div>
-              <div style={{ paddingTop: 'var(--topbar-height)' }}>
-                <CategoryNav />
-                {children}
-              </div>
-              <GoogleMap />
-              <Footer />
+        <div className="bg-bg-l text-zinc-800 dark:bg-bg-d dark:text-zinc-100">
+          <div className="">
+            <Topmenu />
+            <div className="md:hidden">
+              <Sidebar />
             </div>
+            <div style={{ paddingTop: 'var(--topbar-height)' }}>
+              <CategoryNav />
+              {children}
+            </div>
+            <GoogleMap />
+            <Footer />
           </div>
-          <CompanyTitle />
-          <ScrollToTopButton />
-        </ThemeProvider>
+        </div>
+        <CompanyTitle />
+        <ScrollToTopButton />
       </body>
     </html>
   );
