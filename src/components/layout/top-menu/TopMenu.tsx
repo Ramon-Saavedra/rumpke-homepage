@@ -10,10 +10,7 @@ const Topmenu = () => {
         <div className='flex flex-col items-center justify-center'>
           <LogoMobile />
         </div>
-        <div>
-          <ThemeSwitch />
-        </div>
-        <div className='flex gap-1'>
+        <div className='flex items-center gap-1'>
           <CategoryButton
             name="Kauf"
             href="/kauf"
@@ -26,7 +23,8 @@ const Topmenu = () => {
             color="border-rent text-white font-bold"
             className=" bg-rent"
           />
-
+          <div className="w-px h-5 bg-foreground/20 mx-1" aria-hidden="true" />
+          <ThemeSwitch />
           <div className='flex items-center justify-center rounded-md md:h-8 '>
             <MenuButton />
           </div>

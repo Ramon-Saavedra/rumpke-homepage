@@ -5,6 +5,7 @@ import HeroVideo from "@/components/hero/HeroVideo"
 import WhyChooseRumpke from "@/components/sections/why-choose-rumpke/WhyChooseRumpke"
 import WhatMattersNowSection from "@/components/sections/what-matters-now-section/WhatMattersNowSection"
 import Title from "@/components/ui/title/Title"
+import SectionHeader from "@/components/ui/section-header/SectionHeader"
 import PropertiesGrid from "@/components/properties/PropertiesGrid"
 import { MOCK_FEATURED_PROPERTIES } from "@/data/mock-properties"
 import SecondaryNav from "@/components/layout/secondary-nav/SecondaryNav"
@@ -53,11 +54,9 @@ const HomePage = () => {
 
       <main className="p-2 xl:px-20 2xl:px-32 2xl:w-[80%] mx-auto">
         <ProcessFlowSection />
-        <section className="mb-12">
+        <section className="mb-24 px-4 sm:px-6 py-12">
           <div className="container mx-auto">
-            <Title variant="h2" align="left" className="mb-8 px-2 rounded" size="xl">
-              Ausgewählte Immobilien
-            </Title>
+            <SectionHeader title="Ausgewählte Immobilien" className="mb-8" />
             <div className="mb-1">
               <PropertiesGrid properties={MOCK_FEATURED_PROPERTIES} />
               <PropertyLegend />

@@ -24,20 +24,19 @@ const services: readonly ServiceItem[] = [
   },
 ];
 
+import SectionHeader from "@/components/ui/section-header/SectionHeader";
+
 const ServicesSection = () => {
   return (
     <section
       aria-label="Unsere Leistungen"
-      className="mb-12 w-full"
+      className="mb-24 w-full px-4 sm:px-6 py-12"
     >
-      <div className="mb-8">
-        <span className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-3 block">
-          Was wir bieten
-        </span>
-        <h2 className="text-3xl sm:text-4xl font-bold leading-tight text-foreground">
-          Unsere Leistungen
-        </h2>
-      </div>
+      <SectionHeader
+        eyebrow="Was wir bieten"
+        title="Unsere Leistungen"
+        className="mb-8"
+      />
       <div className="border-t border-border-l dark:border-border-d">
         {services.map((service) => (
           <ServiceCard

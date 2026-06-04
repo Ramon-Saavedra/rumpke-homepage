@@ -108,7 +108,7 @@ describe('WhyChooseRumpke', () => {
     it('section has padding classes', () => {
       render(<WhyChooseRumpke />);
       const section = document.querySelector('section');
-      expect(section).toHaveClass('px-2');
+      expect(section).toHaveClass('px-4', 'py-12');
     });
 
     it('has a grid container', () => {

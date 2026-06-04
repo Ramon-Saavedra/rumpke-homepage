@@ -8,6 +8,7 @@ import {
 import { useScrollVisible } from "@/hooks/useScrollVisible";
 import { fadeUp } from "@/lib/animation";
 import WhatMattersCard from "./WhatMattersCard";
+import SectionHeader from "@/components/ui/section-header/SectionHeader";
 
 type WhatMattersItem = {
   readonly title: string;
@@ -61,32 +62,24 @@ export default function WhatMattersNowSection() {
     <section
       ref={ref}
       aria-labelledby="what-matters-now-title"
-      className="relative mb-12 overflow-hidden border border-border-l dark:border-border-d"
+      className="relative mb-24 py-12 overflow-hidden"
     >
       <div
         aria-hidden="true"
         className="absolute inset-x-0 top-0 h-40 "
       />
 
-      <div className="relative grid gap-8 px-5 py-8 sm:px-6 sm:py-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-10 lg:px-8 lg:py-12">
+      <div className="relative grid gap-8 px-5 sm:px-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-10 lg:px-8">
         <div
           className={`flex flex-col justify-between border-b border-border-l pb-8 duration-700 dark:border-border-d lg:border-b-0 lg:border-r lg:pb-0 lg:pr-10 ${fadeUp(visible)}`}
         >
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">
-              Mehr als nur 4 Wände
-            </p>
-            <h2
-              id="what-matters-now-title"
-              className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
-            >
-              Was Ihnen jetzt wichtig ist
-            </h2>
-            <p className="mt-5 max-w-xl text-base leading-8 text-card-text-l dark:text-card-text-d">
-              Rund um Immobilien geht es selten nur um Zahlen. Oft geht es um
-              Klarheit, Vertrauen und das gute Gefühl, die richtige Entscheidung
-              zu treffen.
-            </p>
+          <SectionHeader
+              eyebrow="Mehr als nur 4 Wände"
+              title="Was Ihnen jetzt wichtig ist"
+              titleId="what-matters-now-title"
+              subtitle="Rund um Immobilien geht es selten nur um Zahlen. Oft geht es um Klarheit, Vertrauen und das gute Gefühl, die richtige Entscheidung zu treffen."
+            />
           </div>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
