@@ -15,7 +15,7 @@ export default function ContactButton({
   return (
     <Link
       href={href}
-      className={`inline-flex items-center gap-1 px-3 py-1.5 bg-white dark:bg-primary-dark  font-medium rounded-md shadow-sm hover:bg-primary hover:text-white dark:hover:bg-primary-dark dark:hover:text-white ${className}`}
+      className={`inline-flex items-center gap-1 px-3 py-1.5 bg-bgSecondary-l dark:bg-bgSecondary-d font-medium rounded-md shadow-sm hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white ${className}`}
       style={{ letterSpacing: "0.01em" }}
     >
       <Mail size={18} strokeWidth={2} />
