@@ -32,7 +32,7 @@ export default function WhatMattersCard({
       )}
       style={style}
     >
-      <article className="flex h-full flex-col border border-border-l bg-bgSecondary-l hover:border-primary dark:border-border-d dark:bg-bgSecondary-d">
+      <article className="flex h-full flex-col border border-border-l dark:border-border-d hover:bg-bgSecondary-l dark:hover:bg-bgSecondary-d transition-colors">
         <div className="border-b border-border-l px-5 py-5 dark:border-border-d sm:px-6">
           <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-primary/40 bg-bgSecondary-l text-primary dark:bg-bgSecondary-d">
             <Icon size={18} strokeWidth={1.6} aria-hidden="true" />

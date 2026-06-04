@@ -23,7 +23,7 @@ const NavItem = ({ href, icon, children, onClick, target, rel }: NavItemProps) =
     <Link
       href={href}
       onClick={onClick}
-      className={`flex items-center text-xs px-1 mb-4 md:mb-0  font-extrabold hover:text-primary`}
+      className={`flex items-center text-xs px-2 mb-4 md:mb-0 font-extrabold hover:text-primary hover:bg-bgSecondary-l dark:hover:bg-bgSecondary-d rounded transition-colors`}
       {...(target ? { target } : {})}
       {...(rel ? { rel } : {})}
     >

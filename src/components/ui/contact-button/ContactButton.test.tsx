@@ -87,8 +87,8 @@ describe('ContactButton', () => {
     it('has background color classes', () => {
       render(<ContactButton />);
       const link = screen.getByRole('link');
-      expect(link).toHaveClass('bg-white');
-      expect(link).toHaveClass('dark:bg-primary-dark');
+      expect(link).toHaveClass('bg-bgSecondary-l');
+      expect(link).toHaveClass('dark:bg-bgSecondary-d');
     });
 
     it('has text color classes', () => {
@@ -105,7 +105,7 @@ describe('ContactButton', () => {
       expect(link).toHaveClass('shadow-sm');
       expect(link).toHaveClass('hover:bg-primary');
       expect(link).toHaveClass('hover:text-white');
-      expect(link).toHaveClass('dark:hover:bg-primary-dark');
+      expect(link).toHaveClass('dark:hover:bg-primary');
       expect(link).toHaveClass('dark:hover:text-white');
     });
 
@@ -113,7 +113,7 @@ describe('ContactButton', () => {
       render(<ContactButton className="extra-class" />);
       const link = screen.getByRole('link');
       expect(link).toHaveClass('inline-flex');
-      expect(link).toHaveClass('bg-white');
+      expect(link).toHaveClass('bg-bgSecondary-l');
       expect(link).toHaveClass('extra-class');
     });
   });

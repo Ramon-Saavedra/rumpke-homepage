@@ -36,7 +36,7 @@ export default function PropertiesGrid({ properties }: PropertiesGridProps) {
   }
 
   return (
-    <div className="relative border p-2 rounded">
+    <div className="relative border border-border-l dark:border-border-d p-2 rounded">
       <Swiper
         modules={[Navigation]}
         spaceBetween={4}

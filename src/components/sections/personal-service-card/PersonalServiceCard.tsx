@@ -4,22 +4,29 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { HeartHandshake, MapPinned, BadgeCheck, type LucideIcon } from "lucide-react";
 
-const features = [
+type Feature = {
+  readonly Icon: LucideIcon;
+  readonly title: string;
+  readonly description: string;
+};
+
+const features: readonly Feature[] = [
   {
-    number: "01",
+    Icon: HeartHandshake,
     title: "Persönlicher Service",
     description:
       "Ich nehme mir Zeit für Sie und Ihre individuellen Wünsche. Jeder Kunde wird von einem festen Ansprechpartner betreut, der ihn während des gesamten Prozesses begleitet.",
   },
   {
-    number: "02",
+    Icon: MapPinned,
     title: "Lokale Expertise",
     description:
       "Als erfahrene Immobilienmaklerin kenne ich den regionalen Markt und seine Besonderheiten. Nutzen Sie unser Netzwerk und unser Know-how zu Ihrem Vorteil.",
   },
   {
-    number: "03",
+    Icon: BadgeCheck,
     title: "Transparenz und Vertrauen",
     description:
       "Bei uns gibt es keine versteckten Kosten. Wir legen Wert auf eine offene Kommunikation und faire Konditionen.",
@@ -72,26 +79,23 @@ const PersonalServiceCard = () => {
           <div className="flex flex-col">
             {features.map((f, i) => (
               <div
-                key={f.number}
-                className={`relative border-t border-border-l dark:border-border-d py-6 group transition-[opacity,transform] duration-500 ease-out ${
+                key={f.title}
+                className={`flex gap-4 border-t border-border-l dark:border-border-d py-6 transition-[opacity,transform] duration-500 ease-out ${
                   visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
                 style={{ transitionDelay: visible ? `${200 + i * 120}ms` : "0ms" }}
               >
-                {/* Faded number decoration */}
-                <span className="absolute right-0 top-4 text-6xl font-black text-primary/8 dark:text-primary/10 select-none leading-none pointer-events-none">
-                  {f.number}
-                </span>
-
-                <p className="text-xs font-semibold tracking-widest text-primary mb-1 uppercase">
-                  {f.number}
-                </p>
-                <h3 className="text-base font-bold mb-2 text-foreground group-hover:text-primary transition-colors duration-200">
-                  {f.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-card-text-l dark:text-card-text-d">
-                  {f.description}
-                </p>
+                <div className="flex-shrink-0 flex h-9 w-9 items-center justify-center rounded-md bg-primary/10 text-primary">
+                  <f.Icon size={17} strokeWidth={1.8} aria-hidden="true" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold mb-2 text-foreground">
+                    {f.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-card-text-l dark:text-card-text-d">
+                    {f.description}
+                  </p>
+                </div>
               </div>
             ))}
             <div className="border-t border-border-l dark:border-border-d" />

@@ -61,7 +61,7 @@ export default function WhatMattersNowSection() {
     <section
       ref={ref}
       aria-labelledby="what-matters-now-title"
-      className="relative mb-12 overflow-hidden border border-border-l dark:border-border-d "
+      className="relative mb-12 overflow-hidden border border-border-l dark:border-border-d"
     >
       <div
         aria-hidden="true"
@@ -93,7 +93,7 @@ export default function WhatMattersNowSection() {
             {pillars.map((pillar, index) => (
               <div
                 key={pillar.title}
-                className={`border border-border-l bg-bg-l px-4 py-4 duration-700 dark:border-border-d dark:bg-bg-d ${fadeUp(visible)}`}
+                className={`border border-border-l dark:border-border-d px-4 py-4 duration-700 ${fadeUp(visible)}`}
                 style={{ transitionDelay: visible ? `${150 + index * 120}ms` : "0ms" }}
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
