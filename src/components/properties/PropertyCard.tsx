@@ -28,7 +28,7 @@ export default function PropertyCard({
   preload = false
 }: PropertyCardProps) {
   return (
-    <Link href={`/object/${slug}`}>
+    <Link href={`/object/${slug}`} className="group block hover:bg-bgSecondary-l dark:hover:bg-bgSecondary-d transition-colors rounded overflow-hidden">
       <article className="group relative flex flex-col dark:border-border-d overflow-hidden shadow-lg">
         {/* Image */}
         <div className="relative h-64 md:h-48 shrink-0 overflow-hidden">
