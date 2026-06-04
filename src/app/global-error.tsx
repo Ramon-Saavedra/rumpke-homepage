@@ -17,13 +17,13 @@ export default function GlobalError({
   return (
     <html lang="de">
       <body>
-        <div className="flex flex-col items-center justify-center min-h-screen gap-6 text-center px-4 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100">
+        <div className="flex flex-col items-center justify-center min-h-screen gap-6 text-center px-4 bg-bgSecondary-l dark:bg-bgSecondary-d text-foreground">
           <h2 className="text-3xl font-bold">Kritischer Fehler</h2>
 
-          <p className="max-w-md text-zinc-600 dark:text-zinc-400">
+          <p className="max-w-md text-card-text-l dark:text-card-text-d">
             Ein schwerwiegender Fehler ist aufgetreten. Die Seite konnte nicht geladen werden.
             {error.digest && (
-              <span className="block text-sm mt-2 text-zinc-500">
+              <span className="block text-sm mt-2 text-card-text-l dark:text-card-text-d">
                 Fehler-ID: {error.digest}
               </span>
             )}
@@ -31,7 +31,7 @@ export default function GlobalError({
 
           <button
             onClick={unstable_retry}
-            className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+            className="px-6 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors cursor-pointer"
           >
             Erneut versuchen
           </button>

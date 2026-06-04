@@ -104,7 +104,7 @@ export default function KontaktPage() {
 
       <section
         aria-labelledby="form-heading"
-        className="mt-4 mb-8 border border-border-l dark:border-border-d overflow-hidden rounded-sm"
+        className="mt-4 mb-8 border border-border-l dark:border-border-d overflow-hidden rounded-sm bg-bgSecondary-l dark:bg-bgSecondary-d"
       >
         <ContactForm formHeadingId="form-heading" />
       </section>

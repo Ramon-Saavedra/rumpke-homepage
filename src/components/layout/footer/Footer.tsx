@@ -59,7 +59,7 @@ function FooterContactItem({ icon, children }: { icon: ReactNode; children: Reac
 
 const Footer = () => {
   return (
-    <footer className="w-full border-t border-border-l dark:border-border-d">
+    <footer className="w-full border-t border-border-l dark:border-border-d bg-bgSecondary-l dark:bg-bgSecondary-d">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-16 pb-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr] gap-12 mb-12 text-center md:text-left">
 
