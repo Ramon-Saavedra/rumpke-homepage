@@ -56,10 +56,10 @@
   }
 
 @theme {
---color-bg-d: #151819;
+--color-bg-d: #1C1C1E;
 --color-bg-l: #F7F8F6;
 --color-bgSecondary-l: #FFFFFF;
---color-bgSecondary-d: #1E2122;
+--color-bgSecondary-d: #252525;
 --color-card-text-l: #677070;
 --color-card-text-d: #A8B5B2;
 
@@ -70,10 +70,10 @@
 --color-Bghover-d: #1B1F1E;
 
 --color-rent: #C05621;
---color-buy: #2A604A;
+--color-buy: #2E8A5A;
 
---color-primary: #2A604A;
---color-primary-dark: #1A3D2F;
+--color-primary: #2E8A5A;
+--color-primary-dark: #226944;
 --color-primary-surface: #EBF4EF;
 --color-secondary: #3C5548;
 --color-secondary-dark: #1F2E25;
@@ -271,6 +271,8 @@
 }
 
 .dark {
+  --color-primary: #52B788;
+  --color-primary-dark: #3DA872;
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
