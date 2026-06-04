@@ -99,11 +99,10 @@ describe('PersonalServiceCard', () => {
       expect(screen.getByText(/keine versteckten Kosten/)).toBeInTheDocument();
     });
 
-    it('renders feature numbers 01, 02, 03', () => {
+    it('renders feature icons', () => {
       render(<PersonalServiceCard />);
-      expect(screen.getAllByText('01').length).toBeGreaterThanOrEqual(1);
-      expect(screen.getAllByText('02').length).toBeGreaterThanOrEqual(1);
-      expect(screen.getAllByText('03').length).toBeGreaterThanOrEqual(1);
+      const svgs = document.querySelectorAll('svg[aria-hidden="true"]');
+      expect(svgs.length).toBeGreaterThanOrEqual(3);
     });
   });
 
