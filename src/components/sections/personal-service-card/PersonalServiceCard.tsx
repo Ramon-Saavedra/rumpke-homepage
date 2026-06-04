@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { HeartHandshake, MapPinned, BadgeCheck, type LucideIcon } from "lucide-react";
+import SectionHeader from "@/components/ui/section-header/SectionHeader";
 
 type Feature = {
   readonly Icon: LucideIcon;
@@ -55,7 +56,7 @@ const PersonalServiceCard = () => {
     <section
       ref={sectionRef}
       aria-label="Personal Service"
-      className="w-full px-4 sm:px-6 py-16 md:py-24"
+      className="w-full px-4 sm:px-6 py-12 mb-24"
     >
       <div className="mx-auto grid lg:grid-cols-[1fr_auto_1fr] gap-12 lg:gap-x-10 items-center">
 
@@ -65,15 +66,11 @@ const PersonalServiceCard = () => {
             visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
           }`}
         >
-          {/* Section label */}
-          <span className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-4">
-            Über mich
-          </span>
-
-          {/* Headline */}
-          <h2 className="text-3xl sm:text-4xl font-bold leading-tight mb-10 text-foreground">
-            Ann-Christin Rumpke
-          </h2>
+          <SectionHeader
+            eyebrow="Über mich"
+            title="Ann-Christin Rumpke"
+            className="mb-10"
+          />
 
           {/* Feature list */}
           <div className="flex flex-col">

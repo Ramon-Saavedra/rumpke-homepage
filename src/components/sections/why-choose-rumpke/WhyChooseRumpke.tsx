@@ -3,6 +3,7 @@
 import { UserCheck, MapPin, Shield, type LucideIcon } from "lucide-react";
 import { useScrollVisible } from "@/hooks/useScrollVisible";
 import { fadeUp } from "@/lib/animation";
+import SectionHeader from "@/components/ui/section-header/SectionHeader";
 
 type Feature = {
   readonly Icon: LucideIcon;
@@ -49,22 +50,17 @@ const WhyChooseRumpke = () => {
     <section
       ref={ref}
       aria-label="Warum Rumpke Immobilien"
-      className="w-full mb-18 px-2"
+      className="w-full mb-24 px-4 sm:px-6 py-12"
     >
       <div className="mx-auto">
 
         {/* Header */}
-        <div className={`mb-6 duration-1000${fadeUp(visible)}`}>
-          <span className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-4 block">
-            Unsere Stärken
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold leading-tight text-foreground mb-4">
-            Warum Rumpke Immobilien?
-          </h2>
-          <p className="text-base text-card-text-l dark:text-card-text-d max-w-xl leading-relaxed">
-            Wir verbinden persönliche Nähe mit regionalem Fachwissen – für ein Immobilienerlebnis, das Sie überzeugt.
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow="Unsere Stärken"
+          title="Warum Rumpke Immobilien?"
+          subtitle="Wir verbinden persönliche Nähe mit regionalem Fachwissen – für ein Immobilienerlebnis, das Sie überzeugt."
+          className={`mb-6 duration-1000${fadeUp(visible)}`}
+        />
 
         {/* Features */}
         <div className="grid grid-cols-1 md:grid-cols-3 ">

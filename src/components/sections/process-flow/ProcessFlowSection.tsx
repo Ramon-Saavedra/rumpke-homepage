@@ -35,7 +35,7 @@ export default function ProcessFlowSection() {
   );
 
   return (
-    <section aria-label="Unser Prozess" className="w-full px-4 sm:px-6 py-12 relative mb-8">
+    <section aria-label="Unser Prozess" className="w-full px-4 sm:px-6 py-12 relative mb-24">
       <div
         aria-hidden="true"
         className="absolute inset-0 bg-[linear-gradient(to_right,rgb(0_0_0/0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgb(0_0_0/0.05)_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,rgb(255_255_255/0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgb(255_255_255/0.04)_1px,transparent_1px)] bg-size-[40px_40px] mask-[linear-gradient(to_right,transparent,black_15%,black_85%,transparent),linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] mask-intersect"
