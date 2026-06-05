@@ -33,7 +33,7 @@ const ContactTooltip = () => {
         />
 
         <SocialIcon
-          href="/#"
+          href="/#contact-form"
           ariaLabel="Email"
           dataSocial="email"
           icon={<IoMailOutline size={18} className='hover:bg-[#2563EB] rounded' />}
@@ -41,12 +41,9 @@ const ContactTooltip = () => {
           bgColor="#2563EB"
           className="hidden md:block"
           onClick={e => {
-            if (window.location.pathname === '/' || window.location.pathname === '/index') {
+            if (window.location.pathname === '/') {
               e.preventDefault();
-              const el = document.getElementById('leadform');
-              if (el) {
-                el.scrollIntoView({ behavior: 'smooth' });
-              }
+              document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
             }
           }}
         />
