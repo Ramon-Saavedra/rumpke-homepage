@@ -1,6 +1,31 @@
+import type { Metadata } from "next";
 import ContactButton from "@/components/ui/contact-button/ContactButton";
 import ServiceCard from "@/components/ui/service-card/ServiceCard";
 import AdvantagesSection from "@/components/ui/advantages-section/AdvantagesSection";
+import {
+  defaultOpenGraphMetadata,
+  defaultTwitterMetadata,
+} from "@/lib/site-metadata";
+
+export const metadata: Metadata = {
+  title: "Immobilienkauf",
+  description:
+    "Kompetente Begleitung beim Immobilienkauf im Emsland – von der ersten Besichtigung bis zur Schlüsselübergabe mit Rumpke Immobilien.",
+  alternates: { canonical: "/dienstleistungen/immobilien-kauf" },
+  openGraph: {
+    ...defaultOpenGraphMetadata,
+    title: "Immobilienkauf",
+    description:
+      "Kompetente Begleitung beim Immobilienkauf im Emsland – von der ersten Besichtigung bis zur Schlüsselübergabe mit Rumpke Immobilien.",
+    url: "/dienstleistungen/immobilien-kauf",
+  },
+  twitter: {
+    ...defaultTwitterMetadata,
+    title: "Immobilienkauf",
+    description:
+      "Kompetente Begleitung beim Immobilienkauf im Emsland – von der ersten Besichtigung bis zur Schlüsselübergabe mit Rumpke Immobilien.",
+  },
+};
 
 export default function ImmobilienKaufPage() {
   return (
@@ -69,7 +94,7 @@ export default function ImmobilienKaufPage() {
             <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
               <div className="flex gap-4">
                 <div className="shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-primary dark:bg-primary-dark flex items-center justify-center text-white font-bold">
+                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
                     1
                   </div>
                 </div>
@@ -85,7 +110,7 @@ export default function ImmobilienKaufPage() {
             <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
               <div className="flex gap-4">
                 <div className="shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-primary dark:bg-primary-dark flex items-center justify-center text-white font-bold">
+                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
                     2
                   </div>
                 </div>
@@ -101,7 +126,7 @@ export default function ImmobilienKaufPage() {
             <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
               <div className="flex gap-4">
                 <div className="shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-primary dark:bg-primary-dark flex items-center justify-center text-white font-bold">
+                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
                     3
                   </div>
                 </div>
@@ -117,7 +142,7 @@ export default function ImmobilienKaufPage() {
             <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
               <div className="flex gap-4">
                 <div className="shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-primary dark:bg-primary-dark flex items-center justify-center text-white font-bold">
+                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
                     4
                   </div>
                 </div>
@@ -133,7 +158,7 @@ export default function ImmobilienKaufPage() {
             <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
               <div className="flex gap-4">
                 <div className="shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-primary dark:bg-primary-dark flex items-center justify-center text-white font-bold">
+                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
                     5
                   </div>
                 </div>

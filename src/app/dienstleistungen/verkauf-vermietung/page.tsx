@@ -1,6 +1,31 @@
+import type { Metadata } from "next";
 import ContactButton from "@/components/ui/contact-button/ContactButton";
 import ServiceCard from "@/components/ui/service-card/ServiceCard";
 import AdvantagesSection from "@/components/ui/advantages-section/AdvantagesSection";
+import {
+  defaultOpenGraphMetadata,
+  defaultTwitterMetadata,
+} from "@/lib/site-metadata";
+
+export const metadata: Metadata = {
+  title: "Verkauf & Vermietung",
+  description:
+    "Professionelle Vermarktung Ihrer Immobilie im Emsland – Rumpke Immobilien findet den richtigen Käufer oder Mieter für Sie.",
+  alternates: { canonical: "/dienstleistungen/verkauf-vermietung" },
+  openGraph: {
+    ...defaultOpenGraphMetadata,
+    title: "Verkauf & Vermietung",
+    description:
+      "Professionelle Vermarktung Ihrer Immobilie im Emsland – Rumpke Immobilien findet den richtigen Käufer oder Mieter für Sie.",
+    url: "/dienstleistungen/verkauf-vermietung",
+  },
+  twitter: {
+    ...defaultTwitterMetadata,
+    title: "Verkauf & Vermietung",
+    description:
+      "Professionelle Vermarktung Ihrer Immobilie im Emsland – Rumpke Immobilien findet den richtigen Käufer oder Mieter für Sie.",
+  },
+};
 
 export default function VerkaufVermietungPage() {
   return (

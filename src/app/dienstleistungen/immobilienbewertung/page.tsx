@@ -1,6 +1,31 @@
+import type { Metadata } from "next";
 import ContactButton from "@/components/ui/contact-button/ContactButton";
 import ServiceCard from "@/components/ui/service-card/ServiceCard";
 import AdvantagesSection from "@/components/ui/advantages-section/AdvantagesSection";
+import {
+  defaultOpenGraphMetadata,
+  defaultTwitterMetadata,
+} from "@/lib/site-metadata";
+
+export const metadata: Metadata = {
+  title: "Immobilienbewertung",
+  description:
+    "Präzise Wertermittlung Ihrer Immobilie durch erfahrene Experten im Emsland – fundiert, transparent und marktgerecht.",
+  alternates: { canonical: "/dienstleistungen/immobilienbewertung" },
+  openGraph: {
+    ...defaultOpenGraphMetadata,
+    title: "Immobilienbewertung",
+    description:
+      "Präzise Wertermittlung Ihrer Immobilie durch erfahrene Experten im Emsland – fundiert, transparent und marktgerecht.",
+    url: "/dienstleistungen/immobilienbewertung",
+  },
+  twitter: {
+    ...defaultTwitterMetadata,
+    title: "Immobilienbewertung",
+    description:
+      "Präzise Wertermittlung Ihrer Immobilie durch erfahrene Experten im Emsland – fundiert, transparent und marktgerecht.",
+  },
+};
 
 export default function ImmobilienbewertungPage() {
   return (
@@ -64,7 +89,7 @@ export default function ImmobilienbewertungPage() {
             <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
               <div className="flex gap-4">
                 <div className="shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-primary dark:bg-primary-dark flex items-center justify-center text-white font-bold">
+                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
                     1
                   </div>
                 </div>
@@ -80,7 +105,7 @@ export default function ImmobilienbewertungPage() {
             <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
               <div className="flex gap-4">
                 <div className="shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-primary dark:bg-primary-dark flex items-center justify-center text-white font-bold">
+                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
                     2
                   </div>
                 </div>
@@ -96,7 +121,7 @@ export default function ImmobilienbewertungPage() {
             <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
               <div className="flex gap-4">
                 <div className="shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-primary dark:bg-primary-dark flex items-center justify-center text-white font-bold">
+                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
                     3
                   </div>
                 </div>
@@ -112,7 +137,7 @@ export default function ImmobilienbewertungPage() {
             <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
               <div className="flex gap-4">
                 <div className="shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-primary dark:bg-primary-dark flex items-center justify-center text-white font-bold">
+                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
                     4
                   </div>
                 </div>

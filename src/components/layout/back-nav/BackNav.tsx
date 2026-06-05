@@ -22,7 +22,7 @@ export default function BackNav({ basePath, backLabel }: BackNavProps) {
     <div className="py-4">
       <Link
         href={basePath}
-        className="inline-flex items-center gap-2 sm:px-4 sm:py-2 rounded border border-border-l dark:border-border-d bg-bgSecondary-l dark:bg-bgSecondary-d text-sm font-medium shadow-sm hover:bg-Bghover-l dark:hover:bg-Bghover-d"
+        className="inline-flex items-center gap-2 sm:px-4 sm:py-2 rounded border border-border-l dark:border-border-d bg-bgSecondary-l dark:bg-bgSecondary-d text-sm font-medium shadow-sm hover:bg-Bghover-l dark:hover:bg-Bghover-d transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
         {backLabel}
