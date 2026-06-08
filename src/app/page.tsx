@@ -13,6 +13,34 @@ import ProcessFlowSection from "@/components/sections/process-flow/ProcessFlowSe
 import PropertyLegend from "@/components/properties/PropertyLegend"
 import ContactForm from "@/components/features/contact-form/ContactForm"
 import { defaultOpenGraphMetadata, defaultTwitterMetadata, siteName } from "@/lib/site-metadata"
+import { JsonLd } from "@/components/seo/JsonLd"
+
+const realEstateAgentSchema = {
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  name: "Rumpke Immobilien",
+  description:
+    "Persönliche Immobilienberatung für Kauf, Verkauf und Vermietung in Bawinkel und dem Emsland.",
+  url: "https://www.rumpke-immobilien.de",
+  telephone: "+4959634599970",
+  email: "info@rumpke-immobilien.de",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Römerstraße 9",
+    addressLocality: "Lingen",
+    postalCode: "40811",
+    addressCountry: "DE",
+  },
+  areaServed: {
+    "@type": "AdministrativeArea",
+    name: "Emsland, Niedersachsen",
+  },
+  sameAs: [
+    "https://www.facebook.com/profile.php?id=61572884870790",
+    "https://www.instagram.com/rumpkeimmobilien/",
+    "https://www.linkedin.com/company/rumpke-immobilien",
+  ],
+};
 
 export const metadata: Metadata = {
   title: siteName,
@@ -40,6 +68,7 @@ export const metadata: Metadata = {
 const HomePage = () => {
   return (
     <div className="">
+      <JsonLd data={realEstateAgentSchema} />
       <HeroVideo
         videoSrc="/media/heroVideo.mp4"
         alt="Rumpke Immobilien Hero Video"
