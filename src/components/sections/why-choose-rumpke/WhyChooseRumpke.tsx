@@ -59,7 +59,7 @@ const WhyChooseRumpke = () => {
           eyebrow="Unsere Stärken"
           title="Warum Rumpke Immobilien?"
           subtitle="Wir verbinden persönliche Nähe mit regionalem Fachwissen – für ein Immobilienerlebnis, das Sie überzeugt."
-          className={`mb-6 duration-1000${fadeUp(visible)}`}
+          className={`mb-6 duration-1000 ${fadeUp(visible)}`}
         />
 
         {/* Features */}
