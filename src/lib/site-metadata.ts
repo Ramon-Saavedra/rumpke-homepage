@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const siteName = "Rumpke Immobilien";
 export const siteLocale = "de_DE";
 export const siteDescription =
-  "Persoenliche Immobilienberatung fuer Verkauf, Vermietung und Bewertung in Bawinkel und Umgebung.";
+  "Persönliche Immobilienberatung für Verkauf, Vermietung und Bewertung in Bawinkel und Umgebung.";
 export const siteTitleTemplate = `%s | ${siteName}`;
 
 const defaultSiteUrl = "http://localhost:3000";
