@@ -130,4 +130,4 @@ Private — Rumpke Immobilien
 
 ---
 
-**Last Updated**: June 2026 | **Status**: Active Development
+**Last Updated**: July 2026 | **Status**: Handover / Pending onOffice API integration
