@@ -1,25 +1,33 @@
-import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import SecondaryNav from './SecondaryNav';
+import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import SecondaryNav from "./SecondaryNav";
 
-describe('SecondaryNav', () => {
-  it('renders Dienstleistungen link', () => {
+describe("SecondaryNav", () => {
+  it("renders Dienstleistungen link", () => {
     render(<SecondaryNav />);
-    expect(screen.getByRole('link', { name: 'Dienstleistungen' })).toHaveAttribute('href', '/dienstleistungen');
+    expect(
+      screen.getByRole("link", { name: "Dienstleistungen" }),
+    ).toHaveAttribute("href", "/dienstleistungen");
   });
 
-  it('renders Über uns link', () => {
+  it("renders Über uns link", () => {
     render(<SecondaryNav />);
-    expect(screen.getByRole('link', { name: 'Über uns' })).toHaveAttribute('href', '/ueber-uns');
+    expect(screen.getByRole("link", { name: "Über uns" })).toHaveAttribute(
+      "href",
+      "/ueber-uns",
+    );
   });
 
-  it('renders Kontakt link', () => {
+  it("renders Kontakt link", () => {
     render(<SecondaryNav />);
-    expect(screen.getByRole('link', { name: 'Kontakt' })).toHaveAttribute('href', '/kontakt');
+    expect(screen.getByRole("link", { name: "Kontakt" })).toHaveAttribute(
+      "href",
+      "/kontakt",
+    );
   });
 
-  it('renders exactly 3 navigation links', () => {
+  it("renders exactly 3 navigation links", () => {
     render(<SecondaryNav />);
-    expect(screen.getAllByRole('link')).toHaveLength(3);
+    expect(screen.getAllByRole("link")).toHaveLength(3);
   });
 });

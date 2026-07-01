@@ -1,6 +1,6 @@
-import { render, act, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import { useElementWidth } from './useElementWidth';
+import { render, act, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import { useElementWidth } from "./useElementWidth";
 
 type ResizeCallback = (entries: ResizeObserverEntry[]) => void;
 
@@ -27,26 +27,28 @@ function TestComponent() {
   return <div ref={ref} data-testid="el" data-width={width} />;
 }
 
-describe('useElementWidth', () => {
-  it('starts with width 0', () => {
+describe("useElementWidth", () => {
+  it("starts with width 0", () => {
     render(<TestComponent />);
-    expect(screen.getByTestId('el')).toHaveAttribute('data-width', '0');
+    expect(screen.getByTestId("el")).toHaveAttribute("data-width", "0");
   });
 
-  it('attaches ResizeObserver to the element', () => {
+  it("attaches ResizeObserver to the element", () => {
     render(<TestComponent />);
     expect(observeSpy).toHaveBeenCalledTimes(1);
   });
 
-  it('updates width when ResizeObserver fires', () => {
+  it("updates width when ResizeObserver fires", () => {
     render(<TestComponent />);
     act(() => {
-      observerCallback?.([{ contentRect: { width: 300 } } as ResizeObserverEntry]);
+      observerCallback?.([
+        { contentRect: { width: 300 } } as ResizeObserverEntry,
+      ]);
     });
-    expect(screen.getByTestId('el')).toHaveAttribute('data-width', '300');
+    expect(screen.getByTestId("el")).toHaveAttribute("data-width", "300");
   });
 
-  it('disconnects observer on unmount', () => {
+  it("disconnects observer on unmount", () => {
     const { unmount } = render(<TestComponent />);
     unmount();
     expect(disconnectSpy).toHaveBeenCalled();
