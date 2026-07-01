@@ -10,7 +10,10 @@ jest.mock("next/link", () => ({
     href,
     children,
     ...props
-  }: { href: string; children: ReactNode } & AnchorHTMLAttributes<HTMLAnchorElement>) => (
+  }: {
+    href: string;
+    children: ReactNode;
+  } & AnchorHTMLAttributes<HTMLAnchorElement>) => (
     <a href={href} {...props}>
       {children}
     </a>
@@ -31,20 +34,20 @@ describe("WhatMattersCard", () => {
         href="/kontakt"
         ctaLabel="Gespräch anfragen"
         Icon={Compass}
-      />
+      />,
     );
 
     expect(
-      screen.getByText("Klarheit vor dem nächsten Schritt")
+      screen.getByText("Klarheit vor dem nächsten Schritt"),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("Eine fundierte Einordnung Ihrer Möglichkeiten.")
+      screen.getByText("Eine fundierte Einordnung Ihrer Möglichkeiten."),
     ).toBeInTheDocument();
     expect(screen.getByText("Gespräch anfragen")).toBeInTheDocument();
     expect(
       screen.getByRole("link", {
         name: "Klarheit vor dem nächsten Schritt - Gespräch anfragen",
-      })
+      }),
     ).toHaveAttribute("href", "/kontakt");
   });
 
@@ -56,12 +59,12 @@ describe("WhatMattersCard", () => {
         href="/ueber-uns"
         ctaLabel="Über Rumpke Immobilien"
         Icon={Compass}
-      />
+      />,
     );
 
     expect(screen.getByRole("link")).toHaveAttribute(
       "aria-label",
-      "Persönliche Begleitung - Über Rumpke Immobilien"
+      "Persönliche Begleitung - Über Rumpke Immobilien",
     );
   });
 
@@ -73,7 +76,7 @@ describe("WhatMattersCard", () => {
         href="/auf-karte-erkunden"
         ctaLabel="Region entdecken"
         Icon={Compass}
-      />
+      />,
     );
 
     expect(screen.getByTestId("icon-compass")).toBeInTheDocument();

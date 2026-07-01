@@ -31,11 +31,9 @@ describe("WhatMattersNowSection", () => {
   it("renders the section headline and description", () => {
     render(<WhatMattersNowSection />);
 
+    expect(screen.getByText("Was Ihnen jetzt wichtig ist")).toBeInTheDocument();
     expect(
-      screen.getByText("Was Ihnen jetzt wichtig ist")
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/Rund um Immobilien geht es selten nur um Zahlen/i)
+      screen.getByText(/Rund um Immobilien geht es selten nur um Zahlen/i),
     ).toBeInTheDocument();
   });
 
@@ -48,10 +46,7 @@ describe("WhatMattersNowSection", () => {
   it("renders the two support pillars", () => {
     render(<WhatMattersNowSection />);
 
-    const pillars = [
-      "Orientierung",
-      "Begleitung",
-    ] satisfies readonly string[];
+    const pillars = ["Orientierung", "Begleitung"] satisfies readonly string[];
 
     pillars.forEach((pillar) => {
       expect(screen.getByText(pillar)).toBeInTheDocument();
@@ -62,10 +57,10 @@ describe("WhatMattersNowSection", () => {
     render(<WhatMattersNowSection />);
 
     expect(
-      screen.getByText("Klarheit vor dem nächsten Schritt")
+      screen.getByText("Klarheit vor dem nächsten Schritt"),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("Persönliche Begleitung statt Standardprozess")
+      screen.getByText("Persönliche Begleitung statt Standardprozess"),
     ).toBeInTheDocument();
   });
 });

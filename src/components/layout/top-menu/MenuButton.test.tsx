@@ -1,4 +1,4 @@
-Object.defineProperty(window, 'matchMedia', {
+Object.defineProperty(window, "matchMedia", {
   writable: true,
   value: jest.fn().mockImplementation((query) => ({
     matches: false,
@@ -12,31 +12,39 @@ Object.defineProperty(window, 'matchMedia', {
   })),
 });
 
-import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import MenuButton from './MenuButton';
+import { render, screen, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import MenuButton from "./MenuButton";
 
-describe('MenuButton', () => {
-  it('renders the hamburger button', () => {
+describe("MenuButton", () => {
+  it("renders the hamburger button", () => {
     render(<MenuButton />);
-    expect(screen.getByTestId('menu-btn')).toBeInTheDocument();
+    expect(screen.getByTestId("menu-btn")).toBeInTheDocument();
   });
 
-  it('has correct aria-label', () => {
+  it("has correct aria-label", () => {
     render(<MenuButton />);
-    expect(screen.getByRole('button', { name: /open navigation menu/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /open navigation menu/i }),
+    ).toBeInTheDocument();
   });
 
-  it('calls openSidebar when clicked', () => {
+  it("calls openSidebar when clicked", () => {
     render(<MenuButton />);
-    const btn = screen.getByTestId('menu-btn');
+    const btn = screen.getByTestId("menu-btn");
     fireEvent.click(btn);
     // Click does not throw — Zustand store handles the state update
   });
 
-  it('has correct Tailwind classes', () => {
+  it("has correct Tailwind classes", () => {
     render(<MenuButton />);
-    const btn = screen.getByTestId('menu-btn');
-    expect(btn).toHaveClass('mx-2', 'md:hidden', 'p-1', 'rounded', 'cursor-pointer');
+    const btn = screen.getByTestId("menu-btn");
+    expect(btn).toHaveClass(
+      "mx-2",
+      "md:hidden",
+      "p-1",
+      "rounded",
+      "cursor-pointer",
+    );
   });
 });
