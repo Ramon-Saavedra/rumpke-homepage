@@ -1,6 +1,5 @@
 'use client';
 
-import styled from 'styled-components';
 import { IoLogoInstagram, IoLogoFacebook, IoLogoWhatsapp, IoMailOutline, IoLogoLinkedin } from "react-icons/io5";
 import { usePathname } from "next/navigation";
 import SocialIcon from "@/components/ui/social-icon/SocialIcon";
@@ -10,8 +9,8 @@ const ContactTooltip = () => {
   if (pathname.startsWith('/admin')) return null;
 
   return (
-    <StyledWrapper>
-      <ul className="flex justify-around example-1 pt-1 py-1 mr-2">
+    <div>
+      <ul className="flex justify-around pt-1 py-1 mr-2">
         <SocialIcon
           href="https://www.facebook.com/profile.php?id=61572884870790"
           ariaLabel="Facebook"
@@ -68,44 +67,8 @@ const ContactTooltip = () => {
           bgColor="#0A66C2"
         />
       </ul>
-    </StyledWrapper>
+    </div>
   );
 }
-
-
-
-const StyledWrapper = styled.div`
-
-  .example-1 .icon-content {
-    margin: 0 6px;
-    position: relative;
-  }
-
-  .example-1 .icon-content .tooltip {
-    position: absolute;
-    top: 38px;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.25s cubic-bezier(0.4,0,0.2,1), top 0.25s cubic-bezier(0.4,0,0.2,1);
-    pointer-events: none;
-    z-index: 50;
-  }
-
-  .example-1 .icon-content:hover .tooltip {
-    opacity: 1;
-    visibility: visible;
-    top: 48px;
-  }
-
-  .example-1 .icon-content .link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-  }
-
-`;
 
 export default ContactTooltip;

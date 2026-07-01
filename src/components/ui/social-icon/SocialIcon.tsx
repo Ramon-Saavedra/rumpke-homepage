@@ -27,19 +27,22 @@ const SocialIcon = ({
   className = ''
 }: SocialIconProps) => {
   return (
-    <li className={`icon-content hover:text-white  ${className}`}>
+    <li className={`group relative mx-1.5 hover:text-white ${className}`}>
       <Link
         href={href}
         aria-label={ariaLabel}
         data-social={dataSocial}
         target={target}
         rel={rel}
-        className="link"
+        className="flex justify-center items-center"
         onClick={onClick}
       >
         {icon}
       </Link>
-      <div className={`tooltip text-xs text-bg-l py-1 px-2 rounded`} style={{ backgroundColor: bgColor }}>
+      <div
+        className="absolute top-[38px] left-1/2 -translate-x-1/2 opacity-0 invisible transition-[opacity,top] duration-[250ms] ease-in-out pointer-events-none z-50 text-xs text-bg-l py-1 px-2 rounded group-hover:opacity-100 group-hover:visible group-hover:top-[48px]"
+        style={{ backgroundColor: bgColor }}
+      >
         {tooltipText}
       </div>
     </li>
