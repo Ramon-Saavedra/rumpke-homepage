@@ -58,9 +58,9 @@
 @theme {
 --color-bg-d: #1C1C1E;
 --color-bg-l: #F7F8F6;
---color-bgSecondary-l: #FFFFFF;
---color-bgSecondary-d: #252525;
---color-card-text-l: #677070;
+--color-bgSecondary-l: #FDFDFC;
+--color-bgSecondary-d: #2C2C2E;
+--color-card-text-l: #5B655F;
 --color-card-text-d: #A8B5B2;
 
 --color-error: #D93025;
@@ -78,10 +78,12 @@
 --color-secondary: #3C5548;
 --color-secondary-dark: #1F2E25;
 --color-third: #1A1D1B;
---color-border-l: #DCE5DF;
+--color-border-l: #E3E7E2;
 --color-border-d: #252D2A;
 
---topbar-height: 3.5rem;
+/* Header height per breakpoint (see responsive overrides below). CategoryNav,
+   Sidebar and the page content offset all dock off this single token. */
+--topbar-height: 4rem;
 
 --color-status-published: #16A34A;
 --color-status-reserved: #D97706;
@@ -305,6 +307,13 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
+
+/* Header height steps per breakpoint — mobile 64 / tablet 72 / laptop 88 /
+   desktop 96 / large desktop 104. Fixed per breakpoint, never animated. */
+@media (min-width: 768px)  { :root { --topbar-height: 4.5rem; } }
+@media (min-width: 1024px) { :root { --topbar-height: 5.5rem; } }
+@media (min-width: 1440px) { :root { --topbar-height: 6rem; } }
+@media (min-width: 1800px) { :root { --topbar-height: 6.5rem; } }
 
 @layer base {
   * {
