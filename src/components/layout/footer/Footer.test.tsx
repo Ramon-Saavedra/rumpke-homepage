@@ -154,18 +154,18 @@ describe("Footer", () => {
       expect(link).toHaveAttribute("href", "/kauf");
     });
 
-    it("renders /kauf/haus link", () => {
+    it("renders /kauf/haeuser link", () => {
       render(<Footer />);
       expect(
         screen.getByRole("link", { name: "Häuser kaufen" }),
-      ).toHaveAttribute("href", "/kauf/haus");
+      ).toHaveAttribute("href", "/kauf/haeuser");
     });
 
-    it("renders /kauf/wohnung link", () => {
+    it("renders /kauf/wohnungen link", () => {
       render(<Footer />);
       expect(
         screen.getByRole("link", { name: "Wohnungen kaufen" }),
-      ).toHaveAttribute("href", "/kauf/wohnung");
+      ).toHaveAttribute("href", "/kauf/wohnungen");
     });
   });
 
@@ -182,18 +182,18 @@ describe("Footer", () => {
       ).toHaveAttribute("href", "/miete");
     });
 
-    it("renders /miete/haus link", () => {
+    it("renders /miete/haeuser link", () => {
       render(<Footer />);
       expect(
         screen.getByRole("link", { name: "Häuser mieten" }),
-      ).toHaveAttribute("href", "/miete/haus");
+      ).toHaveAttribute("href", "/miete/haeuser");
     });
 
-    it("renders /miete/wohnung link", () => {
+    it("renders /miete/wohnungen link", () => {
       render(<Footer />);
       expect(
         screen.getByRole("link", { name: "Wohnungen mieten" }),
-      ).toHaveAttribute("href", "/miete/wohnung");
+      ).toHaveAttribute("href", "/miete/wohnungen");
     });
   });
 

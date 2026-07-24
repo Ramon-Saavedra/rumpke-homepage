@@ -7,7 +7,6 @@ import WhatMattersNowSection from "@/components/sections/what-matters-now-sectio
 import Title from "@/components/ui/title/Title"
 import SectionHeader from "@/components/ui/section-header/SectionHeader"
 import PropertiesGrid from "@/components/properties/PropertiesGrid"
-import SecondaryNav from "@/components/layout/secondary-nav/SecondaryNav"
 import ProcessFlowSection from "@/components/sections/process-flow/ProcessFlowSection"
 import PropertyLegend from "@/components/properties/PropertyLegend"
 import ContactForm from "@/components/features/contact-form/ContactForm"
@@ -83,8 +82,7 @@ export default async function HomePage() {
         videoSrc="/media/heroVideo.mp4"
         alt="Rumpke Immobilien Hero Video"
       />
-      <SecondaryNav />
-      <div className="text-center mt-12 md:mt-0 md:py-8 lg:py-12">
+      <div className="text-center pt-10">
         <Title variant="h1"
           align="center"
           size="xl"
@@ -93,7 +91,6 @@ export default async function HomePage() {
       </div>
 
       <main className="p-2 xl:px-20 2xl:px-32 2xl:w-[80%] mx-auto">
-        <ProcessFlowSection />
         <section className="mb-24 px-4 sm:px-6 py-12">
           <div className="container mx-auto">
             <SectionHeader title="Ausgewählte Immobilien" className="mb-8" />
@@ -108,6 +105,7 @@ export default async function HomePage() {
             )}
           </div>
         </section>
+            <ProcessFlowSection />
 
         <WhatMattersNowSection />
         <WhyChooseRumpke />

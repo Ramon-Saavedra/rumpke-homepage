@@ -14,10 +14,22 @@ interface PropertyImageProps {
   readonly fill?: boolean;
 }
 
+const ALLOWED_IMAGE_HOSTS = new Set(['image.onoffice.de', 'smart.onoffice.de']);
+
+function isValidImageUrl(url: string): boolean {
+  try {
+    const parsed = new URL(url);
+    return parsed.protocol === 'https:' && ALLOWED_IMAGE_HOSTS.has(parsed.hostname);
+  } catch {
+    return false;
+  }
+}
+
 function getFirstValidImage(images: readonly PropertyImageDto[]): PropertyImageDto | null {
   if (images.length === 0) return null;
   const first = images[0];
   if (typeof first.url !== 'string' || first.url.length === 0) return null;
+  if (!isValidImageUrl(first.url)) return null;
   return first;
 }
 

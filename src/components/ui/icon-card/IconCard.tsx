@@ -12,7 +12,7 @@ interface IconCardProps {
 export default function IconCard({ icon, title, text, link, className = "" }: IconCardProps) {
   return (
     <Link href={link} className={`block group ${className}`}>
-      <div className="flex items-center w-full h-full min-h-28 px-6 py-5 bg-card-l dark:bg-card-d border border-border-l dark:border-border-d rounded hover:shadow dark:hover:shadow-primary-dark">
+      <div className="flex items-center w-full h-full min-h-28 px-6 py-5 bg-bgSecondary-l dark:bg-bgSecondary-d border border-border-l dark:border-border-d rounded hover:shadow dark:hover:shadow-primary-dark">
         <div className="shrink-0 w-14 h-14 rounded-full bg-linear-to-br from-primary to-primary-dark flex items-center justify-center text-white">
           {icon}
         </div>

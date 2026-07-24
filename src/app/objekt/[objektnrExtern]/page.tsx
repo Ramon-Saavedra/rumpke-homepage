@@ -96,7 +96,7 @@ function DetailField({ label, value }: { readonly label: string; readonly value:
 
 function DetailSection({ title, children }: { readonly title: string; readonly children: React.ReactNode }) {
   return (
-    <div className="bg-card-l dark:bg-card-d p-6 rounded border border-border-l dark:border-border-d">
+    <div className="bg-bgSecondary-l dark:bg-bgSecondary-d p-6 rounded border border-border-l dark:border-border-d">
       <h2 className="text-xl font-semibold mb-4 text-text-l dark:text-text-d">
         {title}
       </h2>

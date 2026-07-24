@@ -295,9 +295,9 @@ describe("IconCard", () => {
       render(
         <IconCard icon={mockIcon} title="Title" text="Text" link="/link" />,
       );
-      const card = document.querySelector(".bg-card-l");
+      const card = document.querySelector(".bg-bgSecondary-l");
       expect(card).toBeInTheDocument();
-      expect(card).toHaveClass("dark:bg-card-d");
+      expect(card).toHaveClass("dark:bg-bgSecondary-d");
     });
 
     it("card has border classes", () => {

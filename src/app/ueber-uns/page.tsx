@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 
 export default function UeberUnsPage() {
   return (
-    <div className="max-w-5xl mx-auto py-12 bg-bgSecondary-l dark:bg-bgSecondary-d px-4 mb-12">
+    <div className="max-w-5xl mx-auto bg-bgSecondary-l dark:bg-bgSecondary-d px-4 mb-12">
       <div className="mb-12">
         <Title variant="h1" align="center" size="xl">
           Über mich
@@ -37,7 +37,7 @@ export default function UeberUnsPage() {
 
       <div className="grid lg:grid-cols-2 gap-12">
         <div className="flex flex-col">
-          <div className="relative w-full max-w-md mx-auto overflow-hidden border border-border-l dark:border-border-d bg-card-l dark:bg-card-d">
+          <div className="relative w-full max-w-md mx-auto overflow-hidden border border-border-l dark:border-border-d bg-bgSecondary-l dark:bg-bgSecondary-d">
             <Image
               src="/imgs/personal-service-pic.jpeg"
               alt="Ann-Christin Rumpke Portrait"
