@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import Title from "@/components/ui/title/Title";
 import {
   VALID_TYPES,
@@ -63,7 +64,14 @@ export default async function MieteTypePage({ params }: PageProps) {
 
       <div className="p-8 bg-bgSecondary-l dark:bg-bgSecondary-d border border-border-l dark:border-border-d rounded">
         <p className="text-center text-card-text-l dark:text-card-text-d">
-          {label} zur Miete werden hier angezeigt, sobald das Backend integriert ist.
+          Kategorisierte Immobiliensuche ist derzeit in Vorbereitung.
+        </p>
+        <p className="text-center text-card-text-l dark:text-card-text-d text-sm mt-2">
+          Alle verfügbaren Immobilien finden Sie in der{' '}
+          <Link href="/objekt" className="text-primary hover:underline">
+            Gesamtübersicht
+          </Link>
+          .
         </p>
       </div>
     </>

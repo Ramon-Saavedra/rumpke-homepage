@@ -7,13 +7,14 @@ import WhatMattersNowSection from "@/components/sections/what-matters-now-sectio
 import Title from "@/components/ui/title/Title"
 import SectionHeader from "@/components/ui/section-header/SectionHeader"
 import PropertiesGrid from "@/components/properties/PropertiesGrid"
-import { MOCK_FEATURED_PROPERTIES } from "@/data/mock-properties"
 import SecondaryNav from "@/components/layout/secondary-nav/SecondaryNav"
 import ProcessFlowSection from "@/components/sections/process-flow/ProcessFlowSection"
 import PropertyLegend from "@/components/properties/PropertyLegend"
 import ContactForm from "@/components/features/contact-form/ContactForm"
 import { defaultOpenGraphMetadata, defaultTwitterMetadata, siteName } from "@/lib/site-metadata"
 import { JsonLd } from "@/components/seo/JsonLd"
+import { getProperties } from "@/lib/property-client";
+import type { PropertyCardDto } from "@/types/property-api";
 
 const realEstateAgentSchema = {
   "@context": "https://schema.org",
@@ -64,8 +65,17 @@ export const metadata: Metadata = {
   },
 };
 
+export default async function HomePage() {
+  let featuredProperties: readonly PropertyCardDto[] = [];
+  let propertyError = false;
 
-const HomePage = () => {
+  try {
+    const result = await getProperties(1, 12);
+    featuredProperties = result.data;
+  } catch {
+    propertyError = true;
+  }
+
   return (
     <div className="">
       <JsonLd data={realEstateAgentSchema} />
@@ -88,9 +98,14 @@ const HomePage = () => {
           <div className="container mx-auto">
             <SectionHeader title="Ausgewählte Immobilien" className="mb-8" />
             <div className="mb-1">
-              <PropertiesGrid properties={MOCK_FEATURED_PROPERTIES} />
+              <PropertiesGrid properties={featuredProperties} />
               <PropertyLegend />
             </div>
+            {propertyError && (
+              <p className="text-center text-card-text-l dark:text-card-text-d text-sm mt-4">
+                Immobilien sind derzeit nicht verfügbar. Bitte versuchen Sie es später erneut.
+              </p>
+            )}
           </div>
         </section>
 
@@ -107,7 +122,5 @@ const HomePage = () => {
         </section>
       </main>
     </div>
-  )
+  );
 }
-
-export default HomePage
