@@ -5,9 +5,9 @@ import "./globals.css";
 import CompanyTitle from "@/components/branding/companyTitle/CompanyTitle";
 import Topmenu from "@/components/layout/top-menu/TopMenu";
 import Footer from "@/components/layout/footer/Footer";
-import CategoryNav from "@/components/layout/category-nav/CategoryNav";
 import GoogleMap from "@/components/features/map/GoogleMap";
 import Sidebar from "@/components/layout/sidebar/Sidebar";
+import PageShell from "@/components/layout/page-shell/PageShell";
 import ScrollToTopButton from "@/components/ui/scroll-to-top/ScrollToTopButton";
 import { siteMetadata } from "@/lib/site-metadata";
 import { cn } from "@/lib/utils";
@@ -34,13 +34,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <div className="bg-bg-l text-zinc-800 dark:bg-bg-d dark:text-zinc-100">
           <div className="">
             <Topmenu />
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <Sidebar />
             </div>
-            <div style={{ paddingTop: 'var(--topbar-height)' }}>
-              <CategoryNav />
+            <PageShell>
               {children}
-            </div>
+            </PageShell>
             <GoogleMap />
             <Footer />
           </div>
