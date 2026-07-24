@@ -4,10 +4,17 @@ import {
   IoLogoFacebook, IoLogoInstagram, IoLogoLinkedin, IoLogoWhatsapp,
   IoMailOutline, IoCallOutline, IoLocationOutline,
 } from 'react-icons/io5';
+import { ThemeSwitch } from '@/context/theme-switch';
+import {
+  FOOTER_BUY_LINKS,
+  FOOTER_RENT_LINKS,
+  FOOTER_SERVICES_LINKS,
+  FOOTER_COMPANY_LINKS,
+} from '@/constants/navigation';
 
 type NavLink = { label: string; href: string };
 
-function FooterNavSection({ title, links }: { title: string; links: NavLink[] }) {
+function FooterNavSection({ title, links }: { title: string; links: readonly NavLink[] }) {
   return (
     <div>
       <p className="text-xs font-semibold tracking-[0.15em] uppercase text-primary mb-4">
@@ -102,38 +109,22 @@ const Footer = () => {
           <div className="space-y-8">
             <FooterNavSection
               title="Kaufen"
-              links={[
-                { href: '/kauf', label: 'Alle Kaufimmobilien' },
-                { href: '/kauf/haus', label: 'Häuser kaufen' },
-                { href: '/kauf/wohnung', label: 'Wohnungen kaufen' },
-              ]}
+              links={FOOTER_BUY_LINKS}
             />
             <FooterNavSection
               title="Mieten"
-              links={[
-                { href: '/miete', label: 'Alle Mietimmobilien' },
-                { href: '/miete/haus', label: 'Häuser mieten' },
-                { href: '/miete/wohnung', label: 'Wohnungen mieten' },
-              ]}
+              links={FOOTER_RENT_LINKS}
             />
           </div>
 
           <div className="space-y-8">
             <FooterNavSection
               title="Dienstleistungen"
-              links={[
-                { href: '/dienstleistungen', label: 'Alle Dienstleistungen' },
-                { href: '/dienstleistungen/immobilien-kauf', label: 'Immobilien Kauf' },
-                { href: '/dienstleistungen/verkauf-vermietung', label: 'Verkauf & Vermietung' },
-                { href: '/dienstleistungen/immobilienbewertung', label: 'Immobilienbewertung' },
-              ]}
+              links={FOOTER_SERVICES_LINKS}
             />
             <FooterNavSection
               title="Unternehmen"
-              links={[
-                { href: '/ueber-uns', label: 'Über uns' },
-                { href: '/kontakt', label: 'Kontakt' },
-              ]}
+              links={FOOTER_COMPANY_LINKS}
             />
           </div>
         </div>
@@ -144,13 +135,14 @@ const Footer = () => {
             </Link>
             <span> &copy; {new Date().getFullYear()} – Alle Rechte vorbehalten</span>
           </p>
-          <div className="flex gap-6">
+          <div className="flex items-center gap-6">
             <Link href="/impressum" className="text-sm text-card-text-l dark:text-card-text-d hover:text-primary">
               Impressum
             </Link>
             <Link href="/datenschutz" className="text-sm text-card-text-l dark:text-card-text-d hover:text-primary">
               Datenschutz
             </Link>
+            <ThemeSwitch />
           </div>
         </div>
 
