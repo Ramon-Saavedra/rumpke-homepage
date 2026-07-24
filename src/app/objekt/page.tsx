@@ -3,6 +3,7 @@ import type { PropertyCardDto, Pagination } from '@/types/property-api';
 import Title from '@/components/ui/title/Title';
 import PropertiesGrid from '@/components/properties/PropertiesGrid';
 import PropertyPagination from '@/components/properties/PropertyPagination';
+import PageContainer from '@/components/layout/page-container/PageContainer';
 import type { Metadata } from 'next';
 import {
   defaultOpenGraphMetadata,
@@ -58,7 +59,7 @@ export default async function ObjektListPage({
 
   if (!fetchResult.ok) {
     return (
-      <div className="container mx-auto max-w-5xl py-12 px-2 xl:px-0">
+      <PageContainer>
         <div className="mb-12">
           <Title variant="h1" align="center" size="xl" className="mb-4">
             Immobilien
@@ -69,14 +70,14 @@ export default async function ObjektListPage({
             Der Immobilienservice ist derzeit nicht verfügbar. Bitte versuchen Sie es später erneut.
           </p>
         </div>
-      </div>
+      </PageContainer>
     );
   }
 
   const { data, pagination } = fetchResult;
 
   return (
-    <div className="container mx-auto max-w-5xl py-12 px-2 xl:px-0">
+    <PageContainer>
       <div className="mb-12">
         <Title variant="h1" align="center" size="xl" className="mb-4">
           Immobilien
@@ -100,6 +101,6 @@ export default async function ObjektListPage({
           </div>
         </>
       )}
-    </div>
+    </PageContainer>
   );
 }

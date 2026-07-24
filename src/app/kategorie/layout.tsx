@@ -1,4 +1,5 @@
 import BackHomeButton from "@/components/features/back-home-buttom/BackHomeButton";
+import PageContainer from "@/components/layout/page-container/PageContainer";
 
 export default function KategorieLayout({
   children,
@@ -6,11 +7,9 @@ export default function KategorieLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="flex-2 lg:basis-2/4 xl:basis-3/6 w-full max-w-full h-full overflow-y-auto px-2 sm:px-4 lg:px-1">
-      <div className="container mx-auto min-h-screen">
-        <BackHomeButton />
-        {children}
-      </div>
-    </main>
+    <PageContainer>
+      <BackHomeButton />
+      {children}
+    </PageContainer>
   );
 }

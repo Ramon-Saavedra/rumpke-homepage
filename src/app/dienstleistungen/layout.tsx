@@ -1,15 +1,12 @@
 import { ReactNode } from "react";
 import BackNav from "@/components/layout/back-nav/BackNav";
+import PageContainer from "@/components/layout/page-container/PageContainer";
 
-interface DienstleistungenLayoutProps {
-  children: ReactNode;
-}
-
-export default function DienstleistungenLayout({ children }: DienstleistungenLayoutProps) {
+export default function DienstleistungenLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="container mx-auto px-4 min-h-screen">
+    <PageContainer>
       <BackNav basePath="/dienstleistungen" backLabel="Zurück zu Dienstleistungen" />
       {children}
-    </div>
+    </PageContainer>
   );
 }
