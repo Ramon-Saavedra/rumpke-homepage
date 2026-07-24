@@ -11,5 +11,3 @@ const ERROR_LABELS: Record<PublicErrorCode, string> = {
 export function publicErrorLabel(code: PublicErrorCode): string {
   return ERROR_LABELS[code];
 }
-
-export const DEFAULT_ERROR_LABEL = ERROR_LABELS.INTERNAL_SERVER_ERROR;

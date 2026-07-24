@@ -88,7 +88,7 @@ export interface PropertyDetailDto {
 
 export interface PublicErrorBody {
   readonly statusCode: number;
-  readonly code: string;
+  readonly code: PublicErrorCode;
   readonly message: string;
 }
 
@@ -187,12 +187,20 @@ function validatePropertyImageDto(item: unknown): PropertyImageDto {
   if (!isRecord(item)) {
     throw new PropertyFetchError(502, 'INTERNAL_SERVER_ERROR', 'Invalid image item in response');
   }
+  const rawId = item['id'];
+  const imageId = typeof rawId === 'string' ? rawId : typeof rawId === 'number' ? String(rawId) : null;
+  if (imageId === null || imageId.length === 0) {
+    throw new PropertyFetchError(502, 'INTERNAL_SERVER_ERROR', 'Invalid image id in response');
+  }
+  if (typeof item['url'] !== 'string' || item['url'].length === 0) {
+    throw new PropertyFetchError(502, 'INTERNAL_SERVER_ERROR', 'Invalid image url in response');
+  }
   return {
-    id: typeof item['id'] === 'string' ? item['id'] : '',
-    url: typeof item['url'] === 'string' ? item['url'] : '',
+    id: imageId,
+    url: item['url'],
     title: isStringOrNull(item['title']) ? item['title'] : null,
     type: isStringOrNull(item['type']) ? item['type'] : null,
-    position: typeof item['position'] === 'number' ? item['position'] : 0,
+    position: typeof item['position'] === 'number' && Number.isFinite(item['position']) ? item['position'] : 0,
   };
 }
 
@@ -207,8 +215,11 @@ function validatePropertyCardDto(data: unknown): PropertyCardDto {
   if (!isRecord(data)) {
     throw new PropertyFetchError(502, 'INTERNAL_SERVER_ERROR', 'Invalid property card in response');
   }
+  if (typeof data['id'] !== 'string' || data['id'].length === 0) {
+    throw new PropertyFetchError(502, 'INTERNAL_SERVER_ERROR', 'Invalid property id in response');
+  }
   return {
-    id: typeof data['id'] === 'string' ? data['id'] : '',
+    id: data['id'],
     title: isStringOrNull(data['title']) ? data['title'] : null,
     city: isStringOrNull(data['city']) ? data['city'] : null,
     propertyType: isStringOrNull(data['propertyType']) ? data['propertyType'] : null,
@@ -252,8 +263,11 @@ export function validatePropertyDetailDto(data: unknown): PropertyDetailDto {
   if (!isRecord(data)) {
     throw new PropertyFetchError(502, 'INTERNAL_SERVER_ERROR', 'Invalid property detail response');
   }
+  if (typeof data['id'] !== 'string' || data['id'].length === 0) {
+    throw new PropertyFetchError(502, 'INTERNAL_SERVER_ERROR', 'Invalid property id in response');
+  }
   return {
-    id: typeof data['id'] === 'string' ? data['id'] : '',
+    id: data['id'],
     title: isStringOrNull(data['title']) ? data['title'] : null,
     description: isStringOrNull(data['description']) ? data['description'] : null,
     locationDescription: isStringOrNull(data['locationDescription']) ? data['locationDescription'] : null,
@@ -276,6 +290,13 @@ export function validatePropertyDetailDto(data: unknown): PropertyDetailDto {
   };
 }
 
+function resolvePublicCode(code: string): PublicErrorCode {
+  if ((PUBLIC_ERROR_CODES as readonly string[]).includes(code)) {
+    return code as PublicErrorCode;
+  }
+  return 'INTERNAL_SERVER_ERROR';
+}
+
 export function validatePublicErrorBody(data: unknown): PublicErrorBody {
   if (!isRecord(data)) {
     return {
@@ -284,9 +305,10 @@ export function validatePublicErrorBody(data: unknown): PublicErrorBody {
       message: 'Unerwarteter Serverfehler.',
     };
   }
+  const rawCode = typeof data['code'] === 'string' ? data['code'] : 'INTERNAL_SERVER_ERROR';
   return {
     statusCode: typeof data['statusCode'] === 'number' ? data['statusCode'] : 502,
-    code: typeof data['code'] === 'string' ? data['code'] : 'INTERNAL_SERVER_ERROR',
+    code: resolvePublicCode(rawCode),
     message: typeof data['message'] === 'string' ? data['message'] : 'Unerwarteter Serverfehler.',
   };
 }

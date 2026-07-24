@@ -6,7 +6,7 @@ import type { PropertyImageDto } from "@/types/property-api";
 function makeImage(overrides: Partial<PropertyImageDto> = {}): PropertyImageDto {
   return {
     id: "img-1",
-    url: "https://images.onoffice.de/photo1.jpg",
+    url: "https://image.onoffice.de/photo1.jpg",
     title: "Wohnzimmer",
     type: "image/jpeg",
     position: 0,
@@ -63,8 +63,8 @@ describe("PropertyImage", () => {
       render(
         <PropertyImage
           images={[
-            makeImage({ id: "img-1", url: "https://images.onoffice.de/photo1.jpg", title: "First" }),
-            makeImage({ id: "img-2", url: "https://images.onoffice.de/photo2.jpg", title: "Second" }),
+            makeImage({ id: "img-1", url: "https://image.onoffice.de/photo1.jpg", title: "First" }),
+            makeImage({ id: "img-2", url: "https://image.onoffice.de/photo2.jpg", title: "Second" }),
           ]}
           alt="Fallback"
         />,

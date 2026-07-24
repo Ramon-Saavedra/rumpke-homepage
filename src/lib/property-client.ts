@@ -1,16 +1,16 @@
 import {
   type PropertyListResponse,
   type PropertyDetailDto,
-  type PublicErrorCode,
+  type PublicErrorBody,
   PropertyFetchError,
   validatePropertyListResponse,
   validatePropertyDetailDto,
   validatePublicErrorBody,
-  PUBLIC_ERROR_CODES,
 } from '@/types/property-api';
 import { getApiUrl, API_ENDPOINTS } from '@/lib/api-client';
+import { publicErrorLabel } from '@/lib/property-errors';
 
-async function parsePublicErrorBody(response: Response): Promise<{ statusCode: number; code: string; message: string }> {
+async function parsePublicErrorBody(response: Response): Promise<PublicErrorBody> {
   try {
     const body: unknown = await response.json();
     return validatePublicErrorBody(body);
@@ -23,17 +23,9 @@ async function parsePublicErrorBody(response: Response): Promise<{ statusCode: n
   }
 }
 
-function resolvePublicCode(code: string): PublicErrorCode {
-  if ((PUBLIC_ERROR_CODES as readonly string[]).includes(code)) {
-    return code as PublicErrorCode;
-  }
-  return 'INTERNAL_SERVER_ERROR';
-}
-
 async function handleErrorResponse(response: Response): Promise<never> {
   const body = await parsePublicErrorBody(response);
-  const code = resolvePublicCode(body.code);
-  throw new PropertyFetchError(body.statusCode, code, body.message);
+  throw new PropertyFetchError(body.statusCode, body.code, publicErrorLabel(body.code));
 }
 
 async function fetchWithErrorHandling(url: string): Promise<unknown> {
