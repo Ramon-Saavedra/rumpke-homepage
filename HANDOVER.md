@@ -85,13 +85,14 @@ onOffice CRM API
 
 | Route | Status | Notes |
 |-------|--------|-------|
-| `/` | ✅ | Full homepage: hero video, process flow, properties grid, services, contact form |
-| `/kauf` | ✅ | Buy category grid |
-| `/kauf/[type]` | ⚠️ Partial | Structure done. Placeholder pending real backend data |
-| `/miete` | ✅ | Rent category grid |
-| `/miete/[type]` | ⚠️ Partial | Structure done. Placeholder pending real backend data |
+| `/` | ✅ | Full homepage: hero video, process flow, real properties grid (server-fetched), services, contact form |
+| `/kauf` | ✅ | Category grid. Full listings pending backend category filters |
+| `/kauf/[type]` | ⚠️ Partial | Navigation structure ready. Categorized listings pending backend category filters |
+| `/miete` | ✅ | Category grid. Full listings pending backend category filters |
+| `/miete/[type]` | ⚠️ Partial | Navigation structure ready. Categorized listings pending backend category filters |
 | `/kategorie/[type]` | ✅ | Category browsing |
-| `/object/[slug]` | ⚠️ Mock only | Works with mock slugs only. Requires real onOffice data |
+| `/objekt` | ✅ | Paginated property listing with real backend data. Server-rendered with URL search params |
+| `/objekt/[objektnrExtern]` | ✅ | Real property detail with full metadata, BreadcrumbList JSON-LD, structured data |
 | `/dienstleistungen` | ✅ | Services landing page |
 | `/dienstleistungen/immobilien-kauf` | ✅ | |
 | `/dienstleistungen/verkauf-vermietung` | ✅ | |
@@ -108,24 +109,40 @@ onOffice CRM API
 - TopMenu, mobile Sidebar, CategoryNav, Footer, ScrollToTop, floating contact tooltip
 - Contact form with Zod validation and German error messages
 - Google Maps embed (requires valid API key)
-- SEO: dynamic `sitemap.xml`, `robots.txt`, JSON-LD structured data (RealEstateAgent schema), OpenGraph, Twitter metadata, canonical URLs
+- SEO: dynamic `sitemap.xml`, `robots.txt`, JSON-LD structured data (RealEstateAgent, BreadcrumbList, Residence schemas), OpenGraph, Twitter metadata, canonical URLs
 - Docker multi-stage production build
 - GitHub Actions CI/CD (install, security audit, ESLint, TypeScript, Jest, build, Lighthouse CI)
-- 53 test suites, 514 tests passing
+- 56 test suites, 552 tests passing
 
 ### Property Data — Current State
 
-Property data is sourced from `src/data/mock-properties.ts` — **9 hardcoded fictional properties**. These are not real client properties. They are placeholders used during development while the onOffice integration is pending.
+Property data is fetched live from the backend via `GET /api/v1/properties` and `GET /api/v1/properties/{objektnrExtern}`. The backend forwards onOffice data through its REST API. The public property identifier is `objektnr_extern`, exposed as `id` in the DTOs.
 
-Current mock data uses Bavarian city names. Real properties for Rumpke Immobilien are in the **Emsland and Grafschaft Bentheim region of Lower Saxony**.
+Mock data (`src/data/mock-properties.ts`) and related components (`TripleSlider`, `useProperties`) have been removed. The homepage, listing page, and detail page all consume real API data.
+
+### Property Image Contract
+
+Images are returned as `PropertyImageDto[]`:
+```typescript
+interface PropertyImageDto {
+  readonly id: string;
+  readonly url: string;
+  readonly title: string | null;
+  readonly type: string | null;
+  readonly position: number;
+}
+```
+
+Currently the backend returns `images: []` pending the onOffice image endpoint implementation. The frontend renders an accessible placeholder (ImageOff icon) with skeleton loading and error fallback via `PropertyImage`. Once backend returns real URLs, no frontend changes are required.
 
 ### Frontend Prepared for onOffice (Not Yet Connected)
 
 | File | Purpose |
 |------|---------|
-| `src/lib/api-client.ts` | Defines `API_ENDPOINTS.PROPERTIES` and `API_ENDPOINTS.PROPERTY_DETAILS` |
-| `src/hooks/useProperties.ts` | React Query hook ready to fetch `/properties` — not wired to any page yet |
-| `/kauf/[type]`, `/miete/[type]` | Show explicit placeholder text pending backend integration |
+| `src/lib/api-client.ts` | Centralized URL builder with `getApiUrl()`. Defines `API_ENDPOINTS.PROPERTIES` pointing to `/v1/properties` |
+| `src/lib/property-client.ts` | Typed fetch functions `getProperties()` and `getProperty()` with runtime response validation and `PropertyFetchError` mapping |
+| `src/types/property-api.ts` | Full `PropertyCardDto`, `PropertyDetailDto`, `PropertyImageDto`, `Pagination`, `PublicErrorBody`, `PropertyFetchError` contracts with strict validation |
+| `/kauf/[type]`, `/miete/[type]` | Navigation structure ready. Show neutral state — backend category filters are the remaining blocker |
 
 ### Frontend Environment Variables
 
@@ -234,7 +251,10 @@ npm run start:dev
 | Integration | Status | Detail |
 |-------------|--------|--------|
 | Contact form → Lead persistence | ✅ Ready to connect | Frontend POSTs to `NEXT_PUBLIC_API_URL/v1/leads/contact`. Backend endpoint exists. Works when both are running and env is configured. |
-| Property listings | ❌ Not connectable yet | Frontend calls `/properties` and `/property/:id` — **these endpoints do not exist in the backend**. Requires onOffice integration first. |
+| Property listings | ✅ Connected | Frontend fetches from `/v1/properties` with pagination. Backend returns real onOffice data when `ONOFFICE_ENABLED=true`. |
+| Property detail | ✅ Connected | Frontend fetches from `/v1/properties/{objektnrExtern}` with full detail rendering, metadata, JSON-LD. |
+| Property images | ❌ Pending | Backend returns `images: []`. OnOffice image endpoint not yet implemented. Frontend renders accessible placeholder. |
+| Category filters | ❌ Pending | Backend currently supports only `page` and `limit`. `/kauf/[type]` and `/miete/[type]` show neutral state until backend category filters are added. |
 | Reviews UI | ❌ Backend ready, frontend missing | Backend reviews API is complete. Frontend has no reviews display or submission UI. |
 
 ---
@@ -243,19 +263,24 @@ npm run start:dev
 
 ### Done
 
-- Complete frontend: all pages, layout, design system, dark/light theme, SEO, Docker, CI/CD, 514 tests
+- Complete frontend: all pages, layout, design system, dark/light theme, SEO, Docker, CI/CD, 552 tests
 - Backend: lead persistence, full reviews system with admin moderation, health probes, rate limiting, Prisma migrations, CI/CD
+- Property integration: live data flow from backend to frontend via typed API client with runtime validation
+- Property detail: full rendering, metadata, canonical URLs, BreadcrumbList + Residence JSON-LD
+- Property list: server-side pagination with accessible navigation
+- Image handling: accessible placeholder, skeleton loading, error fallback
 
 ### Pending
 
-- **onOffice API integration** — blocked: credentials were never received
-- **Property listing endpoints** in the backend
-- **Real property data** on `/kauf/[type]`, `/miete/[type]`, `/object/[slug]`
+- **onOffice image endpoint** in the backend — currently returns `images: []`
+- **Backend category filters** — required for `/kauf/[type]` and `/miete/[type]` to show correct categorized results
 - **Lead sync to onOffice** (stub in place)
 - **Email notifications for leads** (schema field exists, logic missing)
 - **Reviews UI** in the frontend
 - **Google Maps billing** — must be enabled on Google Cloud
+- **Dynamic property URLs in sitemap** — pending safe paginated fetch strategy or dedicated sitemap endpoint
 - **Production environment variables** — must be configured before deployment
+- **`next.config.ts` image remotePatterns** — must add the onOffice image hostname once confirmed
 
 ---
 
@@ -271,23 +296,23 @@ npm run start:dev
 
 ## 8. Recommendations for a Continuing Developer
 
-1. **Obtain onOffice API credentials.** This is the single blocker. Contact onOffice to get API access for the Rumpke Immobilien account.
+1. **Implement the onOffice image endpoint** in the backend. Once real image URLs are returned, no frontend changes are required — `PropertyImage` already handles the `PropertyImageDto` contract with loading, error, and fallback states. Add the image hostname to `next.config.ts` `images.remotePatterns`.
 
-2. **Build the onOffice property adapter** in the backend — a new NestJS module that fetches listings and exposes `GET /api/v1/properties` and `GET /api/v1/property/:id`. The frontend hook `src/hooks/useProperties.ts` is ready to consume it.
+2. **Add backend category filters** (`propertyType`, `marketingType`) to `GET /api/v1/properties`. Once available, wire them to `/kauf/[type]` and `/miete/[type]` by adding query parameters to `getProperties()`.
 
 3. **Complete the lead sync** — inject the onOffice adapter into `triggerOnOfficeSync()` in `leads.service.ts`. DB fields are already in place.
 
-4. **Wire `useProperties` to the listing pages** (`/kauf/[type]`, `/miete/[type]`) once the backend endpoint exists. Replace the placeholder content.
+4. **Configure Google Maps** — enable billing on Google Cloud and set `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY`.
 
-5. **Replace mock property data** — remove `src/data/mock-properties.ts` and update the homepage grid, TripleSlider, and `/object/[slug]` to use live API data.
+5. **Build the reviews UI** in the frontend — the backend API is complete and ready.
 
-6. **Configure Google Maps** — enable billing on Google Cloud and set `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY`.
+6. **Set up PostgreSQL** for the backend and apply migrations with `npm run prisma:migrate:deploy`.
 
-7. **Build the reviews UI** in the frontend — the backend API is complete and ready.
+7. **Configure all production environment variables** in your hosting platform before going live.
 
-8. **Set up PostgreSQL** for the backend and apply migrations with `npm run prisma:migrate:deploy`.
+8. **Add dynamic property URLs to sitemap** once a safe paginated fetch strategy or dedicated sitemap endpoint is available.
 
-9. **Configure all production environment variables** in your hosting platform before going live.
+9. **Add the onOffice image hostname** to `images.remotePatterns` in `next.config.ts` once confirmed.
 
 ---
 

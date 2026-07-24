@@ -37,7 +37,7 @@ describe("getApiUrl", () => {
   it("uses NEXT_PUBLIC_API_URL when defined", () => {
     process.env.NEXT_PUBLIC_API_URL = "https://api.example.com/api";
     expect(getApiUrl(API_ENDPOINTS.PROPERTIES)).toBe(
-      "https://api.example.com/api/properties",
+      "https://api.example.com/api/v1/properties",
     );
   });
 
@@ -50,8 +50,8 @@ describe("getApiUrl", () => {
 
   it("constructs URL with property details endpoint", () => {
     process.env.NEXT_PUBLIC_API_URL = "https://api.test.com/api";
-    expect(getApiUrl(API_ENDPOINTS.PROPERTY_DETAILS)).toBe(
-      "https://api.test.com/api/property",
+    expect(getApiUrl(API_ENDPOINTS.PROPERTIES)).toBe(
+      "https://api.test.com/api/v1/properties",
     );
   });
 });

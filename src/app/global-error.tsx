@@ -11,7 +11,9 @@ export default function GlobalError({
   unstable_retry: () => void
 }) {
   useEffect(() => {
-    console.error(error)
+    if (process.env.NODE_ENV === 'development') {
+      console.error(error)
+    }
   }, [error])
 
   return (

@@ -3,25 +3,13 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import PropertyCard from './PropertyCard';
+import type { PropertyCardDto } from '@/types/property-api';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-interface Property {
-  id: string;
-  slug: string;
-  title: string;
-  type: string;
-  price: string;
-  location: string;
-  imageUrl: string;
-  area?: string;
-  rooms?: number;
-  operationType?: 'kauf' | 'miete';
-}
-
 interface PropertiesGridProps {
-  properties: Property[];
+  readonly properties: readonly PropertyCardDto[];
 }
 
 export default function PropertiesGrid({ properties }: PropertiesGridProps) {
@@ -57,15 +45,7 @@ export default function PropertiesGrid({ properties }: PropertiesGridProps) {
         {properties.map((property, index) => (
           <SwiperSlide key={property.id}>
             <PropertyCard
-              slug={property.slug}
-              title={property.title}
-              type={property.type}
-              price={property.price}
-              location={property.location}
-              imageUrl={property.imageUrl}
-              area={property.area}
-              rooms={property.rooms}
-              operationType={property.operationType}
+              property={property}
               preload={index === 0}
             />
           </SwiperSlide>

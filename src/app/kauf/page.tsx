@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import PropertyTypeGrid from "@/components/properties/PropertyTypeGrid";
 import Title from "@/components/ui/title/Title";
+import { getPropertyTypes } from "@/types/property-types";
 import {
   defaultOpenGraphMetadata,
   defaultTwitterMetadata,
@@ -26,15 +28,6 @@ export const metadata: Metadata = {
   },
 };
 
-
-
-const PROPERTY_TYPES = [
-  { slug: "haeuser", label: "Häuser", description: "Einfamilienhäuser, Reihenhäuser, Villen" },
-  { slug: "wohnungen", label: "Wohnungen", description: "Eigentumswohnungen, Apartments" },
-  { slug: "gewerbeimmobilien", label: "Gewerbeimmobilien", description: "Büros, Lagerhallen, Geschäfte" },
-  { slug: "grundstueck", label: "Grundstück", description: "Baugrundstücke, Ackerland" },
-] as const;
-
 export default function KaufPage() {
   return (
     <>
@@ -48,14 +41,21 @@ export default function KaufPage() {
       </div>
 
       <PropertyTypeGrid
-        types={PROPERTY_TYPES}
+        types={getPropertyTypes("kauf")}
         basePath="kauf"
         title="Nach Immobilientyp filtern"
       />
 
       <div className="p-8 bg-bgSecondary-l dark:bg-bgSecondary-d border border-border-l dark:border-border-d rounded">
         <p className="text-center text-card-text-l dark:text-card-text-d">
-          Alle Immobilien zum Kauf werden hier angezeigt, sobald das Backend integriert ist.
+          Kategorisierte Immobiliensuche ist derzeit in Vorbereitung.
+        </p>
+        <p className="text-center text-card-text-l dark:text-card-text-d text-sm mt-2">
+          Alle verfügbaren Immobilien zum Kauf finden Sie in der{' '}
+          <Link href="/objekt" className="text-primary hover:underline">
+            Gesamtübersicht
+          </Link>
+          .
         </p>
       </div>
     </>

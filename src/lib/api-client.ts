@@ -1,6 +1,5 @@
 export enum API_ENDPOINTS {
-  PROPERTIES = '/properties',
-  PROPERTY_DETAILS = '/property',
+  PROPERTIES = '/v1/properties',
 }
 
 export enum LEADS_ENDPOINTS {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Title from "@/components/ui/title/Title";
 import PropertyTypeGrid from "@/components/properties/PropertyTypeGrid";
 import { getPropertyTypes } from "@/types/property-types";
@@ -47,7 +48,14 @@ export default function MietePage() {
 
       <div className="p-8 bg-bgSecondary-l dark:bg-bgSecondary-d border border-border-l dark:border-border-d rounded">
         <p className="text-center text-card-text-l dark:text-card-text-d">
-          Alle Immobilien zur Miete werden hier angezeigt, sobald das Backend integriert ist.
+          Kategorisierte Immobiliensuche ist derzeit in Vorbereitung.
+        </p>
+        <p className="text-center text-card-text-l dark:text-card-text-d text-sm mt-2">
+          Alle verfügbaren Immobilien zur Miete finden Sie in der{' '}
+          <Link href="/objekt" className="text-primary hover:underline">
+            Gesamtübersicht
+          </Link>
+          .
         </p>
       </div>
     </>
