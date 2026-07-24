@@ -1,133 +1,67 @@
-Object.defineProperty(window, "matchMedia", {
-  writable: true,
-  value: jest.fn().mockImplementation((query) => ({
-    matches: false,
-    media: query,
-    onchange: null,
-    addListener: jest.fn(),
-    removeListener: jest.fn(),
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
-  })),
-});
-
-// localStorage mock
-const localStorageMock = (function () {
-  let store: Record<string, string> = {};
-  return {
-    getItem(key: string) {
-      return store[key] || null;
-    },
-    setItem(key: string, value: string) {
-      store[key] = value.toString();
-    },
-    removeItem(key: string) {
-      delete store[key];
-    },
-    clear() {
-      store = {};
-    },
-  };
-})();
-Object.defineProperty(window, "localStorage", {
-  value: localStorageMock,
-  configurable: true,
-});
-
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Topmenu from "@/components/layout/top-menu/TopMenu";
+import { useUiStore } from "@/store/ui/ui-store";
+
+jest.mock("next/navigation", () => ({
+  usePathname: () => "/",
+}));
+
+jest.mock("@/components/branding/logo/RumpkeLogo", () => ({
+  __esModule: true,
+  default: () => <div data-testid="rumpke-logo">RumpkeLogo</div>,
+}));
 
 describe("TopMenu", () => {
   beforeEach(() => {
-    // ...existing code...
+    useUiStore.setState({ isSidebarOpen: false });
   });
 
   describe("Rendering", () => {
-    it("renders without errors and displays the logo", () => {
+    it("renders the logo", () => {
       render(<Topmenu />);
-      expect(screen.getByAltText(/rumpke logo/i)).toBeInTheDocument();
+      expect(screen.getAllByTestId("rumpke-logo").length).toBeGreaterThan(0);
     });
-    it("displays the category buttons", () => {
+
+    it("renders the real desktop navigation links", () => {
       render(<Topmenu />);
-      expect(screen.getByText("Kauf")).toBeInTheDocument();
-      expect(screen.getByText("Miete")).toBeInTheDocument();
+      ["Häuser", "Wohnungen", "Gewerbeimmobilien", "Grundstücke", "Dienstleistungen", "Über uns", "Werde Tippgeber"].forEach(
+        (label) => expect(screen.getByText(label)).toBeInTheDocument()
+      );
     });
-    it("shows the mobile menu button", () => {
+
+    it("renders a single CTA", () => {
       render(<Topmenu />);
-      const menuBtn = screen.getByTestId("menu-btn");
-      expect(menuBtn).toBeInTheDocument();
+      const cta = screen.getByText("Kontakt aufnehmen");
+      expect(cta).toBeInTheDocument();
+      expect(cta.closest("a")).toHaveAttribute("href", "/kontakt");
     });
-    it("shows the ThemeSwitch", () => {
+
+    it("shows the mobile menu (hamburger) button", () => {
       render(<Topmenu />);
-      expect(screen.getByLabelText(/toggle theme/i)).toBeInTheDocument();
+      expect(screen.getByTestId("menu-btn")).toBeInTheDocument();
     });
   });
 
   describe("Navigation", () => {
-    it("category buttons render as links with correct href", () => {
+    it("links point to the correct routes", () => {
       render(<Topmenu />);
-      const kaufLink = screen.getByText("Kauf").closest("a");
-      const mieteLink = screen.getByText("Miete").closest("a");
-      expect(kaufLink).toBeInTheDocument();
-      expect(kaufLink).toHaveAttribute("href", "/kauf");
-      expect(mieteLink).toBeInTheDocument();
-      expect(mieteLink).toHaveAttribute("href", "/miete");
+      expect(screen.getByText("Häuser").closest("a")).toHaveAttribute("href", "/kategorie/haeuser");
+      expect(screen.getByText("Grundstücke").closest("a")).toHaveAttribute("href", "/kategorie/grundstueck");
+      expect(screen.getByText("Dienstleistungen").closest("a")).toHaveAttribute("href", "/dienstleistungen");
+      expect(screen.getByText("Über uns").closest("a")).toHaveAttribute("href", "/ueber-uns");
+      const tippgeber = screen.getByText("Werde Tippgeber").closest("a");
+      expect(tippgeber).toHaveAttribute("href", "https://www.ichschenkedirwas.de/");
+      expect(tippgeber).toHaveAttribute("target", "_blank");
     });
   });
 
   describe("Interaction", () => {
-    // Removed test for openSidemenu handler since ui-store is deleted
-    it("ThemeSwitch toggles the theme", () => {
+    it("hamburger opens the drawer via the ui store", () => {
       render(<Topmenu />);
-      const themeBtn = screen.getByLabelText(/toggle theme/i);
-      fireEvent.click(themeBtn);
-    });
-  });
-
-  describe("Accessibility", () => {
-    it("logo has alt attribute", () => {
-      render(<Topmenu />);
-      expect(screen.getByAltText(/rumpke logo/i)).toBeInTheDocument();
-    });
-  });
-
-  describe("Responsiveness", () => {
-    it("mobile menu appears only on small screens", () => {
-      // Simulate screen size if needed
-      render(<Topmenu />);
-      expect(screen.getAllByRole("button").length).toBeGreaterThan(0);
-    });
-  });
-
-  describe("Visual Integration", () => {
-    it("aplica clases Tailwind relevantes en el menú", () => {
-      render(<Topmenu />);
-      const menu = screen.getByTestId("menu-btn");
-      expect(menu).toHaveClass(
-        "mx-2",
-        "md:hidden",
-        "p-1",
-        "rounded",
-        "cursor-pointer",
-        "hover:bg-primary/10",
-        "dark:hover:bg-primary-dark/20",
-      );
-      const kaufBtn = screen.getByText("Kauf");
-      expect(kaufBtn).toHaveClass(
-        "border-buy",
-        "text-white",
-        "font-bold",
-        "bg-buy",
-      );
-      const mieteBtn = screen.getByText("Miete");
-      expect(mieteBtn).toHaveClass(
-        "border-rent",
-        "text-white",
-        "font-bold",
-        "bg-rent",
-      );
+      expect(useUiStore.getState().isSidebarOpen).toBe(false);
+      fireEvent.click(screen.getByTestId("menu-btn"));
+      expect(useUiStore.getState().isSidebarOpen).toBe(true);
     });
   });
 });
