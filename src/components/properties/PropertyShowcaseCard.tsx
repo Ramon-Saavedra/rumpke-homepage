@@ -8,7 +8,7 @@ import { resolveDisplayPrice } from "@/lib/property-formatters";
 import { buildPropertyFacts } from "@/lib/property-display";
 import { TRANSACTION_LABELS } from "@/types/property-types";
 import { cn } from "@/lib/utils";
-import { SKELETON_BLOCK } from "./showcase-skeleton";
+import { SKELETON_BLOCK } from "@/lib/skeleton-classes";
 
 export type PropertyShowcaseVariant = "featured" | "standard" | "compact";
 

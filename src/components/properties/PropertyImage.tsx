@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import ImagePlaceholder from "@/components/properties/ImagePlaceholder";
 import type { PropertyImageDto } from "@/types/property-api";
-import { SKELETON_BLOCK } from "./showcase-skeleton";
+import { SKELETON_BLOCK } from "@/lib/skeleton-classes";
 
 interface PropertyImageProps {
   readonly images: readonly PropertyImageDto[];

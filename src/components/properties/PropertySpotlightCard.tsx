@@ -8,7 +8,7 @@ import { buildPropertyFacts } from "@/lib/property-display";
 import { TRANSACTION_LABELS } from "@/types/property-types";
 import { SHOWCASE_CTA_COMPACT_GROUP_CLASS } from "./showcase-cta";
 import { cn } from "@/lib/utils";
-import { SKELETON_BLOCK } from "./showcase-skeleton";
+import { SKELETON_BLOCK } from "@/lib/skeleton-classes";
 
 interface PropertySpotlightCardProps {
   readonly property?: PropertyCardDto;
