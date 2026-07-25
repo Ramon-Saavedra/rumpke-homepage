@@ -1,12 +1,18 @@
-'use client';
+"use client";
 
-import { IoLogoInstagram, IoLogoFacebook, IoLogoWhatsapp, IoMailOutline, IoLogoLinkedin } from "react-icons/io5";
+import {
+  IoLogoInstagram,
+  IoLogoFacebook,
+  IoLogoWhatsapp,
+  IoMailOutline,
+  IoLogoLinkedin,
+} from "react-icons/io5";
 import { usePathname } from "next/navigation";
 import SocialIcon from "@/components/ui/social-icon/SocialIcon";
 
 const ContactTooltip = () => {
   const pathname = usePathname();
-  if (pathname.startsWith('/admin')) return null;
+  if (pathname.startsWith("/admin")) return null;
 
   return (
     <div>
@@ -16,7 +22,9 @@ const ContactTooltip = () => {
           ariaLabel="Facebook"
           dataSocial="facebook"
           target="_blank"
-          icon={<IoLogoFacebook size={18} className='hover:bg-[#1877F3] rounded' />}
+          icon={
+            <IoLogoFacebook size={18} className="hover:bg-[#1877F3] rounded" />
+          }
           tooltipText="Facebook"
           bgColor="#1877F3"
         />
@@ -26,7 +34,9 @@ const ContactTooltip = () => {
           ariaLabel="Whatsapp"
           dataSocial="whatsapp"
           target="_blank"
-          icon={<IoLogoWhatsapp size={18} className='hover:bg-[#25D366] rounded' />}
+          icon={
+            <IoLogoWhatsapp size={18} className="hover:bg-[#25D366] rounded" />
+          }
           tooltipText="WhatsApp"
           bgColor="#25D366"
         />
@@ -35,14 +45,18 @@ const ContactTooltip = () => {
           href="/#contact-form"
           ariaLabel="Email"
           dataSocial="email"
-          icon={<IoMailOutline size={18} className='hover:bg-[#2563EB] rounded' />}
+          icon={
+            <IoMailOutline size={18} className="hover:bg-[#2563EB] rounded" />
+          }
           tooltipText="Kontakt"
           bgColor="#2563EB"
           className="hidden md:block"
-          onClick={e => {
-            if (window.location.pathname === '/') {
+          onClick={(e) => {
+            if (window.location.pathname === "/") {
               e.preventDefault();
-              document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+              document
+                .getElementById("contact-form")
+                ?.scrollIntoView({ behavior: "smooth" });
             }
           }}
         />
@@ -52,7 +66,9 @@ const ContactTooltip = () => {
           ariaLabel="Instagram"
           dataSocial="instagram"
           target="_blank"
-          icon={<IoLogoInstagram size={18} className='hover:bg-[#E4405F] rounded' />}
+          icon={
+            <IoLogoInstagram size={18} className="hover:bg-[#E4405F] rounded" />
+          }
           tooltipText="Instagram"
           bgColor="#E4405F"
         />
@@ -62,13 +78,15 @@ const ContactTooltip = () => {
           ariaLabel="LinkedIn"
           dataSocial="linkedin"
           target="_blank"
-          icon={<IoLogoLinkedin size={18} className='hover:bg-[#0A66C2] rounded' />}
+          icon={
+            <IoLogoLinkedin size={18} className="hover:bg-[#0A66C2] rounded" />
+          }
           tooltipText="LinkedIn"
           bgColor="#0A66C2"
         />
       </ul>
     </div>
   );
-}
+};
 
 export default ContactTooltip;

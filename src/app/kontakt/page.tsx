@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
-import BackHomeButton from "@/components/features/back-home-buttom/BackHomeButton";
-import { IoCallOutline, IoMailOutline, IoLocationOutline } from "react-icons/io5";
+import BackHomeButton from "@/components/features/back-home-button/BackHomeButton";
+import {
+  IoCallOutline,
+  IoMailOutline,
+  IoLocationOutline,
+} from "react-icons/io5";
 import ContactForm from "@/components/features/contact-form/ContactForm";
+import PageContainer from "@/components/layout/page-container/PageContainer";
 
 export const metadata: Metadata = {
   title: "Kontakt",
@@ -11,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function KontaktPage() {
   return (
-    <main className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
+    <PageContainer as="main" className="py-6">
       <BackHomeButton />
 
       <section
@@ -30,7 +35,8 @@ export default function KontaktPage() {
               Sprechen wir.
             </h1>
             <p className="text-sm text-card-text-l dark:text-card-text-d leading-relaxed">
-              Wir sind für Sie da — gerne persönlich, per Telefon oder per E-Mail.
+              Wir sind für Sie da — gerne persönlich, per Telefon oder per
+              E-Mail.
             </p>
           </div>
 
@@ -39,25 +45,41 @@ export default function KontaktPage() {
               href="tel:+491723244468"
               className="flex items-center gap-3 text-sm text-card-text-l dark:text-card-text-d hover:text-primary transition-colors group"
             >
-              <IoCallOutline size={15} className="text-primary shrink-0 group-hover:scale-110 transition-transform" aria-hidden="true" />
+              <IoCallOutline
+                size={15}
+                className="text-primary shrink-0 group-hover:scale-110 transition-transform"
+                aria-hidden="true"
+              />
               <span>0172 – 32 444 68</span>
             </a>
             <a
               href="tel:+4959634599970"
               className="flex items-center gap-3 text-sm text-card-text-l dark:text-card-text-d hover:text-primary transition-colors group"
             >
-              <IoCallOutline size={15} className="text-primary shrink-0 group-hover:scale-110 transition-transform" aria-hidden="true" />
+              <IoCallOutline
+                size={15}
+                className="text-primary shrink-0 group-hover:scale-110 transition-transform"
+                aria-hidden="true"
+              />
               <span>05963 – 45 999 70</span>
             </a>
             <a
               href="mailto:info@rumpke-immobilien.de"
               className="flex items-center gap-3 text-sm text-card-text-l dark:text-card-text-d hover:text-primary transition-colors group"
             >
-              <IoMailOutline size={15} className="text-primary shrink-0 group-hover:scale-110 transition-transform" aria-hidden="true" />
+              <IoMailOutline
+                size={15}
+                className="text-primary shrink-0 group-hover:scale-110 transition-transform"
+                aria-hidden="true"
+              />
               <span>info@rumpke-immobilien.de</span>
             </a>
             <div className="flex items-start gap-3 text-sm text-card-text-l dark:text-card-text-d">
-              <IoLocationOutline size={15} className="text-primary shrink-0 mt-0.5" aria-hidden="true" />
+              <IoLocationOutline
+                size={15}
+                className="text-primary shrink-0 mt-0.5"
+                aria-hidden="true"
+              />
               <span>Römerstraße 9, 40811 Lingen</span>
             </div>
           </address>
@@ -70,7 +92,6 @@ export default function KontaktPage() {
       >
         <ContactForm formHeadingId="form-heading" />
       </section>
-    </main>
+    </PageContainer>
   );
 }
-

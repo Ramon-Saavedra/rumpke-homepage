@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { usePathname } from "next/navigation";
-import BackHomeButton from "@/components/features/back-home-buttom/BackHomeButton";
+import BackHomeButton from "@/components/features/back-home-button/BackHomeButton";
 
 interface BackNavProps {
   basePath: string;

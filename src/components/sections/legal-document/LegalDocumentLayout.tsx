@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import BackHomeButton from "@/components/features/back-home-buttom/BackHomeButton";
+import BackHomeButton from "@/components/features/back-home-button/BackHomeButton";
+import PageContainer from "@/components/layout/page-container/PageContainer";
 
 type LegalTocItem = {
   readonly id: string;
@@ -76,7 +77,7 @@ export default function LegalDocumentLayout({
       />
 
       <section className="border-b border-border-l dark:border-border-d">
-        <div className="mx-auto max-w-7xl px-4 pb-10 pt-12 sm:px-6 lg:px-8 lg:pb-14 lg:pt-16">
+        <PageContainer className="pb-10 pt-12 lg:pb-14 lg:pt-16">
           <BackHomeButton />
 
           <div className="border border-border-l bg-bgSecondary-l/90 p-6 shadow-secondary backdrop-blur-sm dark:border-border-d dark:bg-bgSecondary-d/90 sm:p-8 lg:p-10">
@@ -113,10 +114,10 @@ export default function LegalDocumentLayout({
               </div>
             </div>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
-      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+      <PageContainer className="py-10 lg:py-14">
         <div className="grid gap-8 lg:grid-cols-[18rem_minmax(0,1fr)] xl:grid-cols-[19rem_minmax(0,1fr)]">
           <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
             <nav
@@ -149,8 +150,8 @@ export default function LegalDocumentLayout({
                 Kontakt
               </p>
               <p className="mt-3 text-sm leading-7 text-white/80">
-                Wenn Sie Fragen zu diesen Angaben haben, erreichen Sie uns direkt
-                per E-Mail oder über die Kontaktseite.
+                Wenn Sie Fragen zu diesen Angaben haben, erreichen Sie uns
+                direkt per E-Mail oder über die Kontaktseite.
               </p>
               <div className="mt-5 flex flex-col gap-3">
                 <a
@@ -171,7 +172,7 @@ export default function LegalDocumentLayout({
 
           <article className="space-y-6">{children}</article>
         </div>
-      </div>
+      </PageContainer>
     </div>
   );
 }

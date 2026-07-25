@@ -1,4 +1,4 @@
-jest.mock("@/components/features/contact-buttom/ContactTooltip", () => {
+jest.mock("@/components/features/contact-button/ContactTooltip", () => {
   return function MockContactTooltip() {
     return <div data-testid="contact-tooltip">ContactTooltip</div>;
   };
