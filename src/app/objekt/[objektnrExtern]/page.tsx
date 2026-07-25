@@ -1,21 +1,28 @@
-import type { Metadata, ResolvingMetadata } from 'next';
-import { notFound } from 'next/navigation';
-import PropertyImage from '@/components/properties/PropertyImage';
-import { getProperty } from '@/lib/property-client';
-import { resolveDisplayPrice, formatArea, formatYear, formatRooms, formatPrice } from '@/lib/property-formatters';
-import type { PropertyDetailDto } from '@/types/property-api';
-import { PropertyFetchError } from '@/types/property-api';
+import type { Metadata, ResolvingMetadata } from "next";
+import { notFound } from "next/navigation";
+import PropertyImage from "@/components/properties/PropertyImage";
+import { getProperty } from "@/lib/property-client";
+import {
+  resolveDisplayPrice,
+  formatArea,
+  formatYear,
+  formatRooms,
+  formatPrice,
+} from "@/lib/property-formatters";
+import type { PropertyDetailDto } from "@/types/property-api";
+import { PropertyFetchError } from "@/types/property-api";
+import PageContainer from "@/components/layout/page-container/PageContainer";
 import {
   defaultOpenGraphMetadata,
   defaultTwitterMetadata,
-} from '@/lib/site-metadata';
-import { JsonLd } from '@/components/seo/JsonLd';
+} from "@/lib/site-metadata";
+import { JsonLd } from "@/components/seo/JsonLd";
 import {
   buildPropertyBreadcrumbs,
   buildBreadcrumbListJsonLd,
   buildPropertyStructuredData,
   resolveOgImage,
-} from '@/lib/property-seo';
+} from "@/lib/property-seo";
 
 type RouteParams = {
   objektnrExtern: string;
@@ -31,13 +38,17 @@ function buildMetadataTitle(property: PropertyDetailDto): string {
 }
 
 function buildMetadataDescription(property: PropertyDetailDto): string {
-  const type = property.propertySubType ?? property.propertyType ?? 'Immobilie';
-  const city = property.address.city ?? '';
+  const type = property.propertySubType ?? property.propertyType ?? "Immobilie";
+  const city = property.address.city ?? "";
   const parts = [type];
   if (city) parts.push(city);
-  const price = resolveDisplayPrice(property.marketingType, property.price.salePrice, property.price.coldRent);
+  const price = resolveDisplayPrice(
+    property.marketingType,
+    property.price.salePrice,
+    property.price.coldRent,
+  );
   if (price) parts.push(price);
-  return parts.join(' – ');
+  return parts.join(" – ");
 }
 
 export async function generateMetadata(
@@ -47,8 +58,8 @@ export async function generateMetadata(
   try {
     const { objektnrExtern } = await params;
 
-    if (!objektnrExtern || objektnrExtern.trim() === '') {
-      return { title: 'Immobilie nicht gefunden' };
+    if (!objektnrExtern || objektnrExtern.trim() === "") {
+      return { title: "Immobilie nicht gefunden" };
     }
 
     const property = await getProperty(objektnrExtern);
@@ -73,18 +84,24 @@ export async function generateMetadata(
       },
       twitter: {
         ...defaultTwitterMetadata,
-        card: 'summary_large_image',
+        card: "summary_large_image",
         title,
         description,
         ...(ogImage && { images: [ogImage] }),
       },
     };
   } catch {
-    return { title: 'Immobilie nicht gefunden' };
+    return { title: "Immobilie nicht gefunden" };
   }
 }
 
-function DetailField({ label, value }: { readonly label: string; readonly value: string | null }) {
+function DetailField({
+  label,
+  value,
+}: {
+  readonly label: string;
+  readonly value: string | null;
+}) {
   if (!value) return null;
   return (
     <div className="flex justify-between">
@@ -94,7 +111,13 @@ function DetailField({ label, value }: { readonly label: string; readonly value:
   );
 }
 
-function DetailSection({ title, children }: { readonly title: string; readonly children: React.ReactNode }) {
+function DetailSection({
+  title,
+  children,
+}: {
+  readonly title: string;
+  readonly children: React.ReactNode;
+}) {
   return (
     <div className="bg-bgSecondary-l dark:bg-bgSecondary-d p-6 rounded border border-border-l dark:border-border-d">
       <h2 className="text-xl font-semibold mb-4 text-text-l dark:text-text-d">
@@ -108,7 +131,7 @@ function DetailSection({ title, children }: { readonly title: string; readonly c
 export default async function ObjektDetailPage({ params }: PageProps) {
   const { objektnrExtern } = await params;
 
-  if (!objektnrExtern || objektnrExtern.trim() === '') {
+  if (!objektnrExtern || objektnrExtern.trim() === "") {
     notFound();
   }
 
@@ -116,7 +139,10 @@ export default async function ObjektDetailPage({ params }: PageProps) {
   try {
     property = await getProperty(objektnrExtern);
   } catch (error: unknown) {
-    if (error instanceof PropertyFetchError && error.publicCode === 'PROPERTY_NOT_FOUND') {
+    if (
+      error instanceof PropertyFetchError &&
+      error.publicCode === "PROPERTY_NOT_FOUND"
+    ) {
       notFound();
     }
     throw error;
@@ -135,8 +161,11 @@ export default async function ObjektDetailPage({ params }: PageProps) {
   const structuredData = buildPropertyStructuredData(property);
 
   const locationParts = [
-    property.address.street ? `${property.address.street}${property.address.houseNumber ? ` ${property.address.houseNumber}` : ''}` : null,
-    [property.address.zip, property.address.city].filter(Boolean).join(' ') || null,
+    property.address.street
+      ? `${property.address.street}${property.address.houseNumber ? ` ${property.address.houseNumber}` : ""}`
+      : null,
+    [property.address.zip, property.address.city].filter(Boolean).join(" ") ||
+      null,
   ].filter(Boolean);
 
   return (
@@ -144,34 +173,38 @@ export default async function ObjektDetailPage({ params }: PageProps) {
       <JsonLd data={breadcrumbLd} />
       {structuredData && <JsonLd data={structuredData} />}
 
-      <main className="w-full">
-        <div className="relative w-full h-64 md:h-96 shrink-0 overflow-hidden">
-          <PropertyImage
-            images={property.images}
-            alt={property.title ?? property.id}
-            className="h-full w-full"
-            priority
-            sizes="100vw"
-          />
-        </div>
+      <div className="relative w-full h-64 md:h-96 shrink-0 overflow-hidden">
+        <PropertyImage
+          images={property.images}
+          alt={property.title ?? property.id}
+          className="h-full w-full"
+          priority
+          sizes="100vw"
+        />
+      </div>
 
-        <div className="container mx-auto px-4 py-12">
+      <PageContainer as="main" className="py-12">
+        <div className="max-w-5xl mx-auto">
           <h1 className="text-4xl font-bold mb-2 text-text-l dark:text-text-d">
             {property.title ?? `Immobilie ${property.id}`}
           </h1>
           {displayType && (
-            <p className="text-card-text-l dark:text-card-text-d mb-6">{displayType}</p>
+            <p className="text-card-text-l dark:text-card-text-d mb-6">
+              {displayType}
+            </p>
           )}
 
           {locationParts.length > 0 && (
             <p className="text-card-text-l dark:text-card-text-d mb-8">
-              {locationParts.join(', ')}
+              {locationParts.join(", ")}
             </p>
           )}
 
           <div className="grid lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 space-y-6">
-              {(property.description || property.locationDescription || property.furnishingDescription) && (
+              {(property.description ||
+                property.locationDescription ||
+                property.furnishingDescription) && (
                 <DetailSection title="Beschreibung">
                   {property.description && (
                     <p className="text-card-text-l dark:text-card-text-d leading-relaxed mb-4">
@@ -180,7 +213,9 @@ export default async function ObjektDetailPage({ params }: PageProps) {
                   )}
                   {property.locationDescription && (
                     <div className="mb-4">
-                      <h3 className="text-lg font-semibold mb-2 text-text-l dark:text-text-d">Lage</h3>
+                      <h3 className="text-lg font-semibold mb-2 text-text-l dark:text-text-d">
+                        Lage
+                      </h3>
                       <p className="text-card-text-l dark:text-card-text-d leading-relaxed">
                         {property.locationDescription}
                       </p>
@@ -188,7 +223,9 @@ export default async function ObjektDetailPage({ params }: PageProps) {
                   )}
                   {property.furnishingDescription && (
                     <div>
-                      <h3 className="text-lg font-semibold mb-2 text-text-l dark:text-text-d">Ausstattung</h3>
+                      <h3 className="text-lg font-semibold mb-2 text-text-l dark:text-text-d">
+                        Ausstattung
+                      </h3>
                       <p className="text-card-text-l dark:text-card-text-d leading-relaxed">
                         {property.furnishingDescription}
                       </p>
@@ -211,7 +248,9 @@ export default async function ObjektDetailPage({ params }: PageProps) {
                   {property.marketingType && (
                     <div className="flex justify-between">
                       <dt className="font-medium">Art:</dt>
-                      <dd>{property.marketingType === 'miete' ? 'Miete' : 'Kauf'}</dd>
+                      <dd>
+                        {property.marketingType === "miete" ? "Miete" : "Kauf"}
+                      </dd>
                     </div>
                   )}
 
@@ -223,9 +262,19 @@ export default async function ObjektDetailPage({ params }: PageProps) {
                   )}
 
                   <DetailField label="Etage" value={property.floor} />
-                  <DetailField label="Baujahr" value={property.yearBuilt !== null ? formatYear(property.yearBuilt) : null} />
+                  <DetailField
+                    label="Baujahr"
+                    value={
+                      property.yearBuilt !== null
+                        ? formatYear(property.yearBuilt)
+                        : null
+                    }
+                  />
                   <DetailField label="Zustand" value={property.condition} />
-                  <DetailField label="Energieausweis" value={property.energyCertificateType} />
+                  <DetailField
+                    label="Energieausweis"
+                    value={property.energyCertificateType}
+                  />
 
                   {property.totalFloors !== null && (
                     <div className="flex justify-between">
@@ -312,18 +361,18 @@ export default async function ObjektDetailPage({ params }: PageProps) {
                 <dl className="space-y-3 text-card-text-l dark:text-card-text-d">
                   <div className="flex justify-between">
                     <dt className="font-medium">Balkon:</dt>
-                    <dd>{property.balcony ? 'Ja' : 'Nein'}</dd>
+                    <dd>{property.balcony ? "Ja" : "Nein"}</dd>
                   </div>
                   <div className="flex justify-between">
                     <dt className="font-medium">Terrasse:</dt>
-                    <dd>{property.terrace ? 'Ja' : 'Nein'}</dd>
+                    <dd>{property.terrace ? "Ja" : "Nein"}</dd>
                   </div>
                 </dl>
               </DetailSection>
             </div>
           </div>
         </div>
-      </main>
+      </PageContainer>
     </>
   );
 }

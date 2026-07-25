@@ -4,7 +4,7 @@ import PageContainer from "@/components/layout/page-container/PageContainer";
 
 export default function KaufLayout({ children }: { children: ReactNode }) {
   return (
-    <PageContainer>
+    <PageContainer className="py-12">
       <BackNav basePath="/kauf" backLabel="Zurück zu Kaufimmobilien" />
       {children}
     </PageContainer>

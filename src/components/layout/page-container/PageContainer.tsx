@@ -1,15 +1,19 @@
-import type { ReactNode } from 'react';
-import { cn } from '@/lib/utils';
+import type { ReactNode } from "react";
 
 interface PageContainerProps {
-  readonly children: ReactNode;
+  readonly as?: "section" | "main" | "div" | "footer";
   readonly className?: string;
+  readonly children: ReactNode;
 }
 
-export default function PageContainer({ children, className }: PageContainerProps) {
+export default function PageContainer({
+  as: Tag = "div",
+  className = "",
+  children,
+}: PageContainerProps) {
   return (
-    <div className={cn('container mx-auto max-w-5xl py-12 px-2 xl:px-0', className)}>
-      {children}
-    </div>
+    <Tag className={`w-full ${className}`}>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">{children}</div>
+    </Tag>
   );
 }

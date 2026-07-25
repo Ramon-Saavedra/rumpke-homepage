@@ -166,7 +166,7 @@ describe("ServicesSection", () => {
     it("section has correct styling classes", () => {
       render(<ServicesSection />);
       const section = document.querySelector("section");
-      expect(section).toHaveClass("w-full", "mb-24");
+      expect(section).toHaveClass("mb-24");
     });
 
     it("renders all service titles in correct order", () => {

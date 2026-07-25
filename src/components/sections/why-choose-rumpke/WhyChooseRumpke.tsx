@@ -50,10 +50,9 @@ const WhyChooseRumpke = () => {
     <section
       ref={ref}
       aria-label="Warum Rumpke Immobilien"
-      className="w-full mb-24 px-4 sm:px-6 py-12"
+      className="mb-24 py-12"
     >
-      <div className="mx-auto">
-
+      <div className="">
         {/* Header */}
         <SectionHeader
           eyebrow="Unsere Stärken"
@@ -67,11 +66,14 @@ const WhyChooseRumpke = () => {
           {features.map((feature, i) => (
             <div
               key={feature.title}
-              className={`py-10 duration-700 ${i === 0
-                ? "md:pr-10"
-                : "md:px-10 border-t md:border-t-0 md:border-l border-border-l dark:border-border-d"
-                } ${fadeUp(visible)}`}
-              style={{ transitionDelay: visible ? `${200 + i * 150}ms` : "0ms" }}
+              className={`py-10 duration-700 ${
+                i === 0
+                  ? "md:pr-10"
+                  : "md:px-10 border-t md:border-t-0 md:border-l border-border-l dark:border-border-d"
+              } ${fadeUp(visible)}`}
+              style={{
+                transitionDelay: visible ? `${200 + i * 150}ms` : "0ms",
+              }}
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-primary/40 bg-bgSecondary-l text-primary dark:bg-bgSecondary-d mb-6">
                 <feature.Icon size={18} strokeWidth={1.6} aria-hidden="true" />
@@ -96,8 +98,11 @@ const WhyChooseRumpke = () => {
           {stats.map((stat, i) => (
             <div
               key={stat.label}
-              className={`py-8 px-2 text-center md:text-left ${i === 0 ? "md:px-0 md:pr-10" : "md:px-10 border-l border-border-l dark:border-border-d"
-                }`}
+              className={`py-8 px-2 text-center md:text-left ${
+                i === 0
+                  ? "md:px-0 md:pr-10"
+                  : "md:px-10 border-l border-border-l dark:border-border-d"
+              }`}
             >
               <span className="block text-3xl sm:text-4xl font-bold text-primary mb-1">
                 {stat.value}
@@ -108,7 +113,6 @@ const WhyChooseRumpke = () => {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

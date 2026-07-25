@@ -20,13 +20,13 @@ const HeroVideo: FC<HeroVideoProps> = ({ videoSrc, poster, alt }) => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            videoElement.play().catch(() => { });
+            videoElement.play().catch(() => {});
           } else {
             videoElement.pause();
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     observer.observe(videoElement);
@@ -37,10 +37,7 @@ const HeroVideo: FC<HeroVideoProps> = ({ videoSrc, poster, alt }) => {
   }, []);
 
   return (
-    <section
-      id="site-hero"
-      className="relative w-full overflow-hidden h-svh min-h-140 md:h-[90vh] md:min-h-155 lg:h-[85vh] min-[1440px]:h-[88vh] min-[1800px]:h-[90vh] min-[1800px]:max-h-225"
-    >
+    <section id="site-hero" className="relative w-full overflow-hidden h-svh">
       <video
         ref={videoRef}
         className="absolute inset-0 h-full w-full object-cover"
