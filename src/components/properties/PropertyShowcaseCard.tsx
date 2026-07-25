@@ -8,14 +8,13 @@ import { cn } from "@/lib/utils";
 
 export type PropertyShowcaseVariant = "featured" | "standard" | "compact";
 
+export type PropertyShowcaseMedia = "aspect" | "fill" | "panorama";
+
 interface PropertyShowcaseCardProps {
   readonly property?: PropertyCardDto;
   readonly variant?: PropertyShowcaseVariant;
-  /** Stretch the image to fill remaining height (used for stacked secondary cards on desktop). */
-  readonly fill?: boolean;
-  /** Prioritise the image for the LCP anchor card. */
+  readonly media?: PropertyShowcaseMedia;
   readonly priority?: boolean;
-  /** Render the skeleton placeholder in the exact card geometry (no layout shift). */
   readonly isLoading?: boolean;
   readonly className?: string;
 }
@@ -26,67 +25,84 @@ interface VariantConfig {
   readonly titleClass: string;
   readonly titleMargin: string;
   readonly metaClass: string;
+  readonly metaIconClass: string;
   readonly footerPad: string;
   readonly priceClass: string;
   readonly metaRightClass: string;
   readonly roomsLabel: string;
   readonly badgeClass: string;
+  readonly badgeOffset: string;
+  readonly aspectClass: string;
   readonly sizes: string;
 }
 
 const VARIANTS: Record<PropertyShowcaseVariant, VariantConfig> = {
   featured: {
-    contentPad: "p-7 sm:p-8",
+    contentPad: "px-5 pb-5 pt-4 sm:px-6 sm:pb-6 sm:pt-5",
     titleTag: "h3",
-    titleClass: "font-serif text-2xl font-semibold leading-tight sm:text-3xl",
-    titleMargin: "mb-2.5",
-    metaClass: "mb-5 text-sm",
-    footerPad: "pt-4",
-    priceClass: "text-xl",
-    metaRightClass: "text-sm",
+    titleClass:
+      "font-serif text-[21px] font-semibold leading-tight sm:text-2xl",
+    titleMargin: "mb-2",
+    metaClass: "mb-3.5 text-sm sm:mb-4",
+    metaIconClass: "h-3.5 w-3.5",
+    footerPad: "pt-3.5 sm:pt-4",
+    priceClass: "text-[17px] sm:text-xl",
+    metaRightClass: "text-[13px] sm:text-sm",
     roomsLabel: "Zimmer",
     badgeClass: "px-3.5 py-1.5 text-xs",
-    sizes: "(max-width: 1024px) 100vw, 800px",
+    badgeOffset: "left-4 top-4",
+    aspectClass: "aspect-[4/3] sm:aspect-[16/10] lg:aspect-[3/2]",
+    sizes: "(max-width: 1024px) 100vw, 780px",
   },
   standard: {
-    contentPad: "p-4 sm:p-5",
+    contentPad: "px-4 pb-4 pt-3.5 sm:px-[18px] sm:pb-[18px] sm:pt-4",
     titleTag: "h4",
     titleClass: "font-sans text-base font-bold leading-snug",
     titleMargin: "mb-1.5",
     metaClass: "mb-3 text-[13px]",
+    metaIconClass: "h-3.5 w-3.5",
     footerPad: "pt-3",
     priceClass: "text-[15px]",
     metaRightClass: "text-xs",
     roomsLabel: "Zimmer",
     badgeClass: "px-2.5 py-1 text-[11px]",
+    badgeOffset: "left-3 top-3",
+    aspectClass: "aspect-[4/3]",
     sizes: "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px",
   },
   compact: {
-    contentPad: "p-4",
+    contentPad: "px-3.5 pb-3.5 pt-3",
     titleTag: "h4",
-    titleClass: "font-sans text-[15px] font-bold leading-snug",
-    titleMargin: "mb-1.5",
-    metaClass: "mb-2.5 text-xs",
-    footerPad: "pt-2.5",
-    priceClass: "text-[13.5px]",
-    metaRightClass: "text-[11.5px]",
+    titleClass: "font-sans text-sm font-bold leading-snug",
+    titleMargin: "mb-1",
+    metaClass: "mb-2 text-xs",
+    metaIconClass: "h-3 w-3",
+    footerPad: "pt-2",
+    priceClass: "text-[13px]",
+    metaRightClass: "text-[11px]",
     roomsLabel: "Zi.",
     badgeClass: "px-2.5 py-1 text-[11px]",
+    badgeOffset: "left-2.5 top-2.5",
+    aspectClass: "aspect-[4/3]",
     sizes: "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px",
   },
 };
 
+const PANORAMA_ASPECT = "aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9]";
+
 function imageWrapperClass(
   variant: PropertyShowcaseVariant,
-  fill: boolean,
+  media: PropertyShowcaseMedia,
 ): string {
-  if (fill) {
-    return "relative overflow-hidden aspect-[4/3] lg:aspect-auto lg:flex-1 lg:min-h-0";
+  const base = "relative overflow-hidden";
+
+  if (media === "fill") {
+    return cn(base, "aspect-[4/3] lg:aspect-auto lg:min-h-0 lg:flex-1");
   }
-  if (variant === "featured") {
-    return "relative overflow-hidden aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3]";
+  if (media === "panorama") {
+    return cn(base, PANORAMA_ASPECT);
   }
-  return "relative overflow-hidden aspect-[4/3]";
+  return cn(base, VARIANTS[variant].aspectClass);
 }
 
 const CARD_BASE =
@@ -97,11 +113,11 @@ const SKELETON_BLOCK =
 
 function Skeleton({
   variant,
-  fill,
+  media,
   className,
 }: {
   readonly variant: PropertyShowcaseVariant;
-  readonly fill: boolean;
+  readonly media: PropertyShowcaseMedia;
   readonly className?: string;
 }) {
   const config = VARIANTS[variant];
@@ -109,7 +125,7 @@ function Skeleton({
     <div
       className={cn(
         "flex flex-col rounded-lg",
-        fill && "lg:h-full lg:flex-1 lg:min-h-0",
+        media === "fill" && "lg:h-full lg:min-h-0 lg:flex-1",
         className,
       )}
       aria-hidden="true"
@@ -117,7 +133,7 @@ function Skeleton({
       <div className={CARD_BASE}>
         <div
           className={cn(
-            imageWrapperClass(variant, fill),
+            imageWrapperClass(variant, media),
             SKELETON_BLOCK,
             "rounded-none",
           )}
@@ -145,7 +161,7 @@ function Skeleton({
 export default function PropertyShowcaseCard({
   property,
   variant = "standard",
-  fill = false,
+  media = "aspect",
   priority = false,
   isLoading = false,
   className,
@@ -153,7 +169,7 @@ export default function PropertyShowcaseCard({
   const config = VARIANTS[variant];
 
   if (isLoading || !property) {
-    return <Skeleton variant={variant} fill={fill} className={className} />;
+    return <Skeleton variant={variant} media={media} className={className} />;
   }
 
   const title = property.title ?? `Immobilie ${property.id}`;
@@ -181,7 +197,7 @@ export default function PropertyShowcaseCard({
       href={`/objekt/${property.id}`}
       className={cn(
         "group flex flex-col rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
-        fill && "lg:h-full lg:flex-1 lg:min-h-0",
+        media === "fill" && "lg:h-full lg:min-h-0 lg:flex-1",
         className,
       )}
     >
@@ -191,19 +207,20 @@ export default function PropertyShowcaseCard({
           "transition duration-200 group-hover:shadow-lg motion-safe:group-hover:-translate-y-0.5 dark:group-hover:border-card-text-d/30",
         )}
       >
-        <div className={imageWrapperClass(variant, fill)}>
+        <div className={imageWrapperClass(variant, media)}>
           <PropertyImage
             images={property.images}
             alt={imageAlt}
             className="h-full w-full motion-safe:transition-transform motion-safe:duration-500 motion-safe:ease-out motion-safe:group-hover:scale-[1.03]"
             priority={priority}
-            sizes={config.sizes}
+            sizes={media === "panorama" ? "100vw" : config.sizes}
           />
 
           {property.marketingType && (
             <span
               className={cn(
-                "absolute left-3 top-3 rounded-md font-semibold text-white",
+                "absolute rounded-md font-semibold text-white",
+                config.badgeOffset,
                 config.badgeClass,
                 isRent ? "bg-rent" : "bg-buy",
               )}
@@ -231,7 +248,10 @@ export default function PropertyShowcaseCard({
                 config.metaClass,
               )}
             >
-              <MapPin className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+              <MapPin
+                className={cn("shrink-0", config.metaIconClass)}
+                aria-hidden="true"
+              />
               <span className="line-clamp-1">{metaLeft}</span>
             </div>
           )}

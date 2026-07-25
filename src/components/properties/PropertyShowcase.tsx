@@ -1,51 +1,151 @@
 import Link from "next/link";
-import { ArrowRight, SearchX } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import PropertyShowcaseCard from "./PropertyShowcaseCard";
-import { selectShowcaseProperties } from "@/lib/property-showcase";
+import PropertySpotlightCard from "./PropertySpotlightCard";
+import PropertyShowcaseEmpty from "./PropertyShowcaseEmpty";
+import { selectShowcaseLayout } from "@/lib/property-showcase";
+import type { ShowcaseLayout } from "@/lib/property-showcase";
 import type { PropertyCardDto } from "@/types/property-api";
 import PageContainer from "@/components/layout/page-container/PageContainer";
+import { SHOWCASE_CTA_CLASS } from "./showcase-cta";
+import { cn } from "@/lib/utils";
 
 interface PropertyShowcaseProps {
   readonly properties: readonly PropertyCardDto[];
-  /** True when the property service could not be reached. */
   readonly error?: boolean;
 }
 
-const CTA_CLASS =
-  "inline-flex items-center justify-center gap-2.5 rounded-full bg-primary px-7 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 dark:bg-primary-dark dark:hover:bg-primary";
+const ROW_GAP = "gap-6 lg:gap-8";
 
-function ShowcaseEmptyState({ error }: { readonly error: boolean }) {
-  const heading = error
-    ? "Immobilien derzeit nicht verfügbar"
-    : "Aktuell keine passenden Objekte";
-  const body = error
-    ? "Bitte versuchen Sie es später erneut oder lassen Sie sich persönlich beraten – wir sind gerne für Sie da."
-    : "Schauen Sie bald wieder vorbei, oder lassen Sie sich persönlich beraten – wir finden gemeinsam das passende Zuhause.";
-
+function AnchorRow({
+  featured,
+  secondary,
+  className,
+}: {
+  readonly featured: PropertyCardDto;
+  readonly secondary: readonly PropertyCardDto[];
+  readonly className?: string;
+}) {
   return (
-    <div className="mx-auto max-w-2xl rounded-lg border border-border-l bg-bgSecondary-l px-8 py-10 text-center dark:border-border-d dark:bg-bgSecondary-d">
-      <SearchX
-        className="mx-auto mb-3 h-6 w-6 text-card-text-l dark:text-card-text-d"
-        aria-hidden="true"
+    <div
+      className={cn(
+        "flex flex-col lg:flex-row lg:items-stretch",
+        ROW_GAP,
+        className,
+      )}
+    >
+      <PropertyShowcaseCard
+        property={featured}
+        variant="featured"
+        priority
+        className="lg:w-[61%] lg:shrink-0 lg:grow-0"
       />
-      <h3 className="font-serif text-xl font-semibold text-foreground">
-        {heading}
-      </h3>
-      <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-card-text-l dark:text-card-text-d">
-        {body}
-      </p>
-      <Link href="/kontakt" className={`mt-5 ${CTA_CLASS}`}>
-        Kontakt aufnehmen
-      </Link>
+
+      {secondary.length > 0 && (
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:flex lg:flex-1 lg:flex-col lg:gap-5">
+          {secondary.map((property) => (
+            <PropertyShowcaseCard
+              key={property.id}
+              property={property}
+              variant="compact"
+              media="fill"
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
+}
+
+function StandardRow({
+  properties,
+  className,
+}: {
+  readonly properties: readonly PropertyCardDto[];
+  readonly className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "grid grid-cols-1 sm:grid-cols-2",
+        properties.length >= 3 && "md:grid-cols-3",
+        ROW_GAP,
+        className,
+      )}
+    >
+      {properties.map((property) => (
+        <PropertyShowcaseCard
+          key={property.id}
+          property={property}
+          variant="standard"
+        />
+      ))}
+    </div>
+  );
+}
+
+function ShowcaseComposition({ layout }: { readonly layout: ShowcaseLayout }) {
+  switch (layout.kind) {
+    case "empty":
+      return <PropertyShowcaseEmpty />;
+
+    case "spotlight":
+      return <PropertySpotlightCard property={layout.featured} />;
+
+    case "duo":
+      return (
+        <div className={cn("grid grid-cols-1 sm:grid-cols-2", ROW_GAP)}>
+          {layout.standard.map((property, index) => (
+            <PropertyShowcaseCard
+              key={property.id}
+              property={property}
+              variant="standard"
+              priority={index === 0}
+            />
+          ))}
+        </div>
+      );
+
+    case "anchor":
+      return (
+        <AnchorRow featured={layout.featured} secondary={layout.secondary} />
+      );
+
+    case "panorama":
+      return (
+        <>
+          <PropertyShowcaseCard
+            property={layout.featured}
+            variant="featured"
+            media="panorama"
+            priority
+            className="mb-6 lg:mb-8"
+          />
+          <StandardRow properties={layout.standard} />
+        </>
+      );
+
+    case "composition":
+      return (
+        <>
+          <AnchorRow
+            featured={layout.featured}
+            secondary={layout.secondary}
+            className="mb-6 lg:mb-8"
+          />
+          <StandardRow properties={layout.standard} />
+        </>
+      );
+  }
 }
 
 export default function PropertyShowcase({
   properties,
   error = false,
 }: PropertyShowcaseProps) {
-  const selection = error ? null : selectShowcaseProperties(properties);
+  const layout = selectShowcaseLayout(error ? [] : properties);
+  const showListingCta =
+    !error && layout.kind !== "empty" && layout.kind !== "spotlight";
 
   return (
     <section
@@ -69,51 +169,22 @@ export default function PropertyShowcase({
           </p>
         </div>
 
-        {selection ? (
-          <>
-            <div className="mb-6 flex flex-col gap-6 lg:mb-8 lg:flex-row lg:items-stretch lg:gap-8">
-              <PropertyShowcaseCard
-                property={selection.featured}
-                variant="featured"
-                priority
-                className="lg:basis-2/3 lg:shrink-0 lg:grow-0"
-              />
-
-              {selection.secondary.length > 0 && (
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:flex lg:flex-1 lg:flex-col">
-                  {selection.secondary.map((property) => (
-                    <PropertyShowcaseCard
-                      key={property.id}
-                      property={property}
-                      variant="compact"
-                      fill
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {selection.standard.length > 0 && (
-              <div className="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:mb-14 lg:gap-8">
-                {selection.standard.map((property) => (
-                  <PropertyShowcaseCard
-                    key={property.id}
-                    property={property}
-                    variant="standard"
-                  />
-                ))}
-              </div>
-            )}
-
-            <div className="border-t border-border-l pt-8 dark:border-border-d">
-              <Link href="/objekt" className={`w-full sm:w-auto ${CTA_CLASS}`}>
-                Alle Immobilien entdecken
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-            </div>
-          </>
+        {error ? (
+          <PropertyShowcaseEmpty error />
         ) : (
-          <ShowcaseEmptyState error={error} />
+          <ShowcaseComposition layout={layout} />
+        )}
+
+        {showListingCta && (
+          <div className="mt-10 border-t border-border-l pt-8 lg:mt-14 dark:border-border-d">
+            <Link
+              href="/objekt"
+              className={`w-full sm:w-auto ${SHOWCASE_CTA_CLASS}`}
+            >
+              Alle Immobilien entdecken
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </div>
         )}
       </PageContainer>
     </section>
