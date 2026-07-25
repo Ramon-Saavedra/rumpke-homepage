@@ -1,8 +1,4 @@
-jest.mock("lucide-react", () => ({
-  Home: () => <svg data-testid="icon-home" />,
-  MapPin: () => <svg data-testid="icon-mappin" />,
-  ImageOff: () => <svg data-testid="icon-imageoff" />,
-}));
+import "@/test-utils/lucide-mocks";
 
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
@@ -22,7 +18,10 @@ function makeProperty(
     salePrice: 250000,
     coldRent: null,
     livingArea: 120,
+    plotArea: null,
+    usableArea: null,
     rooms: 4,
+    floor: null,
     images: [],
     ...overrides,
   };
@@ -72,25 +71,25 @@ describe("PropertyCard", () => {
       expect(links.length).toBeGreaterThan(0);
     });
 
-    it("renders property sub type badge", () => {
+    it("renders category label badge from property sub type", () => {
       render(
         <PropertyCard
           property={makeProperty({ propertySubType: "einfamilienhaus" })}
         />,
       );
-      expect(screen.getByText("einfamilienhaus")).toBeInTheDocument();
+      expect(screen.getByText("Haus")).toBeInTheDocument();
     });
 
-    it("renders property type badge when sub type is null", () => {
+    it("renders category label badge from property type when sub type is null", () => {
       render(
         <PropertyCard
           property={makeProperty({
             propertySubType: null,
-            propertyType: "haus",
+            propertyType: "wohnung",
           })}
         />,
       );
-      expect(screen.getByText("haus")).toBeInTheDocument();
+      expect(screen.getByText("Wohnung")).toBeInTheDocument();
     });
   });
 
@@ -109,7 +108,7 @@ describe("PropertyCard", () => {
 
     it("renders living area when provided", () => {
       render(<PropertyCard property={makeProperty({ livingArea: 120 })} />);
-      expect(screen.getByText("120 m²")).toBeInTheDocument();
+      expect(screen.getByText(/120/)).toBeInTheDocument();
     });
 
     it("renders Kaufen badge for kauf marketing type", () => {

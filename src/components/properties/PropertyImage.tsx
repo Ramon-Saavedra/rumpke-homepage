@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ImageOff } from "lucide-react";
+import ImagePlaceholder from "@/components/properties/ImagePlaceholder";
 import type { PropertyImageDto } from "@/types/property-api";
+import { SKELETON_BLOCK } from "./showcase-skeleton";
 
 interface PropertyImageProps {
   readonly images: readonly PropertyImageDto[];
@@ -41,33 +42,9 @@ function resolveImageAlt(image: PropertyImageDto, fallbackAlt: string): string {
   return image.title ?? fallbackAlt;
 }
 
-function Placeholder({
-  alt,
-  className,
-}: {
-  readonly alt: string;
-  readonly className: string;
-}) {
-  return (
-    <div
-      className={`flex items-center justify-center bg-bgSecondary-l dark:bg-bgSecondary-d ${className}`}
-      role="img"
-      aria-label={alt}
-    >
-      <ImageOff
-        className="w-12 h-12 text-card-text-l dark:text-card-text-d"
-        aria-hidden="true"
-      />
-    </div>
-  );
-}
-
 function Skeleton({ className }: { readonly className: string }) {
   return (
-    <div
-      className={`animate-pulse bg-bgSecondary-l dark:bg-bgSecondary-d ${className}`}
-      aria-hidden="true"
-    />
+    <div className={`${SKELETON_BLOCK} ${className}`} aria-hidden="true" />
   );
 }
 
@@ -85,7 +62,7 @@ export default function PropertyImage({
   const validImage = getFirstValidImage(images);
 
   if (!validImage || hasError) {
-    return <Placeholder alt={alt} className={className} />;
+    return <ImagePlaceholder label={alt} className={className} />;
   }
 
   const imageAlt = resolveImageAlt(validImage, alt);

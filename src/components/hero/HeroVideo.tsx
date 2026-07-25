@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 
 type HeroVideoProps = {
@@ -9,7 +9,7 @@ type HeroVideoProps = {
   alt: string;
 };
 
-const HeroVideo: FC<HeroVideoProps> = ({ videoSrc, poster, alt }) => {
+export default function HeroVideo({ videoSrc, poster, alt }: HeroVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -84,6 +84,4 @@ const HeroVideo: FC<HeroVideoProps> = ({ videoSrc, poster, alt }) => {
       </div>
     </section>
   );
-};
-
-export default HeroVideo;
+}

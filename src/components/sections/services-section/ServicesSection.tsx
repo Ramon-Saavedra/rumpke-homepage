@@ -1,3 +1,4 @@
+import SectionHeader from "@/components/ui/section-header/SectionHeader";
 import ServiceCard from "./ServiceCard";
 
 type ServiceItem = {
@@ -24,9 +25,7 @@ const services: readonly ServiceItem[] = [
   },
 ];
 
-import SectionHeader from "@/components/ui/section-header/SectionHeader";
-
-const ServicesSection = () => {
+export default function ServicesSection() {
   return (
     <section aria-label="Unsere Leistungen" className="mb-24 py-12">
       <SectionHeader
@@ -46,6 +45,4 @@ const ServicesSection = () => {
       </div>
     </section>
   );
-};
-
-export default ServicesSection;
+}
