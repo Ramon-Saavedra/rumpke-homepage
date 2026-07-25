@@ -1,18 +1,22 @@
 export enum API_ENDPOINTS {
-  PROPERTIES = '/v1/properties',
+  PROPERTIES = "/v1/properties",
 }
 
 export enum LEADS_ENDPOINTS {
-  CONTACT = '/v1/leads/contact',
+  CONTACT = "/v1/leads/contact",
 }
 
 export function getApiUrl(endpoint: API_ENDPOINTS | LEADS_ENDPOINTS): string {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
+  const baseUrl =
+    process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/api";
   return `${baseUrl}${endpoint}`;
 }
 
-import type { ContactFormPayload, ContactApiFieldErrors } from '@/types/contact';
-import { ContactSubmitError } from '@/types/contact';
+import type {
+  ContactFormPayload,
+  ContactApiFieldErrors,
+} from "@/types/contact";
+import { ContactSubmitError } from "@/types/contact";
 
 interface NestValidationBody {
   statusCode: number;
@@ -21,14 +25,16 @@ interface NestValidationBody {
   error?: string;
 }
 
-function parseNestFieldErrors(body: NestValidationBody): ContactApiFieldErrors | undefined {
-  if (body.fieldErrors && typeof body.fieldErrors === 'object') {
+function parseNestFieldErrors(
+  body: NestValidationBody,
+): ContactApiFieldErrors | undefined {
+  if (body.fieldErrors && typeof body.fieldErrors === "object") {
     return body.fieldErrors;
   }
   if (Array.isArray(body.message) && body.message.length > 0) {
     const errors: ContactApiFieldErrors = {};
     for (const msg of body.message) {
-      const spaceIdx = msg.indexOf(' ');
+      const spaceIdx = msg.indexOf(" ");
       if (spaceIdx > 0) {
         const field = msg.slice(0, spaceIdx);
         if (!errors[field]) errors[field] = [];
@@ -40,21 +46,23 @@ function parseNestFieldErrors(body: NestValidationBody): ContactApiFieldErrors |
   return undefined;
 }
 
-export async function submitContactForm(data: ContactFormPayload): Promise<void> {
+export async function submitContactForm(
+  data: ContactFormPayload,
+): Promise<void> {
   const url = getApiUrl(LEADS_ENDPOINTS.CONTACT);
   let res: Response;
 
   try {
     res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
   } catch {
     throw new ContactSubmitError(
       0,
       undefined,
-      'Verbindungsfehler. Bitte prüfen Sie Ihre Internetverbindung.',
+      "Verbindungsfehler. Bitte prüfen Sie Ihre Internetverbindung.",
     );
   }
 
@@ -67,7 +75,7 @@ export async function submitContactForm(data: ContactFormPayload): Promise<void>
     throw new ContactSubmitError(
       res.status,
       undefined,
-      'Serverfehler. Bitte versuchen Sie es später erneut.',
+      "Serverfehler. Bitte versuchen Sie es später erneut.",
     );
   }
 
@@ -76,7 +84,9 @@ export async function submitContactForm(data: ContactFormPayload): Promise<void>
     throw new ContactSubmitError(
       400,
       fieldErrors,
-      fieldErrors ? undefined : 'Ungültige Eingaben. Bitte überprüfen Sie Ihre Angaben.',
+      fieldErrors
+        ? undefined
+        : "Ungültige Eingaben. Bitte überprüfen Sie Ihre Angaben.",
     );
   }
 
@@ -84,13 +94,13 @@ export async function submitContactForm(data: ContactFormPayload): Promise<void>
     throw new ContactSubmitError(
       429,
       undefined,
-      'Zu viele Anfragen. Bitte warten Sie einige Minuten und versuchen Sie es erneut.',
+      "Zu viele Anfragen. Bitte warten Sie einige Minuten und versuchen Sie es erneut.",
     );
   }
 
   throw new ContactSubmitError(
     res.status,
     undefined,
-    'Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.',
+    "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.",
   );
 }

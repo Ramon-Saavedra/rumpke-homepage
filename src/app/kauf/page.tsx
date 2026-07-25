@@ -51,7 +51,7 @@ export default function KaufPage() {
           Kategorisierte Immobiliensuche ist derzeit in Vorbereitung.
         </p>
         <p className="text-center text-card-text-l dark:text-card-text-d text-sm mt-2">
-          Alle verfügbaren Immobilien zum Kauf finden Sie in der{' '}
+          Alle verfügbaren Immobilien zum Kauf finden Sie in der{" "}
           <Link href="/objekt" className="text-primary hover:underline">
             Gesamtübersicht
           </Link>

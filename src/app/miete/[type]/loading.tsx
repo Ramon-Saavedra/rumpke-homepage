@@ -10,5 +10,5 @@ export default function Loading() {
         <div className="h-5 bg-bg-l dark:bg-bg-d rounded mx-auto w-96" />
       </div>
     </>
-  )
+  );
 }

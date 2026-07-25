@@ -1,21 +1,30 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-.dark input::placeholder, .dark textarea::placeholder {
-  color: #D1D5DB;
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #d1d5db;
   opacity: 1;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes slide-in {
@@ -36,7 +45,6 @@
   animation-fill-mode: both;
 
   -webkit-animation-name: fadeIn;
-
 }
 
 .animate-slide-in {
@@ -51,47 +59,46 @@
   overflow: hidden;
 }
 
-  .bg-gradient-blue-purple {
-    background: var(--gradient-blue-purple);
-  }
+.bg-gradient-blue-purple {
+  background: var(--gradient-blue-purple);
+}
 
 @theme {
---color-bg-d: #1C1C1E;
---color-bg-l: #F7F8F6;
---color-bgSecondary-l: #FDFDFC;
---color-bgSecondary-d: #2C2C2E;
---color-card-text-l: #5B655F;
---color-card-text-d: #A8B5B2;
+  --color-bg-d: #1c1c1e;
+  --color-bg-l: #f7f8f6;
+  --color-bgSecondary-l: #fdfdfc;
+  --color-bgSecondary-d: #2c2c2e;
+  --color-card-text-l: #5b655f;
+  --color-card-text-d: #a8b5b2;
 
---color-error: #D93025;
---color-success: #16A34A;
---color-warning: #D97706;
---color-Bghover-l: #ECEEED;
---color-Bghover-d: #1B1F1E;
+  --color-error: #d93025;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-Bghover-l: #eceeed;
+  --color-Bghover-d: #1b1f1e;
 
---color-rent: #C05621;
---color-buy: #2E8A5A;
+  --color-rent: #c05621;
+  --color-buy: #2e8a5a;
 
---color-primary: #2E8A5A;
---color-primary-dark: #226944;
---color-primary-surface: #EBF4EF;
---color-secondary: #3C5548;
---color-secondary-dark: #1F2E25;
---color-third: #1A1D1B;
---color-border-l: #E3E7E2;
---color-border-d: #252D2A;
+  --color-primary: #2e8a5a;
+  --color-primary-dark: #226944;
+  --color-primary-surface: #ebf4ef;
+  --color-secondary: #3c5548;
+  --color-secondary-dark: #1f2e25;
+  --color-third: #1a1d1b;
+  --color-border-l: #e3e7e2;
+  --color-border-d: #252d2a;
 
-/* Header height per breakpoint (see responsive overrides below). CategoryNav,
+  /* Header height per breakpoint (see responsive overrides below). CategoryNav,
    Sidebar and the page content offset all dock off this single token. */
---topbar-height: 4rem;
+  --topbar-height: 4rem;
 
---color-status-published: #16A34A;
---color-status-reserved: #D97706;
---color-status-sold: #D93025;
---color-status-rented: #2563EB;
---color-status-draft: #9CA3AF;
---color-status-hidden: #374151;
-
+  --color-status-published: #16a34a;
+  --color-status-reserved: #d97706;
+  --color-status-sold: #d93025;
+  --color-status-rented: #2563eb;
+  --color-status-draft: #9ca3af;
+  --color-status-hidden: #374151;
 }
 
 .poem {
@@ -180,8 +187,8 @@
   border: 1px solid var(--border-l);
 }
 
-:root[data-theme='dark'] .swiper-button-next,
-:root[data-theme='dark'] .swiper-button-prev {
+:root[data-theme="dark"] .swiper-button-next,
+:root[data-theme="dark"] .swiper-button-prev {
   background: var(--background-d);
   border-color: var(--border-d);
 }
@@ -200,6 +207,7 @@
 @theme inline {
   --font-heading: var(--font-sans);
   --font-sans: var(--font-sans);
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -273,8 +281,8 @@
 }
 
 .dark {
-  --color-primary: #52B788;
-  --color-primary-dark: #3DA872;
+  --color-primary: #52b788;
+  --color-primary-dark: #3da872;
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
@@ -310,10 +318,26 @@
 
 /* Header height steps per breakpoint — mobile 64 / tablet 72 / laptop 88 /
    desktop 96 / large desktop 104. Fixed per breakpoint, never animated. */
-@media (min-width: 768px)  { :root { --topbar-height: 4.5rem; } }
-@media (min-width: 1024px) { :root { --topbar-height: 5.5rem; } }
-@media (min-width: 1440px) { :root { --topbar-height: 6rem; } }
-@media (min-width: 1800px) { :root { --topbar-height: 6.5rem; } }
+@media (min-width: 768px) {
+  :root {
+    --topbar-height: 4.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  :root {
+    --topbar-height: 5.5rem;
+  }
+}
+@media (min-width: 1440px) {
+  :root {
+    --topbar-height: 6rem;
+  }
+}
+@media (min-width: 1800px) {
+  :root {
+    --topbar-height: 6.5rem;
+  }
+}
 
 @layer base {
   * {

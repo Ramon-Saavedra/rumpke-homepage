@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { usePathname } from 'next/navigation';
-import type { ReactNode } from 'react';
-import CategoryNav from '@/components/layout/category-nav/CategoryNav';
+import { usePathname } from "next/navigation";
+import type { ReactNode } from "react";
+import CategoryNav from "@/components/layout/category-nav/CategoryNav";
 
 /**
  * Owns the space directly beneath the fixed header.
@@ -15,7 +15,7 @@ import CategoryNav from '@/components/layout/category-nav/CategoryNav';
  *   which steps per breakpoint (see globals.css).
  */
 export default function PageShell({ children }: { children: ReactNode }) {
-  const isHome = usePathname() === '/';
+  const isHome = usePathname() === "/";
 
   if (isHome) {
     return <>{children}</>;
@@ -23,7 +23,7 @@ export default function PageShell({ children }: { children: ReactNode }) {
 
   return (
     <>
-      <div style={{ height: 'var(--topbar-height)' }} aria-hidden="true" />
+      <div style={{ height: "var(--topbar-height)" }} aria-hidden="true" />
       <CategoryNav />
       {children}
     </>

@@ -1,20 +1,20 @@
-'use client'
+"use client";
 
-import { useEffect } from 'react'
-import './globals.css'
+import { useEffect } from "react";
+import "./globals.css";
 
 export default function GlobalError({
   error,
   unstable_retry,
 }: {
-  error: Error & { digest?: string }
-  unstable_retry: () => void
+  error: Error & { digest?: string };
+  unstable_retry: () => void;
 }) {
   useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      console.error(error)
+    if (process.env.NODE_ENV === "development") {
+      console.error(error);
     }
-  }, [error])
+  }, [error]);
 
   return (
     <html lang="de">
@@ -23,7 +23,8 @@ export default function GlobalError({
           <h2 className="text-3xl font-bold">Kritischer Fehler</h2>
 
           <p className="max-w-md text-card-text-l dark:text-card-text-d">
-            Ein schwerwiegender Fehler ist aufgetreten. Die Seite konnte nicht geladen werden.
+            Ein schwerwiegender Fehler ist aufgetreten. Die Seite konnte nicht
+            geladen werden.
             {error.digest && (
               <span className="block text-sm mt-2 text-card-text-l dark:text-card-text-d">
                 Fehler-ID: {error.digest}
@@ -40,5 +41,5 @@ export default function GlobalError({
         </div>
       </body>
     </html>
-  )
+  );
 }

@@ -1,6 +1,5 @@
-
 import type { Metadata } from "next";
-import { Roboto, Geist } from "next/font/google";
+import { Roboto, Geist, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import CompanyTitle from "@/components/branding/companyTitle/CompanyTitle";
 import Topmenu from "@/components/layout/top-menu/TopMenu";
@@ -13,9 +12,20 @@ import { siteMetadata } from "@/lib/site-metadata";
 import { cn } from "@/lib/utils";
 import { Providers } from "./providers";
 
-const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
-const roboto = Roboto({ subsets: ["latin"], weight: ["300", "400", "500", "700"], display: "swap" });
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  display: "swap",
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-cormorant",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   ...siteMetadata,
@@ -28,22 +38,28 @@ type RootLayoutProps = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="de" className={cn(roboto.className, "font-sans", geist.variable)} suppressHydrationWarning>
+    <html
+      lang="de"
+      className={cn(
+        roboto.className,
+        "font-sans",
+        geist.variable,
+        cormorant.variable,
+      )}
+      suppressHydrationWarning
+    >
       <body className="antialiased">
         <Providers>
           <div className="bg-bg-l text-zinc-800 dark:bg-bg-d dark:text-zinc-100">
-          <div className="">
-            <Topmenu />
-            <div className="lg:hidden">
-              <Sidebar />
+            <div className="">
+              <Topmenu />
+              <div className="lg:hidden">
+                <Sidebar />
+              </div>
+              <PageShell>{children}</PageShell>
+              <Footer />
             </div>
-            <PageShell>
-              {children}
-            </PageShell>
-            <GoogleMap />
-            <Footer />
           </div>
-        </div>
           <CompanyTitle />
           <ScrollToTopButton />
         </Providers>

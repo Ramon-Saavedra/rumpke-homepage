@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  Compass,
-  MessageCircleHeart,
-  type LucideIcon,
-} from "lucide-react";
+import { Compass, MessageCircleHeart, type LucideIcon } from "lucide-react";
 import { useScrollVisible } from "@/hooks/useScrollVisible";
 import { fadeUp } from "@/lib/animation";
 import WhatMattersCard from "./WhatMattersCard";
@@ -62,19 +58,16 @@ export default function WhatMattersNowSection() {
     <section
       ref={ref}
       aria-labelledby="what-matters-now-title"
-      className="relative mb-24 py-12 overflow-hidden"
+      className="relative mb-24 overflow-hidden"
     >
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 top-0 h-40 "
-      />
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-40 " />
 
-      <div className="relative grid gap-8 px-5 sm:px-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-10 lg:px-8">
+      <div className="relative grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-10">
         <div
           className={`flex flex-col justify-between border-b border-border-l pb-8 duration-700 dark:border-border-d lg:border-b-0 lg:border-r lg:pb-0 lg:pr-10 ${fadeUp(visible)}`}
         >
           <div>
-          <SectionHeader
+            <SectionHeader
               eyebrow="Mehr als nur 4 Wände"
               title="Was Ihnen jetzt wichtig ist"
               titleId="what-matters-now-title"
@@ -87,7 +80,9 @@ export default function WhatMattersNowSection() {
               <div
                 key={pillar.title}
                 className={`border border-border-l dark:border-border-d px-4 py-4 duration-700 ${fadeUp(visible)}`}
-                style={{ transitionDelay: visible ? `${150 + index * 120}ms` : "0ms" }}
+                style={{
+                  transitionDelay: visible ? `${150 + index * 120}ms` : "0ms",
+                }}
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
                   {pillar.title}
@@ -110,7 +105,9 @@ export default function WhatMattersNowSection() {
               ctaLabel={item.ctaLabel}
               Icon={item.Icon}
               className={`duration-700 ${fadeUp(visible)}`}
-              style={{ transitionDelay: visible ? `${260 + index * 140}ms` : "0ms" }}
+              style={{
+                transitionDelay: visible ? `${260 + index * 140}ms` : "0ms",
+              }}
             />
           ))}
         </div>

@@ -19,7 +19,9 @@ interface PageProps {
   }>;
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { type } = await params;
   if (!isValidType(type)) return {};
   const label = TYPE_LABELS[type];
@@ -67,7 +69,7 @@ export default async function MieteTypePage({ params }: PageProps) {
           Kategorisierte Immobiliensuche ist derzeit in Vorbereitung.
         </p>
         <p className="text-center text-card-text-l dark:text-card-text-d text-sm mt-2">
-          Alle verfügbaren Immobilien finden Sie in der{' '}
+          Alle verfügbaren Immobilien finden Sie in der{" "}
           <Link href="/objekt" className="text-primary hover:underline">
             Gesamtübersicht
           </Link>

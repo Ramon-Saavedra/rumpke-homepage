@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
-import PropertyCard from './PropertyCard';
-import type { PropertyCardDto } from '@/types/property-api';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import PropertyCard from "./PropertyCard";
+import type { PropertyCardDto } from "@/types/property-api";
 
-import 'swiper/css';
-import 'swiper/css/navigation';
+import "swiper/css";
+import "swiper/css/navigation";
 
 interface PropertiesGridProps {
   readonly properties: readonly PropertyCardDto[];
@@ -44,10 +44,7 @@ export default function PropertiesGrid({ properties }: PropertiesGridProps) {
       >
         {properties.map((property, index) => (
           <SwiperSlide key={property.id}>
-            <PropertyCard
-              property={property}
-              preload={index === 0}
-            />
+            <PropertyCard property={property} preload={index === 0} />
           </SwiperSlide>
         ))}
       </Swiper>

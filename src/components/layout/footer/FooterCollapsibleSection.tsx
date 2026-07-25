@@ -8,7 +8,10 @@ interface FooterCollapsibleSectionProps {
   children: ReactNode;
 }
 
-export default function FooterCollapsibleSection({ title, children }: FooterCollapsibleSectionProps) {
+export default function FooterCollapsibleSection({
+  title,
+  children,
+}: FooterCollapsibleSectionProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -28,9 +31,7 @@ export default function FooterCollapsibleSection({ title, children }: FooterColl
           )}
         </button>
         {isOpen && (
-          <div className="pb-6 flex flex-col items-center">
-            {children}
-          </div>
+          <div className="pb-6 flex flex-col items-center">{children}</div>
         )}
       </div>
 

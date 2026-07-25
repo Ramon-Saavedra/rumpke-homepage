@@ -1,10 +1,14 @@
-
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { HeartHandshake, MapPinned, BadgeCheck, type LucideIcon } from "lucide-react";
+import {
+  HeartHandshake,
+  MapPinned,
+  BadgeCheck,
+  type LucideIcon,
+} from "lucide-react";
 import SectionHeader from "@/components/ui/section-header/SectionHeader";
 
 type Feature = {
@@ -46,7 +50,7 @@ const PersonalServiceCard = () => {
           observer.disconnect();
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -56,10 +60,9 @@ const PersonalServiceCard = () => {
     <section
       ref={sectionRef}
       aria-label="Personal Service"
-      className="w-full px-4 sm:px-6 py-12 mb-24"
+      className="py-12 mb-24"
     >
-      <div className="mx-auto grid lg:grid-cols-[1fr_auto_1fr] gap-12 lg:gap-x-10 items-center">
-
+      <div className="grid lg:grid-cols-[1fr_auto_1fr] gap-12 lg:gap-x-10 items-center">
         {/* ── Left: content ── */}
         <div
           className={`flex flex-col gap-0 transition-[opacity,transform] duration-700 ease-out ${
@@ -78,9 +81,13 @@ const PersonalServiceCard = () => {
               <div
                 key={f.title}
                 className={`flex gap-4 border-t border-border-l dark:border-border-d py-6 transition-[opacity,transform] duration-500 ease-out ${
-                  visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                  visible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-4"
                 }`}
-                style={{ transitionDelay: visible ? `${200 + i * 120}ms` : "0ms" }}
+                style={{
+                  transitionDelay: visible ? `${200 + i * 120}ms` : "0ms",
+                }}
               >
                 <div className="flex-shrink-0 flex h-9 w-9 items-center justify-center rounded-md bg-primary/10 text-primary">
                   <f.Icon size={17} strokeWidth={1.8} aria-hidden="true" />
@@ -110,7 +117,9 @@ const PersonalServiceCard = () => {
               className="inline-flex items-center gap-2 px-6 py-3 border border-primary text-primary font-semibold text-sm tracking-wide rounded hover:bg-primary hover:text-white dark:hover:bg-primary transition-colors duration-300 group"
             >
               Mehr erfahren
-              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
             </Link>
           </div>
         </div>
@@ -153,7 +162,6 @@ const PersonalServiceCard = () => {
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );

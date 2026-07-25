@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function Error() {
   return (
@@ -9,7 +9,8 @@ export default function Error() {
         Immobilie nicht verfügbar
       </h2>
       <p className="text-card-text-l dark:text-card-text-d max-w-md">
-        Der Immobilienservice ist derzeit nicht erreichbar. Bitte versuchen Sie es später erneut.
+        Der Immobilienservice ist derzeit nicht erreichbar. Bitte versuchen Sie
+        es später erneut.
       </p>
       <Link
         href="/objekt"

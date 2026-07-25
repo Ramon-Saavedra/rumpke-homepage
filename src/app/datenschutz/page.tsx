@@ -275,8 +275,8 @@ export default function DatenschutzPage() {
           übertragen.
         </p>
         <p>
-          Nach der Aktivierung wird Ihre IP-Adresse in der Regel an einen
-          Server von Google in den USA übertragen und dort gespeichert. Weitere
+          Nach der Aktivierung wird Ihre IP-Adresse in der Regel an einen Server
+          von Google in den USA übertragen und dort gespeichert. Weitere
           Informationen finden Sie in der{" "}
           <a
             href="https://www.google.de/intl/de/policies/privacy/"
@@ -303,9 +303,9 @@ export default function DatenschutzPage() {
             <p className="mt-4">
               Unsere Website nutzt aus Sicherheitsgründen und zum Schutz der
               Übertragung vertraulicher Inhalte eine SSL- beziehungsweise
-              TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie am
-              Wechsel von &quot;http://&quot; zu &quot;https://&quot; und am Schloss-Symbol
-              in der Browserzeile.
+              TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie
+              am Wechsel von &quot;http://&quot; zu &quot;https://&quot; und am
+              Schloss-Symbol in der Browserzeile.
             </p>
           </div>
           <div className="border border-border-l bg-bg-l p-5 dark:border-border-d dark:bg-bg-d">
@@ -347,7 +347,9 @@ export default function DatenschutzPage() {
                     ))}
                   </ol>
                 ) : null}
-                {"closing" in right && right.closing ? <p>{right.closing}</p> : null}
+                {"closing" in right && right.closing ? (
+                  <p>{right.closing}</p>
+                ) : null}
               </div>
             </div>
           ))}
@@ -362,8 +364,8 @@ export default function DatenschutzPage() {
         <p>
           Im Falle von Verstößen gegen die DSGVO steht Betroffenen ein
           Beschwerderecht bei einer Aufsichtsbehörde zu, insbesondere in dem
-          Mitgliedstaat ihres gewöhnlichen Aufenthalts, ihres Arbeitsplatzes oder
-          des Orts des mutmaßlichen Verstoßes.
+          Mitgliedstaat ihres gewöhnlichen Aufenthalts, ihres Arbeitsplatzes
+          oder des Orts des mutmaßlichen Verstoßes.
         </p>
         <div className="border border-border-l bg-bg-l p-5 dark:border-border-d dark:bg-bg-d">
           <p className="text-lg font-semibold text-foreground">

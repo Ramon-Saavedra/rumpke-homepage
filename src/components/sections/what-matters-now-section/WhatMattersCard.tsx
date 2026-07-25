@@ -28,7 +28,7 @@ export default function WhatMattersCard({
       aria-label={`${title} - ${ctaLabel}`}
       className={cn(
         "group block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg-l dark:focus-visible:ring-offset-bg-d",
-        className
+        className,
       )}
       style={style}
     >

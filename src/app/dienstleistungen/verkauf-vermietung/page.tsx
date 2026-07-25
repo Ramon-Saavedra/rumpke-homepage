@@ -38,7 +38,10 @@ export default function VerkaufVermietungPage() {
           Ihr Erfolg ist unser Anspruch
         </p>
         <p className="text-center mt-4  max-w-3xl mx-auto">
-          Bei Rumpke Immobilien stehen Ihre Immobilienbedürfnisse im Mittelpunkt. Egal, ob Sie eine Immobilie vermieten oder verkaufen möchten – wir bieten Ihnen einen umfassenden Service, der keine Wünsche offenlässt.
+          Bei Rumpke Immobilien stehen Ihre Immobilienbedürfnisse im
+          Mittelpunkt. Egal, ob Sie eine Immobilie vermieten oder verkaufen
+          möchten – wir bieten Ihnen einen umfassenden Service, der keine
+          Wünsche offenlässt.
         </p>
       </div>
 
@@ -50,7 +53,9 @@ export default function VerkaufVermietungPage() {
               Verkauf – Erreichen Sie den besten Preis
             </h2>
             <p className=" leading-relaxed">
-              Der Verkauf einer Immobilie ist eine bedeutende Entscheidung. Mit Rumpke Immobilien an Ihrer Seite erzielen Sie den bestmöglichen Verkaufserlös:
+              Der Verkauf einer Immobilie ist eine bedeutende Entscheidung. Mit
+              Rumpke Immobilien an Ihrer Seite erzielen Sie den bestmöglichen
+              Verkaufserlös:
             </p>
           </div>
 
@@ -81,7 +86,8 @@ export default function VerkaufVermietungPage() {
               Vermietung – Finden Sie den perfekten Mieter
             </h2>
             <p className=" leading-relaxed">
-              Sie möchten Ihre Immobilie zuverlässig und rentabel vermieten? Wir unterstützen Sie bei jedem Schritt:
+              Sie möchten Ihre Immobilie zuverlässig und rentabel vermieten? Wir
+              unterstützen Sie bei jedem Schritt:
             </p>
           </div>
 
@@ -111,23 +117,31 @@ export default function VerkaufVermietungPage() {
           items={[
             {
               title: "Individuelle Betreuung",
-              description: "Jeder Kunde hat seine eigenen Vorstellungen und Ziele. Deshalb bieten wir maßgeschneiderte Lösungen, die genau auf Ihre Bedürfnisse abgestimmt sind."
+              description:
+                "Jeder Kunde hat seine eigenen Vorstellungen und Ziele. Deshalb bieten wir maßgeschneiderte Lösungen, die genau auf Ihre Bedürfnisse abgestimmt sind.",
             },
             {
               title: "Erfahrung und Expertise",
-              description: "Mit der Erfahrung im Immobiliengeschäft kennen wir den Markt und wissen, wie man erfolgreich vermietet und verkauft."
+              description:
+                "Mit der Erfahrung im Immobiliengeschäft kennen wir den Markt und wissen, wie man erfolgreich vermietet und verkauft.",
             },
             {
               title: "Transparenz und Vertrauen",
-              description: "Unsere Kunden schätzen unsere offene Kommunikation und unsere fairen Konditionen. Bei uns gibt es keine versteckten Kosten – Sie wissen von Anfang an, woran Sie sind."
-            }
+              description:
+                "Unsere Kunden schätzen unsere offene Kommunikation und unsere fairen Konditionen. Bei uns gibt es keine versteckten Kosten – Sie wissen von Anfang an, woran Sie sind.",
+            },
           ]}
         />
         {/* CTA Section */}
         <section className="text-center py-8">
-          <h2 className="text-2xl font-bold mb-4">Kontaktieren Sie uns noch heute!</h2>
+          <h2 className="text-2xl font-bold mb-4">
+            Kontaktieren Sie uns noch heute!
+          </h2>
           <p className=" mb-6 max-w-2xl mx-auto">
-            Haben Sie eine Immobilie, die Sie vermieten oder verkaufen möchten? Lassen Sie uns darüber sprechen. Wir freuen uns darauf, Sie kennenzulernen und gemeinsam den besten Weg für Ihr Immobilienprojekt zu finden.
+            Haben Sie eine Immobilie, die Sie vermieten oder verkaufen möchten?
+            Lassen Sie uns darüber sprechen. Wir freuen uns darauf, Sie
+            kennenzulernen und gemeinsam den besten Weg für Ihr
+            Immobilienprojekt zu finden.
           </p>
           <ContactButton text="Kontakt aufnehmen" />
         </section>

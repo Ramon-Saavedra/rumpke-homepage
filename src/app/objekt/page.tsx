@@ -1,32 +1,32 @@
-import { getProperties } from '@/lib/property-client';
-import type { PropertyCardDto, Pagination } from '@/types/property-api';
-import Title from '@/components/ui/title/Title';
-import PropertiesGrid from '@/components/properties/PropertiesGrid';
-import PropertyPagination from '@/components/properties/PropertyPagination';
-import PageContainer from '@/components/layout/page-container/PageContainer';
-import type { Metadata } from 'next';
+import { getProperties } from "@/lib/property-client";
+import type { PropertyCardDto, Pagination } from "@/types/property-api";
+import Title from "@/components/ui/title/Title";
+import PropertiesGrid from "@/components/properties/PropertiesGrid";
+import PropertyPagination from "@/components/properties/PropertyPagination";
+import PageContainer from "@/components/layout/page-container/PageContainer";
+import type { Metadata } from "next";
 import {
   defaultOpenGraphMetadata,
   defaultTwitterMetadata,
-} from '@/lib/site-metadata';
+} from "@/lib/site-metadata";
 
 export const metadata: Metadata = {
-  title: 'Immobilien',
+  title: "Immobilien",
   description:
-    'Immobilienangebote von Rumpke Immobilien – Häuser, Wohnungen und Gewerbeimmobilien in Bawinkel und dem Emsland.',
-  alternates: { canonical: '/objekt' },
+    "Immobilienangebote von Rumpke Immobilien – Häuser, Wohnungen und Gewerbeimmobilien in Bawinkel und dem Emsland.",
+  alternates: { canonical: "/objekt" },
   openGraph: {
     ...defaultOpenGraphMetadata,
-    title: 'Immobilien',
+    title: "Immobilien",
     description:
-      'Immobilienangebote von Rumpke Immobilien – Häuser, Wohnungen und Gewerbeimmobilien in Bawinkel und dem Emsland.',
-    url: '/objekt',
+      "Immobilienangebote von Rumpke Immobilien – Häuser, Wohnungen und Gewerbeimmobilien in Bawinkel und dem Emsland.",
+    url: "/objekt",
   },
   twitter: {
     ...defaultTwitterMetadata,
-    title: 'Immobilien',
+    title: "Immobilien",
     description:
-      'Immobilienangebote von Rumpke Immobilien – Häuser, Wohnungen und Gewerbeimmobilien in Bawinkel und dem Emsland.',
+      "Immobilienangebote von Rumpke Immobilien – Häuser, Wohnungen und Gewerbeimmobilien in Bawinkel und dem Emsland.",
   },
 };
 
@@ -53,13 +53,13 @@ export default async function ObjektListPage({
   readonly searchParams: Promise<SearchParams>;
 }) {
   const resolvedParams = await searchParams;
-  const rawPage = resolvedParams.page ?? '1';
+  const rawPage = resolvedParams.page ?? "1";
   const page = Math.max(1, parseInt(rawPage, 10) || 1);
   const fetchResult = await fetchPageData(page);
 
   if (!fetchResult.ok) {
     return (
-      <PageContainer>
+      <PageContainer className="py-12">
         <div className="mb-12">
           <Title variant="h1" align="center" size="xl" className="mb-4">
             Immobilien
@@ -67,7 +67,8 @@ export default async function ObjektListPage({
         </div>
         <div className="p-8 bg-bgSecondary-l dark:bg-bgSecondary-d border border-border-l dark:border-border-d rounded">
           <p className="text-center text-card-text-l dark:text-card-text-d">
-            Der Immobilienservice ist derzeit nicht verfügbar. Bitte versuchen Sie es später erneut.
+            Der Immobilienservice ist derzeit nicht verfügbar. Bitte versuchen
+            Sie es später erneut.
           </p>
         </div>
       </PageContainer>

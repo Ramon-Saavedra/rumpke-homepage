@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { ReactNode, cloneElement, ReactElement, isValidElement } from "react";
 
@@ -11,14 +10,20 @@ interface NavItemProps {
   rel?: string;
 }
 
-const NavItem = ({ href, icon, children, onClick, target, rel }: NavItemProps) => {
-
-
-  const iconWithMargin = icon && isValidElement(icon)
-    ? cloneElement(icon as ReactElement<{ className?: string }>, {
-      className: `${(icon as ReactElement<{ className?: string }>).props?.className || ''} mr-2`
-    })
-    : icon;
+const NavItem = ({
+  href,
+  icon,
+  children,
+  onClick,
+  target,
+  rel,
+}: NavItemProps) => {
+  const iconWithMargin =
+    icon && isValidElement(icon)
+      ? cloneElement(icon as ReactElement<{ className?: string }>, {
+          className: `${(icon as ReactElement<{ className?: string }>).props?.className || ""} mr-2`,
+        })
+      : icon;
   return (
     <Link
       href={href}
@@ -31,7 +36,6 @@ const NavItem = ({ href, icon, children, onClick, target, rel }: NavItemProps) =
       {children}
     </Link>
   );
-}
+};
 
 export default NavItem;
-

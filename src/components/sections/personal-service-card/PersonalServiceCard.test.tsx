@@ -143,7 +143,7 @@ describe("PersonalServiceCard", () => {
     it("section has padding classes", () => {
       render(<PersonalServiceCard />);
       const section = document.querySelector("section");
-      expect(section).toHaveClass("px-4", "py-12", "mb-24");
+      expect(section).toHaveClass("py-12", "mb-24");
     });
 
     it("has a grid container", () => {

@@ -13,7 +13,10 @@ type RumpkeLogoProps = {
   priority?: boolean;
 };
 
-const ASSETS: Record<RumpkeLogoVariant, { src: string; width: number; height: number }> = {
+const ASSETS: Record<
+  RumpkeLogoVariant,
+  { src: string; width: number; height: number }
+> = {
   mark: { src: "/imgs/logo-mark.png", width: 1119, height: 1213 },
   full: { src: "/imgs/logo-full.png", width: 3429, height: 1917 },
 };

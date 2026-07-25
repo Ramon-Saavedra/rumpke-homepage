@@ -15,8 +15,7 @@ export default function SectionHeader({
   align = "left",
   className,
 }: SectionHeaderProps) {
-  const alignClass =
-    align === "center" ? "text-center" : "text-left";
+  const alignClass = align === "center" ? "text-center" : "text-left";
 
   return (
     <div className={`${alignClass} mb-10 ${className ?? ""}`}>

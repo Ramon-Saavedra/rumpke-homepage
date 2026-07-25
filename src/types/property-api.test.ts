@@ -108,10 +108,25 @@ describe("validatePropertyDetailDto", () => {
       description: null,
       locationDescription: null,
       furnishingDescription: null,
-      price: { salePrice: null, coldRent: null, warmRent: null, hoaFee: null, additionalCosts: null, brokerageFree: "not-a-boolean" },
+      price: {
+        salePrice: null,
+        coldRent: null,
+        warmRent: null,
+        hoaFee: null,
+        additionalCosts: null,
+        brokerageFree: "not-a-boolean",
+      },
       area: { livingArea: null, usableArea: null, plotArea: null },
       rooms: { total: null, bedrooms: null, bathrooms: null },
-      address: { city: null, zip: null, street: null, houseNumber: null, country: null, latitude: null, longitude: null },
+      address: {
+        city: null,
+        zip: null,
+        street: null,
+        houseNumber: null,
+        country: null,
+        latitude: null,
+        longitude: null,
+      },
       propertyType: null,
       propertySubType: null,
       marketingType: null,
@@ -159,7 +174,9 @@ describe("validatePropertyListResponse", () => {
   });
 
   it("throws for non-object input", () => {
-    expect(() => validatePropertyListResponse("invalid")).toThrow(PropertyFetchError);
+    expect(() => validatePropertyListResponse("invalid")).toThrow(
+      PropertyFetchError,
+    );
   });
 
   it("throws when data is not an array", () => {
@@ -171,7 +188,11 @@ describe("validatePropertyListResponse", () => {
 
 describe("PropertyFetchError", () => {
   it("constructs with statusCode, publicCode, and message", () => {
-    const error = new PropertyFetchError(503, "PROPERTY_SERVICE_UNAVAILABLE", "Down");
+    const error = new PropertyFetchError(
+      503,
+      "PROPERTY_SERVICE_UNAVAILABLE",
+      "Down",
+    );
     expect(error).toBeInstanceOf(PropertyFetchError);
     expect(error).toBeInstanceOf(Error);
     expect(error.statusCode).toBe(503);

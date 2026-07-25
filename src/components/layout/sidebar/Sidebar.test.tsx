@@ -73,8 +73,14 @@ describe("Sidebar", () => {
 
   it("renders navigation links", () => {
     render(<Sidebar />);
-    expect(screen.getByRole("link", { name: /start/i, hidden: true })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /häuser/i, hidden: true })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /kontakt/i, hidden: true })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /start/i, hidden: true }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /häuser/i, hidden: true }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /kontakt/i, hidden: true }),
+    ).toBeInTheDocument();
   });
 });

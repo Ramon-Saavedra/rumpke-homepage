@@ -1,12 +1,12 @@
-const PRICE_FORMATTER = new Intl.NumberFormat('de-DE', {
-  style: 'currency',
-  currency: 'EUR',
+const PRICE_FORMATTER = new Intl.NumberFormat("de-DE", {
+  style: "currency",
+  currency: "EUR",
   minimumFractionDigits: 0,
   maximumFractionDigits: 0,
 });
 
-const AREA_FORMATTER = new Intl.NumberFormat('de-DE', {
-  style: 'decimal',
+const AREA_FORMATTER = new Intl.NumberFormat("de-DE", {
+  style: "decimal",
   minimumFractionDigits: 0,
   maximumFractionDigits: 2,
 });
@@ -24,7 +24,7 @@ export function formatArea(value: number): string {
 }
 
 export function formatRooms(value: number): string {
-  if (value === 1) return '1 Zimmer';
+  if (value === 1) return "1 Zimmer";
   return `${Math.round(value)} Zimmer`;
 }
 
@@ -37,7 +37,7 @@ export function resolveDisplayPrice(
   salePrice: number | null,
   coldRent: number | null,
 ): string | null {
-  if (marketingType === 'miete' && coldRent !== null) {
+  if (marketingType === "miete" && coldRent !== null) {
     return formatMonthlyPrice(coldRent);
   }
   if (salePrice !== null) {

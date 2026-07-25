@@ -1,6 +1,12 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Home, Building2, BarChart3, type LucideIcon } from "lucide-react";
+import {
+  ArrowRight,
+  Home,
+  Building2,
+  BarChart3,
+  type LucideIcon,
+} from "lucide-react";
 
 interface ServiceCardProps {
   title: string;
@@ -39,7 +45,10 @@ export default function ServiceCard({ title, text, link }: ServiceCardProps) {
 
       {/* Icon */}
       <div className="mt-0.5 shrink-0 flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 ring-1 ring-primary/20 group-hover:bg-primary/20 transition-colors">
-        {React.createElement(Icon, { className: "h-5 w-5 text-primary", strokeWidth: 1.8 })}
+        {React.createElement(Icon, {
+          className: "h-5 w-5 text-primary",
+          strokeWidth: 1.8,
+        })}
       </div>
 
       {/* Content */}

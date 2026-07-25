@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { RiSunLine, RiMoonClearLine } from 'react-icons/ri';
-import { useTheme } from '@/context/use-theme';
+import { RiSunLine, RiMoonClearLine } from "react-icons/ri";
+import { useTheme } from "@/context/use-theme";
 
 export function ThemeSwitch() {
   const { isDark, toggle } = useTheme();
@@ -11,9 +11,7 @@ export function ThemeSwitch() {
       <button
         onClick={toggle}
         title="Dunkel-/Hellmodus wechseln"
-        className="flex justify-center items-center w-4 h-4 rounded-md cursor-pointer
-                hover:bg-Bghover-l dark:hover:bg-Bghover-d focus:outline-none focus:ring-2 focus:ring-white/20
-                transition-all ease-out"
+        className="flex justify-center items-center w-4 h-4 rounded-md cursor-pointer hover:bg-Bghover-l dark:hover:bg-Bghover-d focus:outline-none focus:ring-2 focus:ring-white/20 transition-all ease-out"
         aria-label="Toggle theme"
       >
         {isDark ? (

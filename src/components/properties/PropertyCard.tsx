@@ -1,23 +1,27 @@
-import Link from 'next/link';
-import { Home, MapPin } from 'lucide-react';
-import PropertyImage from './PropertyImage';
-import type { PropertyCardDto } from '@/types/property-api';
-import { resolveDisplayPrice, formatArea } from '@/lib/property-formatters';
+import Link from "next/link";
+import { Home, MapPin } from "lucide-react";
+import PropertyImage from "./PropertyImage";
+import type { PropertyCardDto } from "@/types/property-api";
+import { resolveDisplayPrice, formatArea } from "@/lib/property-formatters";
 
 interface PropertyCardProps {
   readonly property: PropertyCardDto;
   readonly preload?: boolean;
 }
 
-export default function PropertyCard({ property, preload = false }: PropertyCardProps) {
+export default function PropertyCard({
+  property,
+  preload = false,
+}: PropertyCardProps) {
   const displayLocation = property.city ?? undefined;
   const displayPrice = resolveDisplayPrice(
     property.marketingType,
     property.salePrice,
     property.coldRent,
   );
-  const displayType = property.propertySubType ?? property.propertyType ?? undefined;
-  const isRent = property.marketingType === 'miete';
+  const displayType =
+    property.propertySubType ?? property.propertyType ?? undefined;
+  const isRent = property.marketingType === "miete";
 
   return (
     <Link
@@ -59,11 +63,7 @@ export default function PropertyCard({ property, preload = false }: PropertyCard
                 <span>{formatArea(property.livingArea)}</span>
               </div>
             )}
-            {property.rooms !== null && (
-              <div>
-                {property.rooms} Zimmer
-              </div>
-            )}
+            {property.rooms !== null && <div>{property.rooms} Zimmer</div>}
           </div>
 
           <div className="flex items-center justify-between mt-3 pt-3 border-t border-border-l dark:border-border-d">
@@ -75,10 +75,10 @@ export default function PropertyCard({ property, preload = false }: PropertyCard
             {property.marketingType && (
               <div
                 className={`px-2 py-1 rounded text-xs font-medium text-white ${
-                  isRent ? 'bg-rent' : 'bg-buy'
+                  isRent ? "bg-rent" : "bg-buy"
                 }`}
               >
-                {isRent ? 'Mieten' : 'Kaufen'}
+                {isRent ? "Mieten" : "Kaufen"}
               </div>
             )}
           </div>

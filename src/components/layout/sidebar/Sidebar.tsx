@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
-import Link from 'next/link';
-import { IoCloseOutline } from 'react-icons/io5';
-import { ThemeSwitch } from '@/context/theme-switch';
-import { useUiStore } from '@/store/ui/ui-store';
-import { DRAWER_LINKS } from '@/constants/navigation';
+import { useEffect, useRef } from "react";
+import Link from "next/link";
+import { IoCloseOutline } from "react-icons/io5";
+import { ThemeSwitch } from "@/context/theme-switch";
+import { useUiStore } from "@/store/ui/ui-store";
+import { DRAWER_LINKS } from "@/constants/navigation";
 
 const Sidebar = () => {
   const isSidebarOpen = useUiStore((state) => state.isSidebarOpen);
@@ -13,9 +13,9 @@ const Sidebar = () => {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    document.body.style.overflow = isSidebarOpen ? 'hidden' : 'unset';
+    document.body.style.overflow = isSidebarOpen ? "hidden" : "unset";
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isSidebarOpen]);
 
@@ -28,10 +28,10 @@ const Sidebar = () => {
   useEffect(() => {
     if (!isSidebarOpen) return;
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeSidebar();
+      if (e.key === "Escape") closeSidebar();
     };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
   }, [isSidebarOpen, closeSidebar]);
 
   return (
@@ -39,9 +39,11 @@ const Sidebar = () => {
       <div
         data-testid="sidebar-overlay"
         className={`fixed inset-0 z-101 bg-[rgba(28,28,30,0.4)] ${
-          isSidebarOpen ? 'visible opacity-100' : 'invisible opacity-0'
+          isSidebarOpen ? "visible opacity-100" : "invisible opacity-0"
         }`}
-        style={{ transition: 'opacity 300ms ease-in-out, visibility 300ms ease-in-out' }}
+        style={{
+          transition: "opacity 300ms ease-in-out, visibility 300ms ease-in-out",
+        }}
         onClick={closeSidebar}
         aria-hidden="true"
       />
@@ -50,9 +52,9 @@ const Sidebar = () => {
         id="mobile-sidebar"
         data-testid="sidebar"
         className={`fixed right-0 top-0 z-102 flex h-full w-[62%] max-w-sm flex-col border-l border-border-l bg-bg-l dark:border-border-d dark:bg-bgSecondary-d ${
-          isSidebarOpen ? 'translate-x-0' : 'translate-x-full'
+          isSidebarOpen ? "translate-x-0" : "translate-x-full"
         }`}
-        style={{ transition: 'transform 300ms ease-out' }}
+        style={{ transition: "transform 300ms ease-out" }}
         aria-label="Navigationsmenü"
         aria-hidden={!isSidebarOpen}
       >
@@ -83,7 +85,9 @@ const Sidebar = () => {
 
         <div className="border-t border-border-l px-6 py-5 dark:border-border-d">
           <div className="mb-4 flex items-center justify-between">
-            <span className="text-[13px] text-card-text-l dark:text-card-text-d">Darstellung</span>
+            <span className="text-[13px] text-card-text-l dark:text-card-text-d">
+              Darstellung
+            </span>
             <ThemeSwitch />
           </div>
           <Link
