@@ -2,58 +2,93 @@ import Link from "next/link";
 import { MapPin } from "lucide-react";
 import PropertyImage from "./PropertyImage";
 import type { PropertyCardDto } from "@/types/property-api";
-import { resolveDisplayPrice, formatArea } from "@/lib/property-formatters";
+import PropertyFacts from "./PropertyFacts";
+import { resolveDisplayPrice } from "@/lib/property-formatters";
+import { buildPropertyFacts } from "@/lib/property-display";
 import { TRANSACTION_LABELS } from "@/types/property-types";
 import { SHOWCASE_CTA_COMPACT_GROUP_CLASS } from "./showcase-cta";
 import { cn } from "@/lib/utils";
+import { SKELETON_BLOCK } from "./showcase-skeleton";
 
 interface PropertySpotlightCardProps {
-  readonly property: PropertyCardDto;
+  readonly property?: PropertyCardDto;
   readonly className?: string;
+  readonly isLoading?: boolean;
+}
+
+const SPOTLIGHT_CARD_CLASS =
+  "flex flex-col overflow-hidden border border-border-l bg-bgSecondary-l sm:flex-row dark:border-border-d dark:bg-bgSecondary-d";
+
+const SPOTLIGHT_MEDIA_CLASS =
+  "relative aspect-4/3 overflow-hidden sm:aspect-5/4 sm:w-[54%] sm:shrink-0 lg:aspect-16/10";
+
+const SPOTLIGHT_BODY_CLASS =
+  "flex flex-1 flex-col justify-center gap-1 p-6 sm:p-8 lg:p-10";
+
+function SpotlightSkeleton({ className }: { readonly className?: string }) {
+  return (
+    <div className={cn("block w-full", className)} aria-hidden="true">
+      <div className={SPOTLIGHT_CARD_CLASS}>
+        <div className={cn(SPOTLIGHT_MEDIA_CLASS, SKELETON_BLOCK)} />
+        <div className={SPOTLIGHT_BODY_CLASS}>
+          <div className={cn("mb-3 h-5 w-16", SKELETON_BLOCK)} />
+          <div className={cn("h-7 w-4/5", SKELETON_BLOCK)} />
+          <div className={cn("mt-2 h-4 w-2/5", SKELETON_BLOCK)} />
+          <div className={cn("mt-4 h-6 w-1/3", SKELETON_BLOCK)} />
+          <div className={cn("mt-1 h-4 w-1/4", SKELETON_BLOCK)} />
+          <div className={cn("mt-6 h-10 w-40 rounded-full", SKELETON_BLOCK)} />
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default function PropertySpotlightCard({
   property,
   className,
+  isLoading = false,
 }: PropertySpotlightCardProps) {
+  if (isLoading || !property) {
+    return <SpotlightSkeleton className={className} />;
+  }
+
   const title = property.title ?? `Immobilie ${property.id}`;
   const location = property.city;
-  const displayType = property.propertySubType ?? property.propertyType;
   const price = resolveDisplayPrice(
     property.marketingType,
     property.salePrice,
     property.coldRent,
   );
   const isRent = property.marketingType === "miete";
-
-  const metaLeft = [displayType, location].filter(Boolean).join(" · ");
-  const areaText =
-    property.livingArea !== null ? formatArea(property.livingArea) : null;
-  const roomsText = property.rooms !== null ? `${property.rooms} Zimmer` : null;
-  const metaRight = [areaText, roomsText].filter(Boolean).join(" · ");
+  const facts = buildPropertyFacts(property);
 
   const imageAlt = [title, location].filter(Boolean).join(", ");
 
   return (
     <Link
-      href={`/objekt/${property.id}`}
+      href={`/objekt/${encodeURIComponent(property.id)}`}
       className={cn(
-        "group mx-auto block w-full max-w-4xl rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
+        "group block w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
         className,
       )}
     >
-      <article className="flex flex-col overflow-hidden rounded-lg border border-border-l bg-bgSecondary-l transition duration-200 group-hover:shadow-lg motion-safe:group-hover:-translate-y-0.5 sm:flex-row dark:border-border-d dark:bg-bgSecondary-d dark:group-hover:border-card-text-d/30">
-        <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[5/4] sm:w-[54%] sm:shrink-0">
+      <article
+        className={cn(
+          SPOTLIGHT_CARD_CLASS,
+          "transition duration-200 group-hover:shadow-lg motion-safe:group-hover:-translate-y-0.5 dark:group-hover:border-card-text-d/30",
+        )}
+      >
+        <div className={SPOTLIGHT_MEDIA_CLASS}>
           <PropertyImage
             images={property.images}
             alt={imageAlt}
             className="h-full w-full motion-safe:transition-transform motion-safe:duration-500 motion-safe:ease-out motion-safe:group-hover:scale-[1.03]"
             priority
-            sizes="(max-width: 640px) 100vw, 500px"
+            sizes="(max-width: 640px) 100vw, 54vw"
           />
         </div>
 
-        <div className="flex flex-1 flex-col justify-center gap-1 p-6 sm:p-8">
+        <div className={SPOTLIGHT_BODY_CLASS}>
           {property.marketingType && (
             <span
               className={cn(
@@ -69,21 +104,20 @@ export default function PropertySpotlightCard({
             {title}
           </h3>
 
-          {metaLeft && (
+          <PropertyFacts facts={facts} className="mt-3" />
+
+          {location && (
             <div className="mt-2 flex items-center gap-1.5 text-sm text-card-text-l dark:text-card-text-d">
-              <MapPin className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-              <span>{metaLeft}</span>
+              <MapPin
+                className="h-3.5 w-3.5 shrink-0 opacity-70"
+                aria-hidden="true"
+              />
+              <span>{location}</span>
             </div>
           )}
 
           {price && (
             <span className="mt-4 text-xl font-bold text-primary">{price}</span>
-          )}
-
-          {metaRight && (
-            <span className="mt-1 text-[13px] text-card-text-l dark:text-card-text-d">
-              {metaRight}
-            </span>
           )}
 
           <span className={cn("mt-6", SHOWCASE_CTA_COMPACT_GROUP_CLASS)}>

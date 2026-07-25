@@ -1,14 +1,45 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SHOWCASE_CTA_COMPACT_CLASS } from "./showcase-cta";
+import { cn } from "@/lib/utils";
+import { SKELETON_BLOCK } from "./showcase-skeleton";
 
 interface PropertyShowcaseEmptyProps {
   readonly error?: boolean;
+  readonly isLoading?: boolean;
+}
+
+const EMPTY_CARD_CLASS =
+  "mx-auto flex w-full max-w-3xl flex-col overflow-hidden border border-border-l bg-bgSecondary-l sm:flex-row dark:border-border-d dark:bg-bgSecondary-d";
+
+const EMPTY_MEDIA_CLASS =
+  "relative aspect-video w-full sm:aspect-5/4 sm:w-[42%] sm:shrink-0";
+
+const EMPTY_BODY_CLASS = "flex flex-1 flex-col justify-center p-6 sm:p-7";
+
+function EmptySkeleton() {
+  return (
+    <div className={EMPTY_CARD_CLASS} aria-hidden="true">
+      <div className={cn(EMPTY_MEDIA_CLASS, SKELETON_BLOCK)} />
+      <div className={EMPTY_BODY_CLASS}>
+        <div className={cn("h-6 w-3/5", SKELETON_BLOCK)} />
+        <div className={cn("mt-2.5 h-4 w-full", SKELETON_BLOCK)} />
+        <div className={cn("mt-1.5 h-4 w-4/5", SKELETON_BLOCK)} />
+        <div className={cn("mt-5 h-10 w-44 rounded-full", SKELETON_BLOCK)} />
+        <div className={cn("mt-3 h-4 w-36", SKELETON_BLOCK)} />
+      </div>
+    </div>
+  );
 }
 
 export default function PropertyShowcaseEmpty({
   error = false,
+  isLoading = false,
 }: PropertyShowcaseEmptyProps) {
+  if (isLoading) {
+    return <EmptySkeleton />;
+  }
+
   const heading = error
     ? "Immobilien derzeit nicht verfügbar"
     : "Neue Objekte in Vorbereitung";
@@ -18,8 +49,8 @@ export default function PropertyShowcaseEmpty({
   const primaryLabel = error ? "Kontakt aufnehmen" : "Suchauftrag anlegen";
 
   return (
-    <div className="mx-auto flex w-full max-w-3xl flex-col overflow-hidden rounded-lg border border-border-l bg-bgSecondary-l sm:flex-row dark:border-border-d dark:bg-bgSecondary-d">
-      <div className="relative aspect-[16/9] w-full sm:aspect-[5/4] sm:w-[42%] sm:shrink-0">
+    <div className={EMPTY_CARD_CLASS}>
+      <div className={EMPTY_MEDIA_CLASS}>
         <Image
           src="/imgs/contact-our-office.jpg"
           alt="Beratungsbüro von Rumpke Immobilien"
@@ -29,7 +60,7 @@ export default function PropertyShowcaseEmpty({
         />
       </div>
 
-      <div className="flex flex-1 flex-col justify-center p-6 sm:p-7">
+      <div className={EMPTY_BODY_CLASS}>
         <h3 className="font-serif text-xl font-semibold leading-snug text-foreground">
           {heading}
         </h3>

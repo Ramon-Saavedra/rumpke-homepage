@@ -1,9 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
-const THEME_STORAGE_KEY = "theme";
-const DARK_CLASS = "dark";
+import { DARK_CLASS, THEME_STORAGE_KEY } from "./theme-storage";
 
 function readStoredTheme(): boolean {
   if (typeof window === "undefined") return false;
@@ -40,10 +38,13 @@ function setTheme(isDark: boolean): void {
 }
 
 export function useTheme() {
-  const [isDark, setIsDark] = useState(() => getTheme());
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    applyTheme(getTheme());
+    const current = getTheme();
+    applyTheme(current);
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional: syncs with client theme after SSR
+    setIsDark(current);
     const listener = () => setIsDark(getTheme());
     listeners.add(listener);
     return () => {

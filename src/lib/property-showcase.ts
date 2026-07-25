@@ -57,3 +57,7 @@ export function selectShowcaseLayout(
     standard: rest.slice(2),
   };
 }
+
+export function layoutHasListingCta(kind: ShowcaseLayout["kind"]): boolean {
+  return kind !== "empty" && kind !== "spotlight";
+}

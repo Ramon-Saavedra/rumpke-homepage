@@ -2,9 +2,13 @@ import Link from "next/link";
 import { MapPin } from "lucide-react";
 import PropertyImage from "./PropertyImage";
 import type { PropertyCardDto } from "@/types/property-api";
-import { resolveDisplayPrice, formatArea } from "@/lib/property-formatters";
+import PropertyFacts from "./PropertyFacts";
+import type { PropertyFactsSize } from "./PropertyFacts";
+import { resolveDisplayPrice } from "@/lib/property-formatters";
+import { buildPropertyFacts } from "@/lib/property-display";
 import { TRANSACTION_LABELS } from "@/types/property-types";
 import { cn } from "@/lib/utils";
+import { SKELETON_BLOCK } from "./showcase-skeleton";
 
 export type PropertyShowcaseVariant = "featured" | "standard" | "compact";
 
@@ -26,10 +30,11 @@ interface VariantConfig {
   readonly titleMargin: string;
   readonly metaClass: string;
   readonly metaIconClass: string;
+  readonly hasFooterRule: boolean;
   readonly footerPad: string;
   readonly priceClass: string;
-  readonly metaRightClass: string;
-  readonly roomsLabel: string;
+  readonly factsSize: PropertyFactsSize;
+  readonly factsMargin: string;
   readonly badgeClass: string;
   readonly badgeOffset: string;
   readonly aspectClass: string;
@@ -45,10 +50,11 @@ const VARIANTS: Record<PropertyShowcaseVariant, VariantConfig> = {
     titleMargin: "mb-2",
     metaClass: "mb-3.5 text-sm sm:mb-4",
     metaIconClass: "h-3.5 w-3.5",
+    hasFooterRule: true,
     footerPad: "pt-3.5 sm:pt-4",
     priceClass: "text-[17px] sm:text-xl",
-    metaRightClass: "text-[13px] sm:text-sm",
-    roomsLabel: "Zimmer",
+    factsSize: "sm",
+    factsMargin: "mb-2.5",
     badgeClass: "px-3.5 py-1.5 text-xs",
     badgeOffset: "left-4 top-4",
     aspectClass: "aspect-[4/3] sm:aspect-[16/10] lg:aspect-[3/2]",
@@ -61,30 +67,32 @@ const VARIANTS: Record<PropertyShowcaseVariant, VariantConfig> = {
     titleMargin: "mb-1.5",
     metaClass: "mb-3 text-[13px]",
     metaIconClass: "h-3.5 w-3.5",
+    hasFooterRule: true,
     footerPad: "pt-3",
     priceClass: "text-[15px]",
-    metaRightClass: "text-xs",
-    roomsLabel: "Zimmer",
+    factsSize: "sm",
+    factsMargin: "mb-2",
     badgeClass: "px-2.5 py-1 text-[11px]",
     badgeOffset: "left-3 top-3",
     aspectClass: "aspect-[4/3]",
     sizes: "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px",
   },
   compact: {
-    contentPad: "px-3.5 pb-3.5 pt-3",
+    contentPad: "px-3.5 pb-3 pt-2.5",
     titleTag: "h4",
-    titleClass: "font-sans text-sm font-bold leading-snug",
-    titleMargin: "mb-1",
-    metaClass: "mb-2 text-xs",
+    titleClass: "font-sans text-sm font-bold leading-snug line-clamp-1",
+    titleMargin: "mb-0.5",
+    metaClass: "mb-1.5 text-xs",
     metaIconClass: "h-3 w-3",
+    hasFooterRule: false,
     footerPad: "pt-2",
     priceClass: "text-[13px]",
-    metaRightClass: "text-[11px]",
-    roomsLabel: "Zi.",
+    factsSize: "xs",
+    factsMargin: "mb-1",
     badgeClass: "px-2.5 py-1 text-[11px]",
     badgeOffset: "left-2.5 top-2.5",
     aspectClass: "aspect-[4/3]",
-    sizes: "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px",
+    sizes: "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px",
   },
 };
 
@@ -97,7 +105,11 @@ function imageWrapperClass(
   const base = "relative overflow-hidden";
 
   if (media === "fill") {
-    return cn(base, "aspect-[4/3] lg:aspect-auto lg:min-h-0 lg:flex-1");
+    return cn(
+      base,
+      VARIANTS[variant].aspectClass,
+      "lg:aspect-auto lg:min-h-0 lg:flex-1",
+    );
   }
   if (media === "panorama") {
     return cn(base, PANORAMA_ASPECT);
@@ -106,10 +118,7 @@ function imageWrapperClass(
 }
 
 const CARD_BASE =
-  "flex flex-1 flex-col overflow-hidden rounded-lg border border-border-l bg-bgSecondary-l dark:border-border-d dark:bg-bgSecondary-d";
-
-const SKELETON_BLOCK =
-  "rounded bg-Bghover-l dark:bg-Bghover-d motion-safe:animate-pulse";
+  "flex flex-1 flex-col overflow-hidden border border-border-l bg-bgSecondary-l dark:border-border-d dark:bg-bgSecondary-d";
 
 function Skeleton({
   variant,
@@ -124,7 +133,7 @@ function Skeleton({
   return (
     <div
       className={cn(
-        "flex flex-col rounded-lg",
+        "flex flex-col",
         media === "fill" && "lg:h-full lg:min-h-0 lg:flex-1",
         className,
       )}
@@ -132,11 +141,7 @@ function Skeleton({
     >
       <div className={CARD_BASE}>
         <div
-          className={cn(
-            imageWrapperClass(variant, media),
-            SKELETON_BLOCK,
-            "rounded-none",
-          )}
+          className={cn(imageWrapperClass(variant, media), SKELETON_BLOCK)}
         />
         <div className={cn("flex flex-1 flex-col", config.contentPad)}>
           <div
@@ -174,29 +179,22 @@ export default function PropertyShowcaseCard({
 
   const title = property.title ?? `Immobilie ${property.id}`;
   const location = property.city;
-  const displayType = property.propertySubType ?? property.propertyType;
   const price = resolveDisplayPrice(
     property.marketingType,
     property.salePrice,
     property.coldRent,
   );
   const isRent = property.marketingType === "miete";
-
-  const metaLeft = [displayType, location].filter(Boolean).join(" · ");
-  const areaText =
-    property.livingArea !== null ? formatArea(property.livingArea) : null;
-  const roomsText =
-    property.rooms !== null ? `${property.rooms} ${config.roomsLabel}` : null;
-  const metaRight = [areaText, roomsText].filter(Boolean).join(" · ");
+  const facts = buildPropertyFacts(property);
 
   const imageAlt = [title, location].filter(Boolean).join(", ");
   const TitleTag = config.titleTag;
 
   return (
     <Link
-      href={`/objekt/${property.id}`}
+      href={`/objekt/${encodeURIComponent(property.id)}`}
       className={cn(
-        "group flex flex-col rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
+        "group flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
         media === "fill" && "lg:h-full lg:min-h-0 lg:flex-1",
         className,
       )}
@@ -230,7 +228,13 @@ export default function PropertyShowcaseCard({
           )}
         </div>
 
-        <div className={cn("flex flex-1 flex-col", config.contentPad)}>
+        <div
+          className={cn(
+            "flex flex-1 flex-col",
+            media === "fill" && "lg:flex-none",
+            config.contentPad,
+          )}
+        >
           <TitleTag
             className={cn(
               config.titleClass,
@@ -241,7 +245,13 @@ export default function PropertyShowcaseCard({
             {title}
           </TitleTag>
 
-          {metaLeft && (
+          <PropertyFacts
+            facts={facts}
+            size={config.factsSize}
+            className={config.factsMargin}
+          />
+
+          {location && (
             <div
               className={cn(
                 "flex items-center gap-1.5 text-card-text-l dark:text-card-text-d",
@@ -249,35 +259,40 @@ export default function PropertyShowcaseCard({
               )}
             >
               <MapPin
-                className={cn("shrink-0", config.metaIconClass)}
+                className={cn("shrink-0 opacity-70", config.metaIconClass)}
                 aria-hidden="true"
               />
-              <span className="line-clamp-1">{metaLeft}</span>
+              <span className="line-clamp-1">{location}</span>
             </div>
           )}
 
-          <div
-            className={cn(
-              "mt-auto flex items-center justify-between border-t border-border-l dark:border-border-d",
-              config.footerPad,
-            )}
-          >
-            {price && (
-              <span className={cn("font-bold text-primary", config.priceClass)}>
-                {price}
-              </span>
-            )}
-            {metaRight && (
+          {config.hasFooterRule ? (
+            <div
+              className={cn(
+                "mt-auto flex items-center justify-between border-t border-border-l dark:border-border-d",
+                config.footerPad,
+              )}
+            >
+              {price && (
+                <span
+                  className={cn("font-bold text-primary", config.priceClass)}
+                >
+                  {price}
+                </span>
+              )}
+            </div>
+          ) : (
+            price && (
               <span
                 className={cn(
-                  "text-card-text-l dark:text-card-text-d",
-                  config.metaRightClass,
+                  "mt-auto font-bold text-primary",
+                  config.priceClass,
                 )}
               >
-                {metaRight}
+                {price}
               </span>
-            )}
-          </div>
+            )
+          )}
         </div>
       </article>
     </Link>

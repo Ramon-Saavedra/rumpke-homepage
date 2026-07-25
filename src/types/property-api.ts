@@ -16,7 +16,10 @@ export interface PropertyCardDto {
   readonly salePrice: number | null;
   readonly coldRent: number | null;
   readonly livingArea: number | null;
+  readonly plotArea: number | null;
+  readonly usableArea: number | null;
   readonly rooms: number | null;
+  readonly floor: string | null;
   readonly images: readonly PropertyImageDto[];
 }
 
@@ -288,7 +291,10 @@ function validatePropertyCardDto(data: unknown): PropertyCardDto {
     salePrice: isNumberOrNull(data["salePrice"]) ? data["salePrice"] : null,
     coldRent: isNumberOrNull(data["coldRent"]) ? data["coldRent"] : null,
     livingArea: isNumberOrNull(data["livingArea"]) ? data["livingArea"] : null,
+    plotArea: isNumberOrNull(data["plotArea"]) ? data["plotArea"] : null,
+    usableArea: isNumberOrNull(data["usableArea"]) ? data["usableArea"] : null,
     rooms: isNumberOrNull(data["rooms"]) ? data["rooms"] : null,
+    floor: isStringOrNull(data["floor"]) ? data["floor"] : null,
     images: validatePropertyImages(data["images"]),
   };
 }

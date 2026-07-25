@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-
-type RumpkeLogoVariant = "mark" | "full";
+import { LOGO_ASSETS, type RumpkeLogoVariant } from "./logo-assets";
 
 type RumpkeLogoProps = {
   /** `mark` = double-roof glyph (mobile/tablet); `full` = wordmark lockup (laptop+). */
@@ -13,21 +12,13 @@ type RumpkeLogoProps = {
   priority?: boolean;
 };
 
-const ASSETS: Record<
-  RumpkeLogoVariant,
-  { src: string; width: number; height: number }
-> = {
-  mark: { src: "/imgs/logo-mark.png", width: 1119, height: 1213 },
-  full: { src: "/imgs/logo-full.png", width: 3429, height: 1917 },
-};
-
 export default function RumpkeLogo({
   variant = "full",
   onDark = false,
   className,
   priority = false,
 }: RumpkeLogoProps) {
-  const asset = ASSETS[variant];
+  const asset = LOGO_ASSETS[variant];
 
   return (
     <Link

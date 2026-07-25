@@ -1,8 +1,14 @@
 import Link from "next/link";
-import { Home, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import PropertyImage from "./PropertyImage";
+import PropertyFacts from "./PropertyFacts";
 import type { PropertyCardDto } from "@/types/property-api";
-import { resolveDisplayPrice, formatArea } from "@/lib/property-formatters";
+import { resolveDisplayPrice } from "@/lib/property-formatters";
+import {
+  buildPropertyFacts,
+  resolvePropertyCategoryLabel,
+} from "@/lib/property-display";
+import { TRANSACTION_LABELS } from "@/types/property-types";
 
 interface PropertyCardProps {
   readonly property: PropertyCardDto;
@@ -19,13 +25,16 @@ export default function PropertyCard({
     property.salePrice,
     property.coldRent,
   );
-  const displayType =
-    property.propertySubType ?? property.propertyType ?? undefined;
+  const categoryLabel = resolvePropertyCategoryLabel(
+    property.propertyType,
+    property.propertySubType,
+  );
+  const facts = buildPropertyFacts(property);
   const isRent = property.marketingType === "miete";
 
   return (
     <Link
-      href={`/objekt/${property.id}`}
+      href={`/objekt/${encodeURIComponent(property.id)}`}
       className="group block hover:bg-bgSecondary-l dark:hover:bg-bgSecondary-d transition-colors rounded overflow-hidden"
     >
       <article className="group relative flex flex-col dark:border-border-d overflow-hidden shadow-lg">
@@ -37,9 +46,9 @@ export default function PropertyCard({
             priority={preload}
           />
 
-          {displayType && (
+          {categoryLabel && (
             <div className="absolute top-3 left-3 bg-primary text-white px-3 py-1 rounded text-xs font-medium">
-              {displayType}
+              {categoryLabel}
             </div>
           )}
         </div>
@@ -49,22 +58,17 @@ export default function PropertyCard({
             {property.title ?? `Immobilie ${property.id}`}
           </h2>
 
+          <PropertyFacts facts={facts} size="xs" className="mb-2" />
+
           {displayLocation && (
-            <div className="flex items-center gap-2 text-card-text-l dark:text-card-text-d mb-2">
-              <MapPin className="w-3 h-3 shrink-0" />
+            <div className="flex items-center gap-1.5 text-card-text-l dark:text-card-text-d mb-auto">
+              <MapPin
+                className="w-3 h-3 shrink-0 opacity-70"
+                aria-hidden="true"
+              />
               <span className="text-xs line-clamp-1">{displayLocation}</span>
             </div>
           )}
-
-          <div className="flex items-center gap-3 text-xs text-card-text-l dark:text-card-text-d mb-auto">
-            {property.livingArea !== null && (
-              <div className="flex items-center gap-1">
-                <Home className="w-3 h-3" />
-                <span>{formatArea(property.livingArea)}</span>
-              </div>
-            )}
-            {property.rooms !== null && <div>{property.rooms} Zimmer</div>}
-          </div>
 
           <div className="flex items-center justify-between mt-3 pt-3 border-t border-border-l dark:border-border-d">
             {displayPrice && (
@@ -78,7 +82,7 @@ export default function PropertyCard({
                   isRent ? "bg-rent" : "bg-buy"
                 }`}
               >
-                {isRent ? "Mieten" : "Kaufen"}
+                {isRent ? TRANSACTION_LABELS.miete : TRANSACTION_LABELS.kauf}
               </div>
             )}
           </div>
