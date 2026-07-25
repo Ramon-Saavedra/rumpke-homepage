@@ -16,7 +16,10 @@ function makeProperty(
     salePrice: 1250000,
     coldRent: null,
     livingArea: 142,
+    plotArea: null,
+    usableArea: null,
     rooms: 5,
+    floor: null,
     images: [],
     ...overrides,
   };

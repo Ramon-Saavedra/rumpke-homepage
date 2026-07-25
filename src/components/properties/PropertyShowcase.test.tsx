@@ -14,7 +14,10 @@ function makeProperty(id: string): PropertyCardDto {
     salePrice: 250000,
     coldRent: null,
     livingArea: 120,
+    plotArea: null,
+    usableArea: null,
     rooms: 4,
+    floor: null,
     images: [],
   };
 }
