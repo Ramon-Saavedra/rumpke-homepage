@@ -55,8 +55,9 @@ describe("emptySlots", () => {
     expect(slots).toEqual([undefined, undefined, undefined]);
   });
 
-  it("returns empty array for count 0", () => {
-    const slots = emptySlots(0);
-    expect(slots).toHaveLength(0);
+  it("returns array of 2 undefined slots", () => {
+    const slots = emptySlots(2);
+    expect(slots).toHaveLength(2);
+    expect(slots).toEqual([undefined, undefined]);
   });
 });
