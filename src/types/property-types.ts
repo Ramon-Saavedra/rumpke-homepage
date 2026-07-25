@@ -1,6 +1,12 @@
-export const VALID_TYPES = ["haeuser", "wohnungen", "gewerbeimmobilien", "grundstueck", "sonstige"] as const;
+export const VALID_TYPES = [
+  "haeuser",
+  "wohnungen",
+  "gewerbeimmobilien",
+  "grundstueck",
+  "sonstige",
+] as const;
 
-export type PropertyType = typeof VALID_TYPES[number];
+export type PropertyType = (typeof VALID_TYPES)[number];
 
 export const TYPE_LABELS: Record<PropertyType, string> = {
   haeuser: "Häuser",
@@ -9,7 +15,6 @@ export const TYPE_LABELS: Record<PropertyType, string> = {
   grundstueck: "Grundstück",
   sonstige: "Sonstige",
 };
-
 
 export const TYPE_DESCRIPTIONS: Record<PropertyType, string> = {
   haeuser: "Finden Sie Ihr Traumhaus zum Kaufen oder Mieten",
@@ -45,9 +50,10 @@ export function isValidType(type: string): type is PropertyType {
 }
 
 export function getPropertyTypes(basePath: "kauf" | "miete") {
-  const descriptions = basePath === "kauf" ? TYPE_DESCRIPTIONS_KAUF : TYPE_DESCRIPTIONS_MIETE;
+  const descriptions =
+    basePath === "kauf" ? TYPE_DESCRIPTIONS_KAUF : TYPE_DESCRIPTIONS_MIETE;
 
-  return VALID_TYPES.map(type => ({
+  return VALID_TYPES.map((type) => ({
     slug: type,
     label: TYPE_LABELS[type],
     description: descriptions[type],

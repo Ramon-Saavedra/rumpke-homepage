@@ -1,20 +1,20 @@
-'use client'
+"use client";
 
-import { useEffect } from 'react'
-import Link from 'next/link'
+import { useEffect } from "react";
+import Link from "next/link";
 
 export default function Error({
   error,
   unstable_retry,
 }: {
-  error: Error & { digest?: string }
-  unstable_retry: () => void
+  error: Error & { digest?: string };
+  unstable_retry: () => void;
 }) {
   useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      console.error(error)
+    if (process.env.NODE_ENV === "development") {
+      console.error(error);
     }
-  }, [error])
+  }, [error]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] gap-6 text-center px-4">
@@ -23,7 +23,8 @@ export default function Error({
       </h2>
 
       <p className="text-card-text-l dark:text-card-text-d max-w-md">
-        Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es erneut.
+        Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es
+        erneut.
         {error.digest && (
           <span className="block text-sm mt-2 text-secondary-l dark:text-secondary-d">
             Fehler-ID: {error.digest}
@@ -46,5 +47,5 @@ export default function Error({
         </Link>
       </div>
     </div>
-  )
+  );
 }

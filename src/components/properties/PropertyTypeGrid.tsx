@@ -1,5 +1,11 @@
-import Link from 'next/link';
-import { Home, Building2, Briefcase, Trees, MoreHorizontal } from 'lucide-react';
+import Link from "next/link";
+import {
+  Home,
+  Building2,
+  Briefcase,
+  Trees,
+  MoreHorizontal,
+} from "lucide-react";
 
 interface PropertyType {
   slug: string;
@@ -15,20 +21,24 @@ interface PropertyTypeGridProps {
 
 const getIcon = (slug: string) => {
   switch (slug) {
-    case 'haus':
+    case "haus":
       return <Home className="w-8 h-8" />;
-    case 'wohnung':
+    case "wohnung":
       return <Building2 className="w-8 h-8" />;
-    case 'gewerbeimmobilien':
+    case "gewerbeimmobilien":
       return <Briefcase className="w-8 h-8" />;
-    case 'grundstueck':
+    case "grundstueck":
       return <Trees className="w-8 h-8" />;
     default:
       return <MoreHorizontal className="w-8 h-8" />;
   }
 };
 
-export default function PropertyTypeGrid({ types, basePath, title }: PropertyTypeGridProps) {
+export default function PropertyTypeGrid({
+  types,
+  basePath,
+  title,
+}: PropertyTypeGridProps) {
   return (
     <section className="mb-12">
       {title && (

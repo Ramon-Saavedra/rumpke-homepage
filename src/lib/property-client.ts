@@ -6,37 +6,43 @@ import {
   validatePropertyListResponse,
   validatePropertyDetailDto,
   validatePublicErrorBody,
-} from '@/types/property-api';
-import { getApiUrl, API_ENDPOINTS } from '@/lib/api-client';
-import { publicErrorLabel } from '@/lib/property-errors';
+} from "@/types/property-api";
+import { getApiUrl, API_ENDPOINTS } from "@/lib/api-client";
+import { publicErrorLabel } from "@/lib/property-errors";
 
-async function parsePublicErrorBody(response: Response): Promise<PublicErrorBody> {
+async function parsePublicErrorBody(
+  response: Response,
+): Promise<PublicErrorBody> {
   try {
     const body: unknown = await response.json();
     return validatePublicErrorBody(body);
   } catch {
     return {
       statusCode: response.status,
-      code: 'INTERNAL_SERVER_ERROR',
-      message: 'Unerwarteter Serverfehler.',
+      code: "INTERNAL_SERVER_ERROR",
+      message: "Unerwarteter Serverfehler.",
     };
   }
 }
 
 async function handleErrorResponse(response: Response): Promise<never> {
   const body = await parsePublicErrorBody(response);
-  throw new PropertyFetchError(body.statusCode, body.code, publicErrorLabel(body.code));
+  throw new PropertyFetchError(
+    body.statusCode,
+    body.code,
+    publicErrorLabel(body.code),
+  );
 }
 
 async function fetchWithErrorHandling(url: string): Promise<unknown> {
   let res: Response;
   try {
-    res = await fetch(url, { cache: 'no-store' });
+    res = await fetch(url, { cache: "no-store" });
   } catch {
     throw new PropertyFetchError(
       503,
-      'PROPERTY_SERVICE_UNAVAILABLE',
-      'Der Immobilienservice ist derzeit nicht verfügbar.',
+      "PROPERTY_SERVICE_UNAVAILABLE",
+      "Der Immobilienservice ist derzeit nicht verfügbar.",
     );
   }
 
@@ -49,8 +55,8 @@ async function fetchWithErrorHandling(url: string): Promise<unknown> {
   } catch {
     throw new PropertyFetchError(
       502,
-      'INTERNAL_SERVER_ERROR',
-      'Ungültige Server-Antwort.',
+      "INTERNAL_SERVER_ERROR",
+      "Ungültige Server-Antwort.",
     );
   }
 }
@@ -64,7 +70,9 @@ export async function getProperties(
   return validatePropertyListResponse(data);
 }
 
-export async function getProperty(objektnrExtern: string): Promise<PropertyDetailDto> {
+export async function getProperty(
+  objektnrExtern: string,
+): Promise<PropertyDetailDto> {
   const url = `${getApiUrl(API_ENDPOINTS.PROPERTIES)}/${encodeURIComponent(objektnrExtern)}`;
   const data = await fetchWithErrorHandling(url);
   return validatePropertyDetailDto(data);

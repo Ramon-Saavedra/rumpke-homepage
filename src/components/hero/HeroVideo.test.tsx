@@ -54,7 +54,7 @@ describe("HeroVideo", () => {
       render(<HeroVideo {...defaultProps} />);
       expect(screen.getByText("Mehr als nur vier Wände.")).toBeInTheDocument();
       expect(
-        screen.getByText(/Wir begleiten Menschen beim Kauf/i)
+        screen.getByText(/Wir begleiten Menschen beim Kauf/i),
       ).toBeInTheDocument();
     });
 
@@ -66,7 +66,7 @@ describe("HeroVideo", () => {
       expect(primary).toHaveAttribute("href", "/kauf");
       expect(secondary).toHaveAttribute(
         "href",
-        "/dienstleistungen/immobilienbewertung"
+        "/dienstleistungen/immobilienbewertung",
       );
     });
   });
@@ -88,7 +88,9 @@ describe("HeroVideo", () => {
     it("observes the video element", () => {
       const { container } = render(<HeroVideo {...defaultProps} />);
       const video = container.querySelector("video");
-      expect(observeMock.mock.calls.some((call) => call[0] === video)).toBe(true);
+      expect(observeMock.mock.calls.some((call) => call[0] === video)).toBe(
+        true,
+      );
     });
   });
 });

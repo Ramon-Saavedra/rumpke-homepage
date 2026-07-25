@@ -38,7 +38,12 @@ export default function ImmobilienbewertungPage() {
           Der erste Schritt zu Ihrem Erfolg
         </p>
         <p className="text-center mt-4 max-w-3xl mx-auto">
-          Eine präzise Immobilienbewertung ist entscheidend, wenn es darum geht, den richtigen Verkaufspreis zu erzielen oder eine fundierte Entscheidung über Ihre Immobilie zu treffen. Bei Rumpke Immobilien bieten wir Ihnen eine professionelle und transparente Bewertung Ihrer Immobilie, die auf fundierten Marktkenntnissen und langjähriger Erfahrung basiert.
+          Eine präzise Immobilienbewertung ist entscheidend, wenn es darum geht,
+          den richtigen Verkaufspreis zu erzielen oder eine fundierte
+          Entscheidung über Ihre Immobilie zu treffen. Bei Rumpke Immobilien
+          bieten wir Ihnen eine professionelle und transparente Bewertung Ihrer
+          Immobilie, die auf fundierten Marktkenntnissen und langjähriger
+          Erfahrung basiert.
         </p>
       </div>
 
@@ -50,7 +55,9 @@ export default function ImmobilienbewertungPage() {
               Warum eine professionelle Immobilienbewertung?
             </h2>
             <p className="leading-relaxed">
-              Der Wert Ihrer Immobilie wird durch eine Vielzahl von Faktoren beeinflusst. Wir analysieren all diese Aspekte, um den optimalen Preis zu ermitteln:
+              Der Wert Ihrer Immobilie wird durch eine Vielzahl von Faktoren
+              beeinflusst. Wir analysieren all diese Aspekte, um den optimalen
+              Preis zu ermitteln:
             </p>
           </div>
 
@@ -81,7 +88,8 @@ export default function ImmobilienbewertungPage() {
               Unser Bewertungsprozess
             </h2>
             <p className="leading-relaxed">
-              Wir führen eine umfassende Analyse durch, um den wahren Wert Ihrer Immobilie zu ermitteln:
+              Wir führen eine umfassende Analyse durch, um den wahren Wert Ihrer
+              Immobilie zu ermitteln:
             </p>
           </div>
 
@@ -94,9 +102,14 @@ export default function ImmobilienbewertungPage() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Erstgespräch und Objektbesichtigung</h3>
+                  <h3 className="font-semibold text-lg mb-2">
+                    Erstgespräch und Objektbesichtigung
+                  </h3>
                   <p className="text-sm text-card-text-l dark:text-card-text-d leading-relaxed">
-                    Wir beginnen mit einem persönlichen Gespräch, in dem wir Ihre Wünsche und Ziele besprechen. Anschließend nehmen wir eine detaillierte Besichtigung Ihrer Immobilie vor, um alle relevanten Merkmale zu erfassen.
+                    Wir beginnen mit einem persönlichen Gespräch, in dem wir
+                    Ihre Wünsche und Ziele besprechen. Anschließend nehmen wir
+                    eine detaillierte Besichtigung Ihrer Immobilie vor, um alle
+                    relevanten Merkmale zu erfassen.
                   </p>
                 </div>
               </div>
@@ -112,7 +125,9 @@ export default function ImmobilienbewertungPage() {
                 <div>
                   <h3 className="font-semibold text-lg mb-2">Marktanalyse</h3>
                   <p className="text-sm text-card-text-l dark:text-card-text-d leading-relaxed">
-                    Wir nutzen aktuelle Marktdaten und unsere umfassende Kenntnis der regionalen Gegebenheiten, um den Marktwert Ihrer Immobilie präzise zu bestimmen.
+                    Wir nutzen aktuelle Marktdaten und unsere umfassende
+                    Kenntnis der regionalen Gegebenheiten, um den Marktwert
+                    Ihrer Immobilie präzise zu bestimmen.
                   </p>
                 </div>
               </div>
@@ -126,9 +141,13 @@ export default function ImmobilienbewertungPage() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Bewertungsbericht</h3>
+                  <h3 className="font-semibold text-lg mb-2">
+                    Bewertungsbericht
+                  </h3>
                   <p className="text-sm text-card-text-l dark:text-card-text-d leading-relaxed">
-                    Sie erhalten von uns eine detaillierte Einschätzung mit einer fundierten Preisempfehlung und auch eine Einschätzung der Vermarktungschancen.
+                    Sie erhalten von uns eine detaillierte Einschätzung mit
+                    einer fundierten Preisempfehlung und auch eine Einschätzung
+                    der Vermarktungschancen.
                   </p>
                 </div>
               </div>
@@ -142,9 +161,13 @@ export default function ImmobilienbewertungPage() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Beratung und Handlungsempfehlung</h3>
+                  <h3 className="font-semibold text-lg mb-2">
+                    Beratung und Handlungsempfehlung
+                  </h3>
                   <p className="text-sm text-card-text-l dark:text-card-text-d leading-relaxed">
-                    Auf Basis der Bewertung besprechen wir mit Ihnen die nächsten Schritte und geben Ihnen konkrete Empfehlungen, wie Sie den Wert Ihrer Immobilie optimal nutzen können.
+                    Auf Basis der Bewertung besprechen wir mit Ihnen die
+                    nächsten Schritte und geben Ihnen konkrete Empfehlungen, wie
+                    Sie den Wert Ihrer Immobilie optimal nutzen können.
                   </p>
                 </div>
               </div>
@@ -199,24 +222,31 @@ export default function ImmobilienbewertungPage() {
           items={[
             {
               title: "Kostenlose Erstberatung",
-              description: "Wir bieten Ihnen eine unverbindliche Erstberatung an, in der wir Ihre Situation analysieren und Ihnen erste Einschätzungen geben."
+              description:
+                "Wir bieten Ihnen eine unverbindliche Erstberatung an, in der wir Ihre Situation analysieren und Ihnen erste Einschätzungen geben.",
             },
             {
               title: "Lokale Marktkenntnisse",
-              description: "Unsere langjährige Erfahrung im regionalen Immobilienmarkt ermöglicht uns präzise und realistische Bewertungen."
+              description:
+                "Unsere langjährige Erfahrung im regionalen Immobilienmarkt ermöglicht uns präzise und realistische Bewertungen.",
             },
             {
               title: "Transparenz und Nachvollziehbarkeit",
-              description: "Wir erklären Ihnen ausführlich, wie sich der Wert Ihrer Immobilie zusammensetzt und welche Faktoren eine Rolle spielen."
-            }
+              description:
+                "Wir erklären Ihnen ausführlich, wie sich der Wert Ihrer Immobilie zusammensetzt und welche Faktoren eine Rolle spielen.",
+            },
           ]}
         />
 
         {/* CTA Section */}
         <section className="text-center py-8">
-          <h2 className="text-2xl font-bold mb-4">Möchten Sie den Wert Ihrer Immobilie erfahren?</h2>
+          <h2 className="text-2xl font-bold mb-4">
+            Möchten Sie den Wert Ihrer Immobilie erfahren?
+          </h2>
           <p className="mb-6 max-w-2xl mx-auto">
-            Vereinbaren Sie noch heute einen Termin für eine unverbindliche Erstberatung. Wir freuen uns darauf, Sie kennenzulernen und Ihnen mit unserer Expertise zur Seite zu stehen.
+            Vereinbaren Sie noch heute einen Termin für eine unverbindliche
+            Erstberatung. Wir freuen uns darauf, Sie kennenzulernen und Ihnen
+            mit unserer Expertise zur Seite zu stehen.
           </p>
           <ContactButton text="Jetzt Termin vereinbaren" />
         </section>

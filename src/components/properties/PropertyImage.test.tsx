@@ -3,7 +3,9 @@ import "@testing-library/jest-dom";
 import PropertyImage from "./PropertyImage";
 import type { PropertyImageDto } from "@/types/property-api";
 
-function makeImage(overrides: Partial<PropertyImageDto> = {}): PropertyImageDto {
+function makeImage(
+  overrides: Partial<PropertyImageDto> = {},
+): PropertyImageDto {
   return {
     id: "img-1",
     url: "https://image.onoffice.de/photo1.jpg",
@@ -49,12 +51,7 @@ describe("PropertyImage", () => {
     });
 
     it("renders placeholder when first image has empty url", () => {
-      render(
-        <PropertyImage
-          images={[makeImage({ url: "" })]}
-          alt="Test"
-        />,
-      );
+      render(<PropertyImage images={[makeImage({ url: "" })]} alt="Test" />);
       const placeholder = screen.getByRole("img");
       expect(placeholder).toHaveAttribute("aria-label", "Test");
     });
@@ -63,8 +60,16 @@ describe("PropertyImage", () => {
       render(
         <PropertyImage
           images={[
-            makeImage({ id: "img-1", url: "https://image.onoffice.de/photo1.jpg", title: "First" }),
-            makeImage({ id: "img-2", url: "https://image.onoffice.de/photo2.jpg", title: "Second" }),
+            makeImage({
+              id: "img-1",
+              url: "https://image.onoffice.de/photo1.jpg",
+              title: "First",
+            }),
+            makeImage({
+              id: "img-2",
+              url: "https://image.onoffice.de/photo2.jpg",
+              title: "Second",
+            }),
           ]}
           alt="Fallback"
         />,

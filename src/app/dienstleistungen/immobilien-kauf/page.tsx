@@ -38,7 +38,9 @@ export default function ImmobilienKaufPage() {
           Ihr Weg zur Traumimmobilie
         </p>
         <p className="text-center mt-4 max-w-3xl mx-auto">
-          Der Kauf einer Immobilie ist eine der wichtigsten Entscheidungen im Leben. Wir begleiten Sie kompetent und zuverlässig auf diesem Weg – von der ersten Besichtigung bis zur Schlüsselübergabe.
+          Der Kauf einer Immobilie ist eine der wichtigsten Entscheidungen im
+          Leben. Wir begleiten Sie kompetent und zuverlässig auf diesem Weg –
+          von der ersten Besichtigung bis zur Schlüsselübergabe.
         </p>
       </div>
 
@@ -50,7 +52,9 @@ export default function ImmobilienKaufPage() {
               Unser Service für Käufer
             </h2>
             <p className="leading-relaxed">
-              Bei Rumpke Immobilien profitieren Sie von einem umfassenden Rundum-Service, der Ihnen den Immobilienkauf so angenehm wie möglich macht:
+              Bei Rumpke Immobilien profitieren Sie von einem umfassenden
+              Rundum-Service, der Ihnen den Immobilienkauf so angenehm wie
+              möglich macht:
             </p>
           </div>
 
@@ -101,7 +105,8 @@ export default function ImmobilienKaufPage() {
                 <div>
                   <h3 className="font-semibold text-lg mb-2">Erstgespräch</h3>
                   <p className="text-sm text-card-text-l dark:text-card-text-d leading-relaxed">
-                    In einem persönlichen Gespräch lernen wir Ihre Bedürfnisse kennen und definieren gemeinsam Ihr Suchprofil.
+                    In einem persönlichen Gespräch lernen wir Ihre Bedürfnisse
+                    kennen und definieren gemeinsam Ihr Suchprofil.
                   </p>
                 </div>
               </div>
@@ -115,9 +120,13 @@ export default function ImmobilienKaufPage() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Immobiliensuche</h3>
+                  <h3 className="font-semibold text-lg mb-2">
+                    Immobiliensuche
+                  </h3>
                   <p className="text-sm text-card-text-l dark:text-card-text-d leading-relaxed">
-                    Wir suchen gezielt nach passenden Objekten und präsentieren Ihnen regelmäßig neue Angebote, die Ihren Vorstellungen entsprechen.
+                    Wir suchen gezielt nach passenden Objekten und präsentieren
+                    Ihnen regelmäßig neue Angebote, die Ihren Vorstellungen
+                    entsprechen.
                   </p>
                 </div>
               </div>
@@ -133,7 +142,8 @@ export default function ImmobilienKaufPage() {
                 <div>
                   <h3 className="font-semibold text-lg mb-2">Besichtigungen</h3>
                   <p className="text-sm text-card-text-l dark:text-card-text-d leading-relaxed">
-                    Wir begleiten Sie zu den Besichtigungen und geben Ihnen wertvolle Hinweise zur Immobilie und zum Zustand.
+                    Wir begleiten Sie zu den Besichtigungen und geben Ihnen
+                    wertvolle Hinweise zur Immobilie und zum Zustand.
                   </p>
                 </div>
               </div>
@@ -147,9 +157,13 @@ export default function ImmobilienKaufPage() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Kaufentscheidung und Verhandlung</h3>
+                  <h3 className="font-semibold text-lg mb-2">
+                    Kaufentscheidung und Verhandlung
+                  </h3>
                   <p className="text-sm text-card-text-l dark:text-card-text-d leading-relaxed">
-                    Wenn Sie sich für eine Immobilie entschieden haben, führen wir die Verkaufsverhandlungen und sorgen für die bestmöglichen Konditionen.
+                    Wenn Sie sich für eine Immobilie entschieden haben, führen
+                    wir die Verkaufsverhandlungen und sorgen für die
+                    bestmöglichen Konditionen.
                   </p>
                 </div>
               </div>
@@ -165,7 +179,8 @@ export default function ImmobilienKaufPage() {
                 <div>
                   <h3 className="font-semibold text-lg mb-2">Kaufabschluss</h3>
                   <p className="text-sm text-card-text-l dark:text-card-text-d leading-relaxed">
-                    Wir koordinieren alle notwendigen Schritte und begleiten Sie bis zur Schlüsselübergabe.
+                    Wir koordinieren alle notwendigen Schritte und begleiten Sie
+                    bis zur Schlüsselübergabe.
                   </p>
                 </div>
               </div>
@@ -179,24 +194,31 @@ export default function ImmobilienKaufPage() {
           items={[
             {
               title: "Persönliche Betreuung",
-              description: "Sie haben bei uns einen festen Ansprechpartner, der Sie während des gesamten Kaufprozesses begleitet und Ihnen jederzeit zur Verfügung steht."
+              description:
+                "Sie haben bei uns einen festen Ansprechpartner, der Sie während des gesamten Kaufprozesses begleitet und Ihnen jederzeit zur Verfügung steht.",
             },
             {
               title: "Marktkenntnisse",
-              description: "Dank unserer langjährigen Erfahrung kennen wir den lokalen Immobilienmarkt genau und können Sie optimal beraten."
+              description:
+                "Dank unserer langjährigen Erfahrung kennen wir den lokalen Immobilienmarkt genau und können Sie optimal beraten.",
             },
             {
               title: "Großes Netzwerk",
-              description: "Durch unsere ausgezeichneten Kontakte zu Verkäufern, Notaren und Finanzierungspartnern haben Sie Zugang zu exklusiven Angeboten und professioneller Unterstützung."
-            }
+              description:
+                "Durch unsere ausgezeichneten Kontakte zu Verkäufern, Notaren und Finanzierungspartnern haben Sie Zugang zu exklusiven Angeboten und professioneller Unterstützung.",
+            },
           ]}
         />
 
         {/* CTA Section */}
         <section className="text-center py-8">
-          <h2 className="text-2xl font-bold mb-4">Bereit für Ihre Traumimmobilie?</h2>
+          <h2 className="text-2xl font-bold mb-4">
+            Bereit für Ihre Traumimmobilie?
+          </h2>
           <p className="mb-6 max-w-2xl mx-auto">
-            Kontaktieren Sie uns noch heute und lassen Sie uns gemeinsam Ihre perfekte Immobilie finden. Wir freuen uns darauf, Sie auf Ihrem Weg zum neuen Zuhause zu begleiten.
+            Kontaktieren Sie uns noch heute und lassen Sie uns gemeinsam Ihre
+            perfekte Immobilie finden. Wir freuen uns darauf, Sie auf Ihrem Weg
+            zum neuen Zuhause zu begleiten.
           </p>
           <ContactButton />
         </section>

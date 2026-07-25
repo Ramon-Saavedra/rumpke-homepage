@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-const THEME_STORAGE_KEY = 'theme';
-const DARK_CLASS = 'dark';
+const THEME_STORAGE_KEY = "theme";
+const DARK_CLASS = "dark";
 
 function readStoredTheme(): boolean {
-  if (typeof window === 'undefined') return false;
+  if (typeof window === "undefined") return false;
   const stored = localStorage.getItem(THEME_STORAGE_KEY);
-  if (stored === 'dark') return true;
-  if (stored === 'light') return false;
-  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (stored === "dark") return true;
+  if (stored === "light") return false;
+  return window.matchMedia("(prefers-color-scheme: dark)").matches;
 }
 
 function applyTheme(isDark: boolean): void {
-  if (typeof document === 'undefined') return;
+  if (typeof document === "undefined") return;
   if (isDark) {
     document.documentElement.classList.add(DARK_CLASS);
   } else {
@@ -34,7 +34,7 @@ function getTheme(): boolean {
 
 function setTheme(isDark: boolean): void {
   cachedIsDark = isDark;
-  localStorage.setItem(THEME_STORAGE_KEY, isDark ? 'dark' : 'light');
+  localStorage.setItem(THEME_STORAGE_KEY, isDark ? "dark" : "light");
   applyTheme(isDark);
   listeners.forEach((cb) => cb());
 }

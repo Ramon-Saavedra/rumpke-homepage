@@ -20,7 +20,7 @@ export class ContactSubmitError extends Error {
     public readonly fieldErrors?: ContactApiFieldErrors,
     public readonly globalError?: string,
   ) {
-    super(globalError ?? 'Ein Fehler ist aufgetreten.');
-    this.name = 'ContactSubmitError';
+    super(globalError ?? "Ein Fehler ist aufgetreten.");
+    this.name = "ContactSubmitError";
   }
 }

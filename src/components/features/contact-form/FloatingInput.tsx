@@ -1,5 +1,8 @@
-import { forwardRef } from 'react';
-import { floatingInputBaseClasses, floatingLabelClasses } from './floatingClasses';
+import { forwardRef } from "react";
+import {
+  floatingInputBaseClasses,
+  floatingLabelClasses,
+} from "./floatingClasses";
 
 export interface FloatingInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   id: string;
@@ -33,5 +36,5 @@ const FloatingInput = forwardRef<HTMLInputElement, FloatingInputProps>(
   ),
 );
 
-FloatingInput.displayName = 'FloatingInput';
+FloatingInput.displayName = "FloatingInput";
 export default FloatingInput;

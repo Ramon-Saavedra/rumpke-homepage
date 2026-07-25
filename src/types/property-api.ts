@@ -93,11 +93,11 @@ export interface PublicErrorBody {
 }
 
 export const PUBLIC_ERROR_CODES = [
-  'VALIDATION_ERROR',
-  'PROPERTY_NOT_FOUND',
-  'PROPERTY_SERVICE_DISABLED',
-  'PROPERTY_SERVICE_UNAVAILABLE',
-  'INTERNAL_SERVER_ERROR',
+  "VALIDATION_ERROR",
+  "PROPERTY_NOT_FOUND",
+  "PROPERTY_SERVICE_DISABLED",
+  "PROPERTY_SERVICE_UNAVAILABLE",
+  "INTERNAL_SERVER_ERROR",
 ] as const;
 
 export type PublicErrorCode = (typeof PUBLIC_ERROR_CODES)[number];
@@ -106,101 +106,147 @@ export class PropertyFetchError extends Error {
   public readonly statusCode: number;
   public readonly publicCode: PublicErrorCode;
 
-  constructor(statusCode: number, publicCode: PublicErrorCode, message: string) {
+  constructor(
+    statusCode: number,
+    publicCode: PublicErrorCode,
+    message: string,
+  ) {
     super(message);
-    this.name = 'PropertyFetchError';
+    this.name = "PropertyFetchError";
     this.statusCode = statusCode;
     this.publicCode = publicCode;
   }
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null && !Array.isArray(value);
+  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 function isNumberOrNull(value: unknown): value is number | null {
   if (value === null) return true;
-  return typeof value === 'number' && Number.isFinite(value);
+  return typeof value === "number" && Number.isFinite(value);
 }
 
 function isStringOrNull(value: unknown): value is string | null {
   if (value === null) return true;
-  return typeof value === 'string';
+  return typeof value === "string";
 }
 
 function isBoolean(value: unknown): value is boolean {
-  return typeof value === 'boolean';
+  return typeof value === "boolean";
 }
 
 function validatePriceDetail(data: unknown): PriceDetail {
   if (!isRecord(data)) {
-    throw new PropertyFetchError(502, 'INTERNAL_SERVER_ERROR', 'Invalid price detail in response');
+    throw new PropertyFetchError(
+      502,
+      "INTERNAL_SERVER_ERROR",
+      "Invalid price detail in response",
+    );
   }
   return {
-    salePrice: isNumberOrNull(data['salePrice']) ? data['salePrice'] : null,
-    coldRent: isNumberOrNull(data['coldRent']) ? data['coldRent'] : null,
-    warmRent: isNumberOrNull(data['warmRent']) ? data['warmRent'] : null,
-    hoaFee: isNumberOrNull(data['hoaFee']) ? data['hoaFee'] : null,
-    additionalCosts: isNumberOrNull(data['additionalCosts']) ? data['additionalCosts'] : null,
-    brokerageFree: isBoolean(data['brokerageFree']) ? data['brokerageFree'] : false,
+    salePrice: isNumberOrNull(data["salePrice"]) ? data["salePrice"] : null,
+    coldRent: isNumberOrNull(data["coldRent"]) ? data["coldRent"] : null,
+    warmRent: isNumberOrNull(data["warmRent"]) ? data["warmRent"] : null,
+    hoaFee: isNumberOrNull(data["hoaFee"]) ? data["hoaFee"] : null,
+    additionalCosts: isNumberOrNull(data["additionalCosts"])
+      ? data["additionalCosts"]
+      : null,
+    brokerageFree: isBoolean(data["brokerageFree"])
+      ? data["brokerageFree"]
+      : false,
   };
 }
 
 function validateAreaDetail(data: unknown): AreaDetail {
   if (!isRecord(data)) {
-    throw new PropertyFetchError(502, 'INTERNAL_SERVER_ERROR', 'Invalid area detail in response');
+    throw new PropertyFetchError(
+      502,
+      "INTERNAL_SERVER_ERROR",
+      "Invalid area detail in response",
+    );
   }
   return {
-    livingArea: isNumberOrNull(data['livingArea']) ? data['livingArea'] : null,
-    usableArea: isNumberOrNull(data['usableArea']) ? data['usableArea'] : null,
-    plotArea: isNumberOrNull(data['plotArea']) ? data['plotArea'] : null,
+    livingArea: isNumberOrNull(data["livingArea"]) ? data["livingArea"] : null,
+    usableArea: isNumberOrNull(data["usableArea"]) ? data["usableArea"] : null,
+    plotArea: isNumberOrNull(data["plotArea"]) ? data["plotArea"] : null,
   };
 }
 
 function validateRoomsDetail(data: unknown): RoomsDetail {
   if (!isRecord(data)) {
-    throw new PropertyFetchError(502, 'INTERNAL_SERVER_ERROR', 'Invalid rooms detail in response');
+    throw new PropertyFetchError(
+      502,
+      "INTERNAL_SERVER_ERROR",
+      "Invalid rooms detail in response",
+    );
   }
   return {
-    total: isNumberOrNull(data['total']) ? data['total'] : null,
-    bedrooms: isNumberOrNull(data['bedrooms']) ? data['bedrooms'] : null,
-    bathrooms: isNumberOrNull(data['bathrooms']) ? data['bathrooms'] : null,
+    total: isNumberOrNull(data["total"]) ? data["total"] : null,
+    bedrooms: isNumberOrNull(data["bedrooms"]) ? data["bedrooms"] : null,
+    bathrooms: isNumberOrNull(data["bathrooms"]) ? data["bathrooms"] : null,
   };
 }
 
 function validateAddressDetail(data: unknown): AddressDetail {
   if (!isRecord(data)) {
-    throw new PropertyFetchError(502, 'INTERNAL_SERVER_ERROR', 'Invalid address detail in response');
+    throw new PropertyFetchError(
+      502,
+      "INTERNAL_SERVER_ERROR",
+      "Invalid address detail in response",
+    );
   }
   return {
-    city: isStringOrNull(data['city']) ? data['city'] : null,
-    zip: isStringOrNull(data['zip']) ? data['zip'] : null,
-    street: isStringOrNull(data['street']) ? data['street'] : null,
-    houseNumber: isStringOrNull(data['houseNumber']) ? data['houseNumber'] : null,
-    country: isStringOrNull(data['country']) ? data['country'] : null,
-    latitude: isNumberOrNull(data['latitude']) ? data['latitude'] : null,
-    longitude: isNumberOrNull(data['longitude']) ? data['longitude'] : null,
+    city: isStringOrNull(data["city"]) ? data["city"] : null,
+    zip: isStringOrNull(data["zip"]) ? data["zip"] : null,
+    street: isStringOrNull(data["street"]) ? data["street"] : null,
+    houseNumber: isStringOrNull(data["houseNumber"])
+      ? data["houseNumber"]
+      : null,
+    country: isStringOrNull(data["country"]) ? data["country"] : null,
+    latitude: isNumberOrNull(data["latitude"]) ? data["latitude"] : null,
+    longitude: isNumberOrNull(data["longitude"]) ? data["longitude"] : null,
   };
 }
 
 function validatePropertyImageDto(item: unknown): PropertyImageDto {
   if (!isRecord(item)) {
-    throw new PropertyFetchError(502, 'INTERNAL_SERVER_ERROR', 'Invalid image item in response');
+    throw new PropertyFetchError(
+      502,
+      "INTERNAL_SERVER_ERROR",
+      "Invalid image item in response",
+    );
   }
-  const rawId = item['id'];
-  const imageId = typeof rawId === 'string' ? rawId : typeof rawId === 'number' ? String(rawId) : null;
+  const rawId = item["id"];
+  const imageId =
+    typeof rawId === "string"
+      ? rawId
+      : typeof rawId === "number"
+        ? String(rawId)
+        : null;
   if (imageId === null || imageId.length === 0) {
-    throw new PropertyFetchError(502, 'INTERNAL_SERVER_ERROR', 'Invalid image id in response');
+    throw new PropertyFetchError(
+      502,
+      "INTERNAL_SERVER_ERROR",
+      "Invalid image id in response",
+    );
   }
-  if (typeof item['url'] !== 'string' || item['url'].length === 0) {
-    throw new PropertyFetchError(502, 'INTERNAL_SERVER_ERROR', 'Invalid image url in response');
+  if (typeof item["url"] !== "string" || item["url"].length === 0) {
+    throw new PropertyFetchError(
+      502,
+      "INTERNAL_SERVER_ERROR",
+      "Invalid image url in response",
+    );
   }
   return {
     id: imageId,
-    url: item['url'],
-    title: isStringOrNull(item['title']) ? item['title'] : null,
-    type: isStringOrNull(item['type']) ? item['type'] : null,
-    position: typeof item['position'] === 'number' && Number.isFinite(item['position']) ? item['position'] : 0,
+    url: item["url"],
+    title: isStringOrNull(item["title"]) ? item["title"] : null,
+    type: isStringOrNull(item["type"]) ? item["type"] : null,
+    position:
+      typeof item["position"] === "number" && Number.isFinite(item["position"])
+        ? item["position"]
+        : 0,
   };
 }
 
@@ -213,80 +259,132 @@ function validatePropertyImages(data: unknown): readonly PropertyImageDto[] {
 
 function validatePropertyCardDto(data: unknown): PropertyCardDto {
   if (!isRecord(data)) {
-    throw new PropertyFetchError(502, 'INTERNAL_SERVER_ERROR', 'Invalid property card in response');
+    throw new PropertyFetchError(
+      502,
+      "INTERNAL_SERVER_ERROR",
+      "Invalid property card in response",
+    );
   }
-  if (typeof data['id'] !== 'string' || data['id'].length === 0) {
-    throw new PropertyFetchError(502, 'INTERNAL_SERVER_ERROR', 'Invalid property id in response');
+  if (typeof data["id"] !== "string" || data["id"].length === 0) {
+    throw new PropertyFetchError(
+      502,
+      "INTERNAL_SERVER_ERROR",
+      "Invalid property id in response",
+    );
   }
   return {
-    id: data['id'],
-    title: isStringOrNull(data['title']) ? data['title'] : null,
-    city: isStringOrNull(data['city']) ? data['city'] : null,
-    propertyType: isStringOrNull(data['propertyType']) ? data['propertyType'] : null,
-    propertySubType: isStringOrNull(data['propertySubType']) ? data['propertySubType'] : null,
-    marketingType: isStringOrNull(data['marketingType']) ? data['marketingType'] : null,
-    salePrice: isNumberOrNull(data['salePrice']) ? data['salePrice'] : null,
-    coldRent: isNumberOrNull(data['coldRent']) ? data['coldRent'] : null,
-    livingArea: isNumberOrNull(data['livingArea']) ? data['livingArea'] : null,
-    rooms: isNumberOrNull(data['rooms']) ? data['rooms'] : null,
-    images: validatePropertyImages(data['images']),
+    id: data["id"],
+    title: isStringOrNull(data["title"]) ? data["title"] : null,
+    city: isStringOrNull(data["city"]) ? data["city"] : null,
+    propertyType: isStringOrNull(data["propertyType"])
+      ? data["propertyType"]
+      : null,
+    propertySubType: isStringOrNull(data["propertySubType"])
+      ? data["propertySubType"]
+      : null,
+    marketingType: isStringOrNull(data["marketingType"])
+      ? data["marketingType"]
+      : null,
+    salePrice: isNumberOrNull(data["salePrice"]) ? data["salePrice"] : null,
+    coldRent: isNumberOrNull(data["coldRent"]) ? data["coldRent"] : null,
+    livingArea: isNumberOrNull(data["livingArea"]) ? data["livingArea"] : null,
+    rooms: isNumberOrNull(data["rooms"]) ? data["rooms"] : null,
+    images: validatePropertyImages(data["images"]),
   };
 }
 
 function validatePagination(data: unknown): Pagination {
   if (!isRecord(data)) {
-    throw new PropertyFetchError(502, 'INTERNAL_SERVER_ERROR', 'Invalid pagination in response');
+    throw new PropertyFetchError(
+      502,
+      "INTERNAL_SERVER_ERROR",
+      "Invalid pagination in response",
+    );
   }
   return {
-    page: typeof data['page'] === 'number' ? data['page'] : 1,
-    limit: typeof data['limit'] === 'number' ? data['limit'] : 12,
-    total: typeof data['total'] === 'number' ? data['total'] : 0,
-    totalPages: typeof data['totalPages'] === 'number' ? data['totalPages'] : 1,
+    page: typeof data["page"] === "number" ? data["page"] : 1,
+    limit: typeof data["limit"] === "number" ? data["limit"] : 12,
+    total: typeof data["total"] === "number" ? data["total"] : 0,
+    totalPages: typeof data["totalPages"] === "number" ? data["totalPages"] : 1,
   };
 }
 
-export function validatePropertyListResponse(data: unknown): PropertyListResponse {
+export function validatePropertyListResponse(
+  data: unknown,
+): PropertyListResponse {
   if (!isRecord(data)) {
-    throw new PropertyFetchError(502, 'INTERNAL_SERVER_ERROR', 'Invalid property list response');
+    throw new PropertyFetchError(
+      502,
+      "INTERNAL_SERVER_ERROR",
+      "Invalid property list response",
+    );
   }
-  const rawData = data['data'];
+  const rawData = data["data"];
   if (!Array.isArray(rawData)) {
-    throw new PropertyFetchError(502, 'INTERNAL_SERVER_ERROR', 'Invalid data array in response');
+    throw new PropertyFetchError(
+      502,
+      "INTERNAL_SERVER_ERROR",
+      "Invalid data array in response",
+    );
   }
   return {
     data: rawData.map((item: unknown) => validatePropertyCardDto(item)),
-    pagination: validatePagination(data['pagination']),
+    pagination: validatePagination(data["pagination"]),
   };
 }
 
 export function validatePropertyDetailDto(data: unknown): PropertyDetailDto {
   if (!isRecord(data)) {
-    throw new PropertyFetchError(502, 'INTERNAL_SERVER_ERROR', 'Invalid property detail response');
+    throw new PropertyFetchError(
+      502,
+      "INTERNAL_SERVER_ERROR",
+      "Invalid property detail response",
+    );
   }
-  if (typeof data['id'] !== 'string' || data['id'].length === 0) {
-    throw new PropertyFetchError(502, 'INTERNAL_SERVER_ERROR', 'Invalid property id in response');
+  if (typeof data["id"] !== "string" || data["id"].length === 0) {
+    throw new PropertyFetchError(
+      502,
+      "INTERNAL_SERVER_ERROR",
+      "Invalid property id in response",
+    );
   }
   return {
-    id: data['id'],
-    title: isStringOrNull(data['title']) ? data['title'] : null,
-    description: isStringOrNull(data['description']) ? data['description'] : null,
-    locationDescription: isStringOrNull(data['locationDescription']) ? data['locationDescription'] : null,
-    furnishingDescription: isStringOrNull(data['furnishingDescription']) ? data['furnishingDescription'] : null,
-    price: validatePriceDetail(data['price']),
-    area: validateAreaDetail(data['area']),
-    rooms: validateRoomsDetail(data['rooms']),
-    address: validateAddressDetail(data['address']),
-    propertyType: isStringOrNull(data['propertyType']) ? data['propertyType'] : null,
-    propertySubType: isStringOrNull(data['propertySubType']) ? data['propertySubType'] : null,
-    marketingType: isStringOrNull(data['marketingType']) ? data['marketingType'] : null,
-    yearBuilt: isNumberOrNull(data['yearBuilt']) ? data['yearBuilt'] : null,
-    floor: isStringOrNull(data['floor']) ? data['floor'] : null,
-    totalFloors: isNumberOrNull(data['totalFloors']) ? data['totalFloors'] : null,
-    condition: isStringOrNull(data['condition']) ? data['condition'] : null,
-    balcony: isBoolean(data['balcony']) ? data['balcony'] : false,
-    terrace: isBoolean(data['terrace']) ? data['terrace'] : false,
-    energyCertificateType: isStringOrNull(data['energyCertificateType']) ? data['energyCertificateType'] : null,
-    images: validatePropertyImages(data['images']),
+    id: data["id"],
+    title: isStringOrNull(data["title"]) ? data["title"] : null,
+    description: isStringOrNull(data["description"])
+      ? data["description"]
+      : null,
+    locationDescription: isStringOrNull(data["locationDescription"])
+      ? data["locationDescription"]
+      : null,
+    furnishingDescription: isStringOrNull(data["furnishingDescription"])
+      ? data["furnishingDescription"]
+      : null,
+    price: validatePriceDetail(data["price"]),
+    area: validateAreaDetail(data["area"]),
+    rooms: validateRoomsDetail(data["rooms"]),
+    address: validateAddressDetail(data["address"]),
+    propertyType: isStringOrNull(data["propertyType"])
+      ? data["propertyType"]
+      : null,
+    propertySubType: isStringOrNull(data["propertySubType"])
+      ? data["propertySubType"]
+      : null,
+    marketingType: isStringOrNull(data["marketingType"])
+      ? data["marketingType"]
+      : null,
+    yearBuilt: isNumberOrNull(data["yearBuilt"]) ? data["yearBuilt"] : null,
+    floor: isStringOrNull(data["floor"]) ? data["floor"] : null,
+    totalFloors: isNumberOrNull(data["totalFloors"])
+      ? data["totalFloors"]
+      : null,
+    condition: isStringOrNull(data["condition"]) ? data["condition"] : null,
+    balcony: isBoolean(data["balcony"]) ? data["balcony"] : false,
+    terrace: isBoolean(data["terrace"]) ? data["terrace"] : false,
+    energyCertificateType: isStringOrNull(data["energyCertificateType"])
+      ? data["energyCertificateType"]
+      : null,
+    images: validatePropertyImages(data["images"]),
   };
 }
 
@@ -294,21 +392,26 @@ function resolvePublicCode(code: string): PublicErrorCode {
   if ((PUBLIC_ERROR_CODES as readonly string[]).includes(code)) {
     return code as PublicErrorCode;
   }
-  return 'INTERNAL_SERVER_ERROR';
+  return "INTERNAL_SERVER_ERROR";
 }
 
 export function validatePublicErrorBody(data: unknown): PublicErrorBody {
   if (!isRecord(data)) {
     return {
       statusCode: 502,
-      code: 'INTERNAL_SERVER_ERROR',
-      message: 'Unerwarteter Serverfehler.',
+      code: "INTERNAL_SERVER_ERROR",
+      message: "Unerwarteter Serverfehler.",
     };
   }
-  const rawCode = typeof data['code'] === 'string' ? data['code'] : 'INTERNAL_SERVER_ERROR';
+  const rawCode =
+    typeof data["code"] === "string" ? data["code"] : "INTERNAL_SERVER_ERROR";
   return {
-    statusCode: typeof data['statusCode'] === 'number' ? data['statusCode'] : 502,
+    statusCode:
+      typeof data["statusCode"] === "number" ? data["statusCode"] : 502,
     code: resolvePublicCode(rawCode),
-    message: typeof data['message'] === 'string' ? data['message'] : 'Unerwarteter Serverfehler.',
+    message:
+      typeof data["message"] === "string"
+        ? data["message"]
+        : "Unerwarteter Serverfehler.",
   };
 }

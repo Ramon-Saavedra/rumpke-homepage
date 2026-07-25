@@ -1,4 +1,11 @@
-import { formatPrice, formatMonthlyPrice, formatArea, formatRooms, formatYear, resolveDisplayPrice } from "./property-formatters";
+import {
+  formatPrice,
+  formatMonthlyPrice,
+  formatArea,
+  formatRooms,
+  formatYear,
+  resolveDisplayPrice,
+} from "./property-formatters";
 
 describe("formatPrice", () => {
   it("formats integer price in EUR", () => {

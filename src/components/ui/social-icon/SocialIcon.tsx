@@ -1,17 +1,17 @@
-import Link from 'next/link'
-import { ReactNode } from 'react'
+import Link from "next/link";
+import { ReactNode } from "react";
 
 interface SocialIconProps {
-  href: string
-  ariaLabel: string
-  icon: ReactNode
-  tooltipText: string
-  bgColor: string
-  dataSocial?: string
-  target?: string
-  rel?: string
-  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void
-  className?: string
+  href: string;
+  ariaLabel: string;
+  icon: ReactNode;
+  tooltipText: string;
+  bgColor: string;
+  dataSocial?: string;
+  target?: string;
+  rel?: string;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  className?: string;
 }
 
 const SocialIcon = ({
@@ -24,7 +24,7 @@ const SocialIcon = ({
   target,
   rel = "noopener noreferrer",
   onClick,
-  className = ''
+  className = "",
 }: SocialIconProps) => {
   return (
     <li className={`group relative mx-1.5 hover:text-white ${className}`}>
@@ -46,7 +46,7 @@ const SocialIcon = ({
         {tooltipText}
       </div>
     </li>
-  )
-}
+  );
+};
 
-export default SocialIcon
+export default SocialIcon;

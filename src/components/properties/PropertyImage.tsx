@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Image from 'next/image';
-import { ImageOff } from 'lucide-react';
-import type { PropertyImageDto } from '@/types/property-api';
+import { useState } from "react";
+import Image from "next/image";
+import { ImageOff } from "lucide-react";
+import type { PropertyImageDto } from "@/types/property-api";
 
 interface PropertyImageProps {
   readonly images: readonly PropertyImageDto[];
@@ -14,21 +14,25 @@ interface PropertyImageProps {
   readonly fill?: boolean;
 }
 
-const ALLOWED_IMAGE_HOSTS = new Set(['image.onoffice.de', 'smart.onoffice.de']);
+const ALLOWED_IMAGE_HOSTS = new Set(["image.onoffice.de", "smart.onoffice.de"]);
 
 function isValidImageUrl(url: string): boolean {
   try {
     const parsed = new URL(url);
-    return parsed.protocol === 'https:' && ALLOWED_IMAGE_HOSTS.has(parsed.hostname);
+    return (
+      parsed.protocol === "https:" && ALLOWED_IMAGE_HOSTS.has(parsed.hostname)
+    );
   } catch {
     return false;
   }
 }
 
-function getFirstValidImage(images: readonly PropertyImageDto[]): PropertyImageDto | null {
+function getFirstValidImage(
+  images: readonly PropertyImageDto[],
+): PropertyImageDto | null {
   if (images.length === 0) return null;
   const first = images[0];
-  if (typeof first.url !== 'string' || first.url.length === 0) return null;
+  if (typeof first.url !== "string" || first.url.length === 0) return null;
   if (!isValidImageUrl(first.url)) return null;
   return first;
 }
@@ -37,14 +41,23 @@ function resolveImageAlt(image: PropertyImageDto, fallbackAlt: string): string {
   return image.title ?? fallbackAlt;
 }
 
-function Placeholder({ alt, className }: { readonly alt: string; readonly className: string }) {
+function Placeholder({
+  alt,
+  className,
+}: {
+  readonly alt: string;
+  readonly className: string;
+}) {
   return (
     <div
       className={`flex items-center justify-center bg-bgSecondary-l dark:bg-bgSecondary-d ${className}`}
       role="img"
       aria-label={alt}
     >
-      <ImageOff className="w-12 h-12 text-card-text-l dark:text-card-text-d" aria-hidden="true" />
+      <ImageOff
+        className="w-12 h-12 text-card-text-l dark:text-card-text-d"
+        aria-hidden="true"
+      />
     </div>
   );
 }
@@ -61,7 +74,7 @@ function Skeleton({ className }: { readonly className: string }) {
 export default function PropertyImage({
   images,
   alt,
-  className = '',
+  className = "",
   priority = false,
   sizes,
   fill = true,
@@ -76,7 +89,8 @@ export default function PropertyImage({
   }
 
   const imageAlt = resolveImageAlt(validImage, alt);
-  const resolvedSizes = sizes ?? '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw';
+  const resolvedSizes =
+    sizes ?? "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw";
 
   return (
     <div className={`relative ${className}`}>

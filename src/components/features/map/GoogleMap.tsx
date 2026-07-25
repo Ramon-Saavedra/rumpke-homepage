@@ -1,10 +1,20 @@
-'use client';
+"use client";
 
-import { APIProvider, Map, AdvancedMarker, Pin } from '@vis.gl/react-google-maps';
-import { IoLocationOutline, IoCallOutline, IoMailOutline, IoArrowForwardOutline } from 'react-icons/io5';
+import {
+  APIProvider,
+  Map,
+  AdvancedMarker,
+  Pin,
+} from "@vis.gl/react-google-maps";
+import {
+  IoLocationOutline,
+  IoCallOutline,
+  IoMailOutline,
+  IoArrowForwardOutline,
+} from "react-icons/io5";
 
 const LOCATION = { lat: 52.5224, lng: 7.3163 };
-const ADDRESS = 'Römerstraße 9, 40811 Lingen';
+const ADDRESS = "Römerstraße 9, 40811 Lingen";
 const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
 
 const GoogleMap = () => {
@@ -21,14 +31,16 @@ const GoogleMap = () => {
               <p className="text-xs font-semibold tracking-[0.15em] uppercase text-primary mb-4">
                 Unser Standort
               </p>
-              <h2 className="text-2xl font-bold mb-8">
-                Rumpke Immobilien
-              </h2>
+              <h2 className="text-2xl font-bold mb-8">Rumpke Immobilien</h2>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <IoLocationOutline size={18} className="text-primary mt-0.5 shrink-0" />
+                  <IoLocationOutline
+                    size={18}
+                    className="text-primary mt-0.5 shrink-0"
+                  />
                   <span className="text-sm text-card-text-l dark:text-card-text-d">
-                    Römerstraße 9<br />40811 Lingen
+                    Römerstraße 9<br />
+                    40811 Lingen
                   </span>
                 </li>
                 <li className="flex items-center gap-3">
@@ -70,15 +82,21 @@ const GoogleMap = () => {
                 gestureHandling="greedy"
                 disableDefaultUI
                 mapTypeId="hybrid"
-                mapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID ?? 'DEMO_MAP_ID'}
+                mapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID ?? "DEMO_MAP_ID"}
                 colorScheme="FOLLOW_SYSTEM"
               >
                 <AdvancedMarker
                   position={LOCATION}
-                  onClick={() => window.open(MAPS_URL, '_blank', 'noopener,noreferrer')}
+                  onClick={() =>
+                    window.open(MAPS_URL, "_blank", "noopener,noreferrer")
+                  }
                   title="Rumpke Immobilien"
                 >
-                  <Pin background="#018063" borderColor="#014d3b" glyphColor="#ffffff" />
+                  <Pin
+                    background="#018063"
+                    borderColor="#014d3b"
+                    glyphColor="#ffffff"
+                  />
                 </AdvancedMarker>
               </Map>
             </div>
@@ -90,4 +108,3 @@ const GoogleMap = () => {
 };
 
 export default GoogleMap;
-

@@ -210,8 +210,8 @@ export default function ImpressumPage() {
           Fragestellern, Bloggern oder Gästen in Diskussionsforen auf unserer
           Internetseite platziert werden. Wir sind gemäß §§ 8 bis 10 TMG nicht
           verpflichtet, übermittelte oder gespeicherte fremde Informationen zu
-          überwachen oder nach Umständen zu forschen, die auf eine
-          rechtswidrige Tätigkeit hinweisen.
+          überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige
+          Tätigkeit hinweisen.
         </p>
         <p>
           Verpflichtungen zur Entfernung oder Sperrung von Informationen nach
@@ -227,7 +227,9 @@ export default function ImpressumPage() {
         title="Gültigkeit"
         description="Versionierung der auf dieser Seite veröffentlichten Angaben."
       >
-        <p>Dieses Impressum gilt in der vorliegenden Fassung ab dem 26.07.2024.</p>
+        <p>
+          Dieses Impressum gilt in der vorliegenden Fassung ab dem 26.07.2024.
+        </p>
       </LegalSection>
     </LegalDocumentLayout>
   );

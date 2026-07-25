@@ -1,0 +1,359 @@
+================================================================================
+PLAN DE CLEANUP ARQUITECTÓNICO — RUMPKE HOMEPAGE
+================================================================================
+
+ESTRATEGIA GENERAL
+──────────────────
+El refactor se ejecuta en 3 fases secuenciales, cada una autocontenida y
+testeable independientemente. Cada fase debe pasar build + tests antes de
+avanzar a la siguiente.
+
+    Fase 1: Dead Code Removal    →   build OK | tests OK
+    Fase 2: Typo Renames         →   build OK | tests OK
+    Fase 3: SectionContainer     →   build OK | tests OK | delete PageContainer
+
+
+================================================================================
+FASE 1 — REMOVER CÓDIGO MUERTO
+================================================================================
+26 archivos, 2 archivos de env, 1 npm package
+
+── 1.1 Directorios completos a eliminar ───────────────────────────────────────
+
+  src/components/sections/process-flow/
+      ProcessFlowSection.tsx
+      StepNode.tsx
+      NeuronPath.tsx
+      processSteps.ts
+      ProcessFlowSection.test.tsx
+      StepNode.test.tsx
+      NeuronPath.test.tsx
+      (7 archivos — eliminado de la homepage, solo importado por sus tests)
+
+  src/components/features/hero-component/
+      HeroComponent.tsx
+      HeroComponent.test.tsx
+      (2 archivos — stub muerto que solo dice <div>HeroComponent</div>)
+
+  src/components/features/category-button/
+      CategoryButton.tsx
+      CategoryButton.test.tsx
+      (2 archivos — nunca importado en producción)
+
+  src/components/features/map/
+      GoogleMap.tsx
+      GoogleMap.test.tsx
+      (2 archivos — ya se quitó del layout global)
+
+── 1.2 Archivos individuales a eliminar ──────────────────────────────────────
+
+  src/hooks/useTypewriter.ts
+  src/hooks/useTypewriter.test.tsx
+      (solo usado por ProcessFlowSection — muerto)
+
+  src/hooks/useElementWidth.ts
+  src/hooks/useElementWidth.test.tsx
+      (solo usado por ProcessFlowSection — muerto)
+
+  src/components/ui/button.tsx
+      (shadcn boilerplate, nunca importado en producción)
+
+  src/components/ui/card.tsx
+      (shadcn boilerplate, nunca importado en producción)
+
+  src/components/ui/badge.tsx
+      (shadcn boilerplate, nunca importado en producción)
+
+  src/components/ui/button/Button.tsx
+  src/components/ui/button/Button.test.tsx
+      (custom button con variantes primary/secondary/danger, nunca usado)
+
+  src/components/ui/input/Input.tsx
+      (search input con lupa, nunca importado)
+
+  src/components/ui/loading/Loader.tsx
+      (spinner, nunca importado)
+
+  src/components/ui/icon-card/IconCard.tsx
+  src/components/ui/icon-card/IconCard.test.tsx
+
+  src/components/ui/icons/StartIcon.tsx
+  src/components/ui/icons/PencilIcon.tsx
+
+  src/context/ThemeSwitsh.tsx
+      (barrel con typo "Switsh", nadie importa de esta ruta)
+
+  src/types/swiper-css.d.ts
+      (type declaration sin referencias)
+
+── 1.3 Imports a limpiar ─────────────────────────────────────────────────────
+
+  src/app/layout.tsx, línea 8:
+      ELIMINAR → import GoogleMap from "@/components/features/map/GoogleMap"
+
+── 1.4 Limpieza Google Maps (datenschutz + env + npm) ────────────────────────
+
+  src/app/datenschutz/page.tsx:
+      ELIMINAR entry { id: "google-maps", label: "Google Maps" }
+        de la tabla de contenidos (línea 16)
+      ELIMINAR sección <LegalSection id="google-maps"> completa
+        (líneas 261–291)
+
+  .env.example:
+      ELIMINAR línea: NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=
+
+  .env.local:
+      ELIMINAR línea: NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=...
+
+  npm uninstall @vis.gl/react-google-maps
+
+── 1.5 Verificación ──────────────────────────────────────────────────────────
+
+  npm run build
+  npm test
+
+
+================================================================================
+FASE 2 — CORREGIR TYPOS EN NOMBRES DE DIRECTORIO
+================================================================================
+
+── 2.1 Renames ────────────────────────────────────────────────────────────────
+
+  git mv src/components/features/back-home-buttom \
+        src/components/features/back-home-button
+
+  git mv src/components/features/contact-buttom \
+        src/components/features/contact-button
+
+── 2.2 Actualizar imports ────────────────────────────────────────────────────
+
+  src/components/layout/back-nav/BackNav.tsx:
+      back-home-buttom → back-home-button
+
+  src/components/layout/category-nav/CategoryNav.tsx:
+      contact-buttom → contact-button
+
+  src/components/sections/legal-document/LegalDocumentLayout.tsx:
+      back-home-buttom → back-home-button
+
+  src/app/kontakt/page.tsx:
+      back-home-buttom → back-home-button
+
+  src/app/ueber-uns/layout.tsx:
+      back-home-buttom → back-home-button
+
+  src/app/kategorie/layout.tsx:
+      back-home-buttom → back-home-button
+
+── 2.3 Verificación ──────────────────────────────────────────────────────────
+
+  npm run build
+  npm test
+
+
+================================================================================
+FASE 3 — IMPLEMENTAR SectionContainer
+================================================================================
+Un solo componente para ancho horizontal en todo el sitio.
+
+── 3.1 Crear el componente ───────────────────────────────────────────────────
+
+  Archivo NUEVO:
+      src/components/layout/section-container/SectionContainer.tsx
+
+  API:
+      <SectionContainer as="section" className="py-12 mb-24">
+          {children}
+      </SectionContainer>
+
+  Props:
+      as        — 'section' | 'main' | 'div' | 'footer' (default: 'section')
+      className — aplicado al outer wrapper (márgenes, padding vertical, bg)
+      children  — contenido
+
+  Outer (wrapper):  w-full (full-bleed)
+  Inner (container): mx-auto max-w-7xl px-4 sm:px-6 lg:px-8
+
+  NO fuerza padding vertical — cada página/sección lo define via className.
+
+── 3.2 Migrar page-level wrappers (9 archivos) ───────────────────────────────
+
+  1. src/app/page.tsx
+     ANTES:  <main className="p-2 xl:px-20 2xl:px-32 2xl:w-[80%] mx-auto">
+     DESPUÉS: <SectionContainer as="main" className="pb-12">
+
+  2. src/app/kontakt/page.tsx
+     ANTES:  <main className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
+     DESPUÉS: <SectionContainer as="main" className="py-6">
+
+  3. src/app/objekt/page.tsx
+     ANTES:  <PageContainer>
+     DESPUÉS: <SectionContainer as="main" className="py-12">
+
+  4. src/app/objekt/[objektnrExtern]/page.tsx
+     ANTES:  <main className="w-full"> + <div className="container mx-auto px-4 py-12">
+     DESPUÉS: Hero full-bleed sin cambios + contenido en <SectionContainer as="main" className="py-12">
+
+  5. src/app/ueber-uns/layout.tsx
+     ANTES:  <PageContainer>
+     DESPUÉS: <SectionContainer className="py-12">
+
+  6. src/app/kauf/layout.tsx
+     ANTES:  <PageContainer>
+     DESPUÉS: <SectionContainer className="py-12">
+
+  7. src/app/miete/layout.tsx
+     ANTES:  <PageContainer>
+     DESPUÉS: <SectionContainer className="py-12">
+
+  8. src/app/kategorie/layout.tsx
+     ANTES:  <PageContainer>
+     DESPUÉS: <SectionContainer className="py-12">
+
+  9. src/app/dienstleistungen/layout.tsx
+     ANTES:  <PageContainer>
+     DESPUÉS: <SectionContainer className="py-12">
+
+── 3.3 Migrar homepage sections (5 secciones) ────────────────────────────────
+
+  10. src/components/sections/why-choose-rumpke/WhyChooseRumpke.tsx
+      ANTES:  <section className="w-full mb-24 px-4 sm:px-6 py-12">
+              inner: <div className="mx-auto">
+      DESPUÉS: <section className="mb-24 py-12">
+               inner: <div>   (quitar mx-auto)
+
+  11. src/components/sections/services-section/ServicesSection.tsx
+      ANTES:  <section className="mb-24 w-full px-4 sm:px-6 py-12">
+      DESPUÉS: <section className="mb-24 py-12">
+
+  12. src/components/sections/personal-service-card/PersonalServiceCard.tsx
+      ANTES:  <section className="w-full px-4 sm:px-6 py-12 mb-24">
+              inner: <div className="mx-auto grid...">
+      DESPUÉS: <section className="py-12 mb-24">
+               inner: <div className="grid...">   (quitar mx-auto)
+
+  13. src/components/sections/what-matters-now-section/WhatMattersNowSection.tsx
+      ANTES:  <section className="relative mb-24 py-12 overflow-hidden">
+              inner grid: className="relative grid gap-8 px-5 sm:px-6 lg:px-8 ..."
+      DESPUÉS: <section className="relative mb-24 overflow-hidden">
+               inner grid: className="relative grid gap-8 lg:gap-10 ..."
+               (quitar py-12 del section, quitar px-* del grid)
+
+  14. Contact form inline en src/app/page.tsx
+      ANTES:  <section className="scroll-mt-28 mb-24 px-4 sm:px-6 py-12 border...">
+      DESPUÉS: <section className="scroll-mt-28 mb-24 py-12 border...">
+
+── 3.4 Migrar component-level wrappers (3 archivos) ──────────────────────────
+
+  15. src/components/properties/PropertyShowcase.tsx
+      ANTES:  <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12">
+      DESPUÉS: <SectionContainer className="pt-14 pb-4 lg:pt-20">
+
+  16. src/components/layout/footer/Footer.tsx
+      ANTES:  <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-16 pb-10">
+      DESPUÉS: <SectionContainer className="pt-16 pb-10">
+
+  17. src/components/sections/legal-document/LegalDocumentLayout.tsx
+      ANTES:  2x <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ...">
+      DESPUÉS: 2x <SectionContainer className="...">
+
+── 3.5 Eliminar PageContainer ────────────────────────────────────────────────
+
+  18. src/components/layout/page-container/PageContainer.tsx
+      ELIMINAR (ya sin consumidores)
+
+── 3.6 Verificación ──────────────────────────────────────────────────────────
+
+  npm run build
+  npm test
+
+
+================================================================================
+IMPACTO VISUAL — CAMBIOS ESPERADOS
+================================================================================
+
+┌──────────────────────────┬────────────────────────────────┬──────────────────────────────────────┐
+│ Página/Componente        │ Antes                          │ Después                              │
+├──────────────────────────┼────────────────────────────────┼──────────────────────────────────────┤
+│ Homepage <main>          │ max-w: 80% a 2xl               │ max-w-7xl (1280px fijo)              │
+│                          │ px: p-2 xl:px-20 2xl:px-32    │ px-4 sm:px-6 lg:px-8                 │
+├──────────────────────────┼────────────────────────────────┼──────────────────────────────────────┤
+│ Páginas con PageContainer│ max-w-5xl (1024px)             │ max-w-7xl (1280px)                   │
+│ (/objekt, /kauf/*, etc.) │                                │ +256px más ancho                     │
+│                          │                                │ Las que tienen inner max-w-* propio  │
+│                          │                                │ (dienstleistungen, ueber-uns)         │
+│                          │                                │ se mantienen igual visualmente        │
+├──────────────────────────┼────────────────────────────────┼──────────────────────────────────────┤
+│ PropertyShowcase         │ lg:px-12 (96px padding)        │ lg:px-8 (64px padding)               │
+│                          │                                │ Contenido 32px más ancho por lado     │
+├──────────────────────────┼────────────────────────────────┼──────────────────────────────────────┤
+│ Footer                   │ px-6 lg:px-8 (24→32px)        │ px-4 sm:px-6 lg:px-8 (16→24→32px)   │
+│                          │                                │ Mobile: 8px menos padding por lado    │
+├──────────────────────────┼────────────────────────────────┼──────────────────────────────────────┤
+│ /kontakt,                │ max-w-7xl px-6 lg:px-8         │ max-w-7xl px-4 sm:px-6 lg:px-8       │
+│ LegalDocumentLayout      │                                │ Mobile: 8px menos padding            │
+├──────────────────────────┼────────────────────────────────┼──────────────────────────────────────┤
+│ Header, Hero, Sidebar    │ —                              │ SIN CAMBIOS                          │
+└──────────────────────────┴────────────────────────────────┴──────────────────────────────────────┘
+
+
+================================================================================
+RIESGOS
+================================================================================
+
+┌────────────────────────────────────┬─────────────┬──────────────────────────────────────────────┐
+│ Riesgo                             │ Probabilidad│ Mitigación                                   │
+├────────────────────────────────────┼─────────────┼──────────────────────────────────────────────┤
+│ Regresión visual en /objekt,       │ Media       │ Son páginas con poco contenido o "coming     │
+│ /kauf, /miete (grid más ancho)     │             │ soon". El grid se adapta naturalmente.       │
+│                                    │             │ Verificar visualmente post-migración.         │
+├────────────────────────────────────┼─────────────┼──────────────────────────────────────────────┤
+│ Secciones con doble padding        │ Baja        │ Se especifica explícitamente quitar px-*     │
+│ (SectionContainer + padding propio)│             │ de cada sección. Si alguna se omite, el       │
+│                                    │             │ build pasa pero se ve más angosto.            │
+├────────────────────────────────────┼─────────────┼──────────────────────────────────────────────┤
+│ ContactForm interno sin padding    │ Baja        │ El <section> del contact form mantiene py-12. │
+│ en la sección con borde            │             │ ContactForm tiene padding propio de inputs.   │
+├────────────────────────────────────┼─────────────┼──────────────────────────────────────────────┤
+│ Cambio 2xl:w-[80%] → max-w-7xl     │ Baja        │ A 1536px viewport: 80%=1229px vs 1280px fijo.│
+│ en homepage                        │             │ Diferencia de ~51px. Imperceptible.           │
+└────────────────────────────────────┴─────────────┴──────────────────────────────────────────────┘
+
+
+================================================================================
+QUÉ NO SE TOCA
+================================================================================
+
+  - TopMenu (header)
+  - HeroVideo (hero)
+  - Sidebar, PageShell
+  - error.tsx, not-found.tsx, global-error.tsx
+  - kauf/[type]/loading.tsx, miete/[type]/loading.tsx
+  - objekt/[objektnrExtern]/loading.tsx
+  - Ningún test existente (salvo los eliminados con su source)
+
+
+================================================================================
+ARCHIVOS TOTALES AFECTADOS
+================================================================================
+
+  Fase 1: ~32 archivos eliminados + 4 archivos modificados + 1 npm uninstall
+  Fase 2: 2 directorios renombrados + 6 archivos modificados
+  Fase 3: 1 archivo nuevo + 18 archivos modificados + 1 archivo eliminado
+
+  Total: ~55 operaciones sobre archivos
+
+
+================================================================================
+MEJORAS ADICIONALES RECOMENDADAS (fuera del scope)
+================================================================================
+
+  1. Unificar kauf/ y miete/ con template compartido si crecen más allá
+     de placeholders. La lógica de validación de [type] y los layouts
+     son idénticos.
+
+  2. Mover back-home-button/ y contact-button/ a ui/ — son componentes
+     UI reutilizables, no "features". Dejaría features/ solo con
+     contact-form/ como feature real.
+
+================================================================================

@@ -25,9 +25,15 @@ describe("TopMenu", () => {
 
     it("renders the real desktop navigation links", () => {
       render(<Topmenu />);
-      ["Häuser", "Wohnungen", "Gewerbeimmobilien", "Grundstücke", "Dienstleistungen", "Über uns", "Werde Tippgeber"].forEach(
-        (label) => expect(screen.getByText(label)).toBeInTheDocument()
-      );
+      [
+        "Häuser",
+        "Wohnungen",
+        "Gewerbeimmobilien",
+        "Grundstücke",
+        "Dienstleistungen",
+        "Über uns",
+        "Werde Tippgeber",
+      ].forEach((label) => expect(screen.getByText(label)).toBeInTheDocument());
     });
 
     it("renders a single CTA", () => {
@@ -46,12 +52,27 @@ describe("TopMenu", () => {
   describe("Navigation", () => {
     it("links point to the correct routes", () => {
       render(<Topmenu />);
-      expect(screen.getByText("Häuser").closest("a")).toHaveAttribute("href", "/kategorie/haeuser");
-      expect(screen.getByText("Grundstücke").closest("a")).toHaveAttribute("href", "/kategorie/grundstueck");
-      expect(screen.getByText("Dienstleistungen").closest("a")).toHaveAttribute("href", "/dienstleistungen");
-      expect(screen.getByText("Über uns").closest("a")).toHaveAttribute("href", "/ueber-uns");
+      expect(screen.getByText("Häuser").closest("a")).toHaveAttribute(
+        "href",
+        "/kategorie/haeuser",
+      );
+      expect(screen.getByText("Grundstücke").closest("a")).toHaveAttribute(
+        "href",
+        "/kategorie/grundstueck",
+      );
+      expect(screen.getByText("Dienstleistungen").closest("a")).toHaveAttribute(
+        "href",
+        "/dienstleistungen",
+      );
+      expect(screen.getByText("Über uns").closest("a")).toHaveAttribute(
+        "href",
+        "/ueber-uns",
+      );
       const tippgeber = screen.getByText("Werde Tippgeber").closest("a");
-      expect(tippgeber).toHaveAttribute("href", "https://www.ichschenkedirwas.de/");
+      expect(tippgeber).toHaveAttribute(
+        "href",
+        "https://www.ichschenkedirwas.de/",
+      );
       expect(tippgeber).toHaveAttribute("target", "_blank");
     });
   });

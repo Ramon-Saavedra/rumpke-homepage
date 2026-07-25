@@ -10,7 +10,7 @@ type UseScrollVisibleReturn<T extends HTMLElement> = {
 };
 
 export function useScrollVisible<T extends HTMLElement = HTMLElement>(
-  options: UseScrollVisibleOptions = {}
+  options: UseScrollVisibleOptions = {},
 ): UseScrollVisibleReturn<T> {
   const ref = useRef<T>(null);
   const [visible, setVisible] = useState(false);
@@ -27,7 +27,7 @@ export function useScrollVisible<T extends HTMLElement = HTMLElement>(
           observer.disconnect();
         }
       },
-      { threshold }
+      { threshold },
     );
 
     observer.observe(el);

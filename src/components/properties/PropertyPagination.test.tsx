@@ -39,46 +39,79 @@ describe("PropertyPagination", () => {
   });
 
   it("renders page links", () => {
-    render(<PropertyPagination pagination={makePagination({ page: 1, totalPages: 3 })} />);
+    render(
+      <PropertyPagination
+        pagination={makePagination({ page: 1, totalPages: 3 })}
+      />,
+    );
     expect(screen.getByText("1")).toBeInTheDocument();
     expect(screen.getByText("2")).toBeInTheDocument();
     expect(screen.getByText("3")).toBeInTheDocument();
   });
 
   it("highlights current page", () => {
-    render(<PropertyPagination pagination={makePagination({ page: 2, totalPages: 3 })} />);
+    render(
+      <PropertyPagination
+        pagination={makePagination({ page: 2, totalPages: 3 })}
+      />,
+    );
     const currentPage = screen.getByText("2");
     expect(currentPage).toHaveAttribute("aria-current", "page");
   });
 
   it("renders back link when not on first page", () => {
-    render(<PropertyPagination pagination={makePagination({ page: 3, totalPages: 5 })} />);
+    render(
+      <PropertyPagination
+        pagination={makePagination({ page: 3, totalPages: 5 })}
+      />,
+    );
     expect(screen.getByText("Zurück")).toBeInTheDocument();
   });
 
   it("does not render back link on first page", () => {
-    render(<PropertyPagination pagination={makePagination({ page: 1, totalPages: 5 })} />);
+    render(
+      <PropertyPagination
+        pagination={makePagination({ page: 1, totalPages: 5 })}
+      />,
+    );
     expect(screen.queryByText("Zurück")).not.toBeInTheDocument();
   });
 
   it("renders weiter link when not on last page", () => {
-    render(<PropertyPagination pagination={makePagination({ page: 1, totalPages: 5 })} />);
+    render(
+      <PropertyPagination
+        pagination={makePagination({ page: 1, totalPages: 5 })}
+      />,
+    );
     expect(screen.getByText("Weiter")).toBeInTheDocument();
   });
 
   it("does not render weiter link on last page", () => {
-    render(<PropertyPagination pagination={makePagination({ page: 5, totalPages: 5 })} />);
+    render(
+      <PropertyPagination
+        pagination={makePagination({ page: 5, totalPages: 5 })}
+      />,
+    );
     expect(screen.queryByText("Weiter")).not.toBeInTheDocument();
   });
 
   it("renders ellipsis when many pages", () => {
-    render(<PropertyPagination pagination={makePagination({ page: 1, totalPages: 20 })} />);
+    render(
+      <PropertyPagination
+        pagination={makePagination({ page: 1, totalPages: 20 })}
+      />,
+    );
     const ellipses = screen.getAllByText("…");
     expect(ellipses.length).toBeGreaterThanOrEqual(1);
   });
 
   it("has navigation aria-label", () => {
-    render(<PropertyPagination pagination={makePagination({ totalPages: 5 })} />);
-    expect(screen.getByRole("navigation")).toHaveAttribute("aria-label", "Paginierung");
+    render(
+      <PropertyPagination pagination={makePagination({ totalPages: 5 })} />,
+    );
+    expect(screen.getByRole("navigation")).toHaveAttribute(
+      "aria-label",
+      "Paginierung",
+    );
   });
 });

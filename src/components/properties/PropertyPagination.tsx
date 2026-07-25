@@ -1,11 +1,13 @@
-import Link from 'next/link';
-import type { Pagination } from '@/types/property-api';
+import Link from "next/link";
+import type { Pagination } from "@/types/property-api";
 
 interface PropertyPaginationProps {
   readonly pagination: Pagination;
 }
 
-export default function PropertyPagination({ pagination }: PropertyPaginationProps) {
+export default function PropertyPagination({
+  pagination,
+}: PropertyPaginationProps) {
   const { page, totalPages } = pagination;
 
   if (totalPages <= 1) return null;
@@ -19,7 +21,10 @@ export default function PropertyPagination({ pagination }: PropertyPaginationPro
   }
 
   return (
-    <nav aria-label="Paginierung" className="flex items-center justify-center gap-2">
+    <nav
+      aria-label="Paginierung"
+      className="flex items-center justify-center gap-2"
+    >
       {page > 1 && (
         <Link
           href={`/objekt?page=${page - 1}`}
@@ -39,7 +44,9 @@ export default function PropertyPagination({ pagination }: PropertyPaginationPro
             1
           </Link>
           {start > 2 && (
-            <span className="px-2 text-card-text-l dark:text-card-text-d text-sm">…</span>
+            <span className="px-2 text-card-text-l dark:text-card-text-d text-sm">
+              …
+            </span>
           )}
         </>
       )}
@@ -50,11 +57,11 @@ export default function PropertyPagination({ pagination }: PropertyPaginationPro
           href={`/objekt?page=${p}`}
           className={`px-3 py-2 border rounded text-sm transition-colors ${
             p === page
-              ? 'bg-primary text-white border-primary'
-              : 'border-border-l dark:border-border-d text-text-l dark:text-text-d hover:bg-bgSecondary-l dark:hover:bg-bgSecondary-d'
+              ? "bg-primary text-white border-primary"
+              : "border-border-l dark:border-border-d text-text-l dark:text-text-d hover:bg-bgSecondary-l dark:hover:bg-bgSecondary-d"
           }`}
           aria-label={`Seite ${p}`}
-          aria-current={p === page ? 'page' : undefined}
+          aria-current={p === page ? "page" : undefined}
         >
           {p}
         </Link>
@@ -63,7 +70,9 @@ export default function PropertyPagination({ pagination }: PropertyPaginationPro
       {end < totalPages && (
         <>
           {end < totalPages - 1 && (
-            <span className="px-2 text-card-text-l dark:text-card-text-d text-sm">…</span>
+            <span className="px-2 text-card-text-l dark:text-card-text-d text-sm">
+              …
+            </span>
           )}
           <Link
             href={`/objekt?page=${totalPages}`}

@@ -31,19 +31,22 @@ export default function DienstleistungenPage() {
   const services = [
     {
       title: "Verkauf & Vermietung",
-      description: "Professionelle Vermarktung Ihrer Immobilie. Wir finden den richtigen Käufer oder Mieter für Sie.",
+      description:
+        "Professionelle Vermarktung Ihrer Immobilie. Wir finden den richtigen Käufer oder Mieter für Sie.",
       href: "/dienstleistungen/verkauf-vermietung",
       icon: Home,
     },
     {
       title: "Immobilienbewertung",
-      description: "Präzise Wertermittlung Ihrer Immobilie durch erfahrene Experten.",
+      description:
+        "Präzise Wertermittlung Ihrer Immobilie durch erfahrene Experten.",
       href: "/dienstleistungen/immobilienbewertung",
       icon: ClipboardCheck,
     },
     {
       title: "Immobilienkauf",
-      description: "Wir begleiten Sie beim Kauf Ihrer Traumimmobilie von der Suche bis zum Vertragsabschluss.",
+      description:
+        "Wir begleiten Sie beim Kauf Ihrer Traumimmobilie von der Suche bis zum Vertragsabschluss.",
       href: "/dienstleistungen/immobilien-kauf",
       icon: Key,
     },
@@ -55,7 +58,8 @@ export default function DienstleistungenPage() {
         Unsere Dienstleistungen
       </h1>
       <p className="text-lg text-center mb-12">
-        Professionelle Immobiliendienstleistungen für Ihre individuellen Bedürfnisse
+        Professionelle Immobiliendienstleistungen für Ihre individuellen
+        Bedürfnisse
       </p>
 
       <div className="grid md:grid-cols-3 gap-6">
@@ -70,12 +74,8 @@ export default function DienstleistungenPage() {
               <div className="mb-4">
                 <IconComponent className="w-6 h-6" />
               </div>
-              <h2 className="text-xl font-semibold mb-3 ">
-                {service.title}
-              </h2>
-              <p className="leading-relaxed grow">
-                {service.description}
-              </p>
+              <h2 className="text-xl font-semibold mb-3 ">{service.title}</h2>
+              <p className="leading-relaxed grow">{service.description}</p>
               <div className="mt-4 text-blue-600 hover:text-blue-800  font-medium inline-flex items-center gap-2">
                 Mehr erfahren
                 <TrendingUp className="w-4 h-4" />

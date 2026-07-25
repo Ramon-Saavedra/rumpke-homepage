@@ -1,9 +1,11 @@
-import { forwardRef } from 'react';
-import { cn } from '@/lib/utils';
-import { floatingInputBaseClasses, floatingLabelClasses } from './floatingClasses';
+import { forwardRef } from "react";
+import { cn } from "@/lib/utils";
+import {
+  floatingInputBaseClasses,
+  floatingLabelClasses,
+} from "./floatingClasses";
 
-export interface FloatingTextareaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface FloatingTextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   id: string;
   label: string;
   error?: string;
@@ -18,12 +20,15 @@ const FloatingTextarea = forwardRef<HTMLTextAreaElement, FloatingTextareaProps>(
         ref={ref}
         id={id}
         placeholder=" "
-        className={cn(floatingInputBaseClasses(error, className), 'resize-none')}
+        className={cn(
+          floatingInputBaseClasses(error, className),
+          "resize-none",
+        )}
         aria-invalid={!!error}
         aria-describedby={
           [error ? `${id}-error` : null, charCount ? `${id}-count` : null]
             .filter(Boolean)
-            .join(' ') || undefined
+            .join(" ") || undefined
         }
         {...props}
       />
@@ -41,12 +46,12 @@ const FloatingTextarea = forwardRef<HTMLTextAreaElement, FloatingTextareaProps>(
           <p
             id={`${id}-count`}
             className={cn(
-              'text-xs ml-auto tabular-nums',
+              "text-xs ml-auto tabular-nums",
               charCount.current >= charCount.max
-                ? 'text-error'
+                ? "text-error"
                 : charCount.current > charCount.max * 0.9
-                  ? 'text-warning'
-                  : 'text-card-text-l dark:text-card-text-d',
+                  ? "text-warning"
+                  : "text-card-text-l dark:text-card-text-d",
             )}
             aria-live="polite"
           >
@@ -58,5 +63,5 @@ const FloatingTextarea = forwardRef<HTMLTextAreaElement, FloatingTextareaProps>(
   ),
 );
 
-FloatingTextarea.displayName = 'FloatingTextarea';
+FloatingTextarea.displayName = "FloatingTextarea";
 export default FloatingTextarea;

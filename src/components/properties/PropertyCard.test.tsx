@@ -9,7 +9,9 @@ import "@testing-library/jest-dom";
 import PropertyCard from "./PropertyCard";
 import type { PropertyCardDto } from "@/types/property-api";
 
-function makeProperty(overrides: Partial<PropertyCardDto> = {}): PropertyCardDto {
+function makeProperty(
+  overrides: Partial<PropertyCardDto> = {},
+): PropertyCardDto {
   return {
     id: "P-001",
     title: "Schönes Haus",
@@ -29,19 +31,33 @@ function makeProperty(overrides: Partial<PropertyCardDto> = {}): PropertyCardDto
 describe("PropertyCard", () => {
   describe("Rendering", () => {
     it("renders title as heading", () => {
-      render(<PropertyCard property={makeProperty({ title: "Schönes Haus" })} />);
+      render(
+        <PropertyCard property={makeProperty({ title: "Schönes Haus" })} />,
+      );
       expect(
         screen.getByRole("heading", { name: "Schönes Haus" }),
       ).toBeInTheDocument();
     });
 
     it("renders formatted price for kauf", () => {
-      render(<PropertyCard property={makeProperty({ salePrice: 250000, marketingType: "kauf" })} />);
+      render(
+        <PropertyCard
+          property={makeProperty({ salePrice: 250000, marketingType: "kauf" })}
+        />,
+      );
       expect(screen.getByText(/250\.000/)).toBeInTheDocument();
     });
 
     it("renders formatted price for miete", () => {
-      render(<PropertyCard property={makeProperty({ salePrice: null, coldRent: 850, marketingType: "miete" })} />);
+      render(
+        <PropertyCard
+          property={makeProperty({
+            salePrice: null,
+            coldRent: 850,
+            marketingType: "miete",
+          })}
+        />,
+      );
       expect(screen.getByText(/850/)).toBeInTheDocument();
     });
 
@@ -57,12 +73,23 @@ describe("PropertyCard", () => {
     });
 
     it("renders property sub type badge", () => {
-      render(<PropertyCard property={makeProperty({ propertySubType: "einfamilienhaus" })} />);
+      render(
+        <PropertyCard
+          property={makeProperty({ propertySubType: "einfamilienhaus" })}
+        />,
+      );
       expect(screen.getByText("einfamilienhaus")).toBeInTheDocument();
     });
 
     it("renders property type badge when sub type is null", () => {
-      render(<PropertyCard property={makeProperty({ propertySubType: null, propertyType: "haus" })} />);
+      render(
+        <PropertyCard
+          property={makeProperty({
+            propertySubType: null,
+            propertyType: "haus",
+          })}
+        />,
+      );
       expect(screen.getByText("haus")).toBeInTheDocument();
     });
   });
@@ -70,10 +97,7 @@ describe("PropertyCard", () => {
   describe("Links", () => {
     it("links to correct property page using objektnrExtern", () => {
       render(<PropertyCard property={makeProperty({ id: "P-001" })} />);
-      expect(screen.getByRole("link")).toHaveAttribute(
-        "href",
-        "/objekt/P-001",
-      );
+      expect(screen.getByRole("link")).toHaveAttribute("href", "/objekt/P-001");
     });
   });
 
@@ -89,17 +113,25 @@ describe("PropertyCard", () => {
     });
 
     it("renders Kaufen badge for kauf marketing type", () => {
-      render(<PropertyCard property={makeProperty({ marketingType: "kauf" })} />);
+      render(
+        <PropertyCard property={makeProperty({ marketingType: "kauf" })} />,
+      );
       expect(screen.getByText("Kaufen")).toBeInTheDocument();
     });
 
     it("renders Mieten badge for miete marketing type", () => {
-      render(<PropertyCard property={makeProperty({ marketingType: "miete" })} />);
+      render(
+        <PropertyCard property={makeProperty({ marketingType: "miete" })} />,
+      );
       expect(screen.getByText("Mieten")).toBeInTheDocument();
     });
 
     it("renders Immobilie fallback title when title is null", () => {
-      render(<PropertyCard property={makeProperty({ title: null, id: "ABC-123" })} />);
+      render(
+        <PropertyCard
+          property={makeProperty({ title: null, id: "ABC-123" })}
+        />,
+      );
       expect(screen.getByText("Immobilie ABC-123")).toBeInTheDocument();
     });
   });

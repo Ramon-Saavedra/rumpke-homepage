@@ -10,7 +10,7 @@ interface ContactButtonProps {
 export default function ContactButton({
   text = "Kontakt",
   href = "/kontakt",
-  className = ""
+  className = "",
 }: ContactButtonProps) {
   return (
     <Link
