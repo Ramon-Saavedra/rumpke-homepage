@@ -4,13 +4,13 @@ import "./globals.css";
 import CompanyTitle from "@/components/branding/companyTitle/CompanyTitle";
 import Topmenu from "@/components/layout/top-menu/TopMenu";
 import Footer from "@/components/layout/footer/Footer";
-import GoogleMap from "@/components/features/map/GoogleMap";
 import Sidebar from "@/components/layout/sidebar/Sidebar";
 import PageShell from "@/components/layout/page-shell/PageShell";
 import ScrollToTopButton from "@/components/ui/scroll-to-top/ScrollToTopButton";
 import { siteMetadata } from "@/lib/site-metadata";
 import { cn } from "@/lib/utils";
 import { Providers } from "./providers";
+import { THEME_INIT_SCRIPT } from "@/context/theme-storage";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -48,10 +48,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
       )}
       suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body className="antialiased">
         <Providers>
           <div className="bg-bg-l text-zinc-800 dark:bg-bg-d dark:text-zinc-100">
-            <div className="">
+            <div>
               <Topmenu />
               <div className="lg:hidden">
                 <Sidebar />

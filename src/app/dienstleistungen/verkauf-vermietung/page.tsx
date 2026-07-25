@@ -37,7 +37,7 @@ export default function VerkaufVermietungPage() {
         <p className="text-lg text-center text-card-text-l dark:text-card-text-d">
           Ihr Erfolg ist unser Anspruch
         </p>
-        <p className="text-center mt-4  max-w-3xl mx-auto">
+        <p className="text-center mt-4 max-w-3xl mx-auto">
           Bei Rumpke Immobilien stehen Ihre Immobilienbedürfnisse im
           Mittelpunkt. Egal, ob Sie eine Immobilie vermieten oder verkaufen
           möchten – wir bieten Ihnen einen umfassenden Service, der keine

@@ -4,7 +4,7 @@ import ServicesSection from "@/components/sections/services-section/ServicesSect
 import HeroVideo from "@/components/hero/HeroVideo";
 import WhyChooseRumpke from "@/components/sections/why-choose-rumpke/WhyChooseRumpke";
 import WhatMattersNowSection from "@/components/sections/what-matters-now-section/WhatMattersNowSection";
-import PropertyShowcase from "@/components/properties/PropertyShowcase";
+import PropertyShowcaseSection from "@/components/properties/PropertyShowcaseSection";
 import ContactForm from "@/components/features/contact-form/ContactForm";
 import PageContainer from "@/components/layout/page-container/PageContainer";
 import {
@@ -13,8 +13,6 @@ import {
   siteName,
 } from "@/lib/site-metadata";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { getProperties } from "@/lib/property-client";
-import type { PropertyCardDto } from "@/types/property-api";
 
 const realEstateAgentSchema = {
   "@context": "https://schema.org",
@@ -65,26 +63,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function HomePage() {
-  let featuredProperties: readonly PropertyCardDto[] = [];
-  let propertyError = false;
-
-  try {
-    const result = await getProperties(1, 12);
-    featuredProperties = result.data;
-  } catch {
-    propertyError = true;
-  }
-
+export default function HomePage() {
   return (
-    <div className="">
+    <div>
       <JsonLd data={realEstateAgentSchema} />
       <HeroVideo
         videoSrc="/media/heroVideo.mp4"
         alt="Rumpke Immobilien Hero Video"
       />
 
-      <PropertyShowcase properties={featuredProperties} error={propertyError} />
+      <PropertyShowcaseSection />
 
       <PageContainer as="main" className="pb-12">
         <WhatMattersNowSection />

@@ -74,9 +74,9 @@ export default function DienstleistungenPage() {
               <div className="mb-4">
                 <IconComponent className="w-6 h-6" />
               </div>
-              <h2 className="text-xl font-semibold mb-3 ">{service.title}</h2>
+              <h2 className="text-xl font-semibold mb-3">{service.title}</h2>
               <p className="leading-relaxed grow">{service.description}</p>
-              <div className="mt-4 text-blue-600 hover:text-blue-800  font-medium inline-flex items-center gap-2">
+              <div className="mt-4 text-blue-600 hover:text-blue-800 font-medium inline-flex items-center gap-2">
                 Mehr erfahren
                 <TrendingUp className="w-4 h-4" />
               </div>

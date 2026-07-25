@@ -57,7 +57,7 @@ export default async function PropertyTypePage({ params }: PageProps) {
   const description = TYPE_DESCRIPTIONS[type];
 
   return (
-    <div className="">
+    <div>
       <div className="max-w-4xl mx-auto text-center mb-12">
         <Title variant="h1" size="xl" align="center" subtitle={description}>
           {label}
@@ -70,7 +70,7 @@ export default async function PropertyTypePage({ params }: PageProps) {
           className="group border border-border-l dark:border-border-d p-12 text-center hover:bg-Bghover-l dark:hover:bg-Bghover-d bg-bgSecondary-l dark:bg-bgSecondary-d"
         >
           <div className="flex flex-col items-center gap-6">
-            <div className="w-20 h-20  flex items-center justify-center text-primary">
+            <div className="w-20 h-20 flex items-center justify-center text-primary">
               <Key size={48} strokeWidth={2} />
             </div>
             <h2 className="text-3xl font-bold text-card-text-l dark:text-card-text-d">

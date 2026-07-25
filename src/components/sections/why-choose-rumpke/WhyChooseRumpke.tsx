@@ -52,67 +52,64 @@ const WhyChooseRumpke = () => {
       aria-label="Warum Rumpke Immobilien"
       className="mb-24 py-12"
     >
-      <div className="">
-        {/* Header */}
-        <SectionHeader
-          eyebrow="Unsere Stärken"
-          title="Warum Rumpke Immobilien?"
-          subtitle="Wir verbinden persönliche Nähe mit regionalem Fachwissen – für ein Immobilienerlebnis, das Sie überzeugt."
-          className={`mb-6 duration-1000 ${fadeUp(visible)}`}
-        />
+      <SectionHeader
+        eyebrow="Unsere Stärken"
+        title="Warum Rumpke Immobilien?"
+        subtitle="Wir verbinden persönliche Nähe mit regionalem Fachwissen – für ein Immobilienerlebnis, das Sie überzeugt."
+        className={`mb-6 duration-1000 ${fadeUp(visible)}`}
+      />
 
-        {/* Features */}
-        <div className="grid grid-cols-1 md:grid-cols-3 ">
-          {features.map((feature, i) => (
-            <div
-              key={feature.title}
-              className={`py-10 duration-700 ${
-                i === 0
-                  ? "md:pr-10"
-                  : "md:px-10 border-t md:border-t-0 md:border-l border-border-l dark:border-border-d"
-              } ${fadeUp(visible)}`}
-              style={{
-                transitionDelay: visible ? `${200 + i * 150}ms` : "0ms",
-              }}
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-primary/40 bg-bgSecondary-l text-primary dark:bg-bgSecondary-d mb-6">
-                <feature.Icon size={18} strokeWidth={1.6} aria-hidden="true" />
-              </div>
-
-              <h3 className="text-lg font-bold text-foreground mb-3 leading-snug">
-                {feature.title}
-              </h3>
-
-              <p className="text-sm leading-relaxed text-card-text-l dark:text-card-text-d">
-                {feature.description}
-              </p>
+      {/* Features */}
+      <div className="grid grid-cols-1 md:grid-cols-3 ">
+        {features.map((feature, i) => (
+          <div
+            key={feature.title}
+            className={`py-10 duration-700 ${
+              i === 0
+                ? "md:pr-10"
+                : "md:px-10 border-t md:border-t-0 md:border-l border-border-l dark:border-border-d"
+            } ${fadeUp(visible)}`}
+            style={{
+              transitionDelay: visible ? `${200 + i * 150}ms` : "0ms",
+            }}
+          >
+            <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-primary/40 bg-bgSecondary-l text-primary dark:bg-bgSecondary-d mb-6">
+              <feature.Icon size={18} strokeWidth={1.6} aria-hidden="true" />
             </div>
-          ))}
-        </div>
 
-        {/* Stats */}
-        <div
-          className={`grid grid-cols-3 border-t border-border-l dark:border-border-d ${fadeUp(visible)}`}
-          style={{ transitionDelay: visible ? "750ms" : "0ms" }}
-        >
-          {stats.map((stat, i) => (
-            <div
-              key={stat.label}
-              className={`py-8 px-2 text-center md:text-left ${
-                i === 0
-                  ? "md:px-0 md:pr-10"
-                  : "md:px-10 border-l border-border-l dark:border-border-d"
-              }`}
-            >
-              <span className="block text-3xl sm:text-4xl font-bold text-primary mb-1">
-                {stat.value}
-              </span>
-              <span className="text-sm text-card-text-l dark:text-card-text-d">
-                {stat.label}
-              </span>
-            </div>
-          ))}
-        </div>
+            <h3 className="text-lg font-bold text-foreground mb-3 leading-snug">
+              {feature.title}
+            </h3>
+
+            <p className="text-sm leading-relaxed text-card-text-l dark:text-card-text-d">
+              {feature.description}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {/* Stats */}
+      <div
+        className={`grid grid-cols-3 border-t border-border-l dark:border-border-d ${fadeUp(visible)}`}
+        style={{ transitionDelay: visible ? "750ms" : "0ms" }}
+      >
+        {stats.map((stat, i) => (
+          <div
+            key={stat.label}
+            className={`py-8 px-2 text-center md:text-left ${
+              i === 0
+                ? "md:px-0 md:pr-10"
+                : "md:px-10 border-l border-border-l dark:border-border-d"
+            }`}
+          >
+            <span className="block text-3xl sm:text-4xl font-bold text-primary mb-1">
+              {stat.value}
+            </span>
+            <span className="text-sm text-card-text-l dark:text-card-text-d">
+              {stat.label}
+            </span>
+          </div>
+        ))}
       </div>
     </section>
   );
