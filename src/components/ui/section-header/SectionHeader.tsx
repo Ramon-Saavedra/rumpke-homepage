@@ -1,10 +1,16 @@
+import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
+
 interface SectionHeaderProps {
   eyebrow?: string;
-  title: string;
+  title: ReactNode;
   titleId?: string;
-  subtitle?: string;
+  subtitle?: ReactNode;
   align?: "left" | "center";
   className?: string;
+  eyebrowClassName?: string;
+  titleClassName?: string;
+  subtitleClassName?: string;
 }
 
 export default function SectionHeader({
@@ -14,24 +20,40 @@ export default function SectionHeader({
   subtitle,
   align = "left",
   className,
+  eyebrowClassName,
+  titleClassName,
+  subtitleClassName,
 }: SectionHeaderProps) {
   const alignClass = align === "center" ? "text-center" : "text-left";
 
   return (
-    <div className={`${alignClass} mb-10 ${className ?? ""}`}>
+    <div className={cn(alignClass, "mb-10", className)}>
       {eyebrow && (
-        <span className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-3 block">
+        <span
+          className={cn(
+            "text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-3 block",
+            eyebrowClassName,
+          )}
+        >
           {eyebrow}
         </span>
       )}
       <h2
         id={titleId}
-        className="text-3xl sm:text-4xl font-bold leading-tight text-foreground"
+        className={cn(
+          "text-3xl sm:text-4xl font-bold leading-tight text-foreground",
+          titleClassName,
+        )}
       >
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-4 text-base leading-relaxed text-card-text-l dark:text-card-text-d max-w-xl">
+        <p
+          className={cn(
+            "mt-4 text-base leading-relaxed text-card-text-l dark:text-card-text-d max-w-xl",
+            subtitleClassName,
+          )}
+        >
           {subtitle}
         </p>
       )}

@@ -2,65 +2,67 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import WhatMattersNowSection from "./WhatMattersNowSection";
 
-jest.mock("./WhatMattersCard", () => {
-  return function MockWhatMattersCard({
-    title,
-    description,
-    ctaLabel,
-  }: {
-    title: string;
-    description: string;
-    ctaLabel: string;
-  }) {
-    return (
-      <div data-testid="what-matters-card">
-        <div>{title}</div>
-        <div>{description}</div>
-        <div>{ctaLabel}</div>
-      </div>
-    );
-  };
-});
-
-jest.mock("lucide-react", () => ({
-  Compass: () => <svg data-testid="icon-compass" />,
-  MessageCircleHeart: () => <svg data-testid="icon-message-heart" />,
-}));
-
 describe("WhatMattersNowSection", () => {
-  it("renders the section headline and description", () => {
+  it("renders the eyebrow and both headline lines", () => {
     render(<WhatMattersNowSection />);
 
-    expect(screen.getByText("Was Ihnen jetzt wichtig ist")).toBeInTheDocument();
+    expect(screen.getByText("Persönliche Begleitung")).toBeInTheDocument();
     expect(
-      screen.getByText(/Rund um Immobilien geht es selten nur um Zahlen/i),
+      screen.getByText("Sie müssen den nächsten Schritt"),
+    ).toBeInTheDocument();
+    expect(screen.getByText("nicht allein gehen.")).toBeInTheDocument();
+  });
+
+  it("renders the intro copy", () => {
+    render(<WhatMattersNowSection />);
+
+    expect(
+      screen.getByText(/Bevor es um Zahlen, Termine oder Entscheidungen geht/i),
     ).toBeInTheDocument();
   });
 
-  it("renders exactly two cards", () => {
+  it("renders the three guidance steps in order", () => {
     render(<WhatMattersNowSection />);
 
-    expect(screen.getAllByTestId("what-matters-card")).toHaveLength(2);
-  });
+    const steps = ["Verstehen", "Einordnen", "Begleiten"] as const;
 
-  it("renders the two support pillars", () => {
-    render(<WhatMattersNowSection />);
-
-    const pillars = ["Orientierung", "Begleitung"] satisfies readonly string[];
-
-    pillars.forEach((pillar) => {
-      expect(screen.getByText(pillar)).toBeInTheDocument();
+    steps.forEach((step) => {
+      expect(
+        screen.getByRole("heading", { name: step, level: 3 }),
+      ).toBeInTheDocument();
     });
+
+    expect(screen.getAllByRole("listitem")).toHaveLength(steps.length);
   });
 
-  it("renders the expected card copy", () => {
+  it("links the call to action to the contact page", () => {
     render(<WhatMattersNowSection />);
 
     expect(
-      screen.getByText("Klarheit vor dem nächsten Schritt"),
+      screen.getByRole("link", { name: /Ein Gespräch in Ruhe beginnen/i }),
+    ).toHaveAttribute("href", "/kontakt");
+  });
+
+  it("renders the portrait with an accessible name and caption", () => {
+    render(<WhatMattersNowSection />);
+
+    expect(
+      screen.getByAltText(
+        "Ann-Christin Rumpke im persönlichen Beratungsgespräch",
+      ),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("Persönliche Begleitung statt Standardprozess"),
+      screen.getByText(
+        "Ann-Christin Rumpke — Ihre persönliche Ansprechpartnerin",
+      ),
     ).toBeInTheDocument();
+  });
+
+  it("shows portrait skeleton and aria-busy during loading", () => {
+    const { container } = render(<WhatMattersNowSection />);
+
+    const portrait = container.querySelector('[aria-busy="true"]');
+    expect(portrait).toBeInTheDocument();
+    expect(portrait?.querySelector('[aria-hidden="true"]')).toBeInTheDocument();
   });
 });

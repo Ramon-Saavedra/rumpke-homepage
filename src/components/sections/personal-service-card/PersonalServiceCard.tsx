@@ -89,7 +89,7 @@ const PersonalServiceCard = () => {
                   transitionDelay: visible ? `${200 + i * 120}ms` : "0ms",
                 }}
               >
-                <div className="flex-shrink-0 flex h-9 w-9 items-center justify-center rounded-md bg-primary/10 text-primary">
+                <div className="shrink-0 flex h-9 w-9 items-center justify-center rounded-md bg-primary/10 text-primary">
                   <f.Icon size={17} strokeWidth={1.8} aria-hidden="true" />
                 </div>
                 <div>

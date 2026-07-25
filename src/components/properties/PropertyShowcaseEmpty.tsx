@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SHOWCASE_CTA_COMPACT_CLASS } from "./showcase-cta";
 import { cn } from "@/lib/utils";
-import { SKELETON_BLOCK } from "./showcase-skeleton";
+import { SKELETON_BLOCK } from "@/lib/skeleton-classes";
 
 interface PropertyShowcaseEmptyProps {
   readonly error?: boolean;

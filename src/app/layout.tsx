@@ -53,7 +53,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       </head>
       <body className="antialiased">
         <Providers>
-          <div className="bg-bg-l text-zinc-800 dark:bg-bg-d dark:text-zinc-100">
+          <div className="bg-bg-l text-zinc-800 dark:bg-bg-d dark:text-foreground">
             <div>
               <Topmenu />
               <div className="lg:hidden">

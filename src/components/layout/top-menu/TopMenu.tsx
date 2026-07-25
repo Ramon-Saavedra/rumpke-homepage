@@ -45,7 +45,7 @@ const Topmenu = () => {
       className={`fixed inset-x-0 top-0 z-100 w-full ${
         transparent
           ? "border-b border-transparent bg-transparent text-white"
-          : "border-b border-border-l bg-white text-bg-d dark:border-border-d dark:bg-bgSecondary-d dark:text-white"
+          : "border-b border-border-l bg-white text-bg-d dark:border-border-d dark:bg-bgSecondary-d dark:text-foreground"
       }`}
       style={{ height: "var(--topbar-height)" }}
     >

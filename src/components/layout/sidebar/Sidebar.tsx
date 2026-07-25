@@ -64,7 +64,7 @@ const Sidebar = () => {
             data-testid="close-sidebar-btn"
             onClick={closeSidebar}
             aria-label="Menü schließen"
-            className="cursor-pointer rounded p-1 text-bg-d hover:text-primary dark:text-white"
+            className="cursor-pointer rounded p-1 text-bg-d hover:text-primary dark:text-foreground"
           >
             <IoCloseOutline size={26} />
           </button>
@@ -76,7 +76,7 @@ const Sidebar = () => {
               key={link.href}
               href={link.href}
               onClick={closeSidebar}
-              className="block border-b border-border-l py-3.5 text-[15px] text-bg-d transition-colors duration-150 hover:text-primary dark:border-border-d dark:text-white"
+              className="block border-b border-border-l py-3.5 text-[15px] text-bg-d transition-colors duration-150 hover:text-primary dark:border-border-d dark:text-foreground"
             >
               {link.label}
             </Link>

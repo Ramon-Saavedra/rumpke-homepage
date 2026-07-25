@@ -46,4 +46,46 @@ describe("SectionHeader", () => {
     const { container } = render(<SectionHeader title="Title" />);
     expect(container.firstChild).toHaveClass("text-left");
   });
+
+  it("renders title as ReactNode", () => {
+    render(
+      <SectionHeader
+        title={
+          <>
+            <span>Line one</span>
+            <span>Line two</span>
+          </>
+        }
+      />,
+    );
+    expect(screen.getByText("Line one")).toBeInTheDocument();
+    expect(screen.getByText("Line two")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 2 })).toBeInTheDocument();
+  });
+
+  it("renders subtitle as ReactNode", () => {
+    render(
+      <SectionHeader
+        title="Title"
+        subtitle={<span data-testid="rich-subtitle">Rich subtitle</span>}
+      />,
+    );
+    expect(screen.getByTestId("rich-subtitle")).toBeInTheDocument();
+  });
+
+  it("applies custom className props to sub-elements", () => {
+    const { container } = render(
+      <SectionHeader
+        title="Title"
+        eyebrow="Eye"
+        subtitle="Sub"
+        eyebrowClassName="custom-eyebrow"
+        titleClassName="custom-title"
+        subtitleClassName="custom-subtitle"
+      />,
+    );
+    expect(container.querySelector(".custom-eyebrow")).toBeInTheDocument();
+    expect(container.querySelector(".custom-title")).toBeInTheDocument();
+    expect(container.querySelector(".custom-subtitle")).toBeInTheDocument();
+  });
 });
