@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import PersonalServiceCard from "@/components/sections/personal-service-card/PersonalServiceCard";
 import ServicesSection from "@/components/sections/services-section/ServicesSection";
 import HeroVideo from "@/components/hero/HeroVideo";
 import WhyChooseRumpke from "@/components/sections/why-choose-rumpke/WhyChooseRumpke";
 import WhatMattersNowSection from "@/components/sections/what-matters-now-section/WhatMattersNowSection";
 import PropertyShowcaseSection from "@/components/properties/PropertyShowcaseSection";
 import ContactForm from "@/components/features/contact-form/ContactForm";
+import ContentPanel from "@/components/ui/content-panel/ContentPanel";
 import PageContainer from "@/components/layout/page-container/PageContainer";
 import {
   defaultOpenGraphMetadata,
@@ -67,25 +67,22 @@ export default function HomePage() {
   return (
     <div>
       <JsonLd data={realEstateAgentSchema} />
+
       <HeroVideo
         videoSrc="/media/heroVideo.mp4"
         alt="Rumpke Immobilien Hero Video"
       />
-
       <PropertyShowcaseSection />
-
       <PageContainer as="main" className="pb-12">
-        <WhatMattersNowSection />
         <WhyChooseRumpke />
         <ServicesSection />
-        <PersonalServiceCard />
-
-        <section
-          id="contact-form"
-          className="scroll-mt-28 mb-24 py-12 border border-border-l dark:border-border-d overflow-hidden rounded-sm bg-bgSecondary-l dark:bg-bgSecondary-d"
+        <WhatMattersNowSection />
+        <ContentPanel
+          as="section"
+          className="scroll-mt-28 mb-24 py-12 overflow-hidden rounded-sm"
         >
           <ContactForm formHeadingId="homepage-contact-heading" />
-        </section>
+        </ContentPanel>
       </PageContainer>
     </div>
   );

@@ -44,14 +44,37 @@ describe("getProperties", () => {
       }),
     );
 
-    const result = await getProperties(1, 12);
+    const result = await getProperties({ page: 1, limit: 12 });
     expect(result.data).toHaveLength(1);
     expect(result.pagination.page).toBe(1);
   });
 
+  it("sends category filters to the API", async () => {
+    mockFetch.mockResolvedValueOnce(
+      makeResponse(200, {
+        data: [],
+        pagination: { page: 1, limit: 12, total: 0, totalPages: 1 },
+      }),
+    );
+
+    await getProperties({
+      page: 2,
+      limit: 12,
+      marketingType: "miete",
+      propertyType: "wohnung",
+    });
+
+    expect(mockFetch).toHaveBeenCalledWith(
+      "http://localhost:3001/api/v1/properties?page=2&limit=12&marketingType=miete&propertyType=wohnung",
+      { cache: "no-store" },
+    );
+  });
+
   it("throws PropertyFetchError on network failure", async () => {
     mockFetch.mockRejectedValueOnce(new Error("Network error"));
-    await expect(getProperties(1, 12)).rejects.toThrow(PropertyFetchError);
+    await expect(getProperties({ page: 1, limit: 12 })).rejects.toThrow(
+      PropertyFetchError,
+    );
   });
 
   it("throws PropertyFetchError on non-ok response", async () => {
@@ -62,7 +85,9 @@ describe("getProperties", () => {
         message: "Service disabled",
       }),
     );
-    await expect(getProperties(1, 12)).rejects.toThrow(PropertyFetchError);
+    await expect(getProperties({ page: 1, limit: 12 })).rejects.toThrow(
+      PropertyFetchError,
+    );
   });
 
   it("throws PropertyFetchError on invalid JSON", async () => {
@@ -71,7 +96,9 @@ describe("getProperties", () => {
       status: 200,
       json: jest.fn().mockRejectedValue(new Error("Parse error")),
     } as unknown as Response);
-    await expect(getProperties(1, 12)).rejects.toThrow(PropertyFetchError);
+    await expect(getProperties({ page: 1, limit: 12 })).rejects.toThrow(
+      PropertyFetchError,
+    );
   });
 });
 

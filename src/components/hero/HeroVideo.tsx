@@ -59,7 +59,7 @@ export default function HeroVideo({ videoSrc, poster, alt }: HeroVideoProps) {
 
       {/* Centered single column */}
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 pt-[14vh] text-center">
-        <h1 className="font-heading font-medium leading-[1.05] tracking-[-0.01em] text-white text-[clamp(2.5rem,3.8vw+0.85rem,5rem)] max-w-205 mb-6">
+        <h1 className="font-serif font-medium leading-[1.05] tracking-[-0.01em] text-white text-[clamp(2.5rem,3.8vw+0.85rem,5rem)] max-w-205 mb-6">
           Mehr als nur vier Wände.
         </h1>
         <p className="text-[17px] leading-relaxed text-white/90 max-w-130">

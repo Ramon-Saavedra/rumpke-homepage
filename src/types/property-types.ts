@@ -8,6 +8,16 @@ export const VALID_TYPES = [
 
 export type PropertyType = (typeof VALID_TYPES)[number];
 
+export type MarketingType = "kauf" | "miete";
+
+export const PROPERTY_TYPE_FILTERS: Record<PropertyType, string> = {
+  haeuser: "haus",
+  wohnungen: "wohnung",
+  gewerbeimmobilien: "gewerbe",
+  grundstueck: "grundstueck",
+  sonstige: "sonstige",
+};
+
 export const TYPE_LABELS: Record<PropertyType, string> = {
   haeuser: "Häuser",
   wohnungen: "Wohnungen",

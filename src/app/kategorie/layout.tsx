@@ -1,15 +1,9 @@
-import BackHomeButton from "@/components/features/back-home-button/BackHomeButton";
-import PageContainer from "@/components/layout/page-container/PageContainer";
+import PageLayout from "@/components/layout/page-layout/PageLayout";
 
 export default function KategorieLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <PageContainer className="py-12">
-      <BackHomeButton />
-      {children}
-    </PageContainer>
-  );
+  return <PageLayout showHomeButton>{children}</PageLayout>;
 }

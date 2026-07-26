@@ -1,6 +1,5 @@
-import { ReactNode } from "react";
-import BackNav from "@/components/layout/back-nav/BackNav";
-import PageContainer from "@/components/layout/page-container/PageContainer";
+import type { ReactNode } from "react";
+import PageLayout from "@/components/layout/page-layout/PageLayout";
 
 export default function DienstleistungenLayout({
   children,
@@ -8,12 +7,13 @@ export default function DienstleistungenLayout({
   children: ReactNode;
 }) {
   return (
-    <PageContainer className="py-12">
-      <BackNav
-        basePath="/dienstleistungen"
-        backLabel="Zurück zu Dienstleistungen"
-      />
+    <PageLayout
+      backNav={{
+        basePath: "/dienstleistungen",
+        backLabel: "Zurück zu Dienstleistungen",
+      }}
+    >
       {children}
-    </PageContainer>
+    </PageLayout>
   );
 }

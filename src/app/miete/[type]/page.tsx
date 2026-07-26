@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
-import Title from "@/components/ui/title/Title";
+import PropertyCategoryPage from "@/components/properties/PropertyCategoryPage";
 import {
   VALID_TYPES,
   TYPE_LABELS,
@@ -16,6 +15,9 @@ import {
 interface PageProps {
   params: Promise<{
     type: string;
+  }>;
+  searchParams: Promise<{
+    page?: string;
   }>;
 }
 
@@ -44,39 +46,25 @@ export async function generateMetadata({
   };
 }
 
-export default async function MieteTypePage({ params }: PageProps) {
+export default async function MieteTypePage({
+  params,
+  searchParams,
+}: PageProps) {
   const { type } = await params;
 
   if (!isValidType(type)) {
     notFound();
   }
 
-  const label = TYPE_LABELS[type];
+  const { page: rawPage } = await searchParams;
+  const page = Math.max(1, parseInt(rawPage ?? "1", 10) || 1);
 
   return (
-    <>
-      <div className="mb-12">
-        <Title variant="h1" align="center" size="xl" className="mb-4">
-          {label} mieten
-        </Title>
-        <p className="text-center text-card-text-l dark:text-card-text-d">
-          Hier finden Sie alle verfügbaren {label} zur Miete
-        </p>
-      </div>
-
-      <div className="p-8 bg-bgSecondary-l dark:bg-bgSecondary-d border border-border-l dark:border-border-d rounded">
-        <p className="text-center text-card-text-l dark:text-card-text-d">
-          Kategorisierte Immobiliensuche ist derzeit in Vorbereitung.
-        </p>
-        <p className="text-center text-card-text-l dark:text-card-text-d text-sm mt-2">
-          Alle verfügbaren Immobilien finden Sie in der{" "}
-          <Link href="/objekt" className="text-primary hover:underline">
-            Gesamtübersicht
-          </Link>
-          .
-        </p>
-      </div>
-    </>
+    <PropertyCategoryPage
+      marketingType="miete"
+      propertyType={type}
+      page={page}
+    />
   );
 }
 

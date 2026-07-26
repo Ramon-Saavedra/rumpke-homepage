@@ -3,10 +3,23 @@ import type { Pagination } from "@/types/property-api";
 
 interface PropertyPaginationProps {
   readonly pagination: Pagination;
+  readonly basePath?: string;
+  readonly query?: Record<string, string>;
+}
+
+function pageHref(
+  basePath: string,
+  page: number,
+  query: Record<string, string>,
+): string {
+  const params = new URLSearchParams({ ...query, page: String(page) });
+  return `${basePath}?${params.toString()}`;
 }
 
 export default function PropertyPagination({
   pagination,
+  basePath = "/objekt",
+  query = {},
 }: PropertyPaginationProps) {
   const { page, totalPages } = pagination;
 
@@ -27,7 +40,7 @@ export default function PropertyPagination({
     >
       {page > 1 && (
         <Link
-          href={`/objekt?page=${page - 1}`}
+          href={pageHref(basePath, page - 1, query)}
           className="px-3 py-2 border border-border-l dark:border-border-d rounded text-sm text-text-l dark:text-text-d hover:bg-bgSecondary-l dark:hover:bg-bgSecondary-d transition-colors"
           aria-label="Vorherige Seite"
         >
@@ -38,7 +51,7 @@ export default function PropertyPagination({
       {start > 1 && (
         <>
           <Link
-            href="/objekt?page=1"
+            href={pageHref(basePath, 1, query)}
             className="px-3 py-2 border border-border-l dark:border-border-d rounded text-sm text-text-l dark:text-text-d hover:bg-bgSecondary-l dark:hover:bg-bgSecondary-d transition-colors"
           >
             1
@@ -54,7 +67,7 @@ export default function PropertyPagination({
       {pages.map((p) => (
         <Link
           key={p}
-          href={`/objekt?page=${p}`}
+          href={pageHref(basePath, p, query)}
           className={`px-3 py-2 border rounded text-sm transition-colors ${
             p === page
               ? "bg-primary text-white border-primary"
@@ -75,7 +88,7 @@ export default function PropertyPagination({
             </span>
           )}
           <Link
-            href={`/objekt?page=${totalPages}`}
+            href={pageHref(basePath, totalPages, query)}
             className="px-3 py-2 border border-border-l dark:border-border-d rounded text-sm text-text-l dark:text-text-d hover:bg-bgSecondary-l dark:hover:bg-bgSecondary-d transition-colors"
           >
             {totalPages}
@@ -85,7 +98,7 @@ export default function PropertyPagination({
 
       {page < totalPages && (
         <Link
-          href={`/objekt?page=${page + 1}`}
+          href={pageHref(basePath, page + 1, query)}
           className="px-3 py-2 border border-border-l dark:border-border-d rounded text-sm text-text-l dark:text-text-d hover:bg-bgSecondary-l dark:hover:bg-bgSecondary-d transition-colors"
           aria-label="Nächste Seite"
         >

@@ -4,9 +4,8 @@ import PropertyImage from "./PropertyImage";
 import type { PropertyCardDto } from "@/types/property-api";
 import PropertyFacts from "./PropertyFacts";
 import type { PropertyFactsSize } from "./PropertyFacts";
-import { resolveDisplayPrice } from "@/lib/property-formatters";
-import { buildPropertyFacts } from "@/lib/property-display";
-import { TRANSACTION_LABELS } from "@/types/property-types";
+import PropertyTransactionBadge from "./PropertyTransactionBadge";
+import { resolvePropertyCardData } from "@/lib/property-display";
 import { cn } from "@/lib/utils";
 import { SKELETON_BLOCK } from "@/lib/skeleton-classes";
 
@@ -63,7 +62,7 @@ const VARIANTS: Record<PropertyShowcaseVariant, VariantConfig> = {
   standard: {
     contentPad: "px-4 pb-4 pt-3.5 sm:px-[18px] sm:pb-[18px] sm:pt-4",
     titleTag: "h4",
-    titleClass: "font-sans text-base font-bold leading-snug",
+    titleClass: "font-serif text-base font-bold leading-snug",
     titleMargin: "mb-1.5",
     metaClass: "mb-3 text-[13px]",
     metaIconClass: "h-3.5 w-3.5",
@@ -80,7 +79,7 @@ const VARIANTS: Record<PropertyShowcaseVariant, VariantConfig> = {
   compact: {
     contentPad: "px-3.5 pb-3 pt-2.5",
     titleTag: "h4",
-    titleClass: "font-sans text-sm font-bold leading-snug line-clamp-1",
+    titleClass: "font-serif text-sm font-bold leading-snug line-clamp-1",
     titleMargin: "mb-0.5",
     metaClass: "mb-1.5 text-xs",
     metaIconClass: "h-3 w-3",
@@ -177,22 +176,14 @@ export default function PropertyShowcaseCard({
     return <Skeleton variant={variant} media={media} className={className} />;
   }
 
-  const title = property.title ?? `Immobilie ${property.id}`;
-  const location = property.city;
-  const price = resolveDisplayPrice(
-    property.marketingType,
-    property.salePrice,
-    property.coldRent,
-  );
-  const isRent = property.marketingType === "miete";
-  const facts = buildPropertyFacts(property);
+  const { title, location, price, isRent, facts, detailUrl, imageAlt } =
+    resolvePropertyCardData(property);
 
-  const imageAlt = [title, location].filter(Boolean).join(", ");
   const TitleTag = config.titleTag;
 
   return (
     <Link
-      href={`/objekt/${encodeURIComponent(property.id)}`}
+      href={detailUrl}
       className={cn(
         "group flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
         media === "fill" && "lg:h-full lg:min-h-0 lg:flex-1",
@@ -215,16 +206,10 @@ export default function PropertyShowcaseCard({
           />
 
           {property.marketingType && (
-            <span
-              className={cn(
-                "absolute rounded-md font-semibold text-white",
-                config.badgeOffset,
-                config.badgeClass,
-                isRent ? "bg-rent" : "bg-buy",
-              )}
-            >
-              {isRent ? TRANSACTION_LABELS.miete : TRANSACTION_LABELS.kauf}
-            </span>
+            <PropertyTransactionBadge
+              isRent={isRent}
+              className={cn("absolute", config.badgeOffset, config.badgeClass)}
+            />
           )}
         </div>
 

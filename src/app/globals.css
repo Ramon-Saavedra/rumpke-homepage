@@ -93,6 +93,17 @@
    Sidebar and the page content offset all dock off this single token. */
   --topbar-height: 4rem;
 
+  --animate-kenburns: kenburns 42s ease-in-out infinite alternate;
+
+  @keyframes kenburns {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.045);
+    }
+  }
+
   --color-status-published: #16a34a;
   --color-status-reserved: #d97706;
   --color-status-sold: #d93025;

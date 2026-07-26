@@ -30,7 +30,7 @@ export function ShowcaseSection({
     <section
       aria-labelledby="showcase-heading"
       className={cn(
-        "w-full pt-14 lg:pt-20",
+        "w-full mb-24 pt-14 lg:pt-20",
         withListingCta ? "pb-4" : "pb-14 lg:pb-20",
       )}
     >

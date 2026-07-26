@@ -10,6 +10,13 @@ import {
 import { getApiUrl, API_ENDPOINTS } from "@/lib/api-client";
 import { publicErrorLabel } from "@/lib/property-errors";
 
+export interface PropertyQuery {
+  readonly page?: number;
+  readonly limit?: number;
+  readonly marketingType?: "kauf" | "miete";
+  readonly propertyType?: string;
+}
+
 async function parsePublicErrorBody(
   response: Response,
 ): Promise<PublicErrorBody> {
@@ -61,11 +68,21 @@ async function fetchWithErrorHandling(url: string): Promise<unknown> {
   }
 }
 
-export async function getProperties(
-  page: number = 1,
-  limit: number = 12,
-): Promise<PropertyListResponse> {
-  const url = `${getApiUrl(API_ENDPOINTS.PROPERTIES)}?page=${page}&limit=${limit}`;
+export async function getProperties({
+  page = 1,
+  limit = 12,
+  marketingType,
+  propertyType,
+}: PropertyQuery = {}): Promise<PropertyListResponse> {
+  const searchParams = new URLSearchParams({
+    page: String(page),
+    limit: String(limit),
+  });
+
+  if (marketingType) searchParams.set("marketingType", marketingType);
+  if (propertyType) searchParams.set("propertyType", propertyType);
+
+  const url = `${getApiUrl(API_ENDPOINTS.PROPERTIES)}?${searchParams.toString()}`;
   const data = await fetchWithErrorHandling(url);
   return validatePropertyListResponse(data);
 }

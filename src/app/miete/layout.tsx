@@ -1,12 +1,12 @@
-import { ReactNode } from "react";
-import BackNav from "@/components/layout/back-nav/BackNav";
-import PageContainer from "@/components/layout/page-container/PageContainer";
+import type { ReactNode } from "react";
+import PageLayout from "@/components/layout/page-layout/PageLayout";
 
 export default function MieteLayout({ children }: { children: ReactNode }) {
   return (
-    <PageContainer className="py-12">
-      <BackNav basePath="/miete" backLabel="Zurück zu Mietimmobilien" />
+    <PageLayout
+      backNav={{ basePath: "/miete", backLabel: "Zurück zu Mietimmobilien" }}
+    >
       {children}
-    </PageContainer>
+    </PageLayout>
   );
 }
