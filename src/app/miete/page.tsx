@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import Title from "@/components/ui/title/Title";
-import PropertyTypeGrid from "@/components/properties/PropertyTypeGrid";
-import { getPropertyTypes } from "@/types/property-types";
+import PropertyCategoryLandingPage from "@/components/properties/PropertyCategoryLandingPage";
 import {
   defaultOpenGraphMetadata,
   defaultTwitterMetadata,
@@ -30,34 +27,10 @@ export const metadata: Metadata = {
 
 export default function MietePage() {
   return (
-    <>
-      <div className="mb-12">
-        <Title variant="h1" align="center" size="xl" className="mb-4">
-          Immobilien mieten
-        </Title>
-        <p className="text-center text-card-text-l dark:text-card-text-d">
-          Finden Sie Ihre Traumimmobilie zur Miete
-        </p>
-      </div>
-
-      <PropertyTypeGrid
-        types={getPropertyTypes("miete")}
-        basePath="miete"
-        title="Nach Immobilientyp filtern"
-      />
-
-      <div className="p-8 bg-bgSecondary-l dark:bg-bgSecondary-d border border-border-l dark:border-border-d rounded">
-        <p className="text-center text-card-text-l dark:text-card-text-d">
-          Kategorisierte Immobiliensuche ist derzeit in Vorbereitung.
-        </p>
-        <p className="text-center text-card-text-l dark:text-card-text-d text-sm mt-2">
-          Alle verfügbaren Immobilien zur Miete finden Sie in der{" "}
-          <Link href="/objekt" className="text-primary hover:underline">
-            Gesamtübersicht
-          </Link>
-          .
-        </p>
-      </div>
-    </>
+    <PropertyCategoryLandingPage
+      marketingType="miete"
+      heading="Immobilien mieten"
+      subtitle="Finden Sie Ihre Traumimmobilie zur Miete"
+    />
   );
 }

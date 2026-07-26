@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ContactButton from "@/components/ui/contact-button/ContactButton";
-import ServiceCard from "@/components/ui/service-card/ServiceCard";
+import InfoCard from "@/components/ui/info-card/InfoCard";
 import AdvantagesSection from "@/components/ui/advantages-section/AdvantagesSection";
 import {
   defaultOpenGraphMetadata,
@@ -62,19 +62,19 @@ export default function ImmobilienbewertungPage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            <ServiceCard
+            <InfoCard
               title="Marktorientierte Preisfindung"
               description="Lage, Zustand, Größe, Ausstattung und vieles mehr – wir analysieren all diese Aspekte und vergleichen sie mit aktuellen Marktdaten, um den optimalen Preis zu ermitteln."
             />
-            <ServiceCard
+            <InfoCard
               title="Vermeidung von Fehleinschätzungen"
               description="Eine zu hohe oder zu niedrige Preisvorstellung kann zu Verzögerungen oder Verlusten führen. Mit unserer Expertise stellen wir sicher, dass Ihre Immobilie weder unter Wert noch überteuert angeboten wird."
             />
-            <ServiceCard
+            <InfoCard
               title="Fundierte Entscheidungsgrundlage"
               description="Ob Verkauf, Vermietung oder Finanzierung – eine präzise Bewertung gibt Ihnen die Sicherheit, die richtigen Entscheidungen zu treffen."
             />
-            <ServiceCard
+            <InfoCard
               title="Maximierung des Verkaufserlöses"
               description="Eine realistische Bewertung zieht die richtigen Käufer an und ermöglicht schnellere Verkaufsabschlüsse zum bestmöglichen Preis."
             />

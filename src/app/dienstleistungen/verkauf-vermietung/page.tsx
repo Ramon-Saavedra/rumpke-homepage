@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ContactButton from "@/components/ui/contact-button/ContactButton";
-import ServiceCard from "@/components/ui/service-card/ServiceCard";
+import InfoCard from "@/components/ui/info-card/InfoCard";
 import AdvantagesSection from "@/components/ui/advantages-section/AdvantagesSection";
 import {
   defaultOpenGraphMetadata,
@@ -60,19 +60,19 @@ export default function VerkaufVermietungPage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            <ServiceCard
+            <InfoCard
               title="Professionelle Immobilienbewertung"
               description="Wir ermitteln den aktuellen Marktwert Ihrer Immobilie unter Berücksichtigung aller relevanten Faktoren. Dies bildet die Grundlage für eine erfolgreiche Verkaufsstrategie."
             />
-            <ServiceCard
+            <InfoCard
               title="Attraktive Vermarktung"
               description="Wir setzen Ihre Immobilie gekonnt in Szene – sei es durch hochwertige Exposés, ansprechende Fotografien oder virtuelle Rundgänge. Unser Ziel ist es, das Interesse potenzieller Käufer zu wecken und eine schnelle Vermarktung zu ermöglichen."
             />
-            <ServiceCard
+            <InfoCard
               title="Breite Käuferansprache"
               description="Dank unserer umfangreichen Kundenkartei und unserer Online-Präsenz erreichen wir eine große Anzahl von Interessenten. So finden wir schnell den richtigen Käufer für Ihre Immobilie."
             />
-            <ServiceCard
+            <InfoCard
               title="Begleitung bis zum Abschluss"
               description="Wir stehen Ihnen während des gesamten Verkaufsprozesses zur Seite – von der ersten Besichtigung bis zur finalen Vertragsunterzeichnung. Dabei übernehmen wir die Verhandlungen und sorgen für eine reibungslose Abwicklung."
             />
@@ -92,19 +92,19 @@ export default function VerkaufVermietungPage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            <ServiceCard
+            <InfoCard
               title="Marktgerechte Mietpreisfindung"
               description="Wir analysieren den Markt und ermitteln den optimalen Mietpreis für Ihre Immobilie. So stellen wir sicher, dass Sie einen fairen Ertrag erzielen."
             />
-            <ServiceCard
+            <InfoCard
               title="Gezielte Mieterakquise"
               description="Wir vermarkten Ihre Immobilie zielgerichtet und sprechen potenzielle Mieter über unsere vielfältigen Kanäle an. Dabei legen wir besonderen Wert auf eine sorgfältige Auswahl, um den passenden Mieter für Ihr Objekt zu finden."
             />
-            <ServiceCard
+            <InfoCard
               title="Rechtssichere Mietverträge"
               description="Wir kümmern uns um die Erstellung und Prüfung aller relevanten Vertragsdokumente. So können Sie sicher sein, dass alle rechtlichen Anforderungen erfüllt sind."
             />
-            <ServiceCard
+            <InfoCard
               title="Umfassender Service"
               description="Bei Rumpke Immobilien profitieren Sie nicht nur von einer professionellen Vermietung, sondern auch von einer umfassenden Übergabe und Abnahme."
             />

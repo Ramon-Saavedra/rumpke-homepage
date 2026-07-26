@@ -9,7 +9,7 @@ async function ShowcaseData() {
   let hasError = false;
 
   try {
-    const result = await getProperties(1, 12);
+    const result = await getProperties({ page: 1, limit: 12 });
     properties = result.data;
   } catch (err) {
     if (process.env.NODE_ENV === "development") {

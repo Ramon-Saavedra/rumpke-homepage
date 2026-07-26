@@ -210,6 +210,37 @@ function categoryFacts(
   return usable === null ? [] : [usable];
 }
 
+import type { PropertyCardDto } from "@/types/property-api";
+import { resolveDisplayPrice } from "./property-formatters";
+
+export interface PropertyCardData {
+  readonly title: string;
+  readonly location: string | null;
+  readonly price: string | null;
+  readonly isRent: boolean;
+  readonly facts: readonly PropertyFact[];
+  readonly detailUrl: string;
+  readonly imageAlt: string;
+}
+
+export function resolvePropertyCardData(
+  property: PropertyCardDto,
+): PropertyCardData {
+  const title = property.title ?? `Immobilie ${property.id}`;
+  const location = property.city;
+  const price = resolveDisplayPrice(
+    property.marketingType,
+    property.salePrice,
+    property.coldRent,
+  );
+  const isRent = property.marketingType === "miete";
+  const facts = buildPropertyFacts(property);
+  const detailUrl = `/objekt/${encodeURIComponent(property.id)}`;
+  const imageAlt = [title, location].filter(Boolean).join(", ");
+
+  return { title, location, price, isRent, facts, detailUrl, imageAlt };
+}
+
 export function buildPropertyFacts(
   source: PropertyFactSource,
 ): readonly PropertyFact[] {

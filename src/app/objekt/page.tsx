@@ -4,6 +4,7 @@ import Title from "@/components/ui/title/Title";
 import PropertiesGrid from "@/components/properties/PropertiesGrid";
 import PropertyPagination from "@/components/properties/PropertyPagination";
 import PageContainer from "@/components/layout/page-container/PageContainer";
+import ContentPanel from "@/components/ui/content-panel/ContentPanel";
 import type { Metadata } from "next";
 import {
   defaultOpenGraphMetadata,
@@ -40,7 +41,7 @@ type FetchResult =
 
 async function fetchPageData(page: number): Promise<FetchResult> {
   try {
-    const result = await getProperties(page, 12);
+    const result = await getProperties({ page, limit: 12 });
     return { ok: true, data: result.data, pagination: result.pagination };
   } catch {
     return { ok: false };
@@ -65,12 +66,12 @@ export default async function ObjektListPage({
             Immobilien
           </Title>
         </div>
-        <div className="p-8 bg-bgSecondary-l dark:bg-bgSecondary-d border border-border-l dark:border-border-d rounded">
+        <ContentPanel className="p-8 rounded">
           <p className="text-center text-card-text-l dark:text-card-text-d">
             Der Immobilienservice ist derzeit nicht verfügbar. Bitte versuchen
             Sie es später erneut.
           </p>
-        </div>
+        </ContentPanel>
       </PageContainer>
     );
   }

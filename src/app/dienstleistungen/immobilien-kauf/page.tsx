@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ContactButton from "@/components/ui/contact-button/ContactButton";
-import ServiceCard from "@/components/ui/service-card/ServiceCard";
+import InfoCard from "@/components/ui/info-card/InfoCard";
 import AdvantagesSection from "@/components/ui/advantages-section/AdvantagesSection";
 import {
   defaultOpenGraphMetadata,
@@ -59,27 +59,27 @@ export default function ImmobilienKaufPage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            <ServiceCard
+            <InfoCard
               title="Umfassende Beratung"
               description="Wir nehmen uns Zeit, Ihre Wünsche und Anforderungen genau zu verstehen. Ob Wohnung, Haus oder Gewerbeimmobilien – wir finden die passende Immobilie für Sie."
             />
-            <ServiceCard
+            <InfoCard
               title="Große Auswahl"
               description="Dank unseres breiten Portfolios und unserer umfangreichen Marktkenntnisse haben wir Zugang zu einer Vielzahl von Immobilien. Auch Off-Market-Objekte gehören zu unserem Angebot."
             />
-            <ServiceCard
+            <InfoCard
               title="Besichtigungstermine"
               description="Wir organisieren für Sie individuelle Besichtigungstermine und begleiten Sie vor Ort. Dabei beantworten wir alle Ihre Fragen rund um die Immobilie."
             />
-            <ServiceCard
+            <InfoCard
               title="Finanzierungsberatung"
               description="Auf Wunsch vermitteln wir Ihnen Kontakte zu kompetenten Finanzierungspartnern, damit Sie die beste Lösung für Ihre persönliche Situation finden."
             />
-            <ServiceCard
+            <InfoCard
               title="Verhandlungsführung"
               description="Wir verhandeln in Ihrem Namen mit dem Verkäufer und setzen uns für faire Konditionen ein, damit Sie den bestmöglichen Preis erzielen."
             />
-            <ServiceCard
+            <InfoCard
               title="Kaufabwicklung"
               description="Von der Vertragsprüfung bis zur Schlüsselübergabe stehen wir Ihnen zur Seite und stellen sicher, dass alles reibungslos abläuft."
             />

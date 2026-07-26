@@ -114,4 +114,19 @@ describe("PropertyPagination", () => {
       "Paginierung",
     );
   });
+
+  it("keeps category filters in page links", () => {
+    render(
+      <PropertyPagination
+        pagination={makePagination({ page: 2 })}
+        basePath="/miete/wohnungen"
+        query={{ marketingType: "miete", propertyType: "wohnung" }}
+      />,
+    );
+
+    expect(screen.getByText("1")).toHaveAttribute(
+      "href",
+      "/miete/wohnungen?marketingType=miete&propertyType=wohnung&page=1",
+    );
+  });
 });

@@ -3,39 +3,54 @@ import "@testing-library/jest-dom";
 import WhatMattersNowSection from "./WhatMattersNowSection";
 
 describe("WhatMattersNowSection", () => {
-  it("renders the eyebrow and both headline lines", () => {
+  it("renders the eyebrow and heading", () => {
     render(<WhatMattersNowSection />);
 
     expect(screen.getByText("Persönliche Begleitung")).toBeInTheDocument();
     expect(
-      screen.getByText("Sie müssen den nächsten Schritt"),
+      screen.getByRole("heading", { name: "Was führt Sie zu uns?" }),
     ).toBeInTheDocument();
-    expect(screen.getByText("nicht allein gehen.")).toBeInTheDocument();
   });
 
-  it("renders the intro copy", () => {
+  it("renders the introduction text", () => {
     render(<WhatMattersNowSection />);
 
     expect(
-      screen.getByText(/Bevor es um Zahlen, Termine oder Entscheidungen geht/i),
+      screen.getByText(/Jeder Weg beginnt mit einem Gespräch/i),
     ).toBeInTheDocument();
   });
 
-  it("renders the three guidance steps in order", () => {
+  it("renders all four visitor scenarios", () => {
     render(<WhatMattersNowSection />);
 
-    const steps = ["Verstehen", "Einordnen", "Begleiten"] as const;
-
-    steps.forEach((step) => {
-      expect(
-        screen.getByRole("heading", { name: step, level: 3 }),
-      ).toBeInTheDocument();
-    });
-
-    expect(screen.getAllByRole("listitem")).toHaveLength(steps.length);
+    expect(
+      screen.getByText("Ich möchte meine Immobilie verkaufen."),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("Ich suche ein neues Zuhause."),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("Ich habe eine Immobilie geerbt."),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("Ich möchte den aktuellen Marktwert erfahren."),
+    ).toBeInTheDocument();
   });
 
-  it("links the call to action to the contact page", () => {
+  it("links scenarios to the correct pages", () => {
+    render(<WhatMattersNowSection />);
+
+    expect(
+      screen.getByRole("link", {
+        name: /Ich möchte meine Immobilie verkaufen/i,
+      }),
+    ).toHaveAttribute("href", "/dienstleistungen/verkauf-vermietung");
+    expect(
+      screen.getByRole("link", { name: /Ich suche ein neues Zuhause/i }),
+    ).toHaveAttribute("href", "/kauf");
+  });
+
+  it("links the CTA to the contact page", () => {
     render(<WhatMattersNowSection />);
 
     expect(
@@ -43,26 +58,11 @@ describe("WhatMattersNowSection", () => {
     ).toHaveAttribute("href", "/kontakt");
   });
 
-  it("renders the portrait with an accessible name and caption", () => {
+  it("has an accessible navigation label for the scenarios list", () => {
     render(<WhatMattersNowSection />);
 
     expect(
-      screen.getByAltText(
-        "Ann-Christin Rumpke im persönlichen Beratungsgespräch",
-      ),
+      screen.getByRole("navigation", { name: "Ihre Situation" }),
     ).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        "Ann-Christin Rumpke — Ihre persönliche Ansprechpartnerin",
-      ),
-    ).toBeInTheDocument();
-  });
-
-  it("shows portrait skeleton and aria-busy during loading", () => {
-    const { container } = render(<WhatMattersNowSection />);
-
-    const portrait = container.querySelector('[aria-busy="true"]');
-    expect(portrait).toBeInTheDocument();
-    expect(portrait?.querySelector('[aria-hidden="true"]')).toBeInTheDocument();
   });
 });

@@ -6,6 +6,7 @@ import {
   IoLocationOutline,
 } from "react-icons/io5";
 import ContactForm from "@/components/features/contact-form/ContactForm";
+import ContentPanel from "@/components/ui/content-panel/ContentPanel";
 import PageContainer from "@/components/layout/page-container/PageContainer";
 
 export const metadata: Metadata = {
@@ -19,9 +20,10 @@ export default function KontaktPage() {
     <PageContainer as="main" className="py-6">
       <BackHomeButton />
 
-      <section
+      <ContentPanel
+        as="section"
+        className="mt-4 rounded-sm px-10 py-14"
         aria-labelledby="contact-heading"
-        className="mt-4 border border-border-l dark:border-border-d overflow-hidden rounded-sm bg-bgSecondary-l dark:bg-bgSecondary-d px-10 py-14"
       >
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
           <div>
@@ -84,14 +86,15 @@ export default function KontaktPage() {
             </div>
           </address>
         </div>
-      </section>
+      </ContentPanel>
 
-      <section
+      <ContentPanel
+        as="section"
+        className="mt-4 mb-8 rounded-sm"
         aria-labelledby="form-heading"
-        className="mt-4 mb-8 border border-border-l dark:border-border-d overflow-hidden rounded-sm bg-bgSecondary-l dark:bg-bgSecondary-d"
       >
         <ContactForm formHeadingId="form-heading" />
-      </section>
+      </ContentPanel>
     </PageContainer>
   );
 }
