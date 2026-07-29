@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 
 export default function UeberUnsPage() {
   return (
-    <div className="max-w-5xl mx-auto bg-bgSecondary-l dark:bg-bgSecondary-d px-4 mb-12">
+    <div className="max-w-5xl mx-auto bg-bgSecondary-l dark:bg-bgSecondary-d px-4 sm:px-6 py-8 sm:py-10 mb-12 rounded">
       <div className="mb-12">
         <Title variant="h1" align="center" size="xl">
           Über mich
