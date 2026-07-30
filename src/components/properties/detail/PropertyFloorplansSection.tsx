@@ -21,7 +21,6 @@ export default function PropertyFloorplansSection({
                 images={[floorplan]}
                 alt={floorplan.title ?? `Grundriss ${index + 1}`}
                 className="h-full w-full bg-bgSecondary-l dark:bg-bgSecondary-d"
-                fit="contain"
                 sizes="(max-width: 768px) 100vw, 380px"
               />
             </div>
