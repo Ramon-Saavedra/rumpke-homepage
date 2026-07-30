@@ -18,22 +18,24 @@ import type {
 } from "@/types/contact";
 import { ContactSubmitError } from "@/types/contact";
 
-interface NestValidationBody {
-  statusCode: number;
-  message: string | string[];
-  fieldErrors?: Record<string, string[]>;
-  error?: string;
-}
-
 function parseNestFieldErrors(
-  body: NestValidationBody,
+  body: unknown,
 ): ContactApiFieldErrors | undefined {
-  if (body.fieldErrors && typeof body.fieldErrors === "object") {
-    return body.fieldErrors;
+  if (typeof body !== "object" || body === null) return undefined;
+  const obj = body as Record<string, unknown>;
+
+  if (
+    typeof obj.fieldErrors === "object" &&
+    obj.fieldErrors !== null &&
+    !Array.isArray(obj.fieldErrors)
+  ) {
+    return obj.fieldErrors as ContactApiFieldErrors;
   }
-  if (Array.isArray(body.message) && body.message.length > 0) {
+
+  if (Array.isArray(obj.message) && obj.message.length > 0) {
     const errors: ContactApiFieldErrors = {};
-    for (const msg of body.message) {
+    for (const msg of obj.message) {
+      if (typeof msg !== "string") continue;
       const spaceIdx = msg.indexOf(" ");
       if (spaceIdx > 0) {
         const field = msg.slice(0, spaceIdx);
@@ -43,20 +45,63 @@ function parseNestFieldErrors(
     }
     return Object.keys(errors).length > 0 ? errors : undefined;
   }
+
   return undefined;
+}
+
+const FIELD_ERROR_MAP: Record<string, string> = {
+  name: "firstName",
+  consent: "consentAccepted",
+  source: "sourcePage",
+};
+
+function mapFieldErrors(errors: ContactApiFieldErrors): ContactApiFieldErrors {
+  const mapped: ContactApiFieldErrors = {};
+  for (const [field, messages] of Object.entries(errors)) {
+    const mappedField = FIELD_ERROR_MAP[field] ?? field;
+    if (!mapped[mappedField]) mapped[mappedField] = [];
+    mapped[mappedField].push(...messages);
+  }
+  return mapped;
+}
+
+type LeadType = "CONTACT" | "VALUATION" | "VISIT_REQUEST";
+
+interface CreateLeadPayload {
+  type: LeadType;
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+  consent: boolean;
+  source?: string;
+  property_id?: string;
 }
 
 export async function submitContactForm(
   data: ContactFormPayload,
+  propertyId?: string,
 ): Promise<void> {
   const url = getApiUrl(LEADS_ENDPOINTS.CONTACT);
+
+  const backendPayload: CreateLeadPayload = {
+    type: "CONTACT",
+    name: `${data.firstName} ${data.lastName}`.trim(),
+    email: data.email,
+    phone: data.phone ?? "",
+    message: data.message,
+    consent: data.consentAccepted,
+    source: data.sourcePage,
+    ...(propertyId && { property_id: propertyId }),
+  };
+
   let res: Response;
 
   try {
     res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify(backendPayload),
     });
   } catch {
     throw new ContactSubmitError(
@@ -80,7 +125,10 @@ export async function submitContactForm(
   }
 
   if (res.status === 400) {
-    const fieldErrors = parseNestFieldErrors(body as NestValidationBody);
+    const rawFieldErrors = parseNestFieldErrors(body);
+    const fieldErrors = rawFieldErrors
+      ? mapFieldErrors(rawFieldErrors)
+      : undefined;
     throw new ContactSubmitError(
       400,
       fieldErrors,
