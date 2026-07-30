@@ -11,6 +11,7 @@ const validPayload: ContactFormPayload = {
   firstName: "Anna",
   lastName: "Müller",
   email: "anna@example.de",
+  phone: "+49123456789",
   message: "Das ist eine Testnachricht für das Formular.",
   consentAccepted: true,
 };
@@ -19,7 +20,7 @@ const expectedBackendPayload = {
   type: "CONTACT" as const,
   name: "Anna Müller",
   email: "anna@example.de",
-  phone: "",
+  phone: "+49123456789",
   message: "Das ist eine Testnachricht für das Formular.",
   consent: true,
 };
@@ -57,7 +58,7 @@ describe("getApiUrl", () => {
     );
   });
 
-  it("constructs URL with property details endpoint", () => {
+  it("constructs URL with property collection endpoint", () => {
     process.env.NEXT_PUBLIC_API_URL = "https://api.test.com/api";
     expect(getApiUrl(API_ENDPOINTS.PROPERTIES)).toBe(
       "https://api.test.com/api/v1/properties",

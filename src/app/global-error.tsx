@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import "./globals.css";
 
 export default function GlobalError({
@@ -10,12 +9,6 @@ export default function GlobalError({
   error: Error & { digest?: string };
   unstable_retry: () => void;
 }) {
-  useEffect(() => {
-    if (process.env.NODE_ENV === "development") {
-      console.error(error);
-    }
-  }, [error]);
-
   return (
     <html lang="de">
       <body>

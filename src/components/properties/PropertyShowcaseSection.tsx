@@ -11,10 +11,7 @@ async function ShowcaseData() {
   try {
     const result = await getProperties({ page: 1, limit: 12 });
     properties = result.data;
-  } catch (err) {
-    if (process.env.NODE_ENV === "development") {
-      console.error("[PropertyShowcase] Failed to fetch properties:", err);
-    }
+  } catch {
     hasError = true;
   }
 

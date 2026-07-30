@@ -75,6 +75,9 @@ function fillRequiredFields() {
   fireEvent.change(screen.getByLabelText(/E-Mail-Adresse/), {
     target: { value: "anna@example.com" },
   });
+  fireEvent.change(screen.getByLabelText(/Telefonnummer/), {
+    target: { value: "+49123456789" },
+  });
   fireEvent.click(screen.getByLabelText(/Datenschutzerklärung/));
 }
 

@@ -2,7 +2,7 @@ export interface ContactFormPayload {
   firstName: string;
   lastName: string;
   email: string;
-  phone?: string;
+  phone: string;
   message: string;
   consentAccepted: boolean;
   company?: string;

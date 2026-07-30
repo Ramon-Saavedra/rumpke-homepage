@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import Link from "next/link";
 
 export default function Error({
@@ -10,12 +9,6 @@ export default function Error({
   error: Error & { digest?: string };
   unstable_retry: () => void;
 }) {
-  useEffect(() => {
-    if (process.env.NODE_ENV === "development") {
-      console.error(error);
-    }
-  }, [error]);
-
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] gap-6 text-center px-4">
       <h2 className="text-3xl font-bold text-text-l dark:text-text-d">

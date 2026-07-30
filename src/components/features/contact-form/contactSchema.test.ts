@@ -4,6 +4,7 @@ const validData = {
   firstName: "Anna",
   lastName: "Müller",
   email: "anna@example.de",
+  phone: "+49123456789",
   message: "Das ist eine gültige Testnachricht.",
   consentAccepted: true,
 };
@@ -72,17 +73,17 @@ describe("contactSchema", () => {
   });
 
   describe("phone", () => {
-    it("accepts undefined phone", () => {
+    it("accepts a valid phone number", () => {
       const result = contactSchema.safeParse({
         ...validData,
-        phone: undefined,
+        phone: "+49123456789",
       });
       expect(result.success).toBe(true);
     });
 
-    it("accepts empty phone string", () => {
+    it("rejects empty phone string", () => {
       const result = contactSchema.safeParse({ ...validData, phone: "" });
-      expect(result.success).toBe(true);
+      expect(result.success).toBe(false);
     });
 
     it("rejects phone longer than 20 characters", () => {
