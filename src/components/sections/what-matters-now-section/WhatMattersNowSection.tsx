@@ -47,7 +47,7 @@ export default function WhatMattersNowSection() {
 
       <h2
         id="what-matters-now-title"
-        className={`mt-4 font-serif text-[clamp(1.625rem,2.8vw,2.25rem)] font-semibold leading-[1.25] tracking-tight text-foreground sm:mt-5 ${fadeUp(visible)}`}
+        className={`mt-4 font-serif text-[clamp(1.625rem,2.8vw,2.25rem)] font-semibold leading-tight tracking-tight text-foreground sm:mt-5 ${fadeUp(visible)}`}
         style={{ transitionDelay: staggerDelay(visible, 120) }}
       >
         Was führt Sie zu uns?
