@@ -4,7 +4,8 @@ import Title from "@/components/ui/title/Title";
 import PropertiesGrid from "@/components/properties/PropertiesGrid";
 import PropertyPagination from "@/components/properties/PropertyPagination";
 import PageContainer from "@/components/layout/page-container/PageContainer";
-import ContentPanel from "@/components/ui/content-panel/ContentPanel";
+import PropertyEmptyState from "@/components/properties/PropertyEmptyState";
+import { SERVICE_ERROR_COPY } from "@/lib/property-empty-state";
 import type { Metadata } from "next";
 import {
   defaultOpenGraphMetadata,
@@ -66,12 +67,7 @@ export default async function ObjektListPage({
             Immobilien
           </Title>
         </div>
-        <ContentPanel className="p-8 rounded">
-          <p className="text-center text-card-text-l dark:text-card-text-d">
-            Der Immobilienservice ist derzeit nicht verfügbar. Bitte versuchen
-            Sie es später erneut.
-          </p>
-        </ContentPanel>
+        <PropertyEmptyState {...SERVICE_ERROR_COPY} />
       </PageContainer>
     );
   }
@@ -90,11 +86,11 @@ export default async function ObjektListPage({
       </div>
 
       {data.length === 0 ? (
-        <div className="text-center py-12">
-          <p className="text-card-text-l dark:text-card-text-d">
-            Keine Immobilien gefunden.
-          </p>
-        </div>
+        <PropertyEmptyState
+          badgeText="Aktuell in Vorbereitung"
+          headline="Zurzeit sind keine Immobilien veröffentlicht"
+          body="Unser Angebot wird regelmäßig aktualisiert. Gerne informieren wir Sie persönlich über passende Immobilien oder unterstützen Sie bei Ihrer individuellen Suche."
+        />
       ) : (
         <>
           <PropertiesGrid properties={data} />

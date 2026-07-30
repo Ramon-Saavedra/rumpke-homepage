@@ -10,13 +10,16 @@ export type PropertyType = (typeof VALID_TYPES)[number];
 
 export type MarketingType = "kauf" | "miete";
 
-export const PROPERTY_TYPE_FILTERS: Record<PropertyType, string> = {
+export const PROPERTY_TYPE_FILTERS = {
   haeuser: "haus",
   wohnungen: "wohnung",
   gewerbeimmobilien: "gewerbe",
   grundstueck: "grundstueck",
   sonstige: "sonstige",
-};
+} as const satisfies Record<PropertyType, string>;
+
+export type PropertyTypeFilter =
+  (typeof PROPERTY_TYPE_FILTERS)[PropertyType];
 
 export const TYPE_LABELS: Record<PropertyType, string> = {
   haeuser: "Häuser",
@@ -24,6 +27,14 @@ export const TYPE_LABELS: Record<PropertyType, string> = {
   gewerbeimmobilien: "Gewerbeimmobilien",
   grundstueck: "Grundstück",
   sonstige: "Sonstige",
+};
+
+export const TYPE_LABELS_PLURAL: Record<PropertyType, string> = {
+  haeuser: "Häuser",
+  wohnungen: "Wohnungen",
+  gewerbeimmobilien: "Gewerbeimmobilien",
+  grundstueck: "Grundstücke",
+  sonstige: "sonstigen Objekte",
 };
 
 export const TYPE_DESCRIPTIONS: Record<PropertyType, string> = {

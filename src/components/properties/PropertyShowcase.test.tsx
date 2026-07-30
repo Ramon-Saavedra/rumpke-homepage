@@ -90,12 +90,12 @@ describe("PropertyShowcase", () => {
   it("shows the editorial notice when no property is available", () => {
     render(<PropertyShowcase properties={[]} />);
     expect(
-      screen.getByText("Neue Objekte in Vorbereitung"),
+      screen.getByText("Zurzeit sind keine Immobilien veröffentlicht"),
     ).toBeInTheDocument();
     expect(listingCta()).not.toBeInTheDocument();
     expect(
-      screen.getByRole("link", { name: "Suchauftrag anlegen" }),
-    ).toHaveAttribute("href", "/kontakt");
+      screen.getByRole("link", { name: "Suchauftrag anfragen" }),
+    ).toHaveAttribute("href", "/dienstleistungen/immobilien-kauf");
   });
 
   it("shows the service-unavailable message when there is an error", () => {
