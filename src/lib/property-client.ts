@@ -9,12 +9,13 @@ import {
 } from "@/types/property-api";
 import { getApiUrl, API_ENDPOINTS } from "@/lib/api-client";
 import { publicErrorLabel } from "@/lib/property-errors";
+import type { PropertyTypeFilter } from "@/types/property-types";
 
 export interface PropertyQuery {
   readonly page?: number;
   readonly limit?: number;
   readonly marketingType?: "kauf" | "miete";
-  readonly propertyType?: string;
+  readonly propertyType?: PropertyTypeFilter;
 }
 
 async function parsePublicErrorBody(

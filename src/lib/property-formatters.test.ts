@@ -68,8 +68,8 @@ describe("resolveDisplayPrice", () => {
     expect(result).toContain("250.000");
   });
 
-  it("returns cold rent when sale price is null", () => {
-    const result = resolveDisplayPrice(null, null, 850);
+  it("returns cold rent when marketingType is miete", () => {
+    const result = resolveDisplayPrice("miete", null, 850);
     expect(result).toContain("850");
     expect(result).toContain("/ Monat");
   });

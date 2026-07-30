@@ -40,11 +40,8 @@ export function resolveDisplayPrice(
   if (marketingType === "miete" && coldRent !== null) {
     return formatMonthlyPrice(coldRent);
   }
-  if (salePrice !== null) {
+  if (marketingType === "kauf" && salePrice !== null) {
     return formatPrice(salePrice);
-  }
-  if (coldRent !== null) {
-    return formatMonthlyPrice(coldRent);
   }
   return null;
 }
