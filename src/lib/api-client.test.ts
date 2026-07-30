@@ -58,7 +58,7 @@ describe("getApiUrl", () => {
     );
   });
 
-  it("constructs URL with property details endpoint", () => {
+  it("constructs URL with property collection endpoint", () => {
     process.env.NEXT_PUBLIC_API_URL = "https://api.test.com/api";
     expect(getApiUrl(API_ENDPOINTS.PROPERTIES)).toBe(
       "https://api.test.com/api/v1/properties",

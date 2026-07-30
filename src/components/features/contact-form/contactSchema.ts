@@ -16,8 +16,10 @@ export const contactSchema = z.object({
   email: z.string().email("Bitte geben Sie eine gültige E-Mail-Adresse ein"),
   phone: z
     .string()
-    .min(1, "Bitte geben Sie eine Telefonnummer ein")
-    .max(L.PHONE_MAX, `Maximal ${L.PHONE_MAX} Zeichen erlaubt`),
+    .regex(
+      /^(?=.*\d)\+?[\d\s\-().]{7,20}$/,
+      "Bitte geben Sie eine gültige Telefonnummer ein",
+    ),
   message: z
     .string()
     .min(L.MESSAGE_MIN, `Mindestens ${L.MESSAGE_MIN} Zeichen erforderlich`)
