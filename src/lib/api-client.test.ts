@@ -11,6 +11,7 @@ const validPayload: ContactFormPayload = {
   firstName: "Anna",
   lastName: "Müller",
   email: "anna@example.de",
+  phone: "+49123456789",
   message: "Das ist eine Testnachricht für das Formular.",
   consentAccepted: true,
 };
@@ -19,7 +20,7 @@ const expectedBackendPayload = {
   type: "CONTACT" as const,
   name: "Anna Müller",
   email: "anna@example.de",
-  phone: "",
+  phone: "+49123456789",
   message: "Das ist eine Testnachricht für das Formular.",
   consent: true,
 };

@@ -41,6 +41,9 @@ function fillRequiredFields() {
   fireEvent.change(screen.getByLabelText(/E-Mail/i), {
     target: { value: "anna@example.de" },
   });
+  fireEvent.change(screen.getByLabelText(/Telefonnummer/i), {
+    target: { value: "+49123456789" },
+  });
   fireEvent.change(screen.getByLabelText(/Ihre Nachricht/i), {
     target: { value: "Das ist meine Testnachricht für das Formular." },
   });
@@ -91,6 +94,9 @@ describe("ContactForm", () => {
     });
     fireEvent.change(screen.getByLabelText(/E-Mail/i), {
       target: { value: "anna@example.de" },
+    });
+    fireEvent.change(screen.getByLabelText(/Telefonnummer/i), {
+      target: { value: "+49123456789" },
     });
     fireEvent.change(screen.getByLabelText(/Ihre Nachricht/i), {
       target: { value: "Das ist meine Testnachricht für das Formular." },
