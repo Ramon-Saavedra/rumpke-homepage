@@ -15,6 +15,15 @@ const validPayload: ContactFormPayload = {
   consentAccepted: true,
 };
 
+const expectedBackendPayload = {
+  type: "CONTACT" as const,
+  name: "Anna Müller",
+  email: "anna@example.de",
+  phone: "",
+  message: "Das ist eine Testnachricht für das Formular.",
+  consent: true,
+};
+
 function makeFetchResponse(status: number, body: unknown = {}): Response {
   return {
     ok: status >= 200 && status < 300,
@@ -72,7 +81,7 @@ describe("submitContactForm", () => {
     await expect(submitContactForm(validPayload)).resolves.toBeUndefined();
   });
 
-  it("calls fetch with POST method and JSON body", async () => {
+  it("calls fetch with POST method and transformed JSON body", async () => {
     mockFetch.mockResolvedValueOnce(makeFetchResponse(200));
     await submitContactForm(validPayload);
     expect(mockFetch).toHaveBeenCalledWith(
@@ -80,7 +89,24 @@ describe("submitContactForm", () => {
       expect.objectContaining({
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(validPayload),
+        body: JSON.stringify(expectedBackendPayload),
+      }),
+    );
+  });
+
+  it("includes property_id when propertyId is provided", async () => {
+    mockFetch.mockResolvedValueOnce(makeFetchResponse(200));
+    await submitContactForm(
+      validPayload,
+      "550e8400-e29b-41d4-a716-446655440000",
+    );
+    expect(mockFetch).toHaveBeenCalledWith(
+      expect.any(String),
+      expect.objectContaining({
+        body: JSON.stringify({
+          ...expectedBackendPayload,
+          property_id: "550e8400-e29b-41d4-a716-446655440000",
+        }),
       }),
     );
   });
@@ -120,7 +146,7 @@ describe("submitContactForm", () => {
     mockFetch.mockResolvedValueOnce(
       makeFetchResponse(400, {
         statusCode: 400,
-        message: ["email must be an email", "firstName must not be empty"],
+        message: ["email must be an email", "name must not be empty"],
       }),
     );
     try {
@@ -131,7 +157,7 @@ describe("submitContactForm", () => {
       const fieldErrors = (err as ContactSubmitError).fieldErrors;
       expect(fieldErrors).toBeDefined();
       expect(fieldErrors?.email).toContain("email must be an email");
-      expect(fieldErrors?.firstName).toContain("firstName must not be empty");
+      expect(fieldErrors?.firstName).toContain("name must not be empty");
     }
   });
 
