@@ -8,17 +8,20 @@ import {
   resolvePropertyCardData,
   resolvePropertyCategoryLabel,
 } from "@/lib/property-display";
+import { cn } from "@/lib/utils";
 
 interface PropertyCardProps {
   readonly property: PropertyCardDto;
   readonly preload?: boolean;
+  readonly className?: string;
 }
 
 export default function PropertyCard({
   property,
   preload = false,
+  className,
 }: PropertyCardProps) {
-  const { title, location, price, isRent, facts, detailUrl } =
+  const { title, location, price, isRent, facts, detailUrl, imageAlt } =
     resolvePropertyCardData(property);
   const categoryLabel = resolvePropertyCategoryLabel(
     property.propertyType,
@@ -28,49 +31,53 @@ export default function PropertyCard({
   return (
     <Link
       href={detailUrl}
-      className="group block hover:bg-bgSecondary-l dark:hover:bg-bgSecondary-d transition-colors rounded overflow-hidden"
+      className={cn(
+        "group flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
+        className,
+      )}
     >
-      <article className="group relative flex flex-col dark:border-border-d overflow-hidden shadow-lg">
-        <div className="relative h-64 md:h-48 shrink-0 overflow-hidden">
+      <article className="flex flex-1 flex-col overflow-hidden rounded border border-border-l bg-bgSecondary-l shadow-md group-hover:shadow-xl dark:border-border-d dark:bg-bgSecondary-d dark:group-hover:border-card-text-d/30">
+        <div className="relative aspect-4/3 shrink-0 overflow-hidden">
           <PropertyImage
             images={property.images}
-            alt={property.title ?? property.id}
+            alt={imageAlt}
             className="h-full w-full"
             priority={preload}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
           />
 
           {categoryLabel && (
-            <div className="absolute top-3 left-3 bg-primary text-white px-3 py-1 rounded text-xs font-medium">
+            <span className="absolute top-3 left-3 rounded bg-primary px-3 py-1 text-xs font-medium text-white">
               {categoryLabel}
-            </div>
+            </span>
           )}
         </div>
 
-        <div className="p-3 flex flex-col flex-1 bg-bgSecondary-l dark:bg-bgSecondary-d">
-          <h2 className="text-base font-bold text-text-l dark:text-text-d mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+        <div className="flex flex-1 flex-col p-3.5">
+          <h2 className="mb-2 line-clamp-2 font-serif text-[15px] font-bold leading-snug text-foreground group-hover:text-primary">
             {title}
           </h2>
 
-          <PropertyFacts facts={facts} size="xs" className="mb-2" />
-
           {location && (
-            <div className="flex items-center gap-1.5 text-card-text-l dark:text-card-text-d mb-auto">
+            <div className="mb-1.5 flex items-center gap-1.5 text-card-text-l dark:text-card-text-d">
               <MapPin
-                className="w-3 h-3 shrink-0 opacity-70"
+                className="h-3 w-3 shrink-0 opacity-70"
                 aria-hidden="true"
               />
-              <span className="text-xs line-clamp-1">{location}</span>
+              <span className="line-clamp-1 text-xs">{location}</span>
             </div>
           )}
 
-          <div className="flex items-center justify-between mt-3 pt-3 border-t border-border-l dark:border-border-d">
+          <PropertyFacts facts={facts} size="xs" className="mb-3.5" />
+
+          <div className="mt-auto flex items-center justify-between gap-2 border-t border-border-l pt-3 dark:border-border-d">
             {price && (
-              <div className="text-sm font-bold text-primary">{price}</div>
+              <span className="text-sm font-bold text-primary">{price}</span>
             )}
             {property.marketingType && (
               <PropertyTransactionBadge
                 isRent={isRent}
-                className="px-2 py-1 rounded text-xs"
+                className="rounded px-2.5 py-1 text-[11px]"
               />
             )}
           </div>

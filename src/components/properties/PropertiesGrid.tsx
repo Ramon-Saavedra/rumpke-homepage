@@ -1,45 +1,34 @@
-"use client";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
 import PropertyCard from "./PropertyCard";
 import type { PropertyCardDto } from "@/types/property-api";
-
-import "swiper/css";
-import "swiper/css/navigation";
+import { cn } from "@/lib/utils";
 
 interface PropertiesGridProps {
   readonly properties: readonly PropertyCardDto[];
+  readonly className?: string;
 }
 
-export default function PropertiesGrid({ properties }: PropertiesGridProps) {
+export default function PropertiesGrid({
+  properties,
+  className,
+}: PropertiesGridProps) {
   if (properties.length === 0) return null;
 
   return (
-    <div className="relative border border-border-l dark:border-border-d p-2 rounded">
-      <Swiper
-        modules={[Navigation]}
-        spaceBetween={4}
-        slidesPerView={1}
-        navigation
-        breakpoints={{
-          640: {
-            slidesPerView: 2,
-          },
-          768: {
-            slidesPerView: 3,
-          },
-          1024: {
-            slidesPerView: 4,
-          },
-        }}
-      >
-        {properties.map((property, index) => (
-          <SwiperSlide key={property.id}>
-            <PropertyCard property={property} preload={index === 0} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
+    <ul
+      className={cn(
+        "grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
+        className,
+      )}
+    >
+      {properties.map((property, index) => (
+        <li key={property.id} className="flex">
+          <PropertyCard
+            property={property}
+            preload={index === 0}
+            className="w-full"
+          />
+        </li>
+      ))}
+    </ul>
   );
 }
