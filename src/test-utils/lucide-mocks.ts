@@ -1,10 +1,15 @@
 jest.mock("lucide-react", () => ({
   ArrowRight: () => null,
+  Camera: () => null,
   DoorOpen: () => null,
   LandPlot: () => null,
   Layers: () => null,
+  Mail: () => null,
   MapPin: () => null,
+  RotateCcw: () => null,
   Ruler: () => null,
+  Search: () => null,
+  SearchX: () => null,
   ImageOff: () => null,
   Home: () => null,
 }));

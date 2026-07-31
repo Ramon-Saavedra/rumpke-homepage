@@ -34,7 +34,7 @@ describe("CategoryNav", () => {
     it("renders all navigation items", () => {
       render(<CategoryNav />);
       const navItems = screen.getAllByTestId("nav-item");
-      expect(navItems).toHaveLength(6);
+      expect(navItems).toHaveLength(7);
     });
 
     it("renders navigation items with correct text", () => {
@@ -42,7 +42,8 @@ describe("CategoryNav", () => {
       expect(screen.getByText("Häuser")).toBeInTheDocument();
       expect(screen.getByText("Wohnungen")).toBeInTheDocument();
       expect(screen.getByText("Gewerbeimmobilien")).toBeInTheDocument();
-      expect(screen.getByText("Grundstück")).toBeInTheDocument();
+      expect(screen.getByText("Grundstücke")).toBeInTheDocument();
+      expect(screen.getByText("Sonstige")).toBeInTheDocument();
       expect(screen.getByText("Kontakt")).toBeInTheDocument();
       expect(screen.getByText("Werde Tippgeber")).toBeInTheDocument();
     });
@@ -72,9 +73,9 @@ describe("CategoryNav", () => {
       expect(link).toHaveAttribute("href", "/kategorie/gewerbeimmobilien");
     });
 
-    it("Grundstück has correct href", () => {
+    it("Grundstücke has correct href", () => {
       render(<CategoryNav />);
-      const link = screen.getByText("Grundstück").closest("a");
+      const link = screen.getByText("Grundstücke").closest("a");
       expect(link).toHaveAttribute("href", "/kategorie/grundstueck");
     });
 
@@ -141,7 +142,7 @@ describe("CategoryNav", () => {
       const navItems = screen.getAllByTestId("nav-item");
 
       expect(tooltip).toBeInTheDocument();
-      expect(navItems).toHaveLength(6);
+      expect(navItems).toHaveLength(7);
     });
   });
 });

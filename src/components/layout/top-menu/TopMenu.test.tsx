@@ -30,6 +30,7 @@ describe("TopMenu", () => {
         "Wohnungen",
         "Gewerbeimmobilien",
         "Grundstücke",
+        "Sonstige",
         "Dienstleistungen",
         "Über uns",
         "Werde Tippgeber",

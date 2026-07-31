@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, RotateCcw, Search } from "lucide-react";
+import { Mail, RotateCcw, Search, SearchX } from "lucide-react";
 import {
   PROPERTY_CTA_CLASS,
   PROPERTY_CTA_SECONDARY_CLASS,
@@ -21,6 +21,7 @@ interface PropertyEmptyStateProps {
   readonly primary?: EmptyStateAction;
   readonly secondary?: EmptyStateAction;
   readonly isLoading?: boolean;
+  readonly showIcon?: boolean;
   readonly className?: string;
 }
 
@@ -75,6 +76,7 @@ export default function PropertyEmptyState({
   primary,
   secondary,
   isLoading = false,
+  showIcon = false,
   className,
 }: PropertyEmptyStateProps) {
   if (isLoading) {
@@ -89,6 +91,15 @@ export default function PropertyEmptyState({
       className={cn(CARD_CLASS, CARD_MIN_HEIGHT, className)}
       aria-live="polite"
     >
+      {showIcon && (
+        <span
+          className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary"
+          aria-hidden="true"
+        >
+          <SearchX className="h-6 w-6" />
+        </span>
+      )}
+
       {headline && (
         <h3 className="mb-2.5 max-w-[480px] font-serif text-[21px] font-semibold leading-[1.25] text-foreground sm:text-2xl lg:text-[27px]">
           {headline}

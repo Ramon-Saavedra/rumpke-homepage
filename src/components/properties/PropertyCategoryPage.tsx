@@ -1,5 +1,5 @@
-import Title from "@/components/ui/title/Title";
-import PropertiesGrid from "@/components/properties/PropertiesGrid";
+import PropertyListingHeader from "@/components/properties/PropertyListingHeader";
+import PropertyListingResults from "@/components/properties/PropertyListingResults";
 import PropertyPagination from "@/components/properties/PropertyPagination";
 import PropertyEmptyState from "@/components/properties/PropertyEmptyState";
 import { getProperties } from "@/lib/property-client";
@@ -7,6 +7,7 @@ import {
   categoryEmptyStateCopy,
   SERVICE_ERROR_COPY,
 } from "@/lib/property-empty-state";
+import { formatListingCount, MARKETING_VERB } from "@/lib/property-listing";
 import {
   PROPERTY_TYPE_FILTERS,
   TYPE_LABELS,
@@ -42,50 +43,57 @@ export default async function PropertyCategoryPage({
   propertyType,
   page,
 }: PropertyCategoryPageProps) {
-  const label = TYPE_LABELS[propertyType];
-  const transactionLabel = marketingType === "kauf" ? "zum Kauf" : "zur Miete";
-  const query = {
-    marketingType,
-    propertyType: PROPERTY_TYPE_FILTERS[propertyType],
-  };
+  const title = `${TYPE_LABELS[propertyType]} ${MARKETING_VERB[marketingType]}`;
   const result = await fetchCategoryProperties(
     marketingType,
     propertyType,
     page,
   );
 
-  return (
-    <>
-      <div className="mb-12">
-        <Title variant="h1" align="center" size="xl" className="mb-4">
-          {label} {marketingType === "kauf" ? "kaufen" : "mieten"}
-        </Title>
-        <p className="text-center text-card-text-l dark:text-card-text-d">
-          {`Verfügbare ${label} ${transactionLabel} im Emsland`}
-        </p>
-      </div>
-
-      {!result ? (
+  if (!result) {
+    return (
+      <>
+        <PropertyListingHeader title={title} />
         <PropertyEmptyState
           {...SERVICE_ERROR_COPY}
           marketingType={marketingType}
+          showIcon
         />
-      ) : result.data.length === 0 ? (
-        <PropertyEmptyState
-          {...categoryEmptyStateCopy(propertyType, marketingType)}
-          marketingType={marketingType}
-        />
-      ) : (
-        <>
-          <PropertiesGrid properties={result.data} />
-          <div className="mt-8">
-            <PropertyPagination
-              pagination={result.pagination}
-              basePath={`/${marketingType}/${propertyType}`}
-              query={query}
-            />
-          </div>
-        </>
+      </>
+    );
+  }
+
+  const hasResults = result.pagination.total > 0;
+
+  return (
+    <>
+      <PropertyListingHeader
+        title={title}
+        subtitle={formatListingCount(
+          result.pagination.total,
+          marketingType,
+          propertyType,
+        )}
+      />
+
+      <PropertyListingResults
+        properties={result.data}
+        marketingType={marketingType}
+        total={result.pagination.total}
+        empty={categoryEmptyStateCopy(propertyType, marketingType)}
+      />
+
+      {hasResults && (
+        <div className="mt-10">
+          <PropertyPagination
+            pagination={result.pagination}
+            basePath={`/${marketingType}/${propertyType}`}
+            query={{
+              marketingType,
+              propertyType: PROPERTY_TYPE_FILTERS[propertyType],
+            }}
+          />
+        </div>
       )}
     </>
   );

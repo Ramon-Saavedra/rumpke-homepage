@@ -39,11 +39,8 @@ const Sidebar = () => {
       <div
         data-testid="sidebar-overlay"
         className={`fixed inset-0 z-101 bg-[rgba(28,28,30,0.4)] ${
-          isSidebarOpen ? "visible opacity-100" : "invisible opacity-0"
+          isSidebarOpen ? "visible opacity-100" : "hidden"
         }`}
-        style={{
-          transition: "opacity 300ms ease-in-out, visibility 300ms ease-in-out",
-        }}
         onClick={closeSidebar}
         aria-hidden="true"
       />
@@ -54,7 +51,6 @@ const Sidebar = () => {
         className={`fixed right-0 top-0 z-102 flex h-full w-[62%] max-w-sm flex-col border-l border-border-l bg-bg-l dark:border-border-d dark:bg-bgSecondary-d ${
           isSidebarOpen ? "translate-x-0" : "translate-x-full"
         }`}
-        style={{ transition: "transform 300ms ease-out" }}
         aria-label="Navigationsmenü"
         aria-hidden={!isSidebarOpen}
       >
@@ -76,7 +72,10 @@ const Sidebar = () => {
               key={link.href}
               href={link.href}
               onClick={closeSidebar}
-              className="block border-b border-border-l py-3.5 text-[15px] text-bg-d transition-colors duration-150 hover:text-primary dark:border-border-d dark:text-foreground"
+              {...(link.external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+              className="block border-b border-border-l py-3.5 text-[15px] text-bg-d hover:text-primary dark:border-border-d dark:text-foreground"
             >
               {link.label}
             </Link>
@@ -93,7 +92,7 @@ const Sidebar = () => {
           <Link
             href="/kontakt"
             onClick={closeSidebar}
-            className="block rounded-lg bg-primary px-5 py-3 text-center text-[13px] font-medium tracking-[0.04em] text-white transition-colors duration-150 hover:bg-primary-dark active:translate-y-px"
+            className="block rounded-lg bg-primary px-5 py-3 text-center text-[13px] font-medium tracking-[0.04em] text-white hover:bg-primary-dark active:translate-y-px"
           >
             Kontakt aufnehmen
           </Link>

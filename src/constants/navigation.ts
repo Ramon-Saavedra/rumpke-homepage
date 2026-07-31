@@ -9,6 +9,7 @@ export const MAIN_NAV_LINKS: readonly NavLink[] = [
   { label: "Wohnungen", href: "/kategorie/wohnungen" },
   { label: "Gewerbeimmobilien", href: "/kategorie/gewerbeimmobilien" },
   { label: "Grundstücke", href: "/kategorie/grundstueck" },
+  { label: "Sonstige", href: "/kategorie/sonstige" },
   { label: "Dienstleistungen", href: "/dienstleistungen" },
   { label: "Über uns", href: "/ueber-uns" },
   {
@@ -25,16 +26,23 @@ export const DRAWER_LINKS: readonly NavLink[] = [
   { label: "Häuser", href: "/kategorie/haeuser" },
   { label: "Wohnungen", href: "/kategorie/wohnungen" },
   { label: "Gewerbeimmobilien", href: "/kategorie/gewerbeimmobilien" },
-  { label: "Grundstück", href: "/kategorie/grundstueck" },
-  { label: "Beratung", href: "/dienstleistungen" },
+  { label: "Grundstücke", href: "/kategorie/grundstueck" },
+  { label: "Sonstige", href: "/kategorie/sonstige" },
+  { label: "Dienstleistungen", href: "/dienstleistungen" },
   { label: "Über uns", href: "/ueber-uns" },
+  {
+    label: "Werde Tippgeber",
+    href: "https://www.ichschenkedirwas.de/",
+    external: true,
+  },
 ] as const;
 
 export const CATEGORY_NAV_LINKS: readonly NavLink[] = [
   { label: "Häuser", href: "/kategorie/haeuser" },
   { label: "Wohnungen", href: "/kategorie/wohnungen" },
   { label: "Gewerbeimmobilien", href: "/kategorie/gewerbeimmobilien" },
-  { label: "Grundstück", href: "/kategorie/grundstueck" },
+  { label: "Grundstücke", href: "/kategorie/grundstueck" },
+  { label: "Sonstige", href: "/kategorie/sonstige" },
   { label: "Kontakt", href: "/kontakt" },
   {
     label: "Werde Tippgeber",
