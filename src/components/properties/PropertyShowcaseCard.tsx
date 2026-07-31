@@ -7,7 +7,7 @@ import type { PropertyFactsSize } from "./PropertyFacts";
 import PropertyTransactionBadge from "./PropertyTransactionBadge";
 import { resolvePropertyCardData } from "@/lib/property-display";
 import { cn } from "@/lib/utils";
-import { SKELETON_BLOCK } from "@/lib/skeleton-classes";
+import Skeleton from "@/components/ui/skeleton/Skeleton";
 
 export type PropertyShowcaseVariant = "featured" | "standard" | "compact";
 
@@ -119,7 +119,7 @@ function imageWrapperClass(
 const CARD_BASE =
   "flex flex-1 flex-col overflow-hidden border border-border-l bg-bgSecondary-l dark:border-border-d dark:bg-bgSecondary-d";
 
-function Skeleton({
+function ShowcaseCardSkeleton({
   variant,
   media,
   className,
@@ -139,23 +139,37 @@ function Skeleton({
       aria-hidden="true"
     >
       <div className={CARD_BASE}>
-        <div
-          className={cn(imageWrapperClass(variant, media), SKELETON_BLOCK)}
-        />
-        <div className={cn("flex flex-1 flex-col", config.contentPad)}>
-          <div
-            className={cn("h-4 w-3/4", config.titleMargin, SKELETON_BLOCK)}
+        <div className={imageWrapperClass(variant, media)}>
+          <Skeleton className="h-full w-full" />
+          <Skeleton
+            tone="onMedia"
+            className={cn("absolute h-6 w-20 rounded", config.badgeOffset)}
           />
-          <div className={cn("mb-4 h-3 w-2/5", SKELETON_BLOCK)} />
-          <div
-            className={cn(
-              "mt-auto flex items-center justify-between border-t border-border-l dark:border-border-d",
-              config.footerPad,
-            )}
-          >
-            <div className={cn("h-3.5 w-1/4", SKELETON_BLOCK)} />
-            <div className={cn("h-3 w-1/5", SKELETON_BLOCK)} />
+        </div>
+        <div className={cn("flex flex-1 flex-col", config.contentPad)}>
+          <Skeleton className={cn("h-4 w-[82%]", config.titleMargin)} />
+          <Skeleton className={cn("h-3 w-[54%]", config.factsMargin)} />
+
+          <div className={cn("flex items-center gap-1.5", config.metaClass)}>
+            <Skeleton
+              className={cn("shrink-0 rounded-full", config.metaIconClass)}
+            />
+            <Skeleton className="h-2.5 w-2/5" />
           </div>
+
+          {config.hasFooterRule ? (
+            <div
+              className={cn(
+                "mt-auto flex items-center justify-between border-t border-border-l dark:border-border-d",
+                config.footerPad,
+              )}
+            >
+              <Skeleton className="h-3.5 w-1/4" />
+              <Skeleton className="h-3 w-1/5" />
+            </div>
+          ) : (
+            <Skeleton className="mt-auto h-3.5 w-1/4" />
+          )}
         </div>
       </div>
     </div>
@@ -173,7 +187,13 @@ export default function PropertyShowcaseCard({
   const config = VARIANTS[variant];
 
   if (isLoading || !property) {
-    return <Skeleton variant={variant} media={media} className={className} />;
+    return (
+      <ShowcaseCardSkeleton
+        variant={variant}
+        media={media}
+        className={className}
+      />
+    );
   }
 
   const { title, location, price, isRent, facts, detailUrl, imageAlt } =

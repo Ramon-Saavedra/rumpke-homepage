@@ -5,7 +5,7 @@ import {
   PROPERTY_CTA_SECONDARY_CLASS,
 } from "./property-cta";
 import { cn } from "@/lib/utils";
-import { SKELETON_BLOCK } from "@/lib/skeleton-classes";
+import Skeleton from "@/components/ui/skeleton/Skeleton";
 import type { MarketingType } from "@/types/property-types";
 
 export interface EmptyStateAction {
@@ -56,13 +56,13 @@ function EmptyStateSkeleton({ className }: { readonly className?: string }) {
       className={cn(CARD_CLASS, CARD_MIN_HEIGHT, className)}
       aria-hidden="true"
     >
-      <div className={cn("h-6 w-48 rounded-full", SKELETON_BLOCK)} />
-      <div className={cn("mt-5 h-7 w-4/5 max-w-[480px]", SKELETON_BLOCK)} />
-      <div className={cn("mt-3 h-4 w-full max-w-[440px]", SKELETON_BLOCK)} />
-      <div className={cn("mt-2 h-4 w-3/5 max-w-[440px]", SKELETON_BLOCK)} />
+      <Skeleton className="h-6 w-48 rounded-full" />
+      <Skeleton className="mt-5 h-7 w-4/5 max-w-[480px]" />
+      <Skeleton className="mt-3 h-4 w-full max-w-[440px]" />
+      <Skeleton className="mt-2 h-4 w-3/5 max-w-[440px]" />
       <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-        <div className={cn("h-12 w-52 rounded-full", SKELETON_BLOCK)} />
-        <div className={cn("h-12 w-52 rounded-full", SKELETON_BLOCK)} />
+        <Skeleton className="h-12 w-52 rounded-full" />
+        <Skeleton className="h-12 w-52 rounded-full" />
       </div>
     </div>
   );
