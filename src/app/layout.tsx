@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Roboto, Geist, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import CompanyTitle from "@/components/branding/companyTitle/CompanyTitle";
@@ -7,6 +8,7 @@ import Footer from "@/components/layout/footer/Footer";
 import Sidebar from "@/components/layout/sidebar/Sidebar";
 import PageShell from "@/components/layout/page-shell/PageShell";
 import ScrollToTopButton from "@/components/ui/scroll-to-top/ScrollToTopButton";
+import RouteTransitionOverlay from "@/components/layout/route-transition/RouteTransitionOverlay";
 import { siteMetadata } from "@/lib/site-metadata";
 import { cn } from "@/lib/utils";
 import { Providers } from "./providers";
@@ -65,6 +67,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           </div>
           <CompanyTitle />
           <ScrollToTopButton />
+          <Suspense fallback={null}>
+            <RouteTransitionOverlay />
+          </Suspense>
         </Providers>
       </body>
     </html>

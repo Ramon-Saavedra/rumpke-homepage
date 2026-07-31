@@ -104,6 +104,20 @@
     }
   }
 
+  --animate-house-draw: house-draw 2.4s ease-in-out infinite;
+
+  @keyframes house-draw {
+    0% {
+      stroke-dashoffset: 6400;
+    }
+    55% {
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: -6400;
+    }
+  }
+
   --color-status-published: #16a34a;
   --color-status-reserved: #d97706;
   --color-status-sold: #d93025;
