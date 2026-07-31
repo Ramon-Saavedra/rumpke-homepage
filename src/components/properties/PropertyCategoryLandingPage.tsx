@@ -48,14 +48,15 @@ export default async function PropertyCategoryLandingPage({
       />
 
       {properties === null ? (
-        <PropertyEmptyState {...SERVICE_ERROR_COPY} marketingType={marketingType} />
+        <PropertyEmptyState
+          {...SERVICE_ERROR_COPY}
+          marketingType={marketingType}
+        />
       ) : properties.length === 0 ? (
         <PropertyEmptyState
           marketingType={marketingType}
-          badgeText="Aktuell in Vorbereitung"
           headline={`Zurzeit sind keine Immobilien ${transactionLabel} veröffentlicht`}
           body="Unser Angebot wird regelmäßig aktualisiert. Gerne informieren wir Sie persönlich über passende Immobilien oder unterstützen Sie bei Ihrer individuellen Suche."
-          reset={{ href: "/objekt", label: "Alle Immobilien anzeigen" }}
         />
       ) : (
         <PropertiesGrid properties={properties} />

@@ -94,11 +94,7 @@ export default async function PropertyTypePage({ params }: PageProps) {
         {availability === "error" ? (
           <PropertyEmptyState {...SERVICE_ERROR_COPY} />
         ) : (
-          <PropertyEmptyState
-            {...categoryEmptyStateCopy(type)}
-            badgeText="Aktuell in Vorbereitung"
-            reset={{ href: "/objekt", label: "Alle Immobilien anzeigen" }}
-          />
+          <PropertyEmptyState {...categoryEmptyStateCopy(type)} />
         )}
       </div>
     );

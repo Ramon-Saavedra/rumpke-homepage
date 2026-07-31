@@ -104,20 +104,6 @@
     }
   }
 
-  --animate-status-pulse: status-pulse 2.4s ease-in-out infinite;
-
-  @keyframes status-pulse {
-    0%,
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.4;
-      transform: scale(0.82);
-    }
-  }
-
   --color-status-published: #16a34a;
   --color-status-reserved: #d97706;
   --color-status-sold: #d93025;

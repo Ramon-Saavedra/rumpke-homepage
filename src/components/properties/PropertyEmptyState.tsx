@@ -16,7 +16,6 @@ export interface EmptyStateAction {
 interface PropertyEmptyStateProps {
   readonly headline?: string;
   readonly body?: string;
-  readonly badgeText?: string;
   readonly marketingType?: MarketingType;
   readonly reset?: EmptyStateAction;
   readonly primary?: EmptyStateAction;
@@ -71,7 +70,6 @@ function EmptyStateSkeleton({ className }: { readonly className?: string }) {
 export default function PropertyEmptyState({
   headline,
   body,
-  badgeText,
   marketingType,
   reset,
   primary,
@@ -91,18 +89,6 @@ export default function PropertyEmptyState({
       className={cn(CARD_CLASS, CARD_MIN_HEIGHT, className)}
       aria-live="polite"
     >
-      {badgeText && (
-        <div className="mb-[18px] inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary-surface px-3.5 py-1.5 dark:border-primary/35 dark:bg-primary/15">
-          <span
-            className="inline-block h-1.5 w-1.5 animate-status-pulse rounded-full bg-primary motion-reduce:animate-none"
-            aria-hidden="true"
-          />
-          <span className="text-[11px] font-bold uppercase tracking-[0.06em] text-secondary-dark dark:text-primary">
-            {badgeText}
-          </span>
-        </div>
-      )}
-
       {headline && (
         <h3 className="mb-2.5 max-w-[480px] font-serif text-[21px] font-semibold leading-[1.25] text-foreground sm:text-2xl lg:text-[27px]">
           {headline}
@@ -138,10 +124,7 @@ export default function PropertyEmptyState({
         {resolvedSecondary && (
           <Link
             href={resolvedSecondary.href}
-            className={cn(
-              "w-full sm:w-auto",
-              PROPERTY_CTA_SECONDARY_CLASS,
-            )}
+            className={cn("w-full sm:w-auto", PROPERTY_CTA_SECONDARY_CLASS)}
           >
             <Search className="h-4 w-4" aria-hidden="true" />
             {resolvedSecondary.label}

@@ -48,9 +48,11 @@ describe("PropertyShowcaseEmpty", () => {
       ).toBeInTheDocument();
     });
 
-    it("renders the status badge", () => {
+    it("does not render the status badge", () => {
       render(<PropertyShowcaseEmpty />);
-      expect(screen.getByText("Aktuell in Vorbereitung")).toBeInTheDocument();
+      expect(
+        screen.queryByText("Aktuell in Vorbereitung"),
+      ).not.toBeInTheDocument();
     });
 
     it("renders both CTAs", () => {

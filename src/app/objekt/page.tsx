@@ -87,7 +87,6 @@ export default async function ObjektListPage({
 
       {data.length === 0 ? (
         <PropertyEmptyState
-          badgeText="Aktuell in Vorbereitung"
           headline="Zurzeit sind keine Immobilien veröffentlicht"
           body="Unser Angebot wird regelmäßig aktualisiert. Gerne informieren wir Sie persönlich über passende Immobilien oder unterstützen Sie bei Ihrer individuellen Suche."
         />

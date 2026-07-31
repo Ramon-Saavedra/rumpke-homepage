@@ -48,7 +48,11 @@ export default async function PropertyCategoryPage({
     marketingType,
     propertyType: PROPERTY_TYPE_FILTERS[propertyType],
   };
-  const result = await fetchCategoryProperties(marketingType, propertyType, page);
+  const result = await fetchCategoryProperties(
+    marketingType,
+    propertyType,
+    page,
+  );
 
   return (
     <>
@@ -62,13 +66,14 @@ export default async function PropertyCategoryPage({
       </div>
 
       {!result ? (
-        <PropertyEmptyState {...SERVICE_ERROR_COPY} marketingType={marketingType} />
+        <PropertyEmptyState
+          {...SERVICE_ERROR_COPY}
+          marketingType={marketingType}
+        />
       ) : result.data.length === 0 ? (
         <PropertyEmptyState
           {...categoryEmptyStateCopy(propertyType, marketingType)}
           marketingType={marketingType}
-          badgeText="Aktuell in Vorbereitung"
-          reset={{ href: "/objekt", label: "Alle Filter zurücksetzen" }}
         />
       ) : (
         <>

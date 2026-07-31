@@ -28,12 +28,12 @@ describe("PropertyEmptyState", () => {
     ).toHaveAttribute("href", "/dienstleistungen/immobilien-kauf");
   });
 
-  it("omits the badge unless badgeText is given", () => {
-    const { rerender } = render(<PropertyEmptyState {...baseProps} />);
+  it("does not render a status badge", () => {
+    render(<PropertyEmptyState {...baseProps} />);
     expect(screen.queryByText("In Vorbereitung")).not.toBeInTheDocument();
-
-    rerender(<PropertyEmptyState {...baseProps} badgeText="In Vorbereitung" />);
-    expect(screen.getByText("In Vorbereitung")).toBeInTheDocument();
+    expect(
+      screen.queryByText("Aktuell in Vorbereitung"),
+    ).not.toBeInTheDocument();
   });
 
   it("renders the reset link when provided", () => {
@@ -56,9 +56,7 @@ describe("PropertyEmptyState", () => {
   });
 
   it("renders with polite live region by default", () => {
-    const { container } = render(
-      <PropertyEmptyState {...baseProps} />,
-    );
+    const { container } = render(<PropertyEmptyState {...baseProps} />);
     expect(container.querySelector('[aria-live="polite"]')).toBeInTheDocument();
   });
 
