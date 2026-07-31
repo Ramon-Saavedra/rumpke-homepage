@@ -1,28 +1,44 @@
+import { Suspense } from "react";
 import type { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
-import PropertyImage from "@/components/properties/PropertyImage";
-import { getProperty } from "@/lib/property-client";
-import {
-  resolveDisplayPrice,
-  formatArea,
-  formatYear,
-  formatRooms,
-  formatPrice,
-} from "@/lib/property-formatters";
-import type { PropertyDetailDto } from "@/types/property-api";
-import { PropertyFetchError } from "@/types/property-api";
 import PageContainer from "@/components/layout/page-container/PageContainer";
+import PropertyBreadcrumb from "@/components/properties/detail/PropertyBreadcrumb";
+import PropertyContactCard from "@/components/properties/detail/PropertyContactCard";
+import PropertyCoreFacts from "@/components/properties/detail/PropertyCoreFacts";
+import PropertyDetailHeader from "@/components/properties/detail/PropertyDetailHeader";
+import PropertyDetailSection from "@/components/properties/detail/PropertyDetailSection";
+import PropertyEnergySection from "@/components/properties/detail/PropertyEnergySection";
+import PropertyFeaturesSection from "@/components/properties/detail/PropertyFeaturesSection";
+import PropertyFloorplansSection from "@/components/properties/detail/PropertyFloorplansSection";
+import PropertyGallery from "@/components/properties/detail/PropertyGallery";
+import PropertyInquiryPanel from "@/components/properties/detail/PropertyInquiryPanel";
+import PropertyInquiryProvider from "@/components/properties/detail/PropertyInquiryContext";
+import PropertyLocationSection from "@/components/properties/detail/PropertyLocationSection";
+import PropertyPriceSection from "@/components/properties/detail/PropertyPriceSection";
+import PropertyStickyCta from "@/components/properties/detail/PropertyStickyCta";
+import SimilarProperties from "@/components/properties/detail/SimilarProperties";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { getProperty } from "@/lib/property-client";
+import { resolveDisplayPrice } from "@/lib/property-formatters";
+import { groupPropertyImages } from "@/lib/property-images";
+import {
+  buildPropertyDetailFacts,
+  buildPropertyFeatures,
+  buildPropertyPriceRows,
+  resolvePropertyTitle,
+} from "@/lib/property-detail";
+import {
+  buildBreadcrumbListJsonLd,
+  buildPropertyBreadcrumbs,
+  buildPropertyStructuredData,
+  resolveOgImage,
+} from "@/lib/property-seo";
 import {
   defaultOpenGraphMetadata,
   defaultTwitterMetadata,
 } from "@/lib/site-metadata";
-import { JsonLd } from "@/components/seo/JsonLd";
-import {
-  buildPropertyBreadcrumbs,
-  buildBreadcrumbListJsonLd,
-  buildPropertyStructuredData,
-  resolveOgImage,
-} from "@/lib/property-seo";
+import type { PropertyDetailDto } from "@/types/property-api";
+import { PropertyFetchError } from "@/types/property-api";
 
 type RouteParams = {
   objektnrExtern: string;
@@ -30,11 +46,6 @@ type RouteParams = {
 
 interface PageProps {
   readonly params: Promise<RouteParams>;
-}
-
-function buildMetadataTitle(property: PropertyDetailDto): string {
-  if (property.title) return property.title;
-  return `Immobilie ${property.id}`;
 }
 
 function buildMetadataDescription(property: PropertyDetailDto): string {
@@ -63,9 +74,9 @@ export async function generateMetadata(
     }
 
     const property = await getProperty(objektnrExtern);
-    const title = buildMetadataTitle(property);
+    const title = resolvePropertyTitle(property);
     const description = buildMetadataDescription(property);
-    const canonicalPath = `/objekt/${property.id}`;
+    const canonicalPath = `/objekt/${encodeURIComponent(property.id)}`;
     const ogImage = resolveOgImage();
     const previousImages = (await parent).openGraph?.images ?? [];
 
@@ -95,39 +106,6 @@ export async function generateMetadata(
   }
 }
 
-function DetailField({
-  label,
-  value,
-}: {
-  readonly label: string;
-  readonly value: string | null;
-}) {
-  if (!value) return null;
-  return (
-    <div className="flex justify-between">
-      <dt className="font-medium">{label}:</dt>
-      <dd>{value}</dd>
-    </div>
-  );
-}
-
-function DetailSection({
-  title,
-  children,
-}: {
-  readonly title: string;
-  readonly children: React.ReactNode;
-}) {
-  return (
-    <div className="bg-bgSecondary-l dark:bg-bgSecondary-d p-6 rounded border border-border-l dark:border-border-d">
-      <h2 className="text-xl font-semibold mb-4 text-text-l dark:text-text-d">
-        {title}
-      </h2>
-      {children}
-    </div>
-  );
-}
-
 export default async function ObjektDetailPage({ params }: PageProps) {
   const { objektnrExtern } = await params;
 
@@ -148,231 +126,86 @@ export default async function ObjektDetailPage({ params }: PageProps) {
     throw error;
   }
 
+  const title = resolvePropertyTitle(property);
+  const { photos, floorplans } = groupPropertyImages(property.images);
+  const facts = buildPropertyDetailFacts(property);
+  const features = buildPropertyFeatures(property);
+  const priceRows = buildPropertyPriceRows(property);
   const displayPrice = resolveDisplayPrice(
     property.marketingType,
     property.price.salePrice,
     property.price.coldRent,
   );
 
-  const displayType = property.propertySubType ?? property.propertyType;
-
   const breadcrumbs = buildPropertyBreadcrumbs(property);
   const breadcrumbLd = buildBreadcrumbListJsonLd(breadcrumbs);
   const structuredData = buildPropertyStructuredData(property);
 
-  const locationParts = [
-    property.address.street
-      ? `${property.address.street}${property.address.houseNumber ? ` ${property.address.houseNumber}` : ""}`
-      : null,
-    [property.address.zip, property.address.city].filter(Boolean).join(" ") ||
-      null,
-  ].filter(Boolean);
-
   return (
-    <>
+    <PropertyInquiryProvider>
       <JsonLd data={breadcrumbLd} />
       {structuredData && <JsonLd data={structuredData} />}
 
-      <div className="relative w-full h-64 md:h-96 shrink-0 overflow-hidden">
-        <PropertyImage
-          images={property.images}
-          alt={property.title ?? property.id}
-          className="h-full w-full"
-          priority
-          sizes="100vw"
-        />
-      </div>
+      <PageContainer as="main" className="pb-28 lg:pb-20">
+        <PropertyBreadcrumb items={breadcrumbs} />
 
-      <PageContainer as="main" className="py-12">
-        <div className="max-w-5xl mx-auto">
-          <h1 className="text-4xl font-bold mb-2 text-text-l dark:text-text-d">
-            {property.title ?? `Immobilie ${property.id}`}
-          </h1>
-          {displayType && (
-            <p className="text-card-text-l dark:text-card-text-d mb-6">
-              {displayType}
-            </p>
-          )}
+        <PropertyGallery images={photos} alt={title} className="mt-3.5" />
 
-          {locationParts.length > 0 && (
-            <p className="text-card-text-l dark:text-card-text-d mb-8">
-              {locationParts.join(", ")}
-            </p>
-          )}
+        <div className="mt-8 grid grid-cols-1 items-start gap-8 md:gap-10 lg:grid-cols-[2fr_1fr] lg:gap-14">
+          <PropertyDetailHeader
+            property={property}
+            className="order-1 lg:col-span-2"
+          />
 
-          <div className="grid lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-6">
-              {(property.description ||
-                property.locationDescription ||
-                property.furnishingDescription) && (
-                <DetailSection title="Beschreibung">
-                  {property.description && (
-                    <p className="text-card-text-l dark:text-card-text-d leading-relaxed mb-4">
-                      {property.description}
-                    </p>
-                  )}
-                  {property.locationDescription && (
-                    <div className="mb-4">
-                      <h3 className="text-lg font-semibold mb-2 text-text-l dark:text-text-d">
-                        Lage
-                      </h3>
-                      <p className="text-card-text-l dark:text-card-text-d leading-relaxed">
-                        {property.locationDescription}
-                      </p>
-                    </div>
-                  )}
-                  {property.furnishingDescription && (
-                    <div>
-                      <h3 className="text-lg font-semibold mb-2 text-text-l dark:text-text-d">
-                        Ausstattung
-                      </h3>
-                      <p className="text-card-text-l dark:text-card-text-d leading-relaxed">
-                        {property.furnishingDescription}
-                      </p>
-                    </div>
-                  )}
-                </DetailSection>
-              )}
-            </div>
+          <PropertyCoreFacts facts={facts} className="order-2 lg:col-span-2" />
 
-            <div className="space-y-6">
-              <DetailSection title="Details">
-                <dl className="space-y-3 text-card-text-l dark:text-card-text-d">
-                  {displayPrice && (
-                    <div className="flex justify-between">
-                      <dt className="font-medium">Preis:</dt>
-                      <dd className="text-primary font-bold">{displayPrice}</dd>
-                    </div>
-                  )}
+          <div className="order-3 min-w-0 space-y-11 md:order-4 lg:order-3">
+            {property.description && (
+              <PropertyDetailSection title="Objektbeschreibung">
+                <p className="whitespace-pre-line text-base leading-relaxed">
+                  {property.description}
+                </p>
+              </PropertyDetailSection>
+            )}
 
-                  {property.marketingType && (
-                    <div className="flex justify-between">
-                      <dt className="font-medium">Art:</dt>
-                      <dd>
-                        {property.marketingType === "miete" ? "Miete" : "Kauf"}
-                      </dd>
-                    </div>
-                  )}
+            {property.locationDescription && (
+              <PropertyDetailSection title="Lage">
+                <p className="whitespace-pre-line text-base leading-relaxed">
+                  {property.locationDescription}
+                </p>
+              </PropertyDetailSection>
+            )}
 
-                  {displayType && (
-                    <div className="flex justify-between">
-                      <dt className="font-medium">Typ:</dt>
-                      <dd>{displayType}</dd>
-                    </div>
-                  )}
+            <PropertyFeaturesSection
+              features={features}
+              description={property.furnishingDescription}
+            />
 
-                  <DetailField label="Etage" value={property.floor} />
-                  <DetailField
-                    label="Baujahr"
-                    value={
-                      property.yearBuilt !== null
-                        ? formatYear(property.yearBuilt)
-                        : null
-                    }
-                  />
-                  <DetailField label="Zustand" value={property.condition} />
-                  <DetailField
-                    label="Energieausweis"
-                    value={property.energyCertificateType}
-                  />
+            <PropertyLocationSection property={property} />
 
-                  {property.totalFloors !== null && (
-                    <div className="flex justify-between">
-                      <dt className="font-medium">Etagen:</dt>
-                      <dd>{property.totalFloors}</dd>
-                    </div>
-                  )}
-                </dl>
-              </DetailSection>
+            <PropertyPriceSection rows={priceRows} />
 
-              <DetailSection title="Fläche & Zimmer">
-                <dl className="space-y-3 text-card-text-l dark:text-card-text-d">
-                  {property.area.livingArea !== null && (
-                    <div className="flex justify-between">
-                      <dt className="font-medium">Wohnfläche:</dt>
-                      <dd>{formatArea(property.area.livingArea)}</dd>
-                    </div>
-                  )}
-                  {property.area.usableArea !== null && (
-                    <div className="flex justify-between">
-                      <dt className="font-medium">Nutzfläche:</dt>
-                      <dd>{formatArea(property.area.usableArea)}</dd>
-                    </div>
-                  )}
-                  {property.area.plotArea !== null && (
-                    <div className="flex justify-between">
-                      <dt className="font-medium">Grundstück:</dt>
-                      <dd>{formatArea(property.area.plotArea)}</dd>
-                    </div>
-                  )}
-                  {property.rooms.total !== null && (
-                    <div className="flex justify-between">
-                      <dt className="font-medium">Zimmer:</dt>
-                      <dd>{formatRooms(property.rooms.total)}</dd>
-                    </div>
-                  )}
-                  {property.rooms.bedrooms !== null && (
-                    <div className="flex justify-between">
-                      <dt className="font-medium">Schlafzimmer:</dt>
-                      <dd>{property.rooms.bedrooms}</dd>
-                    </div>
-                  )}
-                  {property.rooms.bathrooms !== null && (
-                    <div className="flex justify-between">
-                      <dt className="font-medium">Badezimmer:</dt>
-                      <dd>{property.rooms.bathrooms}</dd>
-                    </div>
-                  )}
-                </dl>
-              </DetailSection>
+            <PropertyEnergySection property={property} />
 
-              {property.price.warmRent !== null && (
-                <DetailSection title="Mietdetails">
-                  <dl className="space-y-3 text-card-text-l dark:text-card-text-d">
-                    {property.price.coldRent !== null && (
-                      <div className="flex justify-between">
-                        <dt className="font-medium">Kaltmiete:</dt>
-                        <dd>{formatPrice(property.price.coldRent)}</dd>
-                      </div>
-                    )}
-                    {property.price.warmRent !== null && (
-                      <div className="flex justify-between">
-                        <dt className="font-medium">Warmmiete:</dt>
-                        <dd>{formatPrice(property.price.warmRent)}</dd>
-                      </div>
-                    )}
-                    {property.price.hoaFee !== null && (
-                      <div className="flex justify-between">
-                        <dt className="font-medium">Hausgeld:</dt>
-                        <dd>{formatPrice(property.price.hoaFee)}</dd>
-                      </div>
-                    )}
-                    {property.price.additionalCosts !== null && (
-                      <div className="flex justify-between">
-                        <dt className="font-medium">Nebenkosten:</dt>
-                        <dd>{formatPrice(property.price.additionalCosts)}</dd>
-                      </div>
-                    )}
-                  </dl>
-                </DetailSection>
-              )}
-
-              <DetailSection title="Ausstattung">
-                <dl className="space-y-3 text-card-text-l dark:text-card-text-d">
-                  <div className="flex justify-between">
-                    <dt className="font-medium">Balkon:</dt>
-                    <dd>{property.balcony ? "Ja" : "Nein"}</dd>
-                  </div>
-                  <div className="flex justify-between">
-                    <dt className="font-medium">Terrasse:</dt>
-                    <dd>{property.terrace ? "Ja" : "Nein"}</dd>
-                  </div>
-                </dl>
-              </DetailSection>
-            </div>
+            <PropertyFloorplansSection floorplans={floorplans} />
           </div>
+
+          <div className="order-4 min-w-0 md:order-3 lg:sticky lg:top-[calc(var(--topbar-height)+1.5rem)] lg:order-4">
+            <PropertyInquiryPanel property={property} />
+            <PropertyContactCard className="mt-5" />
+          </div>
+
+          <Suspense fallback={null}>
+            <SimilarProperties
+              propertyId={property.id}
+              marketingType={property.marketingType}
+              className="order-5 lg:col-span-2"
+            />
+          </Suspense>
         </div>
       </PageContainer>
-    </>
+
+      <PropertyStickyCta price={displayPrice} />
+    </PropertyInquiryProvider>
   );
 }

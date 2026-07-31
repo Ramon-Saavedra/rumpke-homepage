@@ -29,9 +29,10 @@ async function loadSimilar(
   marketingType: string | null,
 ): Promise<readonly PropertyCardDto[]> {
   try {
+    const mt = resolveMarketingType(marketingType);
     const response = await getProperties({
       limit: MAX_SIMILAR + 1,
-      marketingType: resolveMarketingType(marketingType),
+      marketingType: mt,
     });
     return response.data
       .filter((candidate) => candidate.id !== propertyId)

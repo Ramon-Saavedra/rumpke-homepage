@@ -132,9 +132,10 @@ export function buildPropertyPriceRows(
 ): readonly PropertyPriceRow[] {
   const rows: PropertyPriceRow[] = [];
   const { price } = property;
+  const isSale = property.marketingType === "kauf";
   const isRent = property.marketingType === "miete";
 
-  if (!isRent && price.salePrice !== null) {
+  if (isSale && price.salePrice !== null) {
     rows.push({
       label: "Kaufpreis",
       value: formatPrice(price.salePrice),
@@ -164,7 +165,7 @@ export function buildPropertyPriceRows(
     });
   }
 
-  if (!isRent && price.hoaFee !== null) {
+  if (isSale && price.hoaFee !== null) {
     rows.push({
       label: "Hausgeld",
       value: formatMonthlyPrice(price.hoaFee),
@@ -249,16 +250,19 @@ export const PROPERTY_INQUIRY_TYPES = [
 
 export type PropertyInquiryType = (typeof PROPERTY_INQUIRY_TYPES)[number]["id"];
 
-const INQUIRY_MESSAGES: Record<PropertyInquiryType, (subject: string) => string> =
-  {
-    viewing: (subject) =>
-      `Ich interessiere mich für einen Besichtigungstermin für ${subject} und freue mich über eine Terminvereinbarung.`,
-    expose: (subject) => `Bitte senden Sie mir das ausführliche Exposé zu ${subject} zu.`,
-    callback: (subject) =>
-      `Bitte rufen Sie mich zu ${subject} zurück, ich habe noch offene Fragen.`,
-    question: (subject) =>
-      `Ich habe eine Frage zu ${subject} und freue mich über eine Rückmeldung.`,
-  };
+const INQUIRY_MESSAGES: Record<
+  PropertyInquiryType,
+  (subject: string) => string
+> = {
+  viewing: (subject) =>
+    `Ich interessiere mich für einen Besichtigungstermin für ${subject} und freue mich über eine Terminvereinbarung.`,
+  expose: (subject) =>
+    `Bitte senden Sie mir das ausführliche Exposé zu ${subject} zu.`,
+  callback: (subject) =>
+    `Bitte rufen Sie mich zu ${subject} zurück, ich habe noch offene Fragen.`,
+  question: (subject) =>
+    `Ich habe eine Frage zu ${subject} und freue mich über eine Rückmeldung.`,
+};
 
 export function buildInquiryMessage(
   type: PropertyInquiryType,

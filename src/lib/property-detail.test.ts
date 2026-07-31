@@ -119,6 +119,7 @@ describe("buildPropertyPriceRows", () => {
   it("emphasises the sale price and always states the commission", () => {
     const rows = buildPropertyPriceRows(
       makeProperty({
+        marketingType: "kauf",
         price: {
           salePrice: 1890000,
           coldRent: null,
@@ -242,9 +243,9 @@ describe("title and reference", () => {
 describe("buildInquiryMessage", () => {
   it("mentions the property in every message variant", () => {
     const property = makeProperty();
-    const messages = (["viewing", "expose", "callback", "question"] as const).map(
-      (type) => buildInquiryMessage(type, property),
-    );
+    const messages = (
+      ["viewing", "expose", "callback", "question"] as const
+    ).map((type) => buildInquiryMessage(type, property));
 
     messages.forEach((message) => {
       expect(message).toContain("Klassische Stadtvilla");

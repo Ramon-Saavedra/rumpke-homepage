@@ -1,9 +1,9 @@
-import Link from "next/link";
 import Title from "@/components/ui/title/Title";
 import PropertyTypeGrid from "@/components/properties/PropertyTypeGrid";
 import PropertiesGrid from "@/components/properties/PropertiesGrid";
-import ContentPanel from "@/components/ui/content-panel/ContentPanel";
+import PropertyEmptyState from "@/components/properties/PropertyEmptyState";
 import { getProperties } from "@/lib/property-client";
+import { SERVICE_ERROR_COPY } from "@/lib/property-empty-state";
 import { getPropertyTypes, type MarketingType } from "@/types/property-types";
 
 interface PropertyCategoryLandingPageProps {
@@ -27,6 +27,7 @@ export default async function PropertyCategoryLandingPage({
   subtitle,
 }: PropertyCategoryLandingPageProps) {
   const types = getPropertyTypes(marketingType);
+  const transactionLabel = marketingType === "kauf" ? "zum Kauf" : "zur Miete";
   const properties = await fetchLandingProperties(marketingType);
 
   return (
@@ -47,25 +48,16 @@ export default async function PropertyCategoryLandingPage({
       />
 
       {properties === null ? (
-        <ContentPanel className="p-8 rounded">
-          <p className="text-center text-card-text-l dark:text-card-text-d">
-            Der Immobilienservice ist derzeit nicht verfügbar.
-          </p>
-        </ContentPanel>
+        <PropertyEmptyState
+          {...SERVICE_ERROR_COPY}
+          marketingType={marketingType}
+        />
       ) : properties.length === 0 ? (
-        <ContentPanel className="p-8 rounded">
-          <p className="text-center text-card-text-l dark:text-card-text-d">
-            Aktuell sind keine Immobilien{" "}
-            {marketingType === "kauf" ? "zum Kauf" : "zur Miete"} verfügbar.
-          </p>
-          <p className="text-center text-card-text-l dark:text-card-text-d text-sm mt-2">
-            Alle verfügbaren Immobilien finden Sie in der{" "}
-            <Link href="/objekt" className="text-primary hover:underline">
-              Gesamtübersicht
-            </Link>
-            .
-          </p>
-        </ContentPanel>
+        <PropertyEmptyState
+          marketingType={marketingType}
+          headline={`Zurzeit sind keine Immobilien ${transactionLabel} veröffentlicht`}
+          body="Unser Angebot wird regelmäßig aktualisiert. Gerne informieren wir Sie persönlich über passende Immobilien oder unterstützen Sie bei Ihrer individuellen Suche."
+        />
       ) : (
         <PropertiesGrid properties={properties} />
       )}

@@ -1,9 +1,12 @@
-import Link from "next/link";
 import Title from "@/components/ui/title/Title";
 import PropertiesGrid from "@/components/properties/PropertiesGrid";
 import PropertyPagination from "@/components/properties/PropertyPagination";
-import ContentPanel from "@/components/ui/content-panel/ContentPanel";
+import PropertyEmptyState from "@/components/properties/PropertyEmptyState";
 import { getProperties } from "@/lib/property-client";
+import {
+  categoryEmptyStateCopy,
+  SERVICE_ERROR_COPY,
+} from "@/lib/property-empty-state";
 import {
   PROPERTY_TYPE_FILTERS,
   TYPE_LABELS,
@@ -58,31 +61,20 @@ export default async function PropertyCategoryPage({
           {label} {marketingType === "kauf" ? "kaufen" : "mieten"}
         </Title>
         <p className="text-center text-card-text-l dark:text-card-text-d">
-          {result
-            ? `Verfügbare ${label} ${transactionLabel} im Emsland`
-            : "Der Immobilienservice ist derzeit nicht verfügbar."}
+          {`Verfügbare ${label} ${transactionLabel} im Emsland`}
         </p>
       </div>
 
       {!result ? (
-        <ContentPanel className="p-8 rounded">
-          <p className="text-center text-card-text-l dark:text-card-text-d">
-            Bitte versuchen Sie es später erneut.
-          </p>
-        </ContentPanel>
+        <PropertyEmptyState
+          {...SERVICE_ERROR_COPY}
+          marketingType={marketingType}
+        />
       ) : result.data.length === 0 ? (
-        <ContentPanel className="p-8 rounded">
-          <p className="text-center text-card-text-l dark:text-card-text-d">
-            Aktuell sind keine {label} {transactionLabel} verfügbar.
-          </p>
-          <p className="text-center text-card-text-l dark:text-card-text-d text-sm mt-2">
-            Alle verfügbaren Immobilien finden Sie in der{" "}
-            <Link href="/objekt" className="text-primary hover:underline">
-              Gesamtübersicht
-            </Link>
-            .
-          </p>
-        </ContentPanel>
+        <PropertyEmptyState
+          {...categoryEmptyStateCopy(propertyType, marketingType)}
+          marketingType={marketingType}
+        />
       ) : (
         <>
           <PropertiesGrid properties={result.data} />

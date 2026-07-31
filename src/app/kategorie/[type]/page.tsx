@@ -3,12 +3,20 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Title from "@/components/ui/title/Title";
 import { Key, FileText } from "lucide-react";
+import PropertyEmptyState from "@/components/properties/PropertyEmptyState";
+import { getProperties } from "@/lib/property-client";
+import {
+  categoryEmptyStateCopy,
+  SERVICE_ERROR_COPY,
+} from "@/lib/property-empty-state";
 import {
   VALID_TYPES,
   TYPE_LABELS,
   TYPE_DESCRIPTIONS,
   TRANSACTION_LABELS,
+  PROPERTY_TYPE_FILTERS,
   isValidType,
+  type PropertyType,
 } from "@/types/property-types";
 import {
   defaultOpenGraphMetadata,
@@ -46,6 +54,23 @@ export async function generateMetadata({
   };
 }
 
+type AvailabilityResult = "available" | "empty" | "error";
+
+async function fetchCategoryAvailability(
+  type: PropertyType,
+): Promise<AvailabilityResult> {
+  try {
+    const result = await getProperties({
+      page: 1,
+      limit: 1,
+      propertyType: PROPERTY_TYPE_FILTERS[type],
+    });
+    return result.data.length === 0 ? "empty" : "available";
+  } catch {
+    return "error";
+  }
+}
+
 export default async function PropertyTypePage({ params }: PageProps) {
   const { type } = await params;
 
@@ -55,6 +80,25 @@ export default async function PropertyTypePage({ params }: PageProps) {
 
   const label = TYPE_LABELS[type];
   const description = TYPE_DESCRIPTIONS[type];
+  const availability = await fetchCategoryAvailability(type);
+
+  if (availability !== "available") {
+    return (
+      <div>
+        <div className="max-w-4xl mx-auto text-center mb-12">
+          <Title variant="h1" size="xl" align="center">
+            {label}
+          </Title>
+        </div>
+
+        {availability === "error" ? (
+          <PropertyEmptyState {...SERVICE_ERROR_COPY} />
+        ) : (
+          <PropertyEmptyState {...categoryEmptyStateCopy(type)} />
+        )}
+      </div>
+    );
+  }
 
   return (
     <div>

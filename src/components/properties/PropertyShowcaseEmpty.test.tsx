@@ -10,6 +10,11 @@ describe("PropertyShowcaseEmpty", () => {
         container.querySelector('[aria-hidden="true"]'),
       ).toBeInTheDocument();
     });
+
+    it("renders no copy while loading", () => {
+      render(<PropertyShowcaseEmpty isLoading />);
+      expect(screen.queryByRole("link")).not.toBeInTheDocument();
+    });
   });
 
   describe("Error state", () => {
@@ -22,13 +27,15 @@ describe("PropertyShowcaseEmpty", () => {
 
     it("renders Kontakt aufnehmen CTA", () => {
       render(<PropertyShowcaseEmpty error />);
-      expect(screen.getByText("Kontakt aufnehmen")).toBeInTheDocument();
+      expect(
+        screen.getByRole("link", { name: "Kontakt aufnehmen" }),
+      ).toHaveAttribute("href", "/kontakt");
     });
 
-    it("does not render secondary CTA in error state", () => {
+    it("does not render the status badge in error state", () => {
       render(<PropertyShowcaseEmpty error />);
       expect(
-        screen.queryByText("Persönlich beraten lassen"),
+        screen.queryByText("Aktuell in Vorbereitung"),
       ).not.toBeInTheDocument();
     });
   });
@@ -37,18 +44,25 @@ describe("PropertyShowcaseEmpty", () => {
     it("renders empty heading", () => {
       render(<PropertyShowcaseEmpty />);
       expect(
-        screen.getByText("Neue Objekte in Vorbereitung"),
+        screen.getByText("Zurzeit sind keine Immobilien veröffentlicht"),
       ).toBeInTheDocument();
     });
 
-    it("renders Suchauftrag CTA", () => {
+    it("does not render the status badge", () => {
       render(<PropertyShowcaseEmpty />);
-      expect(screen.getByText("Suchauftrag anlegen")).toBeInTheDocument();
+      expect(
+        screen.queryByText("Aktuell in Vorbereitung"),
+      ).not.toBeInTheDocument();
     });
 
-    it("renders secondary CTA", () => {
+    it("renders both CTAs", () => {
       render(<PropertyShowcaseEmpty />);
-      expect(screen.getByText("Persönlich beraten lassen")).toBeInTheDocument();
+      expect(
+        screen.getByRole("link", { name: "Kontakt aufnehmen" }),
+      ).toHaveAttribute("href", "/kontakt");
+      expect(
+        screen.getByRole("link", { name: "Suchauftrag anfragen" }),
+      ).toHaveAttribute("href", "/dienstleistungen/immobilien-kauf");
     });
   });
 });

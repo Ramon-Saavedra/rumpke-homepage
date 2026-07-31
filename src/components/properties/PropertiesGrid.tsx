@@ -13,15 +13,7 @@ interface PropertiesGridProps {
 }
 
 export default function PropertiesGrid({ properties }: PropertiesGridProps) {
-  if (properties.length === 0) {
-    return (
-      <div className="text-center py-12">
-        <p className="text-card-text-l dark:text-card-text-d">
-          Keine Immobilien gefunden.
-        </p>
-      </div>
-    );
-  }
+  if (properties.length === 0) return null;
 
   return (
     <div className="relative border border-border-l dark:border-border-d p-2 rounded">
