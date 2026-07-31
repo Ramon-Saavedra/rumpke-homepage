@@ -21,9 +21,9 @@ interface PropertyTypeGridProps {
 
 const getIcon = (slug: string) => {
   switch (slug) {
-    case "haus":
+    case "haeuser":
       return <Home className="w-8 h-8" />;
-    case "wohnung":
+    case "wohnungen":
       return <Building2 className="w-8 h-8" />;
     case "gewerbeimmobilien":
       return <Briefcase className="w-8 h-8" />;

@@ -39,7 +39,7 @@ function getFirstValidImage(
 }
 
 function resolveImageAlt(image: PropertyImageDto, fallbackAlt: string): string {
-  return image.title ?? fallbackAlt;
+  return image.title?.trim() || fallbackAlt;
 }
 
 function Skeleton({ className }: { readonly className: string }) {
