@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { SKELETON_BLOCK } from "@/lib/skeleton-classes";
+import Skeleton from "@/components/ui/skeleton/Skeleton";
 
 interface PortraitImageProps {
   readonly src: string;
@@ -39,10 +39,7 @@ export default function PortraitImage({
         aria-busy={isLoading && !hasError}
       >
         {isLoading && !hasError && (
-          <div
-            aria-hidden="true"
-            className={`absolute inset-0 z-10 ${SKELETON_BLOCK}`}
-          />
+          <Skeleton className="absolute inset-0 z-10" />
         )}
         {!hasError ? (
           <Image

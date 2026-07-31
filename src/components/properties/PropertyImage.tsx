@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import ImagePlaceholder from "@/components/properties/ImagePlaceholder";
 import type { PropertyImageDto } from "@/types/property-api";
-import { SKELETON_BLOCK } from "@/lib/skeleton-classes";
+import Skeleton from "@/components/ui/skeleton/Skeleton";
 
 interface PropertyImageProps {
   readonly images: readonly PropertyImageDto[];
@@ -40,12 +40,6 @@ function getFirstValidImage(
 
 function resolveImageAlt(image: PropertyImageDto, fallbackAlt: string): string {
   return image.title?.trim() || fallbackAlt;
-}
-
-function Skeleton({ className }: { readonly className: string }) {
-  return (
-    <div className={`${SKELETON_BLOCK} ${className}`} aria-hidden="true" />
-  );
 }
 
 export default function PropertyImage({

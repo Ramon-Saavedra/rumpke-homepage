@@ -8,7 +8,7 @@ import { buildPropertyFacts } from "@/lib/property-display";
 import { TRANSACTION_LABELS } from "@/types/property-types";
 import { SHOWCASE_CTA_COMPACT_GROUP_CLASS } from "./showcase-cta";
 import { cn } from "@/lib/utils";
-import { SKELETON_BLOCK } from "@/lib/skeleton-classes";
+import Skeleton from "@/components/ui/skeleton/Skeleton";
 
 interface PropertySpotlightCardProps {
   readonly property?: PropertyCardDto;
@@ -29,14 +29,19 @@ function SpotlightSkeleton({ className }: { readonly className?: string }) {
   return (
     <div className={cn("block w-full", className)} aria-hidden="true">
       <div className={SPOTLIGHT_CARD_CLASS}>
-        <div className={cn(SPOTLIGHT_MEDIA_CLASS, SKELETON_BLOCK)} />
+        <div className={SPOTLIGHT_MEDIA_CLASS}>
+          <Skeleton className="h-full w-full" />
+        </div>
         <div className={SPOTLIGHT_BODY_CLASS}>
-          <div className={cn("mb-3 h-5 w-16", SKELETON_BLOCK)} />
-          <div className={cn("h-7 w-4/5", SKELETON_BLOCK)} />
-          <div className={cn("mt-2 h-4 w-2/5", SKELETON_BLOCK)} />
-          <div className={cn("mt-4 h-6 w-1/3", SKELETON_BLOCK)} />
-          <div className={cn("mt-1 h-4 w-1/4", SKELETON_BLOCK)} />
-          <div className={cn("mt-6 h-10 w-40 rounded-full", SKELETON_BLOCK)} />
+          <Skeleton className="mb-3 h-5 w-16 rounded-md" />
+          <Skeleton className="h-7 w-4/5" />
+          <Skeleton className="mt-3 h-4 w-2/5" />
+          <div className="mt-2 flex items-center gap-1.5">
+            <Skeleton className="h-3.5 w-3.5 shrink-0 rounded-full" />
+            <Skeleton className="h-3 w-1/3" />
+          </div>
+          <Skeleton className="mt-4 h-6 w-1/3" />
+          <Skeleton className="mt-6 h-10 w-40 rounded-full" />
         </div>
       </div>
     </div>
