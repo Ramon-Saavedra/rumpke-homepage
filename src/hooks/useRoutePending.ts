@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 
 const SAFETY_TIMEOUT_MS = 8000;
-const ROUTE_CHANGE_EVENT = "rumpke:route-change";
 
 function normalizeRoute(pathname: string, search: string): string {
   const query = new URLSearchParams(search).toString();
@@ -47,14 +46,19 @@ export default function useRoutePending(): boolean {
   const settledRoute = normalizeRoute(pathname, searchParams.toString());
 
   const [isPending, setIsPending] = useState(false);
+  const settledRef = useRef(settledRoute);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- syncs pending flag with route settlement
     setIsPending(false);
+    settledRef.current = settledRoute;
   }, [settledRoute]);
 
   useEffect(() => {
-    function markPending() {
-      if (currentRoute() !== settledRoute) setIsPending(true);
+    function handlePopState() {
+      if (currentRoute() !== settledRef.current) {
+        setIsPending(true);
+      }
     }
 
     function handleClick(event: MouseEvent) {
@@ -69,30 +73,14 @@ export default function useRoutePending(): boolean {
       setIsPending(true);
     }
 
-    const originalPushState = window.history.pushState;
-    const originalReplaceState = window.history.replaceState;
-
-    window.history.pushState = function (...args) {
-      originalPushState.apply(this, args);
-      window.dispatchEvent(new Event(ROUTE_CHANGE_EVENT));
-    };
-    window.history.replaceState = function (...args) {
-      originalReplaceState.apply(this, args);
-      window.dispatchEvent(new Event(ROUTE_CHANGE_EVENT));
-    };
-
     document.addEventListener("click", handleClick, { capture: true });
-    window.addEventListener(ROUTE_CHANGE_EVENT, markPending);
-    window.addEventListener("popstate", markPending);
+    window.addEventListener("popstate", handlePopState);
 
     return () => {
       document.removeEventListener("click", handleClick, { capture: true });
-      window.removeEventListener(ROUTE_CHANGE_EVENT, markPending);
-      window.removeEventListener("popstate", markPending);
-      window.history.pushState = originalPushState;
-      window.history.replaceState = originalReplaceState;
+      window.removeEventListener("popstate", handlePopState);
     };
-  }, [settledRoute]);
+  }, []);
 
   useEffect(() => {
     if (!isPending) return;
