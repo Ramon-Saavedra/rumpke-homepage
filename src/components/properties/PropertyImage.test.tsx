@@ -95,6 +95,43 @@ describe("PropertyImage", () => {
     });
   });
 
+  describe("Priority loading", () => {
+    it("uses eager loading when priority is true", () => {
+      render(
+        <PropertyImage
+          images={[makeImage()]}
+          alt="Test"
+          priority
+        />,
+      );
+      const img = screen.getByRole("img");
+      expect(img).toHaveAttribute("loading", "eager");
+    });
+
+    it("uses lazy loading when priority is false", () => {
+      render(
+        <PropertyImage
+          images={[makeImage()]}
+          alt="Test"
+          priority={false}
+        />,
+      );
+      const img = screen.getByRole("img");
+      expect(img).toHaveAttribute("loading", "lazy");
+    });
+
+    it("defaults to lazy loading when priority is not passed", () => {
+      render(
+        <PropertyImage
+          images={[makeImage()]}
+          alt="Test"
+        />,
+      );
+      const img = screen.getByRole("img");
+      expect(img).toHaveAttribute("loading", "lazy");
+    });
+  });
+
   describe("Accessibility", () => {
     it("placeholder has role img with aria-label", () => {
       render(<PropertyImage images={[]} alt="Immobilie 2026-0006" />);
