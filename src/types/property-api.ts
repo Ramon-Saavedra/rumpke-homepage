@@ -20,6 +20,8 @@ export interface PropertyCardDto {
   readonly usableArea: number | null;
   readonly rooms: number | null;
   readonly floor: string | null;
+  readonly latitude: number | null;
+  readonly longitude: number | null;
   readonly images: readonly PropertyImageDto[];
 }
 
@@ -295,6 +297,8 @@ function validatePropertyCardDto(data: unknown): PropertyCardDto {
     usableArea: isNumberOrNull(data["usableArea"]) ? data["usableArea"] : null,
     rooms: isNumberOrNull(data["rooms"]) ? data["rooms"] : null,
     floor: isStringOrNull(data["floor"]) ? data["floor"] : null,
+    latitude: isNumberOrNull(data["latitude"]) ? data["latitude"] : null,
+    longitude: isNumberOrNull(data["longitude"]) ? data["longitude"] : null,
     images: validatePropertyImages(data["images"]),
   };
 }

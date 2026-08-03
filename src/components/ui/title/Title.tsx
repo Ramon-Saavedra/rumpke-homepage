@@ -3,7 +3,7 @@ import React from "react";
 interface TitleProps {
   children: React.ReactNode;
   variant?: "h1" | "h2" | "h3";
-  size?: "xl" | "lg" | "md" | "sm";
+  size?: "2xl" | "xl" | "lg" | "md" | "sm";
   align?: "left" | "center" | "right";
   className?: string;
   subtitle?: string;
@@ -20,6 +20,7 @@ const Title = ({
   subtitleClassName = "",
 }: TitleProps) => {
   const sizeClasses = {
+    "2xl": "text-3xl sm:text-4xl",
     xl: "text-2xl sm:text-3xl",
     lg: "text-xl sm:text-2xl",
     md: "text-base md:text-lg",
@@ -42,7 +43,7 @@ const Title = ({
       <Tag className={classes}>{children}</Tag>
       {subtitle && (
         <p
-          className={`text-sm sm:text-base ${alignClasses[align]} ${subtitleClassName}`}
+          className={`text-base sm:text-lg ${alignClasses[align]} ${subtitleClassName}`}
         >
           {subtitle}
         </p>

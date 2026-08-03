@@ -229,6 +229,39 @@ describe("address helpers", () => {
       ),
     ).toBeNull();
   });
+
+  it("rejects out-of-range coordinates", () => {
+    expect(
+      resolvePropertyCoordinates(
+        makeProperty({
+          address: {
+            city: null,
+            zip: null,
+            street: null,
+            houseNumber: null,
+            country: null,
+            latitude: 200,
+            longitude: 200,
+          },
+        }),
+      ),
+    ).toBeNull();
+    expect(
+      resolvePropertyCoordinates(
+        makeProperty({
+          address: {
+            city: null,
+            zip: null,
+            street: null,
+            houseNumber: null,
+            country: null,
+            latitude: -200,
+            longitude: -200,
+          },
+        }),
+      ),
+    ).toBeNull();
+  });
 });
 
 describe("title and reference", () => {

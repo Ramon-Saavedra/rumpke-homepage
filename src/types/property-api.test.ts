@@ -173,6 +173,57 @@ describe("validatePropertyListResponse", () => {
     expect(result.pagination.total).toBe(1);
   });
 
+  it("validates a list response with coordinates", () => {
+    const result = validatePropertyListResponse({
+      data: [
+        {
+          id: "P-001",
+          title: "Test",
+          city: "Bawinkel",
+          propertyType: null,
+          propertySubType: null,
+          marketingType: null,
+          salePrice: null,
+          coldRent: null,
+          livingArea: null,
+          rooms: null,
+          latitude: 52.6918,
+          longitude: 7.2942,
+          images: [],
+        },
+      ],
+      pagination: { page: 1, limit: 12, total: 1, totalPages: 1 },
+    });
+    expect(result.data).toHaveLength(1);
+    expect(result.data[0].latitude).toBe(52.6918);
+    expect(result.data[0].longitude).toBe(7.2942);
+  });
+
+  it("falls back coordinates to null when invalid", () => {
+    const result = validatePropertyListResponse({
+      data: [
+        {
+          id: "P-001",
+          title: null,
+          city: null,
+          propertyType: null,
+          propertySubType: null,
+          marketingType: null,
+          salePrice: null,
+          coldRent: null,
+          livingArea: null,
+          rooms: null,
+          latitude: "invalid",
+          longitude: true,
+          images: [],
+        },
+      ],
+      pagination: { page: 1, limit: 12, total: 1, totalPages: 1 },
+    });
+    expect(result.data[0].latitude).toBeNull();
+    expect(result.data[0].longitude).toBeNull();
+  });
+
   it("throws for non-object input", () => {
     expect(() => validatePropertyListResponse("invalid")).toThrow(
       PropertyFetchError,

@@ -1,7 +1,7 @@
 import { getProperties } from "@/lib/property-client";
 import type { PropertyCardDto, Pagination } from "@/types/property-api";
 import Title from "@/components/ui/title/Title";
-import PropertiesGrid from "@/components/properties/PropertiesGrid";
+import PropertyListingResults from "@/components/properties/PropertyListingResults";
 import PropertyPagination from "@/components/properties/PropertyPagination";
 import PageContainer from "@/components/layout/page-container/PageContainer";
 import PropertyEmptyState from "@/components/properties/PropertyEmptyState";
@@ -63,7 +63,7 @@ export default async function ObjektListPage({
     return (
       <PageContainer className="py-12">
         <div className="mb-12">
-          <Title variant="h1" align="center" size="xl" className="mb-4">
+          <Title variant="h1" size="2xl" className="mb-2">
             Immobilien
           </Title>
         </div>
@@ -75,13 +75,15 @@ export default async function ObjektListPage({
   const { data, pagination } = fetchResult;
 
   return (
-    <PageContainer>
-      <div className="mb-12">
-        <Title variant="h1" align="center" size="xl" className="mb-4">
+    <PageContainer className="pt-8 sm:pt-12">
+      <div className="mb-10">
+        <Title variant="h1" size="2xl" className="mb-2">
           Immobilien
         </Title>
-        <p className="text-center text-card-text-l dark:text-card-text-d">
-          Alle verfügbaren Immobilien von Rumpke Immobilien
+        <p className="text-lg text-card-text-l dark:text-card-text-d">
+          {pagination.total === 1
+            ? "1 Immobilie verfügbar"
+            : `${pagination.total} Immobilien verfügbar`}
         </p>
       </div>
 
@@ -92,7 +94,13 @@ export default async function ObjektListPage({
         />
       ) : (
         <>
-          <PropertiesGrid properties={data} />
+          <PropertyListingResults
+            properties={data}
+            empty={{
+              headline: "Zurzeit sind keine Immobilien veröffentlicht",
+              body: "Unser Angebot wird regelmäßig aktualisiert. Gerne informieren wir Sie persönlich über passende Immobilien oder unterstützen Sie bei Ihrer individuellen Suche.",
+            }}
+          />
           <div className="mt-8">
             <PropertyPagination pagination={pagination} />
           </div>

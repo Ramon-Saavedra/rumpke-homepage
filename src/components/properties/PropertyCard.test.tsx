@@ -22,6 +22,8 @@ function makeProperty(
     usableArea: null,
     rooms: 4,
     floor: null,
+    latitude: null,
+    longitude: null,
     images: [],
     ...overrides,
   };

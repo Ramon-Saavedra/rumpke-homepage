@@ -168,14 +168,6 @@ export default async function ObjektDetailPage({ params }: PageProps) {
               </PropertyDetailSection>
             )}
 
-            {property.locationDescription && (
-              <PropertyDetailSection title="Lage">
-                <p className="whitespace-pre-line text-base leading-relaxed">
-                  {property.locationDescription}
-                </p>
-              </PropertyDetailSection>
-            )}
-
             <PropertyFeaturesSection
               features={features}
               description={property.furnishingDescription}

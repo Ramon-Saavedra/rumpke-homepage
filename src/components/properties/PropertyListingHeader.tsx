@@ -13,10 +13,10 @@ export default function PropertyListingHeader({
     <header className="mb-8 sm:mb-10">
       <Title
         variant="h1"
-        size="xl"
-        className="font-serif text-foreground"
+        size="2xl"
+        className="font-serif text-foreground mb-2"
         subtitle={subtitle}
-        subtitleClassName="text-card-text-l dark:text-card-text-d"
+        subtitleClassName="text-card-text-l dark:text-card-text-d text-lg"
       >
         {title}
       </Title>
