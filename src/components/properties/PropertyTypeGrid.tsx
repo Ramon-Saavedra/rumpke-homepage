@@ -42,7 +42,7 @@ export default function PropertyTypeGrid({
   return (
     <section className="mb-12">
       {title && (
-        <h2 className="text-2xl font-bold text-text-l dark:text-text-d mb-6">
+        <h2 className="text-lg sm:text-xl font-semibold text-text-l dark:text-text-d mb-6">
           {title}
         </h2>
       )}

@@ -8,7 +8,7 @@ import type { MarketingType } from "@/types/property-types";
 
 interface PropertyListingResultsProps {
   readonly properties: readonly PropertyCardDto[];
-  readonly marketingType: MarketingType;
+  readonly marketingType?: MarketingType;
   readonly total?: number;
   readonly context?: string;
   readonly empty: EmptyStateCopy;
