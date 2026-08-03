@@ -73,6 +73,7 @@ export default function PropertyImage({
         sizes={resolvedSizes}
         className="object-cover"
         priority={priority}
+        loading={priority ? "eager" : "lazy"}
         onLoad={() => setIsLoading(false)}
         onError={() => {
           setIsLoading(false);
