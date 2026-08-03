@@ -31,6 +31,8 @@ function makeCard(overrides: Partial<PropertyCardDto> = {}): PropertyCardDto {
     usableArea: null,
     rooms: null,
     floor: null,
+    latitude: null,
+    longitude: null,
     images: [],
     ...overrides,
   };

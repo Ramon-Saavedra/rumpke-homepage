@@ -18,6 +18,8 @@ function makeProperty(id: string): PropertyCardDto {
     usableArea: null,
     rooms: 4,
     floor: null,
+    latitude: null,
+    longitude: null,
     images: [],
   };
 }
