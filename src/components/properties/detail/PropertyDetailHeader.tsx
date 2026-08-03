@@ -27,12 +27,10 @@ export default function PropertyDetailHeader({
     property.price.salePrice,
     property.price.coldRent,
   );
-  const typeLabel =
-    property.propertySubType ??
-    resolvePropertyCategoryLabel(
-      property.propertyType,
-      property.propertySubType,
-    );
+  const typeLabel = resolvePropertyCategoryLabel(
+    property.propertyType,
+    property.propertySubType,
+  );
 
   return (
     <header
@@ -72,7 +70,7 @@ export default function PropertyDetailHeader({
       <div className="flex flex-wrap items-end justify-between gap-6">
         {price && (
           <div>
-            <p className="text-3xl font-bold leading-none text-primary sm:text-4xl">
+            <p className="text-2xl font-bold leading-none text-primary sm:text-3xl">
               {price}
             </p>
             <p className="mt-1.5 text-[13px] text-card-text-l dark:text-card-text-d">
