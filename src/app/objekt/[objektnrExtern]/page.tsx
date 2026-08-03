@@ -199,6 +199,12 @@ export default async function ObjektDetailPage({ params }: PageProps) {
             <SimilarProperties
               propertyId={property.id}
               marketingType={property.marketingType}
+              city={property.address.city}
+              priceValue={
+                property.marketingType === "miete"
+                  ? property.price.coldRent
+                  : property.price.salePrice
+              }
               className="order-5 lg:col-span-2"
             />
           </Suspense>
