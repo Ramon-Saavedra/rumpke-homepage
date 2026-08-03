@@ -1,11 +1,13 @@
 import { MapPin, ShieldCheck } from "lucide-react";
 import PropertyDetailSection from "./PropertyDetailSection";
 import PropertyLocationPlaceholder from "./PropertyLocationPlaceholder";
+import PropertyDetailMapLoader from "./PropertyDetailMapLoader";
 import type { PropertyDetailDto } from "@/types/property-api";
 import {
   resolvePropertyCoordinates,
   resolvePropertyLocationLabel,
   resolvePropertyLocationPrecision,
+  resolvePropertyTitle,
 } from "@/lib/property-detail";
 
 interface PropertyLocationSectionProps {
@@ -31,7 +33,15 @@ export default function PropertyLocationSection({
         </p>
       )}
 
-      <PropertyLocationPlaceholder isExact={isExact} />
+      {coordinates ? (
+        <PropertyDetailMapLoader
+          coordinates={coordinates}
+          title={resolvePropertyTitle(property)}
+          isExact={isExact}
+        />
+      ) : (
+        <PropertyLocationPlaceholder isExact={isExact} />
+      )}
 
       {address && isExact && (
         <p className="mt-3 flex items-center gap-2 text-sm text-card-text-l dark:text-card-text-d">

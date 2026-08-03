@@ -7,6 +7,7 @@ import {
   formatYear,
 } from "./property-formatters";
 import { formatFloor } from "./property-display";
+import { isValidCoordinate } from "./map-tiles";
 
 export type PropertyDetailFactIcon =
   | "living"
@@ -229,6 +230,7 @@ export function resolvePropertyCoordinates(
   const { latitude, longitude } = property.address;
   if (latitude === null || longitude === null) return null;
   if (latitude === 0 && longitude === 0) return null;
+  if (!isValidCoordinate(latitude, longitude)) return null;
   return { lat: latitude, lng: longitude };
 }
 
