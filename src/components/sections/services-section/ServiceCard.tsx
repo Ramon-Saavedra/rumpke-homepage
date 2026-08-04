@@ -1,71 +1,43 @@
-import React from "react";
 import Link from "next/link";
-import {
-  ArrowRight,
-  Home,
-  Building2,
-  BarChart3,
-  type LucideIcon,
-} from "lucide-react";
+import { ArrowRight, type LucideIcon } from "lucide-react";
 
-interface ServiceCardProps {
-  title: string;
-  text: string;
-  link: string;
+export interface ServiceCardProps {
+  readonly title: string;
+  readonly text: string;
+  readonly link: string;
+  readonly icon: LucideIcon;
 }
 
-type IconMap = Record<string, LucideIcon>;
-
-const ICONS: IconMap = {
-  verkauf: Home,
-  vermiet: Building2,
-  bewert: BarChart3,
-};
-
-function getIcon(title: string): LucideIcon {
-  const t = title.trim().toLowerCase();
-  for (const [key, Icon] of Object.entries(ICONS)) {
-    if (t.includes(key)) return Icon;
-  }
-  return Home;
-}
-
-export default function ServiceCard({ title, text, link }: ServiceCardProps) {
-  const Icon = getIcon(title);
+export default function ServiceCard({
+  title,
+  text,
+  link,
+  icon: Icon,
+}: ServiceCardProps) {
   return (
     <Link
       href={link}
-      className="group relative flex items-start gap-5 py-7 px-1 border-b border-border-l dark:border-border-d last:border-b-0 hover:bg-bgSecondary-l dark:hover:bg-bgSecondary-d transition-colors"
+      className="group flex h-full flex-col items-center p-5 text-center hover:bg-bgSecondary-l focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg-l sm:items-start sm:text-left dark:hover:bg-bgSecondary-d dark:focus-visible:ring-offset-bg-d"
     >
-      {/* Left accent bar */}
-      <span
+      <Icon
+        size={28}
+        strokeWidth={1.75}
         aria-hidden="true"
-        className="absolute left-0 top-0 h-full w-0.5 bg-primary origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-300"
+        className="text-card-text-l group-hover:text-primary dark:text-card-text-d"
       />
 
-      {/* Icon */}
-      <div className="mt-0.5 shrink-0 flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 ring-1 ring-primary/20 group-hover:bg-primary/20 transition-colors">
-        {React.createElement(Icon, {
-          className: "h-5 w-5 text-primary",
-          strokeWidth: 1.8,
-        })}
-      </div>
+      <h3 className="mt-5 text-[22px] font-bold leading-snug tracking-tight text-foreground group-hover:text-primary">
+        {title}
+      </h3>
 
-      {/* Content */}
-      <div className="flex-1 min-w-0">
-        <h3 className="text-lg font-semibold text-foreground mb-1.5 tracking-tight group-hover:text-primary transition-colors">
-          {title}
-        </h3>
-        <p className="text-sm leading-relaxed text-card-text-l dark:text-card-text-d">
-          {text}
-        </p>
-      </div>
+      <p className="mt-3.5 max-w-85 text-[15.5px] leading-[1.7] text-card-text-l dark:text-card-text-d">
+        {text}
+      </p>
 
-      {/* Arrow */}
-      <ArrowRight
-        className="mt-1 shrink-0 self-center h-5 w-5 text-card-text-l dark:text-card-text-d group-hover:text-primary group-hover:translate-x-1 transition-all"
-        strokeWidth={2}
-      />
+      <span className="mt-auto inline-flex items-center gap-2 pt-6 text-[15px] font-medium text-primary-dark underline-offset-4 group-hover:underline dark:text-primary">
+        Mehr erfahren
+        <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
+      </span>
     </Link>
   );
 }
