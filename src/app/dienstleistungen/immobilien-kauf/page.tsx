@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ContactButton from "@/components/ui/contact-button/ContactButton";
+import ProcessSteps from "@/components/ui/process-steps/ProcessSteps";
 import InfoCard from "@/components/ui/info-card/InfoCard";
 import AdvantagesSection from "@/components/ui/advantages-section/AdvantagesSection";
 import {
@@ -27,11 +28,44 @@ export const metadata: Metadata = {
   },
 };
 
+const purchaseSteps = [
+  {
+    id: "consultation",
+    title: "Erstgespräch",
+    description:
+      "In einem persönlichen Gespräch lernen wir Ihre Bedürfnisse kennen und definieren gemeinsam Ihr Suchprofil.",
+  },
+  {
+    id: "search",
+    title: "Immobiliensuche",
+    description:
+      "Wir suchen gezielt nach passenden Objekten und präsentieren Ihnen regelmäßig neue Angebote, die Ihren Vorstellungen entsprechen.",
+  },
+  {
+    id: "viewings",
+    title: "Besichtigungen",
+    description:
+      "Wir begleiten Sie zu den Besichtigungen und geben Ihnen wertvolle Hinweise zur Immobilie und zum Zustand.",
+  },
+  {
+    id: "negotiation",
+    title: "Kaufentscheidung und Verhandlung",
+    description:
+      "Wenn Sie sich für eine Immobilie entschieden haben, führen wir die Verkaufsverhandlungen und sorgen für die bestmöglichen Konditionen.",
+  },
+  {
+    id: "completion",
+    title: "Kaufabschluss",
+    description:
+      "Wir koordinieren alle notwendigen Schritte und begleiten Sie bis zur Schlüsselübergabe.",
+  },
+] as const;
+
 export default function ImmobilienKaufPage() {
   return (
     <div className="max-w-5xl mx-auto">
       <div className="mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold text-center mb-4">
+        <h1 className="mb-4 text-center font-serif text-3xl font-semibold md:text-4xl">
           Immobilien-Kauf
         </h1>
         <p className="text-lg text-center text-card-text-l dark:text-card-text-d">
@@ -48,7 +82,7 @@ export default function ImmobilienKaufPage() {
         {/* Unser Service Section */}
         <section>
           <div className="mb-6">
-            <h2 className="text-2xl md:text-3xl font-bold mb-3">
+            <h2 className="mb-3 font-serif text-2xl font-semibold md:text-3xl">
               Unser Service für Käufer
             </h2>
             <p className="leading-relaxed">
@@ -89,103 +123,12 @@ export default function ImmobilienKaufPage() {
         {/* So funktioniert es Section */}
         <section>
           <div className="mb-6">
-            <h2 className="text-2xl md:text-3xl font-bold mb-3">
+            <h2 className="mb-3 font-serif text-2xl font-semibold md:text-3xl">
               So funktioniert der Immobilienkauf mit uns
             </h2>
           </div>
 
-          <div className="space-y-6">
-            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
-              <div className="flex gap-4">
-                <div className="shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
-                    1
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">Erstgespräch</h3>
-                  <p className="text-sm text-card-text-l dark:text-card-text-d leading-relaxed">
-                    In einem persönlichen Gespräch lernen wir Ihre Bedürfnisse
-                    kennen und definieren gemeinsam Ihr Suchprofil.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
-              <div className="flex gap-4">
-                <div className="shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
-                    2
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">
-                    Immobiliensuche
-                  </h3>
-                  <p className="text-sm text-card-text-l dark:text-card-text-d leading-relaxed">
-                    Wir suchen gezielt nach passenden Objekten und präsentieren
-                    Ihnen regelmäßig neue Angebote, die Ihren Vorstellungen
-                    entsprechen.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
-              <div className="flex gap-4">
-                <div className="shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
-                    3
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">Besichtigungen</h3>
-                  <p className="text-sm text-card-text-l dark:text-card-text-d leading-relaxed">
-                    Wir begleiten Sie zu den Besichtigungen und geben Ihnen
-                    wertvolle Hinweise zur Immobilie und zum Zustand.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
-              <div className="flex gap-4">
-                <div className="shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
-                    4
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">
-                    Kaufentscheidung und Verhandlung
-                  </h3>
-                  <p className="text-sm text-card-text-l dark:text-card-text-d leading-relaxed">
-                    Wenn Sie sich für eine Immobilie entschieden haben, führen
-                    wir die Verkaufsverhandlungen und sorgen für die
-                    bestmöglichen Konditionen.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
-              <div className="flex gap-4">
-                <div className="shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
-                    5
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">Kaufabschluss</h3>
-                  <p className="text-sm text-card-text-l dark:text-card-text-d leading-relaxed">
-                    Wir koordinieren alle notwendigen Schritte und begleiten Sie
-                    bis zur Schlüsselübergabe.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ProcessSteps steps={purchaseSteps} />
         </section>
 
         {/* Warum Rumpke Section */}
@@ -212,7 +155,7 @@ export default function ImmobilienKaufPage() {
 
         {/* CTA Section */}
         <section className="text-center py-8">
-          <h2 className="text-2xl font-bold mb-4">
+          <h2 className="mb-4 font-serif text-2xl font-semibold">
             Bereit für Ihre Traumimmobilie?
           </h2>
           <p className="mb-6 max-w-2xl mx-auto">

@@ -32,11 +32,11 @@ export default function PropertyCard({
     <Link
       href={detailUrl}
       className={cn(
-        "group flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
+        "group flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
         className,
       )}
     >
-      <article className="flex flex-1 flex-col overflow-hidden rounded border border-border-l bg-bgSecondary-l shadow-md group-hover:shadow-xl dark:border-border-d dark:bg-bgSecondary-d dark:group-hover:border-card-text-d/30">
+      <article className="flex flex-1 flex-col overflow-hidden rounded-lg border border-border-l bg-bgSecondary-l shadow-sm transition-shadow group-hover:shadow-lg dark:border-border-d dark:bg-bgSecondary-d dark:group-hover:border-card-text-d/30">
         <div className="relative aspect-4/3 shrink-0 overflow-hidden">
           <PropertyImage
             images={property.images}
@@ -47,7 +47,7 @@ export default function PropertyCard({
           />
 
           {categoryLabel && (
-            <span className="absolute top-3 left-3 rounded bg-primary px-3 py-1 text-xs font-medium text-white">
+            <span className="absolute top-3 left-3 rounded-md bg-primary px-3 py-1 text-xs font-medium text-primary-foreground">
               {categoryLabel}
             </span>
           )}
@@ -77,7 +77,7 @@ export default function PropertyCard({
             {property.marketingType && (
               <PropertyTransactionBadge
                 isRent={isRent}
-                className="rounded px-2.5 py-1 text-[11px]"
+                className="rounded-md px-2.5 py-1 text-[11px]"
               />
             )}
           </div>

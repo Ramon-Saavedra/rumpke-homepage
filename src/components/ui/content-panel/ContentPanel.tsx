@@ -15,7 +15,7 @@ export default function ContentPanel({
   return (
     <Tag
       className={cn(
-        "bg-bgSecondary-l dark:bg-bgSecondary-d border border-border-l dark:border-border-d",
+        "rounded-lg border border-border-l bg-bgSecondary-l dark:border-border-d dark:bg-bgSecondary-d",
         className,
       )}
     >

@@ -79,7 +79,7 @@ export default function HomePage() {
         <WhatMattersNowSection />
         <ContentPanel
           as="section"
-          className="scroll-mt-28 mb-24 py-12 overflow-hidden rounded-sm"
+          className="scroll-mt-28 mb-16 overflow-hidden py-10 sm:mb-20 sm:py-12"
         >
           <ContactForm formHeadingId="homepage-contact-heading" />
         </ContentPanel>

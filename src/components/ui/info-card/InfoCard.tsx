@@ -14,11 +14,11 @@ export default function InfoCard({
   return (
     <div
       className={cn(
-        "p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d",
+        "rounded-lg border border-border-l bg-bgSecondary-l p-6 dark:border-border-d dark:bg-bgSecondary-d",
         className,
       )}
     >
-      <h2 className="font-semibold text-lg mb-3">{title}</h2>
+      <h3 className="mb-3 font-serif text-lg font-semibold">{title}</h3>
       <p className="text-sm text-card-text-l dark:text-card-text-d leading-relaxed">
         {description}
       </p>

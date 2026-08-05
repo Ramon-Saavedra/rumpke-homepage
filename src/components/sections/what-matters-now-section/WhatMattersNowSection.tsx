@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import SectionHeader from "@/components/ui/section-header/SectionHeader";
+import { buttonVariants } from "@/components/ui/button/buttonVariants";
+import { cn } from "@/lib/utils";
 
 type Scenario = {
   readonly kicker: string;
@@ -33,7 +35,10 @@ const scenarios: readonly Scenario[] = [
 
 export default function WhatMattersNowSection() {
   return (
-    <section aria-labelledby="what-matters-now-title" className="mb-24 py-12">
+    <section
+      aria-labelledby="what-matters-now-title"
+      className="mb-16 py-10 sm:mb-20 sm:py-12"
+    >
       <div className="grid grid-cols-1 items-start gap-10 sm:gap-11 lg:grid-cols-[0.82fr_1fr] lg:gap-16 xl:gap-24">
         <div>
           <SectionHeader
@@ -49,7 +54,10 @@ export default function WhatMattersNowSection() {
 
           <Link
             href="/kontakt"
-            className="group inline-flex w-full items-center justify-center gap-2.5 rounded-lg bg-primary-dark px-7 py-3.5 text-[14.5px] font-semibold text-white hover:bg-secondary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg-l dark:bg-primary dark:text-bg-d dark:hover:bg-primary-dark dark:focus-visible:ring-offset-bg-d sm:w-auto sm:px-8.5 sm:py-4 sm:text-[15.5px]"
+            className={cn(
+              buttonVariants({ variant: "primary", size: "lg" }),
+              "group w-full sm:w-auto",
+            )}
           >
             Ein Gespräch in Ruhe beginnen
             <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />

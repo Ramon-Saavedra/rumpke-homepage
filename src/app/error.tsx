@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button/buttonVariants";
 
 export default function Error({
   error,
@@ -10,8 +11,11 @@ export default function Error({
   unstable_retry: () => void;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh] gap-6 text-center px-4">
-      <h2 className="text-3xl font-bold text-text-l dark:text-text-d">
+    <div
+      role="alert"
+      className="flex min-h-[60vh] flex-col items-center justify-center gap-6 px-4 text-center"
+    >
+      <h2 className="font-serif text-3xl font-semibold text-foreground">
         Etwas ist schiefgelaufen
       </h2>
 
@@ -19,7 +23,7 @@ export default function Error({
         Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es
         erneut.
         {error.digest && (
-          <span className="block text-sm mt-2 text-secondary-l dark:text-secondary-d">
+          <span className="mt-2 block text-sm text-card-text-l dark:text-card-text-d">
             Fehler-ID: {error.digest}
           </span>
         )}
@@ -28,14 +32,11 @@ export default function Error({
       <div className="flex flex-wrap gap-4 justify-center">
         <button
           onClick={unstable_retry}
-          className="px-6 py-2 bg-primary text-white rounded hover:opacity-90 transition-opacity"
+          className={buttonVariants({ variant: "primary" })}
         >
           Erneut versuchen
         </button>
-        <Link
-          href="/"
-          className="px-6 py-2 border border-border-l dark:border-border-d rounded hover:bg-bgSecondary-l dark:hover:bg-bgSecondary-d transition-colors text-text-l dark:text-text-d"
-        >
+        <Link href="/" className={buttonVariants({ variant: "secondary" })}>
           Zur Startseite
         </Link>
       </div>

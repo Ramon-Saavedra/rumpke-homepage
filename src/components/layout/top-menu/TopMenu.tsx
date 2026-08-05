@@ -6,11 +6,14 @@ import { useEffect, useRef, useState } from "react";
 import RumpkeLogo from "@/components/branding/logo/RumpkeLogo";
 import { useUiStore } from "@/store/ui/ui-store";
 import { MAIN_NAV_LINKS } from "@/constants/navigation";
+import { buttonVariants } from "@/components/ui/button/buttonVariants";
+import { cn } from "@/lib/utils";
 
 const Topmenu = () => {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const openSidebar = useUiStore((state) => state.openSidebar);
+  const isSidebarOpen = useUiStore((state) => state.isSidebarOpen);
 
   const headerRef = useRef<HTMLElement>(null);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -58,7 +61,7 @@ const Topmenu = () => {
         />
       )}
 
-      <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-5 md:px-8 lg:px-12 min-[1440px]:px-16 min-[1800px]:max-w-360 min-[1800px]:px-20">
+      <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo — compact mark below laptop; full wordmark on laptop and up. */}
         <RumpkeLogo
           variant="mark"
@@ -92,11 +95,13 @@ const Topmenu = () => {
           ))}
           <Link
             href="/kontakt"
-            className={`whitespace-nowrap rounded-lg px-4 py-2.5 text-[13px] font-medium tracking-[0.04em] active:translate-y-px ${
-              transparent
-                ? "border border-white/70 text-white hover:bg-white/12"
-                : "bg-primary text-white hover:bg-primary-dark"
-            }`}
+            className={cn(
+              buttonVariants({
+                variant: transparent ? "onMedia" : "primary",
+                size: "sm",
+              }),
+              "min-h-10 whitespace-nowrap text-[13px] tracking-[0.04em]",
+            )}
           >
             Kontakt aufnehmen
           </Link>
@@ -107,20 +112,21 @@ const Topmenu = () => {
           type="button"
           data-testid="menu-btn"
           aria-label="Navigationsmenü öffnen"
-          aria-expanded={useUiStore.getState().isSidebarOpen}
+          aria-expanded={isSidebarOpen}
           aria-controls="mobile-sidebar"
           onClick={openSidebar}
-          className="flex h-3.5 w-5.5 flex-col justify-between lg:hidden"
+          className={cn(
+            buttonVariants({ variant: "ghost", size: "icon" }),
+            "lg:hidden",
+            transparent &&
+              "text-white hover:bg-white/12 focus-visible:ring-white",
+          )}
         >
-          <span
-            className={`h-0.5 w-full rounded-full ${transparent ? "bg-white" : "bg-current"}`}
-          />
-          <span
-            className={`h-0.5 w-full rounded-full ${transparent ? "bg-white" : "bg-current"}`}
-          />
-          <span
-            className={`h-0.5 w-full rounded-full ${transparent ? "bg-white" : "bg-current"}`}
-          />
+          <span className="flex h-3.5 w-5.5 flex-col justify-between">
+            <span className="h-0.5 w-full rounded-full bg-current" />
+            <span className="h-0.5 w-full rounded-full bg-current" />
+            <span className="h-0.5 w-full rounded-full bg-current" />
+          </span>
         </button>
       </div>
     </header>

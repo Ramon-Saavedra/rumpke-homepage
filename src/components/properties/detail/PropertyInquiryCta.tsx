@@ -1,6 +1,7 @@
 "use client";
 
 import { usePropertyInquiry } from "./PropertyInquiryContext";
+import { buttonVariants } from "@/components/ui/button/buttonVariants";
 
 export default function PropertyInquiryCta() {
   const { requestInquiry } = usePropertyInquiry();
@@ -10,14 +11,14 @@ export default function PropertyInquiryCta() {
       <button
         type="button"
         onClick={() => requestInquiry("viewing")}
-        className="cursor-pointer rounded-md bg-primary px-6 py-3.5 text-[15px] font-semibold text-white hover:bg-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+        className={buttonVariants({ variant: "primary", size: "lg" })}
       >
         Besichtigung anfragen
       </button>
       <button
         type="button"
         onClick={() => requestInquiry("expose")}
-        className="cursor-pointer rounded-md border border-border-l px-6 py-3.5 text-[15px] font-medium hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 dark:border-border-d"
+        className={buttonVariants({ variant: "secondary", size: "lg" })}
       >
         Exposé anfordern
       </button>

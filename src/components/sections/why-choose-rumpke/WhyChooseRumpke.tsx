@@ -37,7 +37,7 @@ export default function WhyChooseRumpke() {
     <section
       ref={ref}
       aria-labelledby="why-choose-rumpke-title"
-      className="mb-24 pt-6 pb-12 sm:py-12"
+      className="mb-16 pt-6 pb-10 sm:mb-20 sm:py-12"
     >
       <div className="flex flex-wrap items-start gap-8 sm:gap-10 lg:gap-14 xl:gap-20">
         <div

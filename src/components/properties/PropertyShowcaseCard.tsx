@@ -117,7 +117,7 @@ function imageWrapperClass(
 }
 
 const CARD_BASE =
-  "flex flex-1 flex-col overflow-hidden border border-border-l bg-bgSecondary-l dark:border-border-d dark:bg-bgSecondary-d";
+  "flex flex-1 flex-col overflow-hidden rounded-lg border border-border-l bg-bgSecondary-l dark:border-border-d dark:bg-bgSecondary-d";
 
 function ShowcaseCardSkeleton({
   variant,
@@ -143,7 +143,7 @@ function ShowcaseCardSkeleton({
           <Skeleton className="h-full w-full" />
           <Skeleton
             tone="onMedia"
-            className={cn("absolute h-6 w-20 rounded", config.badgeOffset)}
+            className={cn("absolute h-6 w-20 rounded-md", config.badgeOffset)}
           />
         </div>
         <div className={cn("flex flex-1 flex-col", config.contentPad)}>
@@ -205,7 +205,7 @@ export default function PropertyShowcaseCard({
     <Link
       href={detailUrl}
       className={cn(
-        "group flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
+        "group flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
         media === "fill" && "lg:h-full lg:min-h-0 lg:flex-1",
         className,
       )}

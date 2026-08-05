@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { Roboto, Geist, Cormorant_Garamond } from "next/font/google";
+import { Geist, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import CompanyTitle from "@/components/branding/companyTitle/CompanyTitle";
 import Topmenu from "@/components/layout/top-menu/TopMenu";
@@ -14,11 +14,9 @@ import { cn } from "@/lib/utils";
 import { Providers } from "./providers";
 import { THEME_INIT_SCRIPT } from "@/context/theme-storage";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
-
-const roboto = Roboto({
+const geist = Geist({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
+  variable: "--font-geist",
   display: "swap",
 });
 
@@ -42,12 +40,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
       lang="de"
-      className={cn(
-        roboto.className,
-        "font-sans",
-        geist.variable,
-        cormorant.variable,
-      )}
+      className={cn("font-sans", geist.variable, cormorant.variable)}
       suppressHydrationWarning
     >
       <head>
@@ -55,7 +48,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       </head>
       <body className="antialiased">
         <Providers>
-          <div className="bg-bg-l text-zinc-800 dark:bg-bg-d dark:text-foreground">
+          <div className="bg-bg-l text-foreground dark:bg-bg-d">
             <div>
               <Topmenu />
               <div className="lg:hidden">

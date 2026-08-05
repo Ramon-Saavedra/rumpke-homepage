@@ -35,7 +35,7 @@ export default function PortraitImage({
   return (
     <div className={`flex flex-col ${className ?? ""}`}>
       <div
-        className={`relative w-full overflow-hidden ${aspectRatio}`}
+        className={`relative w-full overflow-hidden rounded-lg ${aspectRatio}`}
         aria-busy={isLoading && !hasError}
       >
         {isLoading && !hasError && (

@@ -111,16 +111,16 @@ export default async function PropertyTypePage({ params }: PageProps) {
       <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
         <Link
           href={`/kauf/${type}`}
-          className="group border border-border-l dark:border-border-d p-12 text-center hover:bg-Bghover-l dark:hover:bg-Bghover-d bg-bgSecondary-l dark:bg-bgSecondary-d"
+          className="group rounded-lg border border-border-l bg-bgSecondary-l p-8 text-center transition hover:bg-Bghover-l focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:p-12 dark:border-border-d dark:bg-bgSecondary-d dark:hover:bg-Bghover-d"
         >
           <div className="flex flex-col items-center gap-6">
-            <div className="w-20 h-20 flex items-center justify-center text-primary">
+            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 text-primary">
               <Key size={48} strokeWidth={2} />
             </div>
-            <h2 className="text-3xl font-bold text-card-text-l dark:text-card-text-d">
+            <h2 className="font-serif text-3xl font-semibold text-foreground">
               {TRANSACTION_LABELS.kauf}
             </h2>
-            <p className="text-secondary-l dark:text-secondary-d text-lg">
+            <p className="text-lg text-card-text-l dark:text-card-text-d">
               {label} zum Kauf anzeigen
             </p>
           </div>
@@ -128,16 +128,16 @@ export default async function PropertyTypePage({ params }: PageProps) {
 
         <Link
           href={`/miete/${type}`}
-          className="group border border-border-l dark:border-border-d p-12 text-center hover:bg-Bghover-l dark:hover:bg-Bghover-d bg-bgSecondary-l dark:bg-bgSecondary-d"
+          className="group rounded-lg border border-border-l bg-bgSecondary-l p-8 text-center transition hover:bg-Bghover-l focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:p-12 dark:border-border-d dark:bg-bgSecondary-d dark:hover:bg-Bghover-d"
         >
           <div className="flex flex-col items-center gap-6">
-            <div className="w-20 h-20 flex items-center justify-center text-primary">
+            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 text-primary">
               <FileText size={48} strokeWidth={2} />
             </div>
-            <h2 className="text-3xl font-bold text-card-text-l dark:text-card-text-d">
+            <h2 className="font-serif text-3xl font-semibold text-foreground">
               {TRANSACTION_LABELS.miete}
             </h2>
-            <p className="text-secondary-l dark:text-secondary-d text-lg">
+            <p className="text-lg text-card-text-l dark:text-card-text-d">
               {label} zur Miete anzeigen
             </p>
           </div>

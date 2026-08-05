@@ -26,7 +26,7 @@ export default function PropertyFloorplansSection({
             <button
               type="button"
               onClick={() => setActiveIndex(index)}
-              className="group relative h-60 w-full cursor-pointer overflow-hidden border border-border-l dark:border-border-d"
+              className="group relative h-60 w-full cursor-pointer overflow-hidden rounded-lg border border-border-l focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-border-d"
               aria-label={`${floorplan.title ?? `Grundriss ${index + 1}`} vergrößern`}
             >
               <PropertyImage
@@ -36,7 +36,10 @@ export default function PropertyFloorplansSection({
                 sizes="(max-width: 768px) 100vw, 380px"
               />
               <span className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all group-hover:bg-black/25 group-hover:opacity-100 group-focus-visible:bg-black/25 group-focus-visible:opacity-100">
-                <Maximize2 className="h-6 w-6 text-white drop-shadow" aria-hidden="true" />
+                <Maximize2
+                  className="h-6 w-6 text-white drop-shadow"
+                  aria-hidden="true"
+                />
               </span>
             </button>
             <p className="mt-2 text-[13px] text-card-text-l dark:text-card-text-d">

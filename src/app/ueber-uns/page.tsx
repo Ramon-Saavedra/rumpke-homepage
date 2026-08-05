@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 
 export default function UeberUnsPage() {
   return (
-    <div className="max-w-5xl mx-auto bg-bgSecondary-l dark:bg-bgSecondary-d px-4 sm:px-6 py-8 sm:py-10 mb-12 rounded">
+    <div className="mx-auto mb-12 max-w-5xl rounded-lg bg-bgSecondary-l px-4 py-8 sm:px-6 sm:py-10 dark:bg-bgSecondary-d">
       <div className="mb-12">
         <Title variant="h1" align="center" size="xl">
           Über mich
@@ -37,7 +37,7 @@ export default function UeberUnsPage() {
 
       <div className="grid lg:grid-cols-2 gap-12">
         <div className="flex flex-col">
-          <div className="relative w-full max-w-md mx-auto overflow-hidden border border-border-l dark:border-border-d bg-bgSecondary-l dark:bg-bgSecondary-d">
+          <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-lg border border-border-l bg-bgSecondary-l dark:border-border-d dark:bg-bgSecondary-d">
             <Image
               src="/imgs/personal-service-pic.jpeg"
               alt="Ann-Christin Rumpke Portrait"
@@ -52,7 +52,7 @@ export default function UeberUnsPage() {
             <h2 className="font-semibold text-xl text-card-text-l dark:text-card-text-d">
               Ann-Christin Rumpke
             </h2>
-            <p className="text-sm text-secondary-l dark:text-secondary-d mt-1">
+            <p className="mt-1 text-sm text-card-text-l dark:text-card-text-d">
               Immobilienmaklerin & Wertermittlerin
             </p>
           </div>
@@ -78,7 +78,7 @@ export default function UeberUnsPage() {
             </p>
           </div>
 
-          <div className="mt-8 p-6 bg-bgSecondary-l dark:bg-bgSecondary-d border border-border-l dark:border-border-d space-y-4">
+          <div className="mt-8 space-y-4 rounded-lg border border-border-l bg-bgSecondary-l p-6 dark:border-border-d dark:bg-bgSecondary-d">
             <p className="italic text-base leading-relaxed text-card-text-l dark:text-card-text-d">
               &bdquo;Mein Ansatz ist authentisch, kompetent und echt. Ich sehe
               mich nicht nur als Maklerin, sondern als Dienstleister, der Ihnen

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ContactButton from "@/components/ui/contact-button/ContactButton";
+import ProcessSteps from "@/components/ui/process-steps/ProcessSteps";
 import InfoCard from "@/components/ui/info-card/InfoCard";
 import AdvantagesSection from "@/components/ui/advantages-section/AdvantagesSection";
 import {
@@ -27,11 +28,38 @@ export const metadata: Metadata = {
   },
 };
 
+const valuationSteps = [
+  {
+    id: "consultation",
+    title: "Erstgespräch und Objektbesichtigung",
+    description:
+      "Wir beginnen mit einem persönlichen Gespräch, in dem wir Ihre Wünsche und Ziele besprechen. Anschließend nehmen wir eine detaillierte Besichtigung Ihrer Immobilie vor, um alle relevanten Merkmale zu erfassen.",
+  },
+  {
+    id: "analysis",
+    title: "Marktanalyse",
+    description:
+      "Wir nutzen aktuelle Marktdaten und unsere umfassende Kenntnis der regionalen Gegebenheiten, um den Marktwert Ihrer Immobilie präzise zu bestimmen.",
+  },
+  {
+    id: "report",
+    title: "Bewertungsbericht",
+    description:
+      "Sie erhalten von uns eine detaillierte Einschätzung mit einer fundierten Preisempfehlung und auch eine Einschätzung der Vermarktungschancen.",
+  },
+  {
+    id: "recommendation",
+    title: "Beratung und Handlungsempfehlung",
+    description:
+      "Auf Basis der Bewertung besprechen wir mit Ihnen die nächsten Schritte und geben Ihnen konkrete Empfehlungen, wie Sie den Wert Ihrer Immobilie optimal nutzen können.",
+  },
+] as const;
+
 export default function ImmobilienbewertungPage() {
   return (
     <div className="max-w-5xl mx-auto">
       <div className="mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold text-center mb-4">
+        <h1 className="mb-4 text-center font-serif text-3xl font-semibold md:text-4xl">
           Immobilienbewertung
         </h1>
         <p className="text-lg text-center text-card-text-l dark:text-card-text-d">
@@ -51,7 +79,7 @@ export default function ImmobilienbewertungPage() {
         {/* Warum professionelle Bewertung Section */}
         <section>
           <div className="mb-6">
-            <h2 className="text-2xl md:text-3xl font-bold mb-3">
+            <h2 className="mb-3 font-serif text-2xl font-semibold md:text-3xl">
               Warum eine professionelle Immobilienbewertung?
             </h2>
             <p className="leading-relaxed">
@@ -84,7 +112,7 @@ export default function ImmobilienbewertungPage() {
         {/* Bewertungsprozess Section */}
         <section>
           <div className="mb-6">
-            <h2 className="text-2xl md:text-3xl font-bold mb-3">
+            <h2 className="mb-3 font-serif text-2xl font-semibold md:text-3xl">
               Unser Bewertungsprozess
             </h2>
             <p className="leading-relaxed">
@@ -93,99 +121,22 @@ export default function ImmobilienbewertungPage() {
             </p>
           </div>
 
-          <div className="space-y-6">
-            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
-              <div className="flex gap-4">
-                <div className="shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
-                    1
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">
-                    Erstgespräch und Objektbesichtigung
-                  </h3>
-                  <p className="text-sm text-card-text-l dark:text-card-text-d leading-relaxed">
-                    Wir beginnen mit einem persönlichen Gespräch, in dem wir
-                    Ihre Wünsche und Ziele besprechen. Anschließend nehmen wir
-                    eine detaillierte Besichtigung Ihrer Immobilie vor, um alle
-                    relevanten Merkmale zu erfassen.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
-              <div className="flex gap-4">
-                <div className="shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
-                    2
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">Marktanalyse</h3>
-                  <p className="text-sm text-card-text-l dark:text-card-text-d leading-relaxed">
-                    Wir nutzen aktuelle Marktdaten und unsere umfassende
-                    Kenntnis der regionalen Gegebenheiten, um den Marktwert
-                    Ihrer Immobilie präzise zu bestimmen.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
-              <div className="flex gap-4">
-                <div className="shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
-                    3
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">
-                    Bewertungsbericht
-                  </h3>
-                  <p className="text-sm text-card-text-l dark:text-card-text-d leading-relaxed">
-                    Sie erhalten von uns eine detaillierte Einschätzung mit
-                    einer fundierten Preisempfehlung und auch eine Einschätzung
-                    der Vermarktungschancen.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
-              <div className="flex gap-4">
-                <div className="shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
-                    4
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">
-                    Beratung und Handlungsempfehlung
-                  </h3>
-                  <p className="text-sm text-card-text-l dark:text-card-text-d leading-relaxed">
-                    Auf Basis der Bewertung besprechen wir mit Ihnen die
-                    nächsten Schritte und geben Ihnen konkrete Empfehlungen, wie
-                    Sie den Wert Ihrer Immobilie optimal nutzen können.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ProcessSteps steps={valuationSteps} />
         </section>
 
         {/* Was wir bewerten Section */}
         <section>
           <div className="mb-6">
-            <h2 className="text-2xl md:text-3xl font-bold mb-3">
+            <h2 className="mb-3 font-serif text-2xl font-semibold md:text-3xl">
               Was wir bei der Bewertung berücksichtigen
             </h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
-              <h3 className="font-semibold text-lg mb-3">Objektmerkmale</h3>
+            <div className="rounded-lg border border-border-l bg-bgSecondary-l p-6 dark:border-border-d dark:bg-bgSecondary-d">
+              <h3 className="mb-3 font-serif text-lg font-semibold">
+                Objektmerkmale
+              </h3>
               <ul className="text-sm text-card-text-l dark:text-card-text-d space-y-2">
                 <li>• Größe und Grundriss</li>
                 <li>• Baujahr und Zustand</li>
@@ -194,8 +145,8 @@ export default function ImmobilienbewertungPage() {
               </ul>
             </div>
 
-            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
-              <h3 className="font-semibold text-lg mb-3">Lage</h3>
+            <div className="rounded-lg border border-border-l bg-bgSecondary-l p-6 dark:border-border-d dark:bg-bgSecondary-d">
+              <h3 className="mb-3 font-serif text-lg font-semibold">Lage</h3>
               <ul className="text-sm text-card-text-l dark:text-card-text-d space-y-2">
                 <li>• Mikro- und Makrolage</li>
                 <li>• Infrastruktur</li>
@@ -204,8 +155,10 @@ export default function ImmobilienbewertungPage() {
               </ul>
             </div>
 
-            <div className="p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded border border-border-l dark:border-border-d">
-              <h3 className="font-semibold text-lg mb-3">Marktfaktoren</h3>
+            <div className="rounded-lg border border-border-l bg-bgSecondary-l p-6 dark:border-border-d dark:bg-bgSecondary-d">
+              <h3 className="mb-3 font-serif text-lg font-semibold">
+                Marktfaktoren
+              </h3>
               <ul className="text-sm text-card-text-l dark:text-card-text-d space-y-2">
                 <li>• Vergleichspreise</li>
                 <li>• Angebot und Nachfrage</li>
@@ -240,7 +193,7 @@ export default function ImmobilienbewertungPage() {
 
         {/* CTA Section */}
         <section className="text-center py-8">
-          <h2 className="text-2xl font-bold mb-4">
+          <h2 className="mb-4 font-serif text-2xl font-semibold">
             Möchten Sie den Wert Ihrer Immobilie erfahren?
           </h2>
           <p className="mb-6 max-w-2xl mx-auto">

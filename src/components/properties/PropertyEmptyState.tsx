@@ -26,7 +26,7 @@ interface PropertyEmptyStateProps {
 }
 
 const CARD_CLASS =
-  "flex w-full flex-col items-center justify-center rounded border border-border-l bg-bgSecondary-l px-[22px] py-9 text-center shadow-[0_1px_3px_rgba(0,0,0,0.06)] sm:px-11 sm:py-12 lg:px-16 lg:py-14 dark:border-border-d dark:bg-bgSecondary-d dark:shadow-none";
+  "flex w-full flex-col items-center justify-center rounded-lg border border-border-l bg-bgSecondary-l px-[22px] py-9 text-center shadow-sm sm:px-11 sm:py-12 lg:px-16 lg:py-14 dark:border-border-d dark:bg-bgSecondary-d dark:shadow-none";
 
 const CARD_MIN_HEIGHT = "min-h-[280px] sm:min-h-[320px] lg:min-h-[340px]";
 
@@ -115,7 +115,7 @@ export default function PropertyEmptyState({
       {reset && (
         <Link
           href={reset.href}
-          className="mb-5 inline-flex items-center gap-1.5 rounded-sm text-[13.5px] font-semibold text-primary underline decoration-primary/35 underline-offset-[3px] transition-opacity hover:opacity-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+          className="mb-5 inline-flex items-center gap-1.5 rounded-md text-[13.5px] font-semibold text-primary underline decoration-primary/35 underline-offset-[3px] transition-opacity hover:opacity-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           <RotateCcw className="h-3.5 w-3.5" aria-hidden="true" />
           {reset.label}

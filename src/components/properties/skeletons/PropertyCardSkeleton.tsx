@@ -16,7 +16,7 @@ export default function PropertyCardSkeleton({
       aria-hidden="true"
       style={skeletonDelayStyle(delayIndex)}
       className={cn(
-        "flex flex-1 flex-col overflow-hidden rounded border border-border-l bg-bgSecondary-l shadow-md dark:border-border-d dark:bg-bgSecondary-d",
+        "flex flex-1 flex-col overflow-hidden rounded-lg border border-border-l bg-bgSecondary-l shadow-sm dark:border-border-d dark:bg-bgSecondary-d",
         className,
       )}
     >
@@ -24,7 +24,7 @@ export default function PropertyCardSkeleton({
         <Skeleton className="h-full w-full" />
         <Skeleton
           tone="onMedia"
-          className="absolute top-3 left-3 h-6 w-20 rounded"
+          className="absolute top-3 left-3 h-6 w-20 rounded-md"
         />
       </div>
 
@@ -44,7 +44,7 @@ export default function PropertyCardSkeleton({
 
         <div className="mt-auto flex items-center justify-between gap-2 border-t border-border-l pt-3 dark:border-border-d">
           <Skeleton className="h-3.5 w-16" />
-          <Skeleton className="h-5 w-14 rounded" />
+          <Skeleton className="h-5 w-14 rounded-md" />
         </div>
       </div>
     </article>

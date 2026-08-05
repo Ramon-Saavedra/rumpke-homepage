@@ -79,4 +79,26 @@ describe("PropertyGallery", () => {
     fireEvent.keyDown(window, { key: "Escape" });
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
+
+  it("traps focus and restores it to the gallery trigger", () => {
+    render(<PropertyGallery images={makeImages(3)} alt="Stadtvilla" />);
+    const trigger = screen.getByRole("button", {
+      name: "Titelbild vergrößern",
+    });
+    trigger.focus();
+    fireEvent.click(trigger);
+
+    const closeButton = screen.getByRole("button", {
+      name: "Galerie schließen",
+    });
+    expect(closeButton).toHaveFocus();
+
+    fireEvent.keyDown(window, { key: "Tab", shiftKey: true });
+    expect(
+      screen.getByRole("button", { name: "Bild 3 anzeigen" }),
+    ).toHaveFocus();
+
+    fireEvent.keyDown(window, { key: "Escape" });
+    expect(trigger).toHaveFocus();
+  });
 });

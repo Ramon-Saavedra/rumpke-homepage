@@ -28,7 +28,7 @@ const NavItem = ({
     <Link
       href={href}
       onClick={onClick}
-      className={`flex items-center text-xs px-2 mb-4 md:mb-0 font-extrabold hover:text-[#52B788] rounded transition-colors`}
+      className="mb-4 flex min-h-11 items-center rounded-md px-3 text-xs font-bold transition-colors hover:text-primary md:mb-0"
       {...(target ? { target } : {})}
       {...(rel ? { rel } : {})}
     >

@@ -16,16 +16,20 @@ const mockUseUiStore = useUiStore as unknown as jest.Mock;
 describe("Sidebar", () => {
   const closeSidebar = jest.fn();
 
-  beforeEach(() => {
-    jest.clearAllMocks();
+  const setOpen = (isSidebarOpen: boolean) => {
     mockUseUiStore.mockImplementation(
       (
         selector: (s: {
           isSidebarOpen: boolean;
           closeSidebar: jest.Mock;
         }) => unknown,
-      ) => selector({ isSidebarOpen: false, closeSidebar }),
+      ) => selector({ isSidebarOpen, closeSidebar }),
     );
+  };
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+    setOpen(false);
   });
 
   it("renders sidebar element", () => {
@@ -39,14 +43,7 @@ describe("Sidebar", () => {
   });
 
   it("sidebar is visible (translate-x-0) when open", () => {
-    mockUseUiStore.mockImplementation(
-      (
-        selector: (s: {
-          isSidebarOpen: boolean;
-          closeSidebar: jest.Mock;
-        }) => unknown,
-      ) => selector({ isSidebarOpen: true, closeSidebar }),
-    );
+    setOpen(true);
     render(<Sidebar />);
     expect(screen.getByTestId("sidebar")).toHaveClass("translate-x-0");
   });
@@ -58,14 +55,7 @@ describe("Sidebar", () => {
   });
 
   it("calls closeSidebar when overlay is clicked", () => {
-    mockUseUiStore.mockImplementation(
-      (
-        selector: (s: {
-          isSidebarOpen: boolean;
-          closeSidebar: jest.Mock;
-        }) => unknown,
-      ) => selector({ isSidebarOpen: true, closeSidebar }),
-    );
+    setOpen(true);
     render(<Sidebar />);
     fireEvent.click(screen.getByTestId("sidebar-overlay"));
     expect(closeSidebar).toHaveBeenCalled();
@@ -82,5 +72,38 @@ describe("Sidebar", () => {
     expect(
       screen.getByRole("link", { name: /kontakt/i, hidden: true }),
     ).toBeInTheDocument();
+  });
+
+  it("is inert while closed", () => {
+    render(<Sidebar />);
+
+    expect(screen.getByTestId("sidebar")).toHaveAttribute("inert");
+    expect(screen.getByTestId("sidebar")).toHaveAttribute(
+      "aria-hidden",
+      "true",
+    );
+  });
+
+  it("focuses the close button and closes on Escape", () => {
+    setOpen(true);
+    render(<Sidebar />);
+
+    expect(screen.getByTestId("close-sidebar-btn")).toHaveFocus();
+    fireEvent.keyDown(window, { key: "Escape" });
+    expect(closeSidebar).toHaveBeenCalled();
+  });
+
+  it("restores focus after closing", () => {
+    const opener = document.createElement("button");
+    document.body.appendChild(opener);
+    opener.focus();
+    setOpen(true);
+    const { rerender } = render(<Sidebar />);
+
+    setOpen(false);
+    rerender(<Sidebar />);
+
+    expect(opener).toHaveFocus();
+    opener.remove();
   });
 });

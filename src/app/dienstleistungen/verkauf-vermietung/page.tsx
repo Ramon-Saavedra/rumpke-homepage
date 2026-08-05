@@ -31,7 +31,7 @@ export default function VerkaufVermietungPage() {
   return (
     <div className="max-w-5xl mx-auto">
       <div className="mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold text-center mb-4">
+        <h1 className="mb-4 text-center font-serif text-3xl font-semibold md:text-4xl">
           Verkauf und Vermietung von Immobilien
         </h1>
         <p className="text-lg text-center text-card-text-l dark:text-card-text-d">
@@ -49,7 +49,7 @@ export default function VerkaufVermietungPage() {
         {/* Verkauf Section */}
         <section>
           <div className="mb-6">
-            <h2 className="text-2xl md:text-3xl font-bold mb-3">
+            <h2 className="mb-3 font-serif text-2xl font-semibold md:text-3xl">
               Verkauf – Erreichen Sie den besten Preis
             </h2>
             <p className=" leading-relaxed">
@@ -82,7 +82,7 @@ export default function VerkaufVermietungPage() {
         {/* Vermietung Section */}
         <section>
           <div className="mb-6">
-            <h2 className="text-2xl md:text-3xl font-bold mb-3">
+            <h2 className="mb-3 font-serif text-2xl font-semibold md:text-3xl">
               Vermietung – Finden Sie den perfekten Mieter
             </h2>
             <p className=" leading-relaxed">
@@ -134,7 +134,7 @@ export default function VerkaufVermietungPage() {
         />
         {/* CTA Section */}
         <section className="text-center py-8">
-          <h2 className="text-2xl font-bold mb-4">
+          <h2 className="mb-4 font-serif text-2xl font-semibold">
             Kontaktieren Sie uns noch heute!
           </h2>
           <p className=" mb-6 max-w-2xl mx-auto">

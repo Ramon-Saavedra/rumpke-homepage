@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, type TouchEvent } from "react";
+import { useEffect, useEffectEvent, useRef, type TouchEvent } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { PropertyImageDto } from "@/types/property-api";
@@ -23,26 +23,43 @@ export default function PropertyLightbox({
   onClose,
   onSelect,
 }: PropertyLightboxProps) {
+  const dialogRef = useRef<HTMLDivElement | null>(null);
   const closeRef = useRef<HTMLButtonElement | null>(null);
   const touchStartRef = useRef<number | null>(null);
   const hasMultiple = images.length > 1;
 
-  const step = useCallback(
-    (direction: number) => {
-      if (images.length === 0) return;
-      onSelect((activeIndex + direction + images.length) % images.length);
-    },
-    [activeIndex, images.length, onSelect],
-  );
+  const step = (direction: number) => {
+    if (images.length === 0) return;
+    onSelect((activeIndex + direction + images.length) % images.length);
+  };
+
+  const handleKeyDown = useEffectEvent((event: KeyboardEvent) => {
+    if (event.key === "Escape") onClose();
+    if (event.key === "ArrowRight") step(1);
+    if (event.key === "ArrowLeft") step(-1);
+    if (event.key !== "Tab") return;
+
+    const focusable = dialogRef.current?.querySelectorAll<HTMLElement>(
+      'button:not([disabled]), [href], [tabindex]:not([tabindex="-1"])',
+    );
+    if (!focusable || focusable.length === 0) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last?.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first?.focus();
+    }
+  });
 
   useEffect(() => {
+    const previouslyFocused = document.activeElement;
     closeRef.current?.focus();
 
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
-      if (event.key === "ArrowRight") step(1);
-      if (event.key === "ArrowLeft") step(-1);
-    };
+    const onKeyDown = (event: KeyboardEvent) => handleKeyDown(event);
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -51,8 +68,9 @@ export default function PropertyLightbox({
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
+      if (previouslyFocused instanceof HTMLElement) previouslyFocused.focus();
     };
-  }, [onClose, step]);
+  }, []);
 
   const activeImage = images[activeIndex];
   if (activeImage === undefined) return null;
@@ -73,6 +91,7 @@ export default function PropertyLightbox({
 
   return (
     <div
+      ref={dialogRef}
       role="dialog"
       aria-modal="true"
       aria-label={`Bildergalerie: ${alt}`}
@@ -89,7 +108,7 @@ export default function PropertyLightbox({
           type="button"
           onClick={onClose}
           aria-label="Galerie schließen"
-          className="cursor-pointer rounded-full p-1 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
         >
           <X className="h-6 w-6" aria-hidden="true" />
         </button>
