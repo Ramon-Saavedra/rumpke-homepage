@@ -42,7 +42,7 @@ export default function PropertyTypeGrid({
   return (
     <section className="mb-12">
       {title && (
-        <h2 className="text-lg sm:text-xl font-semibold text-text-l dark:text-text-d mb-6">
+        <h2 className="mb-6 text-lg font-semibold text-foreground sm:text-xl">
           {title}
         </h2>
       )}
@@ -54,13 +54,13 @@ export default function PropertyTypeGrid({
             href={`/${basePath}/${type.slug}`}
             className="group"
           >
-            <div className="flex items-start gap-4 p-6 bg-background-l dark:bg-background-d border border-border-l dark:border-border-d rounded hover:border-primary hover:shadow-lg">
+            <div className="flex items-start gap-4 rounded-lg border border-control-border-l bg-bgSecondary-l p-6 transition hover:border-primary hover:shadow-lg dark:border-control-border-d dark:bg-bgSecondary-d">
               <div className="text-primary group-hover:scale-110">
                 {getIcon(type.slug)}
               </div>
 
               <div className="flex-1">
-                <p className="text-lg font-bold text-text-l dark:text-text-d mb-1 group-hover:text-primary">
+                <p className="mb-1 font-serif text-lg font-semibold text-foreground group-hover:text-primary">
                   {type.label}
                 </p>
                 <p className="text-sm text-card-text-l dark:text-card-text-d">

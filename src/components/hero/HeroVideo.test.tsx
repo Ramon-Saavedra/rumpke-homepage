@@ -35,7 +35,7 @@ describe("HeroVideo", () => {
       expect(video).toBeInTheDocument();
       expect(video).toHaveAttribute("src", defaultProps.videoSrc);
       expect(video).toHaveAttribute("poster", defaultProps.poster);
-      expect(video).toHaveAttribute("autoplay");
+      expect(video).not.toHaveAttribute("autoplay");
       expect(video).toHaveAttribute("loop");
       expect(video).toHaveAttribute("playsinline");
     });
@@ -91,6 +91,43 @@ describe("HeroVideo", () => {
       expect(observeMock.mock.calls.some((call) => call[0] === video)).toBe(
         true,
       );
+    });
+
+    it("pauses when reduced motion becomes preferred", () => {
+      let matches = false;
+      let onChange: (() => void) | undefined;
+      const matchMedia = jest.spyOn(window, "matchMedia").mockImplementation(
+        (query) =>
+          ({
+            get matches() {
+              return matches;
+            },
+            media: query,
+            onchange: null,
+            addListener: jest.fn(),
+            removeListener: jest.fn(),
+            addEventListener: (_type: string, listener: EventListener) => {
+              onChange = () => listener(new Event("change"));
+            },
+            removeEventListener: jest.fn(),
+            dispatchEvent: jest.fn(),
+          }) as MediaQueryList,
+      );
+      const play = jest
+        .spyOn(HTMLMediaElement.prototype, "play")
+        .mockResolvedValue();
+      const pause = jest
+        .spyOn(HTMLMediaElement.prototype, "pause")
+        .mockImplementation(() => {});
+      render(<HeroVideo {...defaultProps} />);
+
+      matches = true;
+      onChange?.();
+      expect(pause).toHaveBeenCalled();
+
+      play.mockRestore();
+      pause.mockRestore();
+      matchMedia.mockRestore();
     });
   });
 });

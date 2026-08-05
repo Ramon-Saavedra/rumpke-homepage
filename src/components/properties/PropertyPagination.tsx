@@ -36,12 +36,12 @@ export default function PropertyPagination({
   return (
     <nav
       aria-label="Paginierung"
-      className="flex items-center justify-center gap-2"
+      className="flex max-w-full flex-wrap items-center justify-center gap-2"
     >
       {page > 1 && (
         <Link
           href={pageHref(basePath, page - 1, query)}
-          className="px-3 py-2 border border-border-l dark:border-border-d rounded text-sm text-text-l dark:text-text-d hover:bg-bgSecondary-l dark:hover:bg-bgSecondary-d transition-colors"
+          className="inline-flex min-h-11 items-center rounded-md border border-control-border-l px-3 py-2 text-sm text-foreground transition-colors hover:bg-bgSecondary-l dark:border-control-border-d dark:hover:bg-bgSecondary-d"
           aria-label="Vorherige Seite"
         >
           Zurück
@@ -52,7 +52,7 @@ export default function PropertyPagination({
         <>
           <Link
             href={pageHref(basePath, 1, query)}
-            className="px-3 py-2 border border-border-l dark:border-border-d rounded text-sm text-text-l dark:text-text-d hover:bg-bgSecondary-l dark:hover:bg-bgSecondary-d transition-colors"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-control-border-l px-3 py-2 text-sm text-foreground transition-colors hover:bg-bgSecondary-l dark:border-control-border-d dark:hover:bg-bgSecondary-d"
           >
             1
           </Link>
@@ -68,10 +68,10 @@ export default function PropertyPagination({
         <Link
           key={p}
           href={pageHref(basePath, p, query)}
-          className={`px-3 py-2 border rounded text-sm transition-colors ${
+          className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border px-3 py-2 text-sm transition-colors ${
             p === page
-              ? "bg-primary text-white border-primary"
-              : "border-border-l dark:border-border-d text-text-l dark:text-text-d hover:bg-bgSecondary-l dark:hover:bg-bgSecondary-d"
+              ? "border-primary bg-primary text-primary-foreground"
+              : "border-control-border-l text-foreground hover:bg-bgSecondary-l dark:border-control-border-d dark:hover:bg-bgSecondary-d"
           }`}
           aria-label={`Seite ${p}`}
           aria-current={p === page ? "page" : undefined}
@@ -89,7 +89,7 @@ export default function PropertyPagination({
           )}
           <Link
             href={pageHref(basePath, totalPages, query)}
-            className="px-3 py-2 border border-border-l dark:border-border-d rounded text-sm text-text-l dark:text-text-d hover:bg-bgSecondary-l dark:hover:bg-bgSecondary-d transition-colors"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-control-border-l px-3 py-2 text-sm text-foreground transition-colors hover:bg-bgSecondary-l dark:border-control-border-d dark:hover:bg-bgSecondary-d"
           >
             {totalPages}
           </Link>
@@ -99,7 +99,7 @@ export default function PropertyPagination({
       {page < totalPages && (
         <Link
           href={pageHref(basePath, page + 1, query)}
-          className="px-3 py-2 border border-border-l dark:border-border-d rounded text-sm text-text-l dark:text-text-d hover:bg-bgSecondary-l dark:hover:bg-bgSecondary-d transition-colors"
+          className="inline-flex min-h-11 items-center rounded-md border border-control-border-l px-3 py-2 text-sm text-foreground transition-colors hover:bg-bgSecondary-l dark:border-control-border-d dark:hover:bg-bgSecondary-d"
           aria-label="Nächste Seite"
         >
           Weiter

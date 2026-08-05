@@ -9,7 +9,7 @@ export function floatingInputBaseClasses(
     "placeholder-transparent focus:outline-none",
     error
       ? "border-error"
-      : "border-border-l dark:border-border-d focus:border-primary",
+      : "border-control-border-l focus:border-primary dark:border-control-border-d",
     extra,
   );
 }

@@ -102,9 +102,9 @@ function TextSectionSkeleton({ lines }: { readonly lines: number }) {
 
 function InquiryPanelSkeleton() {
   return (
-    <div className="border border-border-l bg-bgSecondary-l p-6 shadow-sm dark:border-border-d dark:bg-bgSecondary-d">
+    <div className="rounded-lg border border-border-l bg-bgSecondary-l p-6 shadow-sm dark:border-border-d dark:bg-bgSecondary-d">
       <div className="mb-5 flex items-center gap-3 border-b border-border-l pb-5 dark:border-border-d">
-        <Skeleton className="h-13 w-13 shrink-0" />
+        <Skeleton className="h-13 w-13 shrink-0 rounded-md" />
         <div className="min-w-0 flex-1">
           <Skeleton className="h-3 w-24" />
           <Skeleton className="mt-2 h-4 w-40 max-w-full" />
@@ -148,9 +148,9 @@ function InquiryPanelSkeleton() {
 
 function ContactCardSkeleton() {
   return (
-    <div className="mt-5 border border-border-l bg-bgSecondary-l p-5 dark:border-border-d dark:bg-bgSecondary-d">
+    <div className="mt-5 rounded-lg border border-border-l bg-bgSecondary-l p-5 dark:border-border-d dark:bg-bgSecondary-d">
       <div className="flex items-center gap-3.5">
-        <Skeleton className="h-11 w-11 shrink-0" />
+        <Skeleton className="h-11 w-11 shrink-0 rounded-md" />
         <div className="min-w-0 flex-1">
           <Skeleton className="h-4 w-48 max-w-full" />
           <Skeleton className="mt-2 h-3 w-32" />

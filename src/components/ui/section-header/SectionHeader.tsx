@@ -41,7 +41,7 @@ export default function SectionHeader({
       <h2
         id={titleId}
         className={cn(
-          "text-3xl sm:text-4xl font-bold leading-tight text-foreground",
+          "font-serif text-3xl font-semibold leading-tight text-foreground sm:text-4xl",
           titleClassName,
         )}
       >

@@ -49,6 +49,20 @@ describe("PropertyPagination", () => {
     expect(screen.getByText("3")).toBeInTheDocument();
   });
 
+  it("wraps controls and provides minimum touch targets", () => {
+    render(
+      <PropertyPagination
+        pagination={makePagination({ page: 5, totalPages: 12 })}
+      />,
+    );
+
+    expect(screen.getByRole("navigation")).toHaveClass("flex-wrap");
+    expect(screen.getByRole("link", { name: "Seite 5" })).toHaveClass(
+      "min-h-11",
+      "min-w-11",
+    );
+  });
+
   it("highlights current page", () => {
     render(
       <PropertyPagination

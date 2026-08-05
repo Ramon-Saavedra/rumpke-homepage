@@ -17,7 +17,7 @@ export default function ServiceCard({
   return (
     <Link
       href={link}
-      className="group flex h-full flex-col items-center p-5 text-center hover:bg-bgSecondary-l focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg-l sm:items-start sm:text-left dark:hover:bg-bgSecondary-d dark:focus-visible:ring-offset-bg-d"
+      className="group flex h-full flex-col items-center rounded-lg border border-transparent p-5 text-center transition-colors hover:border-border-l hover:bg-bgSecondary-l focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg-l sm:items-start sm:text-left dark:hover:border-border-d dark:hover:bg-bgSecondary-d dark:focus-visible:ring-offset-bg-d"
     >
       <Icon
         size={28}

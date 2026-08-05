@@ -17,7 +17,7 @@ interface PropertySpotlightCardProps {
 }
 
 const SPOTLIGHT_CARD_CLASS =
-  "flex flex-col overflow-hidden border border-border-l bg-bgSecondary-l sm:flex-row dark:border-border-d dark:bg-bgSecondary-d";
+  "flex flex-col overflow-hidden rounded-lg border border-border-l bg-bgSecondary-l sm:flex-row dark:border-border-d dark:bg-bgSecondary-d";
 
 const SPOTLIGHT_MEDIA_CLASS =
   "relative aspect-4/3 overflow-hidden sm:aspect-5/4 sm:w-[54%] sm:shrink-0 lg:aspect-16/10";
@@ -73,7 +73,7 @@ export default function PropertySpotlightCard({
     <Link
       href={`/objekt/${encodeURIComponent(property.id)}`}
       className={cn(
-        "group block w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
+        "group block w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
         className,
       )}
     >

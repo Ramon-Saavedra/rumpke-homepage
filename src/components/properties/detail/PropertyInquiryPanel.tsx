@@ -24,6 +24,7 @@ import {
 } from "@/lib/property-detail";
 import type { PropertyDetailDto } from "@/types/property-api";
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button/buttonVariants";
 
 interface PropertyInquiryPanelProps {
   readonly property: PropertyDetailDto;
@@ -123,12 +124,12 @@ export default function PropertyInquiryPanel({
       ref={panelRef}
       id="objekt-anfrage"
       className={cn(
-        "scroll-mt-28 border border-border-l bg-bgSecondary-l p-6 shadow-sm dark:border-border-d dark:bg-bgSecondary-d",
+        "scroll-mt-28 rounded-lg border border-border-l bg-bgSecondary-l p-6 shadow-sm dark:border-border-d dark:bg-bgSecondary-d",
         className,
       )}
     >
       <div className="mb-5 flex items-center gap-3 border-b border-border-l pb-5 dark:border-border-d">
-        <div className="h-13 w-13 shrink-0 overflow-hidden">
+        <div className="h-13 w-13 shrink-0 overflow-hidden rounded-md">
           <PropertyImage
             images={property.images}
             alt={title}
@@ -177,7 +178,7 @@ export default function PropertyInquiryPanel({
               });
               setSubmitted(false);
             }}
-            className="cursor-pointer rounded-md border border-border-l px-5 py-2.5 text-sm hover:border-primary hover:text-primary dark:border-border-d"
+            className={buttonVariants({ variant: "secondary", size: "sm" })}
           >
             Weitere Anfrage stellen
           </button>
@@ -202,10 +203,10 @@ export default function PropertyInquiryPanel({
                   aria-pressed={isActive}
                   onClick={() => selectInquiryType(type.id)}
                   className={cn(
-                    "cursor-pointer rounded-full border px-3.5 py-2 text-[13px] font-medium",
+                    "inline-flex min-h-11 cursor-pointer items-center rounded-full border px-3.5 py-2 text-[13px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
                     isActive
-                      ? "border-primary bg-primary text-white"
-                      : "border-border-l hover:border-primary hover:text-primary dark:border-border-d",
+                      ? "border-primary bg-primary text-primary-foreground"
+                      : "border-control-border-l hover:border-primary hover:text-primary dark:border-control-border-d",
                   )}
                 >
                   {type.label}
@@ -325,7 +326,7 @@ export default function PropertyInquiryPanel({
 
               {serverError && (
                 <div role="alert" aria-live="assertive">
-                  <p className="rounded-sm border border-error/20 bg-error/10 px-3 py-2 text-xs text-error">
+                  <p className="rounded-md border border-error/20 bg-error/10 px-3 py-2 text-xs text-error">
                     {serverError}
                   </p>
                 </div>
@@ -334,11 +335,11 @@ export default function PropertyInquiryPanel({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={cn(
-                  "flex w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-primary px-6 py-3.5 text-[15px] font-semibold text-white",
-                  "hover:bg-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
-                  "disabled:cursor-not-allowed disabled:opacity-60",
-                )}
+                className={buttonVariants({
+                  variant: "primary",
+                  size: "lg",
+                  className: "w-full",
+                })}
               >
                 {isSubmitting ? (
                   <>

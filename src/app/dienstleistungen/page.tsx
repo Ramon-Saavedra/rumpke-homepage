@@ -54,7 +54,7 @@ export default function DienstleistungenPage() {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <h1 className="text-4xl font-bold text-center mb-4">
+      <h1 className="mb-4 text-center font-serif text-4xl font-semibold">
         Unsere Dienstleistungen
       </h1>
       <p className="text-lg text-center mb-12">
@@ -69,14 +69,16 @@ export default function DienstleistungenPage() {
             <Link
               key={service.href}
               href={service.href}
-              className="group flex flex-col p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded hover:shadow-md border border-transparent hover:border-border-l dark:hover:border-border-d"
+              className="group flex flex-col rounded-lg border border-transparent bg-bgSecondary-l p-6 transition hover:border-border-l hover:shadow-md dark:bg-bgSecondary-d dark:hover:border-border-d"
             >
               <div className="mb-4">
                 <IconComponent className="w-6 h-6" />
               </div>
-              <h2 className="text-xl font-semibold mb-3">{service.title}</h2>
+              <h2 className="mb-3 font-serif text-xl font-semibold">
+                {service.title}
+              </h2>
               <p className="leading-relaxed grow">{service.description}</p>
-              <div className="mt-4 text-blue-600 hover:text-blue-800 font-medium inline-flex items-center gap-2">
+              <div className="mt-4 inline-flex items-center gap-2 font-medium text-primary hover:text-primary-dark">
                 Mehr erfahren
                 <TrendingUp className="w-4 h-4" />
               </div>
@@ -85,8 +87,8 @@ export default function DienstleistungenPage() {
         })}
       </div>
 
-      <div className="mt-12 p-6 bg-bgSecondary-l dark:bg-bgSecondary-d rounded text-center">
-        <h3 className="text-xl font-bold mb-2">
+      <div className="mt-12 rounded-lg bg-bgSecondary-l p-6 text-center dark:bg-bgSecondary-d">
+        <h3 className="mb-2 font-serif text-xl font-semibold">
           Haben Sie Fragen zu unseren Dienstleistungen?
         </h3>
         <p className="mb-4">

@@ -14,7 +14,8 @@ describe("floatingInputBaseClasses", () => {
 
   it("uses default border classes when no error", () => {
     const result = floatingInputBaseClasses();
-    expect(result).toContain("border-border-l");
+    expect(result).toContain("border-control-border-l");
+    expect(result).toContain("dark:border-control-border-d");
     expect(result).toContain("focus:border-primary");
     expect(result).not.toContain("border-error");
   });

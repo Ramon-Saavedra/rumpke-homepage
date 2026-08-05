@@ -1,5 +1,7 @@
 import { Mail } from "lucide-react";
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button/buttonVariants";
+import { cn } from "@/lib/utils";
 
 interface ContactButtonProps {
   text?: string;
@@ -15,7 +17,7 @@ export default function ContactButton({
   return (
     <Link
       href={href}
-      className={`inline-flex items-center gap-1 px-3 py-1.5 bg-bgSecondary-l dark:bg-bgSecondary-d font-medium rounded-md shadow-sm hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white ${className}`}
+      className={cn(buttonVariants({ variant: "primary" }), className)}
       style={{ letterSpacing: "0.01em" }}
     >
       <Mail size={18} strokeWidth={2} />

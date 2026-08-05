@@ -24,14 +24,16 @@ const GoogleMap = () => {
 
   return (
     <section className="w-full py-16">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] overflow-hidden rounded-xl border border-border-l dark:border-border-d">
           <div className="flex flex-col justify-between gap-10 bg-bgSecondary-l dark:bg-bgSecondary-d p-8">
             <div>
               <p className="text-xs font-semibold tracking-[0.15em] uppercase text-primary mb-4">
                 Unser Standort
               </p>
-              <h2 className="text-2xl font-bold mb-8">Rumpke Immobilien</h2>
+              <h2 className="mb-8 font-serif text-2xl font-semibold">
+                Rumpke Immobilien
+              </h2>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <IoLocationOutline

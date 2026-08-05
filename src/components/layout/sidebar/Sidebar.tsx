@@ -6,32 +6,52 @@ import { IoCloseOutline } from "react-icons/io5";
 import { ThemeSwitch } from "@/context/theme-switch";
 import { useUiStore } from "@/store/ui/ui-store";
 import { DRAWER_LINKS } from "@/constants/navigation";
+import { buttonVariants } from "@/components/ui/button/buttonVariants";
 
 const Sidebar = () => {
   const isSidebarOpen = useUiStore((state) => state.isSidebarOpen);
   const closeSidebar = useUiStore((state) => state.closeSidebar);
+  const sidebarRef = useRef<HTMLElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    document.body.style.overflow = isSidebarOpen ? "hidden" : "unset";
+    if (!isSidebarOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = previousOverflow;
     };
-  }, [isSidebarOpen]);
-
-  useEffect(() => {
-    if (isSidebarOpen) {
-      closeButtonRef.current?.focus();
-    }
   }, [isSidebarOpen]);
 
   useEffect(() => {
     if (!isSidebarOpen) return;
+    const previouslyFocused = document.activeElement;
+    closeButtonRef.current?.focus();
+
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeSidebar();
+      if (e.key === "Tab") {
+        const focusable = sidebarRef.current?.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])',
+        );
+        if (!focusable || focusable.length === 0) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
+      }
     };
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      if (previouslyFocused instanceof HTMLElement) previouslyFocused.focus();
+    };
   }, [isSidebarOpen, closeSidebar]);
 
   return (
@@ -46,13 +66,17 @@ const Sidebar = () => {
       />
 
       <aside
+        ref={sidebarRef}
         id="mobile-sidebar"
         data-testid="sidebar"
-        className={`fixed right-0 top-0 z-102 flex h-full w-[62%] max-w-sm flex-col border-l border-border-l bg-bg-l dark:border-border-d dark:bg-bgSecondary-d ${
+        className={`fixed top-0 right-0 z-102 flex h-full w-[min(86vw,24rem)] flex-col border-l border-border-l bg-bg-l transition-transform duration-300 dark:border-border-d dark:bg-bgSecondary-d ${
           isSidebarOpen ? "translate-x-0" : "translate-x-full"
         }`}
         aria-label="Navigationsmenü"
         aria-hidden={!isSidebarOpen}
+        role="dialog"
+        aria-modal={isSidebarOpen ? "true" : undefined}
+        inert={!isSidebarOpen}
       >
         <div className="flex items-center justify-end p-5">
           <button
@@ -60,9 +84,9 @@ const Sidebar = () => {
             data-testid="close-sidebar-btn"
             onClick={closeSidebar}
             aria-label="Menü schließen"
-            className="cursor-pointer rounded p-1 text-bg-d hover:text-primary dark:text-foreground"
+            className={buttonVariants({ variant: "ghost", size: "icon" })}
           >
-            <IoCloseOutline size={26} />
+            <IoCloseOutline size={26} aria-hidden="true" />
           </button>
         </div>
 
@@ -92,7 +116,7 @@ const Sidebar = () => {
           <Link
             href="/kontakt"
             onClick={closeSidebar}
-            className="block rounded-lg bg-primary px-5 py-3 text-center text-[13px] font-medium tracking-[0.04em] text-white hover:bg-primary-dark active:translate-y-px"
+            className={`${buttonVariants({ variant: "primary" })} flex w-full text-[13px] tracking-[0.04em]`}
           >
             Kontakt aufnehmen
           </Link>

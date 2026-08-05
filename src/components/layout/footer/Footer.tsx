@@ -51,12 +51,10 @@ function FooterNavSection({
 function FooterSocialLink({
   href,
   label,
-  hoverColor,
   children,
 }: {
   href: string;
   label: string;
-  hoverColor: string;
   children: ReactNode;
 }) {
   return (
@@ -64,7 +62,7 @@ function FooterSocialLink({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`text-card-text-l dark:text-card-text-d ${hoverColor}`}
+      className="inline-flex h-11 w-11 items-center justify-center rounded-full text-card-text-l transition-colors hover:bg-Bghover-l hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-card-text-d dark:hover:bg-Bghover-d"
       aria-label={label}
     >
       {children}
@@ -126,28 +124,24 @@ const Footer = () => {
               <FooterSocialLink
                 href="https://www.facebook.com/profile.php?id=61572884870790"
                 label="Facebook"
-                hoverColor="hover:text-[#1877F3]"
               >
                 <IoLogoFacebook size={18} />
               </FooterSocialLink>
               <FooterSocialLink
                 href="https://wa.me/491723244468"
                 label="WhatsApp"
-                hoverColor="hover:text-[#25D366]"
               >
                 <IoLogoWhatsapp size={18} />
               </FooterSocialLink>
               <FooterSocialLink
                 href="https://www.instagram.com/rumpkeimmobilien/"
                 label="Instagram"
-                hoverColor="hover:text-[#E4405F]"
               >
                 <IoLogoInstagram size={18} />
               </FooterSocialLink>
               <FooterSocialLink
                 href="https://www.linkedin.com/company/rumpke-immobilien"
                 label="LinkedIn"
-                hoverColor="hover:text-[#0A66C2]"
               >
                 <IoLogoLinkedin size={18} />
               </FooterSocialLink>

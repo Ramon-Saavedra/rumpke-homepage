@@ -1,10 +1,6 @@
-import {
-  ClipboardCheck,
-  KeyRound,
-  TrendingUp,
-} from "lucide-react";
+import { ClipboardCheck, KeyRound, TrendingUp } from "lucide-react";
 import SectionHeader from "@/components/ui/section-header/SectionHeader";
-import ServiceCard, { type ServiceCardProps } from "./ServiceCard";
+import ServiceCard from "./ServiceCard";
 
 const services = [
   {
@@ -31,7 +27,7 @@ export default function ServicesSection() {
   return (
     <section
       aria-labelledby="services-section-title"
-      className="mb-24 py-12"
+      className="mb-16 py-10 sm:mb-20 sm:py-12"
     >
       <SectionHeader
         eyebrow="Was wir bieten"

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button/buttonVariants";
 
 type HeroVideoProps = {
   videoSrc: string;
@@ -16,10 +17,24 @@ export default function HeroVideo({ videoSrc, poster, alt }: HeroVideoProps) {
     const videoElement = videoRef.current;
     if (!videoElement) return;
 
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const syncPlaybackPreference = () => {
+      if (reducedMotion.matches) {
+        videoElement.pause();
+        return;
+      }
+
+      const bounds = videoElement.getBoundingClientRect();
+      if (bounds.bottom > 0 && bounds.top < window.innerHeight) {
+        videoElement.play().catch(() => {});
+      }
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && !reducedMotion.matches) {
             videoElement.play().catch(() => {});
           } else {
             videoElement.pause();
@@ -30,9 +45,12 @@ export default function HeroVideo({ videoSrc, poster, alt }: HeroVideoProps) {
     );
 
     observer.observe(videoElement);
+    reducedMotion.addEventListener("change", syncPlaybackPreference);
+    syncPlaybackPreference();
 
     return () => {
       observer.disconnect();
+      reducedMotion.removeEventListener("change", syncPlaybackPreference);
     };
   }, []);
 
@@ -43,7 +61,6 @@ export default function HeroVideo({ videoSrc, poster, alt }: HeroVideoProps) {
         className="absolute inset-0 h-full w-full object-cover"
         src={videoSrc}
         poster={poster}
-        autoPlay
         loop
         muted
         playsInline
@@ -70,13 +87,13 @@ export default function HeroVideo({ videoSrc, poster, alt }: HeroVideoProps) {
         <div className="mt-9 flex w-full max-w-sm flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:gap-4">
           <Link
             href="/kauf"
-            className="rounded-lg bg-primary px-7 py-3.5 text-center text-sm font-medium text-white transition-colors duration-150 hover:bg-primary-dark active:translate-y-px"
+            className={buttonVariants({ variant: "primary", size: "lg" })}
           >
             Immobilien entdecken
           </Link>
           <Link
             href="/dienstleistungen/immobilienbewertung"
-            className="rounded-lg border border-white/60 px-7 py-3.5 text-center text-sm font-medium text-white transition-colors duration-150 hover:bg-white/12 active:translate-y-px"
+            className={buttonVariants({ variant: "onMedia", size: "lg" })}
           >
             Immobilie bewerten
           </Link>

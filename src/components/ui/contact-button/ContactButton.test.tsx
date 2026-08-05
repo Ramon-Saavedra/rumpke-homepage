@@ -78,42 +78,39 @@ describe("ContactButton", () => {
       const link = screen.getByRole("link");
       expect(link).toHaveClass("inline-flex");
       expect(link).toHaveClass("items-center");
-      expect(link).toHaveClass("gap-1");
-      expect(link).toHaveClass("px-3");
-      expect(link).toHaveClass("py-1.5");
+      expect(link).toHaveClass("min-h-11");
+      expect(link).toHaveClass("gap-2");
+      expect(link).toHaveClass("px-6");
+      expect(link).toHaveClass("py-3");
       expect(link).toHaveClass("rounded-md");
     });
 
     it("has background color classes", () => {
       render(<ContactButton />);
       const link = screen.getByRole("link");
-      expect(link).toHaveClass("bg-bgSecondary-l");
-      expect(link).toHaveClass("dark:bg-bgSecondary-d");
+      expect(link).toHaveClass("bg-primary");
+      expect(link).toHaveClass("text-primary-foreground");
     });
 
     it("has text color classes", () => {
       render(<ContactButton />);
       const link = screen.getByRole("link");
-      // El color de texto se aplica por hover, no por defecto
-      expect(link).toHaveClass("hover:text-white");
-      expect(link).toHaveClass("dark:hover:text-white");
+      expect(link).toHaveClass("text-primary-foreground");
     });
 
-    it("has shadow and hover classes", () => {
+    it("has hover and focus classes", () => {
       render(<ContactButton />);
       const link = screen.getByRole("link");
-      expect(link).toHaveClass("shadow-sm");
-      expect(link).toHaveClass("hover:bg-primary");
-      expect(link).toHaveClass("hover:text-white");
-      expect(link).toHaveClass("dark:hover:bg-primary");
-      expect(link).toHaveClass("dark:hover:text-white");
+      expect(link).toHaveClass("hover:bg-primary-dark");
+      expect(link).toHaveClass("focus-visible:ring-2");
+      expect(link).toHaveClass("focus-visible:ring-primary");
     });
 
     it("preserves base classes when custom className is added", () => {
       render(<ContactButton className="extra-class" />);
       const link = screen.getByRole("link");
       expect(link).toHaveClass("inline-flex");
-      expect(link).toHaveClass("bg-bgSecondary-l");
+      expect(link).toHaveClass("bg-primary");
       expect(link).toHaveClass("extra-class");
     });
   });

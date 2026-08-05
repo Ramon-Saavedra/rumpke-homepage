@@ -13,12 +13,14 @@ export default function AdvantagesSection({
   items,
 }: AdvantagesSectionProps) {
   return (
-    <section className="bg-bgSecondary-l dark:bg-bgSecondary-d rounded-lg p-8 border border-border-l dark:border-border-d">
-      <h2 className="text-2xl font-bold mb-6 text-center">{title}</h2>
+    <section className="rounded-lg border border-border-l bg-bgSecondary-l p-8 dark:border-border-d dark:bg-bgSecondary-d">
+      <h2 className="mb-6 text-center font-serif text-2xl font-semibold">
+        {title}
+      </h2>
       <div className="space-y-4">
-        {items.map((item, index) => (
-          <div key={index}>
-            <p className="font-semibold mb-2">{item.title}</p>
+        {items.map((item) => (
+          <div key={item.title}>
+            <h3 className="mb-2 font-serif font-semibold">{item.title}</h3>
             <p className="text-sm text-card-text-l dark:text-card-text-d leading-relaxed">
               {item.description}
             </p>

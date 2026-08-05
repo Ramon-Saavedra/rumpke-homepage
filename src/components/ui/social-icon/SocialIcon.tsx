@@ -34,13 +34,13 @@ const SocialIcon = ({
         data-social={dataSocial}
         target={target}
         rel={rel}
-        className="flex justify-center items-center"
+        className="flex h-11 w-11 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         onClick={onClick}
       >
         {icon}
       </Link>
       <div
-        className="absolute top-[38px] left-1/2 -translate-x-1/2 opacity-0 invisible transition-[opacity,top] duration-[250ms] ease-in-out pointer-events-none z-50 text-xs text-bg-l py-1 px-2 rounded group-hover:opacity-100 group-hover:visible group-hover:top-[48px]"
+        className="pointer-events-none invisible absolute top-[38px] left-1/2 z-50 -translate-x-1/2 rounded-md px-2 py-1 text-xs text-bg-l opacity-0 transition-[opacity,top] duration-[250ms] ease-in-out group-hover:visible group-hover:top-[48px] group-hover:opacity-100"
         style={{ backgroundColor: bgColor }}
       >
         {tooltipText}

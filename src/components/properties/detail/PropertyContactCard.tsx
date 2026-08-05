@@ -12,12 +12,12 @@ export default function PropertyContactCard({
   return (
     <aside
       className={cn(
-        "border border-border-l bg-bgSecondary-l p-5 dark:border-border-d dark:bg-bgSecondary-d",
+        "rounded-lg border border-border-l bg-bgSecondary-l p-5 dark:border-border-d dark:bg-bgSecondary-d",
         className,
       )}
     >
       <div className="flex items-center gap-3.5">
-        <span className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden bg-Bghover-l dark:bg-Bghover-d">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-md bg-Bghover-l dark:bg-Bghover-d">
           <Image
             src={LOGO_ASSETS.mark.src}
             alt=""

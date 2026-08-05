@@ -35,7 +35,7 @@ export function LegalSection({
     <section
       id={id}
       aria-labelledby={`${id}-title`}
-      className="scroll-mt-32 border border-border-l bg-bgSecondary-l p-5 shadow-secondary dark:border-border-d dark:bg-bgSecondary-d sm:p-6 lg:p-8"
+      className="scroll-mt-32 rounded-lg border border-border-l bg-bgSecondary-l p-5 dark:border-border-d dark:bg-bgSecondary-d sm:p-6 lg:p-8"
     >
       <div className="mb-6 space-y-3">
         <div className="h-1 w-16 bg-primary" aria-hidden="true" />
@@ -80,7 +80,7 @@ export default function LegalDocumentLayout({
         <PageContainer className="pb-10 pt-12 lg:pb-14 lg:pt-16">
           <BackHomeButton />
 
-          <div className="border border-border-l bg-bgSecondary-l/90 p-6 shadow-secondary backdrop-blur-sm dark:border-border-d dark:bg-bgSecondary-d/90 sm:p-8 lg:p-10">
+          <div className="rounded-lg border border-border-l bg-bgSecondary-l/90 p-6 backdrop-blur-sm dark:border-border-d dark:bg-bgSecondary-d/90 sm:p-8 lg:p-10">
             <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-3xl">
                 <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-primary">
@@ -122,7 +122,7 @@ export default function LegalDocumentLayout({
           <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
             <nav
               aria-label="Inhaltsverzeichnis"
-              className="border border-border-l bg-bgSecondary-l p-5 shadow-secondary dark:border-border-d dark:bg-bgSecondary-d"
+              className="rounded-lg border border-border-l bg-bgSecondary-l p-5 dark:border-border-d dark:bg-bgSecondary-d"
             >
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
                 Inhaltsverzeichnis
@@ -145,8 +145,8 @@ export default function LegalDocumentLayout({
               </ul>
             </nav>
 
-            <div className="border border-border-l bg-third p-5 text-white shadow-secondary dark:border-border-d">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+            <div className="rounded-lg border border-border-l bg-third p-5 text-white dark:border-border-d">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-on-dark-accent">
                 Kontakt
               </p>
               <p className="mt-3 text-sm leading-7 text-white/80">
@@ -156,13 +156,13 @@ export default function LegalDocumentLayout({
               <div className="mt-5 flex flex-col gap-3">
                 <a
                   href="mailto:info@rumpke-immobilien.de"
-                  className="border border-primary px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary"
+                  className="rounded-md border border-on-dark-accent px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-on-dark-accent hover:text-bg-d focus-visible:ring-on-dark-accent"
                 >
                   info@rumpke-immobilien.de
                 </a>
                 <Link
                   href="/kontakt"
-                  className="border border-white/20 px-4 py-3 text-sm font-semibold text-white transition-colors hover:border-white/40 hover:bg-white/5"
+                  className="rounded-md border border-white/40 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10 focus-visible:ring-white"
                 >
                   Zur Kontaktseite
                 </Link>

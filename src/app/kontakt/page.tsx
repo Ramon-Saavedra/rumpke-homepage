@@ -22,7 +22,7 @@ export default function KontaktPage() {
 
       <ContentPanel
         as="section"
-        className="mt-4 rounded-sm px-10 py-14"
+        className="mt-4 px-5 py-9 sm:px-8 sm:py-12 lg:px-10 lg:py-14"
         aria-labelledby="contact-heading"
       >
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
@@ -32,7 +32,7 @@ export default function KontaktPage() {
             </p>
             <h1
               id="contact-heading"
-              className="text-4xl font-bold leading-tight mb-3"
+              className="mb-3 font-serif text-4xl font-semibold leading-tight"
             >
               Sprechen wir.
             </h1>
@@ -90,7 +90,7 @@ export default function KontaktPage() {
 
       <ContentPanel
         as="section"
-        className="mt-4 mb-8 rounded-sm"
+        className="mt-4 mb-8 overflow-hidden"
         aria-labelledby="form-heading"
       >
         <ContactForm formHeadingId="form-heading" />

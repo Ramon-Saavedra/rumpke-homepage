@@ -14,7 +14,7 @@ export default function PropertyLocationPlaceholder({
     <div
       role="img"
       aria-label="Kartenvorschau"
-      className="relative h-60 w-full overflow-hidden border border-border-l bg-bgSecondary-l lg:h-72 dark:border-border-d dark:bg-bgSecondary-d"
+      className="relative h-60 w-full overflow-hidden rounded-lg border border-border-l bg-bgSecondary-l lg:h-72 dark:border-border-d dark:bg-bgSecondary-d"
     >
       <div
         aria-hidden="true"

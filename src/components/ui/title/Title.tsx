@@ -33,7 +33,8 @@ const Title = ({
     right: "text-right",
   };
 
-  const baseClasses = "font-bold mb-4";
+  const baseClasses =
+    "mb-4 font-serif font-semibold leading-tight text-foreground";
   const classes = `${baseClasses} ${sizeClasses[size]} ${alignClasses[align]} ${className}`;
 
   const Tag = variant;

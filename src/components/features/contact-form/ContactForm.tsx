@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, Send, CheckCircle } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button/buttonVariants";
 import { contactSchema, type ContactFormValues } from "./contactSchema";
 import { submitContactForm } from "@/lib/api-client";
 import { ContactSubmitError } from "@/types/contact";
@@ -102,13 +102,13 @@ export default function ContactForm({
         </div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-[38%_1fr]">
-          <div className="px-10 py-14 border-b lg:border-b-0 lg:border-r border-border-l dark:border-border-d flex flex-col justify-center">
+          <div className="flex flex-col justify-center border-b border-border-l px-5 py-9 sm:px-8 sm:py-12 lg:border-r lg:border-b-0 lg:px-10 lg:py-14 dark:border-border-d">
             <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-5">
               Kontakt aufnehmen
             </p>
             <h2
               id={formHeadingId}
-              className="text-3xl font-bold leading-tight mb-3"
+              className="mb-3 font-serif text-3xl font-semibold leading-tight"
             >
               Schreiben Sie uns
             </h2>
@@ -119,7 +119,7 @@ export default function ContactForm({
             <div className="w-12 h-px bg-primary" aria-hidden="true" />
           </div>
 
-          <div className="px-10 py-14">
+          <div className="px-5 py-9 sm:px-8 sm:py-12 lg:px-10 lg:py-14">
             <form
               onSubmit={handleSubmit(onSubmit)}
               noValidate
@@ -232,7 +232,7 @@ export default function ContactForm({
 
                 {serverError && (
                   <div role="alert" aria-live="assertive">
-                    <p className="text-xs text-error bg-error/10 border border-error/20 rounded-sm px-3 py-2">
+                    <p className="rounded-md border border-error/20 bg-error/10 px-3 py-2 text-xs text-error">
                       {serverError}
                     </p>
                   </div>
@@ -241,13 +241,10 @@ export default function ContactForm({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={cn(
-                    "w-full flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold",
-                    "bg-primary text-white rounded-sm cursor-pointer",
-                    "hover:bg-primary-dark",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
-                    "disabled:opacity-60 disabled:cursor-not-allowed",
-                  )}
+                  className={buttonVariants({
+                    variant: "primary",
+                    className: "w-full",
+                  })}
                 >
                   {isSubmitting ? (
                     <>

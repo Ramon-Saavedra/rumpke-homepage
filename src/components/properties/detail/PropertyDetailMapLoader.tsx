@@ -8,7 +8,7 @@ const PropertyDetailMap = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="h-60 w-full animate-pulse border border-border-l bg-bgSecondary-l dark:border-border-d dark:bg-bgSecondary-d lg:h-72" />
+      <div className="h-60 w-full animate-pulse rounded-lg border border-border-l bg-bgSecondary-l dark:border-border-d dark:bg-bgSecondary-d lg:h-72" />
     ),
   },
 );

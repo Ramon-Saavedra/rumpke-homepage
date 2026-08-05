@@ -113,7 +113,15 @@ export default function PropertyDetailMap({
       mapInstanceRef.current = null;
       markerRef.current = null;
     };
-  }, [coordinates.lat, coordinates.lng, googleMapsUrl, handleTileError, isExact, tileUrl, title]);
+  }, [
+    coordinates.lat,
+    coordinates.lng,
+    googleMapsUrl,
+    handleTileError,
+    isExact,
+    tileUrl,
+    title,
+  ]);
 
   if (!isValidCoordinate(coordinates.lat, coordinates.lng)) {
     return null;
@@ -125,10 +133,10 @@ export default function PropertyDetailMap({
         ref={mapRef}
         role="region"
         aria-label="Kartenansicht der Immobilie"
-        className="h-60 w-full overflow-hidden border border-border-l dark:border-border-d lg:h-72"
+        className="h-60 w-full overflow-hidden rounded-lg border border-border-l dark:border-border-d lg:h-72"
       />
       {tileError && (
-        <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+        <p className="mt-1 text-sm text-error">
           Karte derzeit nicht verfügbar.{" "}
           <a
             href={googleMapsUrl}

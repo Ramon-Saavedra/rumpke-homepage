@@ -44,7 +44,7 @@ export default function PropertyFeaturedListing({
     >
       <Link
         href={detailUrl}
-        className="group relative block overflow-hidden rounded shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 lg:w-[54%] lg:shrink-0"
+        className="group relative block overflow-hidden rounded-lg shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary lg:w-[54%] lg:shrink-0"
       >
         <div className="relative aspect-4/3 lg:aspect-auto lg:h-full lg:min-h-[380px]">
           <PropertyImage
@@ -57,7 +57,7 @@ export default function PropertyFeaturedListing({
         </div>
 
         {categoryLabel && (
-          <span className="absolute top-4 left-4 rounded bg-primary px-4 py-1.5 text-[13px] font-semibold text-white">
+          <span className="absolute top-4 left-4 rounded-md bg-primary px-4 py-1.5 text-[13px] font-semibold text-primary-foreground">
             {categoryLabel}
           </span>
         )}
@@ -65,12 +65,12 @@ export default function PropertyFeaturedListing({
         {property.marketingType && (
           <PropertyTransactionBadge
             isRent={isRent}
-            className="absolute top-4 right-4 rounded px-4 py-1.5 text-[13px]"
+            className="absolute top-4 right-4 rounded-md px-4 py-1.5 text-[13px]"
           />
         )}
 
         {photoCount > 1 && (
-          <span className="absolute right-4 bottom-4 flex items-center gap-1.5 rounded bg-black/55 px-3 py-1.5 text-xs font-medium text-white">
+          <span className="absolute right-4 bottom-4 flex items-center gap-1.5 rounded-md bg-black/55 px-3 py-1.5 text-xs font-medium text-white">
             <Camera className="h-3.5 w-3.5" aria-hidden="true" />
             {photoCount} Fotos
           </span>
@@ -92,7 +92,7 @@ export default function PropertyFeaturedListing({
         <h2 className="font-serif text-2xl leading-tight font-bold text-foreground sm:text-3xl">
           <Link
             href={detailUrl}
-            className="hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+            className="hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             {title}
           </Link>

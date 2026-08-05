@@ -2,20 +2,26 @@
 
 import { RiSunLine, RiMoonClearLine } from "react-icons/ri";
 import { useTheme } from "@/context/use-theme";
+import { buttonVariants } from "@/components/ui/button/buttonVariants";
 
 export function ThemeSwitch() {
   const { toggle } = useTheme();
 
   return (
-    <div className="flex items-center select-none bg-bg-l dark:bg-bg-d p-1 rounded-md z-200">
+    <div className="z-200 flex items-center select-none">
       <button
+        type="button"
         onClick={toggle}
         title="Dunkel-/Hellmodus wechseln"
-        className="flex justify-center items-center w-4 h-4 rounded-md cursor-pointer hover:bg-Bghover-l dark:hover:bg-Bghover-d focus:outline-none focus:ring-2 focus:ring-white/20 transition-all ease-out"
-        aria-label="Toggle theme"
+        className={buttonVariants({
+          variant: "ghost",
+          size: "icon",
+          className: "cursor-pointer",
+        })}
+        aria-label="Dunkel-/Hellmodus wechseln"
       >
-        <RiSunLine className="w-4 h-4 text-black transition-transform ease-out hover:rotate-12 dark:hidden" />
-        <RiMoonClearLine className="hidden w-4 h-4 text-white transition-transform ease-out hover:rotate-12 dark:block" />
+        <RiSunLine className="h-5 w-5 transition-transform ease-out hover:rotate-12 dark:hidden" />
+        <RiMoonClearLine className="hidden h-5 w-5 transition-transform ease-out hover:rotate-12 dark:block" />
       </button>
     </div>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import "./globals.css";
+import { buttonVariants } from "@/components/ui/button/buttonVariants";
 
 export default function GlobalError({
   error,
@@ -12,8 +13,13 @@ export default function GlobalError({
   return (
     <html lang="de">
       <body>
-        <div className="flex flex-col items-center justify-center min-h-screen gap-6 text-center px-4 bg-bgSecondary-l dark:bg-bgSecondary-d text-foreground">
-          <h2 className="text-3xl font-bold">Kritischer Fehler</h2>
+        <div
+          role="alert"
+          className="flex min-h-screen flex-col items-center justify-center gap-6 bg-bgSecondary-l px-4 text-center text-foreground dark:bg-bgSecondary-d"
+        >
+          <h2 className="font-serif text-3xl font-semibold">
+            Kritischer Fehler
+          </h2>
 
           <p className="max-w-md text-card-text-l dark:text-card-text-d">
             Ein schwerwiegender Fehler ist aufgetreten. Die Seite konnte nicht
@@ -27,7 +33,7 @@ export default function GlobalError({
 
           <button
             onClick={unstable_retry}
-            className="px-6 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors cursor-pointer"
+            className={buttonVariants({ variant: "primary" })}
           >
             Erneut versuchen
           </button>

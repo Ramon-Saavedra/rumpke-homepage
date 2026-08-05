@@ -7,6 +7,7 @@ export default defineConfig([
   ...nextTs,
   globalIgnores([
     ".next/**",
+    "coverage/**",
     "out/**",
     "build/**",
     "next-env.d.ts",
@@ -21,7 +22,10 @@ export default defineConfig([
     files: ["**/*.test.ts", "**/*.test.tsx"],
     rules: {
       "@next/next/no-img-element": "off",
-      "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_" },
+      ],
     },
   },
 ]);
