@@ -2,6 +2,21 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import WhatMattersNowSection from "./WhatMattersNowSection";
 
+const scenarios = [
+  [
+    "Verkaufen",
+    "Ich möchte meine Immobilie verkaufen.",
+    "/dienstleistungen/verkauf-vermietung",
+  ],
+  ["Kaufen", "Ich suche ein neues Zuhause.", "/kauf"],
+  ["Erbschaft", "Ich habe eine Immobilie geerbt.", "/kontakt"],
+  [
+    "Bewertung",
+    "Ich möchte den aktuellen Marktwert erfahren.",
+    "/dienstleistungen/immobilienbewertung",
+  ],
+] as const;
+
 describe("WhatMattersNowSection", () => {
   it("renders the eyebrow and heading", () => {
     render(<WhatMattersNowSection />);
@@ -20,35 +35,16 @@ describe("WhatMattersNowSection", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders all four visitor scenarios", () => {
-    render(<WhatMattersNowSection />);
+  it.each(scenarios)(
+    "links the %s scenario to the correct page",
+    (kicker, label, href) => {
+      render(<WhatMattersNowSection />);
 
-    expect(
-      screen.getByText("Ich möchte meine Immobilie verkaufen."),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText("Ich suche ein neues Zuhause."),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText("Ich habe eine Immobilie geerbt."),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText("Ich möchte den aktuellen Marktwert erfahren."),
-    ).toBeInTheDocument();
-  });
-
-  it("links scenarios to the correct pages", () => {
-    render(<WhatMattersNowSection />);
-
-    expect(
-      screen.getByRole("link", {
-        name: /Ich möchte meine Immobilie verkaufen/i,
-      }),
-    ).toHaveAttribute("href", "/dienstleistungen/verkauf-vermietung");
-    expect(
-      screen.getByRole("link", { name: /Ich suche ein neues Zuhause/i }),
-    ).toHaveAttribute("href", "/kauf");
-  });
+      expect(
+        screen.getByRole("link", { name: `${kicker} ${label}` }),
+      ).toHaveAttribute("href", href);
+    },
+  );
 
   it("links the CTA to the contact page", () => {
     render(<WhatMattersNowSection />);
