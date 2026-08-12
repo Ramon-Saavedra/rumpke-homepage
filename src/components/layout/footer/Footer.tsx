@@ -106,8 +106,8 @@ const Footer = () => {
                 40811 Lingen
               </FooterContactItem>
               <FooterContactItem icon={<IoCallOutline size={15} />}>
-                <a href="tel:+4959634599970" className="hover:text-primary">
-                  05963 – 45 999 70
+                <a href="tel:+491723244468" className="hover:text-primary">
+                  01723244468
                 </a>
               </FooterContactItem>
               <FooterContactItem icon={<IoMailOutline size={15} />}>

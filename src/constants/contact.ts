@@ -1,7 +1,7 @@
 export const COMPANY_CONTACT = {
   name: "Rumpke Immobilien",
-  phoneHref: "tel:+4959634599970",
-  phoneLabel: "05963 – 45 999 70",
+  phoneHref: "tel:+491723244468",
+  phoneLabel: "01723244468",
   emailHref: "mailto:info@rumpke-immobilien.de",
   emailLabel: "info@rumpke-immobilien.de",
 } as const;

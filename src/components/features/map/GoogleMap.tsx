@@ -48,10 +48,10 @@ const GoogleMap = () => {
                 <li className="flex items-center gap-3">
                   <IoCallOutline size={18} className="text-primary shrink-0" />
                   <a
-                    href="tel:+4959634599970"
+                    href="tel:+491723244468"
                     className="text-sm text-card-text-l dark:text-card-text-d hover:text-primary"
                   >
-                    05963 – 45 999 70
+                    01723244468
                   </a>
                 </li>
                 <li className="flex items-center gap-3">

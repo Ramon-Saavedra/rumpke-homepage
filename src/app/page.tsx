@@ -21,7 +21,7 @@ const realEstateAgentSchema = {
   description:
     "Persönliche Immobilienberatung für Kauf, Verkauf und Vermietung in Bawinkel und dem Emsland.",
   url: "https://www.rumpke-immobilien.de",
-  telephone: "+4959634599970",
+  telephone: "+491723244468",
   email: "info@rumpke-immobilien.de",
   address: {
     "@type": "PostalAddress",
