@@ -55,17 +55,6 @@ export default function KontaktPage() {
               <span>0172 – 32 444 68</span>
             </a>
             <a
-              href="tel:+4959634599970"
-              className="flex items-center gap-3 text-sm text-card-text-l dark:text-card-text-d hover:text-primary transition-colors group"
-            >
-              <IoCallOutline
-                size={15}
-                className="text-primary shrink-0 group-hover:scale-110 transition-transform"
-                aria-hidden="true"
-              />
-              <span>05963 – 45 999 70</span>
-            </a>
-            <a
               href="mailto:info@rumpke-immobilien.de"
               className="flex items-center gap-3 text-sm text-card-text-l dark:text-card-text-d hover:text-primary transition-colors group"
             >

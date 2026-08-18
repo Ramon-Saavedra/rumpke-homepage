@@ -98,10 +98,10 @@ export default function ImpressumPage() {
               <p>
                 Telefon:{" "}
                 <a
-                  href="tel:+49596345999709"
+                  href="tel:+4959634599970"
                   className="font-medium text-primary underline-offset-4 hover:underline"
                 >
-                  +49 (0) 5963-45999709
+                  +49 (0) 5963-4599970
                 </a>
               </p>
               <p>
