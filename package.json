@@ -19,7 +19,8 @@
     "@vis.gl/react-google-maps": "^1.9.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-
+    "leaflet": "^1.9.4",
+    "lucide-react": "1.27.0",
     "next": "^16.3.0-preview.9",
     "radix-ui": "^1.6.7",
     "react": "^19.2.8",
