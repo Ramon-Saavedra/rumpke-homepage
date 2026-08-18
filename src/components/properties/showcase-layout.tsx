@@ -1,23 +1,9 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import PropertyShowcaseCard from "./PropertyShowcaseCard";
 import PageContainer from "@/components/layout/page-container/PageContainer";
 import { SHOWCASE_CTA_CLASS } from "./showcase-cta";
-import type { PropertyCardDto } from "@/types/property-api";
 import { cn } from "@/lib/utils";
-
-export type ShowcaseSlot = PropertyCardDto | undefined;
-
-export const ROW_GAP = "gap-6 lg:gap-8";
-
-export function emptySlots(count: 2 | 3): readonly ShowcaseSlot[] {
-  return Array.from({ length: count }, () => undefined);
-}
-
-function slotKey(slot: ShowcaseSlot, index: number): string {
-  return slot?.id ?? `slot-${index}`;
-}
 
 export function ShowcaseSection({
   withListingCta,
@@ -66,94 +52,5 @@ export function ShowcaseSection({
         )}
       </PageContainer>
     </section>
-  );
-}
-
-export function AnchorRow({
-  featured,
-  secondary,
-  className,
-}: {
-  readonly featured: ShowcaseSlot;
-  readonly secondary: readonly ShowcaseSlot[];
-  readonly className?: string;
-}) {
-  return (
-    <div
-      className={cn(
-        "flex flex-col lg:h-150 lg:flex-row lg:items-stretch",
-        ROW_GAP,
-        className,
-      )}
-    >
-      <PropertyShowcaseCard
-        property={featured}
-        variant="featured"
-        media="fill"
-        priority
-        className="lg:w-[64%] lg:shrink-0 lg:grow-0 lg:basis-auto"
-      />
-
-      {secondary.length > 0 && (
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:flex lg:flex-1 lg:flex-col lg:gap-5">
-          {secondary.map((property, index) => (
-            <PropertyShowcaseCard
-              key={slotKey(property, index)}
-              property={property}
-              variant="compact"
-              media="fill"
-            />
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
-export function PanoramaAnchor({
-  featured,
-  className,
-}: {
-  readonly featured: ShowcaseSlot;
-  readonly className?: string;
-}) {
-  return (
-    <PropertyShowcaseCard
-      property={featured}
-      variant="featured"
-      media="panorama"
-      priority
-      className={className}
-    />
-  );
-}
-
-export function StandardRow({
-  properties,
-  priorityFirst = false,
-  className,
-}: {
-  readonly properties: readonly ShowcaseSlot[];
-  readonly priorityFirst?: boolean;
-  readonly className?: string;
-}) {
-  return (
-    <div
-      className={cn(
-        "grid grid-cols-1 sm:grid-cols-2",
-        properties.length >= 3 && "md:grid-cols-3",
-        ROW_GAP,
-        className,
-      )}
-    >
-      {properties.map((property, index) => (
-        <PropertyShowcaseCard
-          key={slotKey(property, index)}
-          property={property}
-          variant="standard"
-          priority={priorityFirst && index === 0}
-        />
-      ))}
-    </div>
   );
 }

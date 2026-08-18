@@ -13,6 +13,12 @@ export const PROPERTY_CTA_SECONDARY_CLASS = buttonVariants({
   shape: "pill",
 });
 
+export const PROPERTY_CTA_ROUNDED_CLASS = buttonVariants({
+  variant: "primary",
+  size: "lg",
+  shape: "rounded",
+});
+
 export const PROPERTY_CTA_COMPACT_BASE = cn(
   buttonVariants({ variant: "primary", size: "sm", shape: "pill" }),
   "w-fit px-5 text-[13px]",

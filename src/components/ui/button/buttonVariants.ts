@@ -21,6 +21,7 @@ export const buttonVariants = cva(
       shape: {
         default: "rounded-md",
         pill: "rounded-full",
+        rounded: "rounded",
       },
     },
     defaultVariants: {

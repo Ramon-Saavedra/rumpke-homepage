@@ -150,6 +150,15 @@
   scrollbar-color: black black;
 }
 
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 @theme inline {
   --font-heading: var(--font-geist), Arial, sans-serif;
   --font-sans: var(--font-geist), Arial, sans-serif;
