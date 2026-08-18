@@ -44,7 +44,7 @@ export default function PropertyFeaturedListing({
     >
       <Link
         href={detailUrl}
-        className="group relative block overflow-hidden rounded-lg shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary lg:w-[54%] lg:shrink-0"
+        className="group relative block overflow-hidden rounded shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary lg:w-[54%] lg:shrink-0"
       >
         <div className="relative aspect-4/3 lg:aspect-auto lg:h-full lg:min-h-[380px]">
           <PropertyImage

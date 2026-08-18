@@ -2,7 +2,7 @@ import "@/test-utils/lucide-mocks";
 
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { ShowcaseSection, emptySlots } from "./showcase-layout";
+import { ShowcaseSection } from "./showcase-layout";
 
 describe("ShowcaseSection", () => {
   it("renders heading", () => {
@@ -45,19 +45,5 @@ describe("ShowcaseSection", () => {
       </ShowcaseSection>,
     );
     expect(screen.getByText("test child")).toBeInTheDocument();
-  });
-});
-
-describe("emptySlots", () => {
-  it("returns array of undefined slots", () => {
-    const slots = emptySlots(3);
-    expect(slots).toHaveLength(3);
-    expect(slots).toEqual([undefined, undefined, undefined]);
-  });
-
-  it("returns array of 2 undefined slots", () => {
-    const slots = emptySlots(2);
-    expect(slots).toHaveLength(2);
-    expect(slots).toEqual([undefined, undefined]);
   });
 });

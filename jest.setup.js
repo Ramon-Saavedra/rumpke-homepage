@@ -34,6 +34,16 @@ class MockIntersectionObserver {
 
 global.IntersectionObserver = MockIntersectionObserver;
 
+class MockResizeObserver {
+	observe() {}
+
+	unobserve() {}
+
+	disconnect() {}
+}
+
+global.ResizeObserver = MockResizeObserver;
+
 jest.mock("leaflet", () => {
   const actualIcon = class {
     constructor() {

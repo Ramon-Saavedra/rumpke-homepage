@@ -5,6 +5,7 @@ import Image from "next/image";
 import ImagePlaceholder from "@/components/properties/ImagePlaceholder";
 import type { PropertyImageDto } from "@/types/property-api";
 import Skeleton from "@/components/ui/skeleton/Skeleton";
+import { resolveFirstValidImage } from "@/lib/property-images";
 
 interface PropertyImageProps {
   readonly images: readonly PropertyImageDto[];
@@ -13,29 +14,6 @@ interface PropertyImageProps {
   readonly priority?: boolean;
   readonly sizes?: string;
   readonly fill?: boolean;
-}
-
-const ALLOWED_IMAGE_HOSTS = new Set(["image.onoffice.de", "smart.onoffice.de"]);
-
-function isValidImageUrl(url: string): boolean {
-  try {
-    const parsed = new URL(url);
-    return (
-      parsed.protocol === "https:" && ALLOWED_IMAGE_HOSTS.has(parsed.hostname)
-    );
-  } catch {
-    return false;
-  }
-}
-
-function getFirstValidImage(
-  images: readonly PropertyImageDto[],
-): PropertyImageDto | null {
-  if (images.length === 0) return null;
-  const first = images[0];
-  if (typeof first.url !== "string" || first.url.length === 0) return null;
-  if (!isValidImageUrl(first.url)) return null;
-  return first;
 }
 
 function resolveImageAlt(image: PropertyImageDto, fallbackAlt: string): string {
@@ -53,7 +31,7 @@ export default function PropertyImage({
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
-  const validImage = getFirstValidImage(images);
+  const validImage = resolveFirstValidImage(images);
 
   if (!validImage || hasError) {
     return <ImagePlaceholder label={alt} className={className} />;

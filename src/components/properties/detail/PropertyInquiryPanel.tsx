@@ -129,7 +129,7 @@ export default function PropertyInquiryPanel({
       )}
     >
       <div className="mb-5 flex items-center gap-3 border-b border-border-l pb-5 dark:border-border-d">
-        <div className="h-13 w-13 shrink-0 overflow-hidden rounded-md">
+        <div className="h-13 w-13 shrink-0 overflow-hidden rounded">
           <PropertyImage
             images={property.images}
             alt={title}
